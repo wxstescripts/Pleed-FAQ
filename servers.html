@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pleed | Servers</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="background-glow"></div>
+
+  <nav>
+    <div class="brand">
+      <img src="assets/logo.png" alt="Pleed Logo">
+      <span>Pleed</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="commands.html">Commands</a>
+      <a href="servers.html">Servers</a>
+      <a href="docs.html">Docs</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="status">
+      <span></span>
+      Server Showcase
+    </div>
+
+    <h1>Pleed Communities</h1>
+    <p>Servers powered by Pleed.</p>
+  </header>
+
+  <section>
+    <div id="servers" class="commands-grid">
+      <div class="card">
+        <h2>Loading servers...</h2>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const container = document.getElementById("servers");
+
+    async function loadServers() {
+      try {
+        const response = await fetch("data/showcase.json");
+
+        if (!response.ok) {
+          throw new Error("Failed to load server data");
+        }
+
+        const data = await response.json();
+        container.innerHTML = "";
+
+        data.servers.forEach(server => {
+          container.innerHTML += `
+            <div class="command-card">
+              ${server.banner ? `<img src="${server.banner}" class="server-banner" alt="${server.name} banner">` : ""}
+              
+              <div class="server-header">
+                <img src="${server.icon}" class="server-icon" alt="${server.name} icon">
+                <div>
+                  <h2>
+                    ${server.name}
+                    ${server.verified ? " ✓" : ""}
+                  </h2>
+                  <p>${server.members.toLocaleString()} Members</p>
+                </div>
+              </div>
+
+              <p>${server.description}</p>
+
+              <div class="command-meta">
+                Usage: ${server.usageCount ? server.usageCount.toLocaleString() : 0}
+              </div>
+            </div>
+          `;
+        });
+      } catch (error) {
+        container.innerHTML = `
+          <div class="card">
+            <h2>Unable to load servers</h2>
+          </div>
+        `;
+        console.error("Error loading servers:", error);
+      }
+    }
+
+    loadServers();
+  </script>
+
+</body>
+
+</html>
