@@ -1,0 +1,47 @@
+<script>
+  const id = new URLSearchParams(window.location.search).get("id");
+
+  async function loadServer() {
+    if (!id) {
+      document.body.innerHTML = "<h2>No server ID specified.</h2>";
+      return;
+    }
+
+    try {
+      const response = await fetch("https://pleed-api.onrender.com/servers");
+
+      if (!response.ok) {
+        throw new Error("Failed to load server data");
+      }
+
+      const data = await response.json();
+      const server = data.servers?.find(s => String(s.id) === String(id));
+
+      if (!server) {
+        document.body.innerHTML = "<h2>Server not found</h2>";
+        return;
+      }
+
+      // Safely update DOM elements if they exist
+      const nameEl = document.getElementById("name");
+      const membersEl = document.getElementById("members");
+      const descEl = document.getElementById("description");
+      const iconEl = document.getElementById("icon");
+      const bannerEl = document.getElementById("banner");
+      const joinEl = document.getElementById("join");
+
+      if (nameEl) nameEl.textContent = server.name;
+      if (membersEl) membersEl.textContent = `${(server.members || 0).toLocaleString()} Members`;
+      if (descEl) descEl.textContent = server.description || "";
+      if (iconEl) iconEl.src = server.icon || "assets/default-icon.png";
+      if (bannerEl) bannerEl.src = server.banner || "assets/default-banner.png";
+      if (joinEl) joinEl.href = server.invite || "#";
+
+    } catch (error) {
+      console.error("Error loading server:", error);
+      document.body.innerHTML = "<h2>Unable to load server details.</h2>";
+    }
+  }
+
+  loadServer();
+</script>
