@@ -1,63 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Pleed Command</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pleed Command</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="background-glow"></div>
 
-    <section class="hero">
-        <h1 id="name">Loading...</h1>
-        <p id="description"></p>
-    </section>
+  <div class="background-glow"></div>
 
-    <section>
-        <div class="command-card">
-            <h3>Usage</h3>
-            <code id="usage"></code>
+  <section class="hero">
+    <h1 id="name">Loading...</h1>
+    <p id="description"></p>
+  </section>
 
-            <h3>Permissions</h3>
-            <p id="permissions"></p>
+  <section>
+    <div class="command-card">
+      <h3>Usage</h3>
+      <code id="usage"></code>
 
-            <h3>Category</h3>
-            <p id="category"></p>
-        </div>
-    </section>
+      <h3>Permissions</h3>
+      <p id="permissions"></p>
 
-    <script>
-        const API = "https://YOUR-RENDER-URL.onrender.com/commands/";
-        
-        // Extracts the command name from "?command_name" or URL path
-        const command = location.search 
-            ? location.search.substring(1) 
-            : location.pathname.split("/").pop();
+      <h3>Category</h3>
+      <p id="category"></p>
+    </div>
+  </section>
 
-        async function load() {
-            try {
-                const response = await fetch(API + command);
-                const data = await response.json();
+  <script>
+    const API = "https://pleed-api.onrender.com/commands/";
 
-                if (data.error) {
-                    document.getElementById("name").innerText = "Error";
-                    document.getElementById("description").innerText = data.error;
-                    return;
-                }
+    // Extracts command name from "?ban", "?command=ban", or path "/commands/ban"
+    const params = new URLSearchParams(window.location.search);
+    const queryParam = params.get("command");
+    const searchString = window.location.search.substring(1);
 
-                document.getElementById("name").innerText = "/" + data.name;
-                document.getElementById("description").innerText = data.description;
-                document.getElementById("usage").innerText = data.usage;
-                document.getElementById("permissions").innerText = data.permissions.join(", ") || "Everyone";
-                document.getElementById("category").innerText = data.category;
-            } catch (err) {
-                console.error("Failed to load command:", err);
-                document.getElementById("name").innerText = "Error";
-                document.getElementById("description").innerText = "Failed to load command details.";
-            }
+    const command = queryParam || (searchString.includes("=") ? "" : searchString) || window.location.pathname.split("/").pop();
+
+    async function load() {
+      if (!command) {
+        document.getElementById("name").textContent = "Error";
+        document.getElementById("description").textContent = "No command specified.";
+        return;
+      }
+
+      try {
+        const response = await fetch(API + encodeURIComponent(command));
+
+        if (!response.ok) {
+          throw new Error("Command not found");
         }
 
-        load();
-    </script>
+        const data = await response.json();
+
+        if (data.error) {
+          document.getElementById("name").textContent = "Error";
+          document.getElementById("description").textContent = data.error;
+          return;
+        }
+
+        const prefix = data.type === "prefix" ? "!" : "/";
+        document.getElementById("name").textContent = prefix + data.name;
+        document.getElementById("description").textContent = data.description || "No description provided.";
+        document.getElementById("usage").textContent = data.usage || "N/A";
+        document.getElementById("permissions").textContent =
+          Array.isArray(data.permissions) && data.permissions.length > 0
+            ? data.permissions.join(", ")
+            : "Everyone";
+        document.getElementById("category").textContent = data.category || "General";
+      } catch (error) {
+        document.getElementById("name").textContent = "Error";
+        document.getElementById("description").textContent = "Failed to load command details.";
+        console.error("Failed to load command:", error);
+      }
+    }
+
+    load();
+  </script>
+
 </body>
+
 </html>
