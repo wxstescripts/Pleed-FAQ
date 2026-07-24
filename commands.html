@@ -129,7 +129,7 @@
           : "Everyone";
 
         container.innerHTML += `
-          <a href="command.html?${command.name}" class="command-link">
+          <a href="command.html?command=${command.name}" class="command-link">
             <div class="command-card" data-category="${command.category}">
               <div class="command-name">
                 ${command.type === "prefix" ? "!" : "/"}${command.name}
