@@ -21,20 +21,17 @@
 <div class="background-glow"></div>
 
 
-
 <nav>
-
 
 <div class="brand">
 
-<img src="assets/logo.png" alt="Pleed Logo">
+<img src="assets/logo.png">
 
 <span>
 Pleed
 </span>
 
 </div>
-
 
 
 <div class="nav-links">
@@ -51,12 +48,11 @@ Commands
 Docs
 </a>
 
-<a href="privacy.html">
-Privacy
+<a href="status.html">
+Status
 </a>
 
 </div>
-
 
 
 <a class="nav-button" href="#">
@@ -70,7 +66,7 @@ Invite
 
 
 
-<header class="hero command-hero">
+<header class="hero">
 
 
 <div class="status">
@@ -82,20 +78,13 @@ Command Center
 </div>
 
 
-
 <h1>
-
 Pleed Commands
-
 </h1>
 
 
-
 <p>
-
-Explore Pleed's moderation,
-security, automation, and utility commands.
-
+Browse all available Pleed commands.
 </p>
 
 
@@ -110,8 +99,7 @@ security, automation, and utility commands.
 
 <div class="command-search">
 
-<input 
-type="text"
+<input
 id="search"
 placeholder="Search commands..."
 >
@@ -122,27 +110,25 @@ placeholder="Search commands..."
 
 
 
-
 <div class="categories">
-
 
 <button onclick="filterCommands('all')">
 All
 </button>
 
-<button onclick="filterCommands('moderation')">
+<button onclick="filterCommands('Moderation')">
 Moderation
 </button>
 
-<button onclick="filterCommands('tickets')">
+<button onclick="filterCommands('Tickets')">
 Tickets
 </button>
 
-<button onclick="filterCommands('security')">
+<button onclick="filterCommands('Security')">
 Security
 </button>
 
-<button onclick="filterCommands('utility')">
+<button onclick="filterCommands('Utility')">
 Utility
 </button>
 
@@ -153,234 +139,25 @@ Utility
 
 
 
+<div id="commands" class="commands-grid">
 
+<div class="card">
 
-<div class="commands-grid" id="commands">
-
-
-
-
-
-<div class="command-card" data-category="moderation">
-
-
-<div class="command-name">
-
-/warn
-
-</div>
-
-
-<h3>
-Warn User
-</h3>
-
+<h2>
+Loading Commands...
+</h2>
 
 <p>
-Issue a warning and log moderation action.
+Connecting to Pleed API
 </p>
 
-
-<span>
-Permission: Moderator
-</span>
-
-
-<code>
-/warn @user reason
-</code>
-
+</div>
 
 </div>
 
-
-
-
-
-<div class="command-card" data-category="moderation">
-
-
-<div class="command-name">
-
-/kick
-
-</div>
-
-
-<h3>
-Kick Member
-</h3>
-
-
-<p>
-Remove a member from your server.
-</p>
-
-
-<span>
-Permission: Kick Members
-</span>
-
-
-<code>
-/kick @user reason
-</code>
-
-
-</div>
-
-
-
-
-
-<div class="command-card" data-category="tickets">
-
-
-<div class="command-name">
-
-/ticket setup
-
-</div>
-
-
-<h3>
-Ticket System
-</h3>
-
-
-<p>
-Create a professional support panel.
-</p>
-
-
-<span>
-Permission: Administrator
-</span>
-
-
-<code>
-/ticket setup
-</code>
-
-
-</div>
-
-
-
-
-
-<div class="command-card" data-category="security">
-
-
-<div class="command-name">
-
-/security
-
-</div>
-
-
-<h3>
-Security Panel
-</h3>
-
-
-<p>
-View and configure protection systems.
-</p>
-
-
-<span>
-Permission: Administrator
-</span>
-
-
-<code>
-/security config
-</code>
-
-
-</div>
-
-
-
-
-
-<div class="command-card" data-category="utility">
-
-
-<div class="command-name">
-
-/help
-
-</div>
-
-
-<h3>
-Help Menu
-</h3>
-
-
-<p>
-View all available Pleed commands.
-</p>
-
-
-<span>
-Permission: Everyone
-</span>
-
-
-<code>
-/help
-</code>
-
-
-</div>
-
-
-
-
-
-<div class="command-card" data-category="utility">
-
-
-<div class="command-name">
-
-/config
-
-</div>
-
-
-<h3>
-Configuration
-</h3>
-
-
-<p>
-Customize Pleed settings.
-</p>
-
-
-<span>
-Permission: Administrator
-</span>
-
-
-<code>
-/config
-</code>
-
-
-</div>
-
-
-
-
-</div>
 
 
 </section>
-
 
 
 
@@ -399,7 +176,6 @@ Pleed
 </span>
 
 </div>
-
 
 
 <div class="footer-links">
@@ -430,16 +206,169 @@ Support
 
 
 
-
 <script>
+
+
+let allCommands = [];
+
+
+const container =
+document.getElementById("commands");
 
 
 const search =
 document.getElementById("search");
 
 
-const cards =
-document.querySelectorAll(".command-card");
+
+async function loadCommands(){
+
+
+try {
+
+
+const response =
+await fetch(
+"https://api.pleed.bot/commands"
+);
+
+
+
+allCommands =
+await response.json();
+
+
+
+displayCommands(allCommands);
+
+
+
+}
+
+catch(error){
+
+
+container.innerHTML = `
+
+<div class="card">
+
+<h2>
+Unable to load commands
+</h2>
+
+<p>
+Pleed API is currently unavailable.
+</p>
+
+</div>
+
+`;
+
+
+console.error(error);
+
+
+}
+
+
+}
+
+
+
+
+
+function displayCommands(commands){
+
+
+container.innerHTML = "";
+
+
+commands.forEach(command => {
+
+
+container.innerHTML += `
+
+
+<div class="command-card"
+data-category="${command.category}">
+
+
+<div class="command-name">
+
+/${command.name}
+
+</div>
+
+
+<h3>
+
+${command.category}
+
+</h3>
+
+
+<p>
+
+${command.description}
+
+</p>
+
+
+<span>
+
+Permission:
+${command.permission}
+
+</span>
+
+
+<code>
+
+${command.usage}
+
+</code>
+
+
+</div>
+
+
+`;
+
+});
+
+
+}
+
+
+
+
+
+function filterCommands(category){
+
+
+if(category === "all"){
+
+displayCommands(allCommands);
+
+return;
+
+}
+
+
+
+displayCommands(
+
+allCommands.filter(
+command =>
+command.category === category
+)
+
+);
+
+
+}
+
+
 
 
 
@@ -448,70 +377,30 @@ search.addEventListener(
 () => {
 
 
-let value =
+const value =
 search.value.toLowerCase();
 
 
 
-cards.forEach(card => {
+displayCommands(
 
-
-let text =
-card.innerText.toLowerCase();
-
-
-
-if(text.includes(value)) {
-
-card.style.display = "block";
-
-}
-
-else {
-
-card.style.display = "none";
-
-}
-
-
-});
-
-
-});
-
-
-
-
-
-function filterCommands(category) {
-
-
-cards.forEach(card => {
-
-
-if(
-category === "all" ||
-card.dataset.category === category
+allCommands.filter(
+command =>
+JSON.stringify(command)
+.toLowerCase()
+.includes(value)
 )
 
-{
-
-card.style.display = "block";
-
-}
-
-else {
-
-card.style.display = "none";
-
-}
+);
 
 
 });
 
 
-}
 
+
+
+loadCommands();
 
 
 </script>
