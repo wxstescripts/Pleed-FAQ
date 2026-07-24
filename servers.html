@@ -1,65 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pleed | Servers</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-  <div class="background-glow"></div>
-
-  <nav>
-    <div class="brand">
-      <img src="assets/logo.png" alt="Pleed Logo">
-      <span>Pleed</span>
-    </div>
-
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="commands.html">Commands</a>
-      <a href="servers.html">Servers</a>
-      <a href="docs.html">Docs</a>
-    </div>
-
-    <a class="nav-button" href="https://discord.com/oauth2/authorize?client_id=1484703029243416757">Invite</a>
-  </nav>
-
-  <header class="hero">
-    <div class="status">
-      <span></span>
-      Live Communities
-    </div>
-
-    <h1>Pleed Communities</h1>
-    <p>Discover servers powered by Pleed.</p>
-  </header>
-
-  <section>
-    <div class="server-controls">
-      <input id="search" placeholder="Search servers...">
-      <select id="sort">
-        <option value="members">Most Members</option>
-        <option value="usage">Most Active</option>
-      </select>
-    </div>
-
-    <div id="servers" class="servers-grid">
-      <div class="server-card">
-        <h2>Loading servers...</h2>
-        <p>Connecting to Pleed API</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <p>© 2026 Pleed Development</p>
-  </footer>
-
-  <script>
+<script>
     let allServers = [];
     const container = document.getElementById("servers");
 
@@ -158,7 +97,3 @@
 
     loadServers();
   </script>
-
-</body>
-
-</html>
