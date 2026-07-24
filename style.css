@@ -5,53 +5,76 @@
     --lavender: #C2A6C3;
     --pink: #EAD8E8;
     --white: #F4ECF3;
+    --green: #72ff8a;
 }
 
 
 /* =========================
-   Global Styles
+   Global
 ========================= */
 
 * {
     box-sizing: border-box;
 }
 
+
 html {
     scroll-behavior: smooth;
 }
 
+
 body {
     margin: 0;
-    font-family: Inter, Segoe UI, Arial, sans-serif;
+
+    font-family:
+        Inter,
+        Segoe UI,
+        Arial,
+        sans-serif;
+
     background: var(--void);
+
     color: var(--pink);
+
+    overflow-x: hidden;
 }
 
 
+
+a {
+    transition: 0.3s;
+}
+
+
+
 /* =========================
-   Background Glow
+   Background Effects
 ========================= */
 
 .background-glow {
-    position: fixed;
-    width: 700px;
-    height: 700px;
 
-    top: -250px;
+    position: fixed;
+
+    width: 750px;
+    height: 750px;
+
+    top: -300px;
     left: 50%;
 
     transform: translateX(-50%);
 
-    background: radial-gradient(
-        circle,
-        rgba(194, 166, 195, 0.25),
-        transparent 70%
-    );
+    background:
+        radial-gradient(
+            circle,
+            rgba(194,166,195,0.3),
+            transparent 70%
+        );
 
-    filter: blur(50px);
+    filter: blur(60px);
 
     z-index: -1;
 }
+
 
 
 /* =========================
@@ -59,114 +82,225 @@ body {
 ========================= */
 
 nav {
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
     padding: 25px 8%;
+
 }
+
 
 
 .brand {
+
     display: flex;
+
     align-items: center;
+
     gap: 12px;
 
+    color: var(--white);
+
     font-size: 28px;
+
     font-weight: 800;
 
-    color: var(--white);
 }
 
 
+
 .brand img {
+
     width: 45px;
+
     height: 45px;
 
     border-radius: 12px;
 
     object-fit: contain;
-    padding: 4px;
+
 }
+
 
 
 .nav-links {
+
     display: flex;
+
     gap: 25px;
+
 }
 
 
+
 .nav-links a {
+
     color: var(--pink);
 
     text-decoration: none;
 
-    transition: 0.3s;
 }
+
 
 
 .nav-links a:hover {
+
     color: var(--lavender);
+
 }
+
+
+
+.nav-button {
+
+    padding: 12px 25px;
+
+    border-radius: 14px;
+
+    background: var(--lavender);
+
+    color: var(--void);
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+}
+
+
+
+.nav-button:hover {
+
+    background: var(--white);
+
+    transform: translateY(-3px);
+
+}
+
 
 
 /* =========================
-   Hero Section
+   Hero
 ========================= */
 
 .hero {
+
     text-align: center;
 
     padding: 100px 20px;
+
 }
 
 
-.hero-logo {
-    width: 160px;
-    height: 160px;
 
-    border-radius: 35px;
+.status {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px 18px;
+
+    margin-bottom: 30px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(44,26,48,0.7);
+
+    border:
+        1px solid rgba(194,166,195,0.3);
+
+}
+
+
+
+.status span {
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    box-shadow:
+        0 0 15px var(--green);
+
+}
+
+
+
+.hero-logo {
+
+    width: 170px;
+
+    height: 170px;
+
+    border-radius: 40px;
 
     object-fit: contain;
 
     padding: 10px;
 
-    background: rgba(44, 26, 48, 0.6);
+    background:
+        rgba(44,26,48,0.5);
 
-    border: 2px solid var(--lavender);
+    border:
+        2px solid var(--lavender);
 
     box-shadow:
-        0 0 40px rgba(194, 166, 195, 0.45);
+        0 0 50px rgba(194,166,195,0.5);
 
     transition: 0.3s;
+
 }
+
 
 
 .hero-logo:hover {
+
     transform: scale(1.05);
+
 }
+
 
 
 .hero h1 {
-    max-width: 850px;
 
-    margin: 30px auto 20px;
+    max-width: 900px;
+
+    margin: 35px auto 20px;
 
     font-size: 60px;
 
+    line-height: 1.1;
+
     color: var(--white);
+
 }
 
 
+
 .hero p {
-    max-width: 650px;
+
+    max-width: 700px;
 
     margin: auto;
 
     font-size: 21px;
 
     opacity: 0.9;
+
 }
+
 
 
 /* =========================
@@ -174,6 +308,7 @@ nav {
 ========================= */
 
 .buttons {
+
     display: flex;
 
     justify-content: center;
@@ -181,12 +316,15 @@ nav {
     gap: 15px;
 
     margin-top: 35px;
+
 }
+
 
 
 .primary,
 .secondary {
-    padding: 15px 30px;
+
+    padding: 15px 32px;
 
     border-radius: 15px;
 
@@ -194,36 +332,51 @@ nav {
 
     font-weight: 700;
 
-    transition: 0.3s;
 }
+
 
 
 .primary {
+
     background: var(--lavender);
 
     color: var(--void);
+
 }
+
 
 
 .primary:hover {
+
     background: var(--white);
 
     transform: translateY(-3px);
+
 }
+
 
 
 .secondary {
-    border: 1px solid var(--violet);
+
+    border:
+
+        1px solid var(--violet);
 
     color: var(--white);
+
 }
+
 
 
 .secondary:hover {
+
     border-color: var(--lavender);
 
-    background: rgba(194, 166, 195, 0.1);
+    background:
+        rgba(194,166,195,0.1);
+
 }
+
 
 
 /* =========================
@@ -231,37 +384,101 @@ nav {
 ========================= */
 
 section {
+
     max-width: 1100px;
 
     margin: auto;
 
-    padding: 60px 20px;
+    padding: 70px 20px;
+
 }
+
 
 
 section h2 {
+
     text-align: center;
 
-    margin-bottom: 40px;
+    color: var(--white);
 
     font-size: 38px;
 
-    color: var(--white);
+    margin-bottom: 40px;
+
 }
+
 
 
 /* =========================
-   Feature Cards
+   Stats
 ========================= */
 
-.grid {
+.stats-grid {
+
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit, minmax(250px, 1fr));
+        repeat(auto-fit,minmax(200px,1fr));
 
     gap: 25px;
+
 }
+
+
+
+.stat {
+
+    text-align: center;
+
+    background:
+        rgba(44,26,48,0.7);
+
+    border:
+        1px solid rgba(194,166,195,0.25);
+
+    border-radius: 25px;
+
+    padding: 30px;
+
+    backdrop-filter: blur(15px);
+
+}
+
+
+
+.stat h2 {
+
+    font-size: 45px;
+
+    margin: 0;
+
+}
+
+
+
+.stat p {
+
+    margin-bottom: 0;
+
+}
+
+
+
+/* =========================
+   Cards
+========================= */
+
+.feature-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(250px,1fr));
+
+    gap: 25px;
+
+}
+
 
 
 .card,
@@ -269,10 +486,10 @@ section h2 {
 .cta {
 
     background:
-        rgba(44, 26, 48, 0.7);
+        rgba(44,26,48,0.7);
 
     border:
-        1px solid rgba(194, 166, 195, 0.25);
+        1px solid rgba(194,166,195,0.25);
 
     border-radius: 25px;
 
@@ -281,61 +498,71 @@ section h2 {
     backdrop-filter: blur(15px);
 
     transition: 0.3s;
+
 }
+
 
 
 .card:hover {
-    transform: translateY(-5px);
+
+    transform: translateY(-6px);
 
     border-color: var(--lavender);
+
 }
+
 
 
 .card h3 {
+
     color: var(--white);
+
 }
 
 
+
+.large {
+
+    text-align: center;
+
+}
+
+
+
 /* =========================
-   Commands
+   Animations
 ========================= */
 
-.command-box div {
+.hidden {
 
-    padding: 20px;
+    opacity: 0;
 
-    border-bottom:
-        1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(30px);
+
 }
 
 
-.command-box div:last-child {
-    border-bottom: none;
+
+.show {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
 }
 
-
-.command-box span {
-
-    color: var(--lavender);
-
-    font-size: 20px;
-
-    font-weight: bold;
-}
-
-
-.command-box p {
-    margin-bottom: 0;
-}
 
 
 /* =========================
-   Call To Action
+   CTA
 ========================= */
 
 .cta {
+
     text-align: center;
+
 }
+
 
 
 /* =========================
@@ -344,45 +571,80 @@ section h2 {
 
 footer {
 
-    padding: 40px;
+    padding: 50px 20px;
 
     text-align: center;
 
-    opacity: 0.8;
+    opacity: 0.85;
+
 }
 
 
-footer img {
 
-    width: 35px;
+.footer-brand {
 
-    vertical-align: middle;
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+}
+
+
+
+.footer-brand img {
+
+    width: 40px;
+
+    height: 40px;
 
     border-radius: 10px;
+
 }
 
 
-footer a {
+
+.footer-links {
+
+    margin: 25px 0;
+
+}
+
+
+
+.footer-links a {
 
     margin: 10px;
 
     color: var(--pink);
 
     text-decoration: none;
+
 }
 
 
-footer a:hover {
+
+.footer-links a:hover {
 
     color: var(--lavender);
+
 }
+
 
 
 /* =========================
    Mobile
 ========================= */
 
-@media (max-width: 700px) {
+@media(max-width: 800px) {
+
 
     nav {
 
@@ -393,11 +655,23 @@ footer a:hover {
     }
 
 
-    .hero h1 {
 
-        font-size: 40px;
+    .nav-links {
+
+        flex-wrap: wrap;
+
+        justify-content: center;
 
     }
+
+
+
+    .hero h1 {
+
+        font-size: 42px;
+
+    }
+
 
 
     .hero p {
@@ -405,6 +679,7 @@ footer a:hover {
         font-size: 18px;
 
     }
+
 
 
     .buttons {
@@ -416,13 +691,17 @@ footer a:hover {
     }
 
 
+
     .primary,
     .secondary {
 
         width: 100%;
 
-        max-width: 300px;
+        max-width: 320px;
+
+        text-align: center;
 
     }
+
 
 }
