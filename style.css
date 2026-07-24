@@ -528,3 +528,53 @@ footer {
         position: relative;
     }
 }
+
+/* ==========================================================================
+   Status Page
+   ========================================================================== */
+
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.status-card {
+    padding: 30px;
+    border: 1px solid rgba(194, 166, 195, 0.25);
+    border-radius: 25px;
+    background: rgba(44, 26, 48, 0.7);
+}
+
+.service-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--white);
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.online-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--green, #72ff8a);
+    box-shadow: 0 0 15px var(--green, #72ff8a);
+}
+
+.status-card p {
+    color: var(--green, #72ff8a);
+    font-weight: bold;
+}
+
+.uptime-card {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.uptime-number {
+    color: var(--lavender);
+    font-size: 70px;
+    font-weight: 900;
+}
