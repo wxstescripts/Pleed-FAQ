@@ -2,8 +2,16 @@
   const id = new URLSearchParams(window.location.search).get("id");
 
   async function loadServer() {
+    const container = document.getElementById("server-page");
+
+    if (!container) return;
+
     if (!id) {
-      document.body.innerHTML = "<h2>No server ID specified.</h2>";
+      container.innerHTML = `
+        <div class="server-card">
+          <h2>No server ID specified</h2>
+        </div>
+      `;
       return;
     }
 
@@ -11,35 +19,77 @@
       const response = await fetch("https://pleed-api.onrender.com/servers");
 
       if (!response.ok) {
-        throw new Error("Failed to load server data");
+        throw new Error("API request failed");
       }
 
       const data = await response.json();
       const server = data.servers?.find(s => String(s.id) === String(id));
 
       if (!server) {
-        document.body.innerHTML = "<h2>Server not found</h2>";
+        container.innerHTML = `
+          <div class="server-card">
+            <h2>Server not found</h2>
+          </div>
+        `;
         return;
       }
 
-      // Safely update DOM elements if they exist
-      const nameEl = document.getElementById("name");
-      const membersEl = document.getElementById("members");
-      const descEl = document.getElementById("description");
-      const iconEl = document.getElementById("icon");
-      const bannerEl = document.getElementById("banner");
-      const joinEl = document.getElementById("join");
+      container.innerHTML = `
+        <div class="server-card">
+          <div class="server-banner">
+            ${server.banner ? `<img src="${server.banner}" alt="Server Banner">` : `<div class="no-banner"></div>`}
+          </div>
 
-      if (nameEl) nameEl.textContent = server.name;
-      if (membersEl) membersEl.textContent = `${(server.members || 0).toLocaleString()} Members`;
-      if (descEl) descEl.textContent = server.description || "";
-      if (iconEl) iconEl.src = server.icon || "assets/default-icon.png";
-      if (bannerEl) bannerEl.src = server.banner || "assets/default-banner.png";
-      if (joinEl) joinEl.href = server.invite || "#";
+          <div class="server-info">
+            <img 
+              class="server-icon" 
+              src="${server.icon || 'assets/logo.png'}" 
+              alt="${server.name} Icon"
+            >
+            <div>
+              <h2>
+                ${server.name}
+                ${server.verified ? '<span class="verified">✓</span>' : ''}
+              </h2>
+              <p>${server.description || 'Powered by Pleed'}</p>
+            </div>
+          </div>
 
+          <div class="server-stats">
+            <div>
+              <b>${(server.members || 0).toLocaleString()}</b>
+              <span>Members</span>
+            </div>
+            <div>
+              <b>${(server.usageCount || 0).toLocaleString()}</b>
+              <span>Commands Used</span>
+            </div>
+          </div>
+
+          ${
+            server.invite
+              ? `
+                <div style="padding: 25px; text-align: center;">
+                  <a class="primary" href="${server.invite}" target="_blank" rel="noopener noreferrer">
+                    Join Server
+                  </a>
+                </div>
+              `
+              : `
+                <div style="padding: 25px; text-align: center; opacity: 0.7;">
+                  No invite available
+                </div>
+              `
+          }
+        </div>
+      `;
     } catch (error) {
-      console.error("Error loading server:", error);
-      document.body.innerHTML = "<h2>Unable to load server details.</h2>";
+      console.error("Server loading error:", error);
+      container.innerHTML = `
+        <div class="server-card">
+          <h2>Unable to load server details</h2>
+        </div>
+      `;
     }
   }
 
