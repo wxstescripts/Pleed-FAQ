@@ -1,30 +1,78 @@
-<script>
-    let allServers = [];
-    const container = document.getElementById("servers");
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pleed | Servers</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="background-glow"></div>
+
+  <nav>
+    <div class="brand">
+      <img src="assets/logo.png" alt="Pleed Logo">
+      <span>Pleed</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="commands.html">Commands</a>
+      <a href="servers.html">Servers</a>
+      <a href="docs.html">Docs</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="status">
+      <span></span>
+      Server Showcase
+    </div>
+
+    <h1>Pleed Communities</h1>
+    <p>Servers powered by Pleed.</p>
+  </header>
+
+  <section>
+    <div id="servers" class="commands-grid">
+      <div class="card">
+        <h2>Loading servers...</h2>
+      </div>
+    </div>
+  </section>
+
+  <script>
     async function loadServers() {
       try {
         const response = await fetch("https://pleed-api.onrender.com/servers");
+
+        if (!response.ok) {
+          throw new Error("Failed to load server data");
+        }
+
         const data = await response.json();
-        allServers = data.servers || [];
-        displayServers(allServers);
+        displayServers(data.servers || []);
       } catch (error) {
+        const container = document.getElementById("servers");
         container.innerHTML = `
-          <div class="server-card">
+          <div class="card">
             <h2>Unable to load servers</h2>
-            <p>Pleed API unavailable</p>
           </div>
         `;
-        console.error(error);
+        console.error("Error loading servers:", error);
       }
     }
 
     function displayServers(servers) {
+      const container = document.getElementById("servers");
       container.innerHTML = "";
 
-      if (!servers || servers.length === 0) {
+      if (servers.length === 0) {
         container.innerHTML = `
-          <div class="server-card">
+          <div class="card">
             <h2>No servers found</h2>
           </div>
         `;
@@ -33,67 +81,33 @@
 
       servers.forEach(server => {
         container.innerHTML += `
-          <div 
-            class="server-card"
-            onclick="openServer('${server.id}')"
-            style="cursor: pointer;"
-          >
-            <div class="server-banner">
-              ${server.banner ? `<img src="${server.banner}" alt="Banner">` : `<div class="no-banner"></div>`}
-            </div>
+          <div class="server-card">
+            ${server.banner ? `<img class="server-banner" src="${server.banner}" alt="${server.name} banner">` : ""}
 
-            <div class="server-info">
-              <img class="server-icon" src="${server.icon || 'assets/logo.png'}" alt="${server.name} Icon">
-              <div>
-                <h2>
-                  ${server.name}
-                  ${server.verified ? '<span class="verified">✓</span>' : ''}
-                </h2>
-                <p>${server.description || 'Powered by Pleed'}</p>
-              </div>
-            </div>
+            <div class="server-content">
+              <img class="server-icon" src="${server.icon}" alt="${server.name} icon">
 
-            <div class="server-stats">
-              <div>
-                <b>${(server.members || 0).toLocaleString()}</b>
-                <span>Members</span>
-              </div>
-              <div>
-                <b>${(server.usageCount || 0).toLocaleString()}</b>
-                <span>Commands Used</span>
-              </div>
+              <h2>
+                ${server.name}
+                ${server.verified ? " ✓" : ""}
+              </h2>
+
+              <p>${(server.members || 0).toLocaleString()} Members</p>
+
+              <p>${server.description || ""}</p>
+
+              <span>
+                Usage: ${(server.usageCount || 0).toLocaleString()}
+              </span>
             </div>
           </div>
         `;
       });
     }
 
-    document.getElementById("search").addEventListener("input", e => {
-      const value = e.target.value.toLowerCase();
-      displayServers(
-        allServers.filter(server =>
-          server.name.toLowerCase().includes(value)
-        )
-      );
-    });
-
-    document.getElementById("sort").addEventListener("change", e => {
-      let sorted = [...allServers];
-
-      if (e.target.value === "members") {
-        sorted.sort((a, b) => (b.members || 0) - (a.members || 0));
-      }
-
-      if (e.target.value === "usage") {
-        sorted.sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0));
-      }
-
-      displayServers(sorted);
-    });
-
-    function openServer(id) {
-      window.location.href = `server.html?id=${id}`;
-    }
-
     loadServers();
   </script>
+
+</body>
+
+</html>
