@@ -287,6 +287,135 @@ section h2 {
 }
 
 /* ==========================================================================
+   Server Showcase & Grid
+   ========================================================================== */
+
+.servers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.server-card {
+    border: 1px solid rgba(194, 166, 195, 0.25);
+    border-radius: 20px;
+    background: rgba(44, 26, 48, 0.7);
+    overflow: hidden;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.server-card:hover {
+    border-color: var(--lavender);
+    transform: translateY(-8px);
+}
+
+.server-banner {
+    width: 100%;
+    height: 120px;
+}
+
+.server-banner img,
+.no-banner {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.no-banner {
+    background: linear-gradient(135deg, var(--plum), var(--violet));
+}
+
+.server-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.server-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+}
+
+.server-icon {
+    width: 70px;
+    height: 70px;
+    border: 3px solid rgba(194, 166, 195, 0.3);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.server-info h2,
+.server-header h2 {
+    margin: 0;
+    color: var(--white);
+    font-size: 20px;
+}
+
+.server-info p,
+.server-header p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.verified {
+    color: #5865F2;
+    font-weight: bold;
+}
+
+.server-stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    border-top: 1px solid rgba(194, 166, 195, 0.15);
+}
+
+.server-stats div {
+    text-align: center;
+}
+
+.server-stats b {
+    display: block;
+    color: var(--white);
+    font-size: 22px;
+}
+
+.server-stats span {
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+.server-controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.server-controls input,
+.server-controls select {
+    padding: 14px 18px;
+    border: 1px solid rgba(194, 166, 195, 0.3);
+    border-radius: 12px;
+    outline: none;
+    background: rgba(44, 26, 48, 0.7);
+    color: var(--white);
+    font-size: 15px;
+}
+
+.server-controls input {
+    flex: 1;
+}
+
+.server-controls input:focus,
+.server-controls select:focus {
+    border-color: var(--lavender);
+}
+
+/* ==========================================================================
    Animations
    ========================================================================== */
 
@@ -357,7 +486,7 @@ footer {
     border-radius: 18px;
     outline: none;
     background: rgba(44, 26, 48, 0.7);
-    color: white;
+    color: var(--white);
     font-size: 16px;
 }
 
@@ -469,6 +598,10 @@ footer {
         max-width: 320px;
         text-align: center;
     }
+
+    .server-controls {
+        flex-direction: column;
+    }
 }
 
 /* ==========================================================================
@@ -514,10 +647,6 @@ footer {
     background: rgba(9, 5, 11, 0.8);
     color: var(--lavender);
 }
-
-/* ==========================================================================
-   Documentation Responsive / Mobile
-   ========================================================================== */
 
 @media (max-width: 800px) {
     .docs-layout {
@@ -577,33 +706,4 @@ footer {
     color: var(--lavender);
     font-size: 70px;
     font-weight: 900;
-}
-
-.server-banner {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 16px;
-  margin-bottom: 20px;
-}
-
-.server-header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.server-icon {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.server-header h2 {
-  margin: 0;
-}
-
-.server-header p {
-  opacity: 0.7;
 }
