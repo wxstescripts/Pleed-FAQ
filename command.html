@@ -33,12 +33,13 @@
   <script>
     const API = "https://pleed-api.onrender.com/commands/";
 
-    // Extracts command name from "?ban", "?command=ban", or path "/commands/ban"
     const params = new URLSearchParams(window.location.search);
-    const queryParam = params.get("command");
-    const searchString = window.location.search.substring(1);
+    let command = params.get("command");
 
-    const command = queryParam || (searchString.includes("=") ? "" : searchString) || window.location.pathname.split("/").pop();
+    // Fallback for old links like ?ban
+    if (!command) {
+      command = window.location.search.substring(1);
+    }
 
     async function load() {
       if (!command) {
