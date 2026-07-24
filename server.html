@@ -95,13 +95,22 @@
             ${
               server.invite
                 ? `
-                  <div style="padding: 25px; text-align: center;">
-                    <a class="primary" href="${server.invite}" target="_blank" rel="noopener noreferrer">
-                      Join Server
+                  <div style="padding:25px;text-align:center">
+                    <a 
+                      class="primary"
+                      href="${server.invite}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Join ${server.name}
                     </a>
                   </div>
                 `
-                : ""
+                : `
+                  <div style="padding:25px;text-align:center;opacity:.7">
+                    Invite unavailable
+                  </div>
+                `
             }
           </div>
         `;
