@@ -2,534 +2,172 @@
 <html lang="en">
 
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Pleed | Commands</title>
-
-<link rel="icon" href="assets/favicon.png">
-
-<link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pleed | Commands</title>
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-
-<div class="background-glow"></div>
-
-
-<nav>
-
-<div class="brand">
-
-<img src="assets/logo.png">
-
-<span>
-Pleed
-</span>
-
-</div>
-
-
-<div class="nav-links">
-
-<a href="index.html">
-Home
-</a>
-
-<a href="commands.html">
-Commands
-</a>
-
-<a href="docs.html">
-Docs
-</a>
-
-<a href="status.html">
-Status
-</a>
-
-</div>
-
-
-<a class="nav-button" href="#">
-Invite
-</a>
-
-
-</nav>
-
-
-
-
-
-<header class="hero">
-
-
-<div class="status">
-
-<span></span>
-
-<span id="api-status">
-Connecting...
-</span>
-
-</div>
-
-
-<h1>
-Pleed Commands
-</h1>
-
-
-<p>
-Browse all available Pleed commands.
-</p>
-
-
-<p id="command-count">
-
-</p>
-
-
-</header>
-
-
-
-
-
-<section>
-
-
-<div class="command-search">
-
-<input
-id="search"
-placeholder="Search commands..."
->
-
-
-</div>
-
-
-
-
-
-<div class="categories">
-
-<button onclick="filterCommands('all')">
-All
-</button>
-
-<button onclick="filterCommands('moderation')">
-Moderation
-</button>
-
-<button onclick="filterCommands('tickets')">
-Tickets
-</button>
-
-<button onclick="filterCommands('security')">
-Security
-</button>
-
-<button onclick="filterCommands('utility')">
-Utility
-</button>
-
-<button onclick="filterCommands('economy')">
-Economy
-</button>
-
-
-</div>
-
-
-
-
-
-<div id="commands" class="commands-grid">
-
-
-<div class="card">
-
-<h2>
-Loading Commands...
-</h2>
-
-<p>
-Connecting to Pleed API
-</p>
-
-
-</div>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-<footer>
-
-
-<div class="footer-brand">
-
-<img src="assets/logo.png">
-
-<span>
-Pleed
-</span>
-
-</div>
-
-
-<div class="footer-links">
-
-<a href="privacy.html">
-Privacy
-</a>
-
-<a href="terms.html">
-Terms
-</a>
-
-<a href="https://discord.gg/AfCCQt2VHP">
-Support
-</a>
-
-</div>
-
-
-<p>
-© 2026 Pleed Development
-</p>
-
-
-</footer>
-
-
-
-
-
-
-
-<script>
-
-
-let allCommands = [];
-
-
-const API_URL =
-"https://pleed-api.onrender.com/commands";
-
-
-const container =
-document.getElementById("commands");
-
-
-const search =
-document.getElementById("search");
-
-
-const apiStatus =
-document.getElementById("api-status");
-
-
-const commandCount =
-document.getElementById("command-count");
-
-
-
-
-
-async function loadCommands(){
-
-
-try {
-
-
-const response =
-await fetch(API_URL);
-
-
-
-if(!response.ok){
-
-throw new Error(
-"API returned " + response.status
-);
-
-}
-
-
-
-allCommands =
-await response.json();
-
-
-
-apiStatus.textContent =
-"API Online";
-
-
-
-commandCount.textContent =
-`${allCommands.length} Commands Available`;
-
-
-
-displayCommands(
-allCommands
-);
-
-
-
-}
-
-catch(error){
-
-
-apiStatus.textContent =
-"API Offline";
-
-
-
-container.innerHTML = `
-
-<div class="card">
-
-<h2>
-Unable to load commands
-</h2>
-
-<p>
-Pleed API is currently unavailable.
-</p>
-
-</div>
-
-`;
-
-
-
-console.error(
-error
-);
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-function displayCommands(commands){
-
-
-container.innerHTML = "";
-
-
-
-if(commands.length === 0){
-
-
-container.innerHTML = `
-
-<div class="card">
-
-<h2>
-No commands found
-</h2>
-
-</div>
-
-`;
-
-return;
-
-}
-
-
-
-
-commands.forEach(command => {
-
-
-
-const permissions =
-command.permissions?.length
-? command.permissions.join(", ")
-: "Everyone";
-
-
-
-container.innerHTML += `
-
-
-<div class="command-card"
-data-category="${command.category}">
-
-
-
-<div class="command-name">
-
-${command.type === "prefix" ? "!" : "/"}${command.name}
-
-</div>
-
-
-
-
-<h3>
-
-${command.category}
-
-</h3>
-
-
-
-
-<p>
-
-${command.description}
-
-</p>
-
-
-
-
-<div class="command-meta">
-
-Type:
-${command.type || "unknown"}
-
-</div>
-
-
-
-
-<div class="command-meta">
-
-Permission:
-${permissions}
-
-</div>
-
-
-
-
-<code>
-
-${command.usage}
-
-</code>
-
-
-
-</div>
-
-
-`;
-
-});
-
-
-}
-
-
-
-
-
-
-
-
-function filterCommands(category){
-
-
-
-if(category === "all"){
-
-displayCommands(
-allCommands
-);
-
-return;
-
-}
-
-
-
-displayCommands(
-
-allCommands.filter(
-command =>
-command.category === category
-)
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-
-search.addEventListener(
-"input",
-() => {
-
-
-const value =
-search.value.toLowerCase();
-
-
-
-displayCommands(
-
-allCommands.filter(
-command =>
-JSON.stringify(command)
-.toLowerCase()
-.includes(value)
-)
-
-);
-
-
-});
-
-
-
-
-
-
-loadCommands();
-
-
-</script>
-
-
+  <div class="background-glow"></div>
+
+  <nav>
+    <div class="brand">
+      <img src="assets/logo.png" alt="Pleed Logo">
+      <span>Pleed</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="commands.html">Commands</a>
+      <a href="docs.html">Docs</a>
+      <a href="status.html">Status</a>
+    </div>
+
+    <a class="nav-button" href="#">Invite</a>
+  </nav>
+
+  <header class="hero">
+    <div class="status">
+      <span></span>
+      <span id="api-status">Connecting...</span>
+    </div>
+
+    <h1>Pleed Commands</h1>
+    <p>Browse all available Pleed commands.</p>
+    <p id="command-count"></p>
+  </header>
+
+  <section>
+    <div class="command-search">
+      <input id="search" placeholder="Search commands...">
+    </div>
+
+    <div class="categories">
+      <button onclick="filterCommands('all')">All</button>
+      <button onclick="filterCommands('moderation')">Moderation</button>
+      <button onclick="filterCommands('tickets')">Tickets</button>
+      <button onclick="filterCommands('security')">Security</button>
+      <button onclick="filterCommands('utility')">Utility</button>
+      <button onclick="filterCommands('economy')">Economy</button>
+    </div>
+
+    <div id="commands" class="commands-grid">
+      <div class="card">
+        <h2>Loading Commands...</h2>
+        <p>Connecting to Pleed API</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-brand">
+      <img src="assets/logo.png" alt="Pleed Logo">
+      <span>Pleed</span>
+    </div>
+
+    <div class="footer-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="https://discord.gg/AfCCQt2VHP">Support</a>
+    </div>
+
+    <p>© 2026 Pleed Development</p>
+  </footer>
+
+  <script>
+    let allCommands = [];
+
+    const API_URL = "https://pleed-api.onrender.com/commands";
+    const container = document.getElementById("commands");
+    const search = document.getElementById("search");
+    const apiStatus = document.getElementById("api-status");
+    const commandCount = document.getElementById("command-count");
+
+    async function loadCommands() {
+      try {
+        const response = await fetch(API_URL);
+
+        if (!response.ok) {
+          throw new Error("API returned " + response.status);
+        }
+
+        allCommands = await response.json();
+        apiStatus.textContent = "API Online";
+        commandCount.textContent = `${allCommands.length} Commands Available`;
+
+        displayCommands(allCommands);
+      } catch (error) {
+        apiStatus.textContent = "API Offline";
+        container.innerHTML = `
+          <div class="card">
+            <h2>Unable to load commands</h2>
+            <p>Pleed API is currently unavailable.</p>
+          </div>
+        `;
+        console.error(error);
+      }
+    }
+
+    function displayCommands(commands) {
+      container.innerHTML = "";
+
+      if (commands.length === 0) {
+        container.innerHTML = `
+          <div class="card">
+            <h2>No commands found</h2>
+          </div>
+        `;
+        return;
+      }
+
+      commands.forEach(command => {
+        const permissions = command.permissions?.length
+          ? command.permissions.join(", ")
+          : "Everyone";
+
+        container.innerHTML += `
+          <a href="command.html?${command.name}" class="command-link">
+            <div class="command-card" data-category="${command.category}">
+              <div class="command-name">
+                ${command.type === "prefix" ? "!" : "/"}${command.name}
+              </div>
+              <h3>${command.category}</h3>
+              <p>${command.description}</p>
+              <div class="command-meta">Type: ${command.type || "unknown"}</div>
+              <div class="command-meta">Permission: ${permissions}</div>
+              <code>${command.usage}</code>
+            </div>
+          </a>
+        `;
+      });
+    }
+
+    function filterCommands(category) {
+      if (category === "all") {
+        displayCommands(allCommands);
+        return;
+      }
+
+      displayCommands(
+        allCommands.filter(command => command.category === category)
+      );
+    }
+
+    search.addEventListener("input", () => {
+      const value = search.value.toLowerCase();
+
+      displayCommands(
+        allCommands.filter(command =>
+          JSON.stringify(command).toLowerCase().includes(value)
+        )
+      );
+    });
+
+    loadCommands();
+  </script>
 
 </body>
 
