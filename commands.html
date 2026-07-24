@@ -73,7 +73,9 @@ Invite
 
 <span></span>
 
-Command Center
+<span id="api-status">
+Connecting...
+</span>
 
 </div>
 
@@ -85,6 +87,11 @@ Pleed Commands
 
 <p>
 Browse all available Pleed commands.
+</p>
+
+
+<p id="command-count">
+
 </p>
 
 
@@ -110,26 +117,31 @@ placeholder="Search commands..."
 
 
 
+
 <div class="categories">
 
 <button onclick="filterCommands('all')">
 All
 </button>
 
-<button onclick="filterCommands('Moderation')">
+<button onclick="filterCommands('moderation')">
 Moderation
 </button>
 
-<button onclick="filterCommands('Tickets')">
+<button onclick="filterCommands('tickets')">
 Tickets
 </button>
 
-<button onclick="filterCommands('Security')">
+<button onclick="filterCommands('security')">
 Security
 </button>
 
-<button onclick="filterCommands('Utility')">
+<button onclick="filterCommands('utility')">
 Utility
+</button>
+
+<button onclick="filterCommands('economy')">
+Economy
 </button>
 
 
@@ -141,6 +153,7 @@ Utility
 
 <div id="commands" class="commands-grid">
 
+
 <div class="card">
 
 <h2>
@@ -151,13 +164,16 @@ Loading Commands...
 Connecting to Pleed API
 </p>
 
+
 </div>
+
 
 </div>
 
 
 
 </section>
+
 
 
 
@@ -206,10 +222,16 @@ Support
 
 
 
+
+
 <script>
 
 
 let allCommands = [];
+
+
+const API_URL =
+"https://pleed-api.onrender.com/commands";
 
 
 const container =
@@ -220,6 +242,16 @@ const search =
 document.getElementById("search");
 
 
+const apiStatus =
+document.getElementById("api-status");
+
+
+const commandCount =
+document.getElementById("command-count");
+
+
+
+
 
 async function loadCommands(){
 
@@ -228,9 +260,17 @@ try {
 
 
 const response =
-await fetch(
-"https://api.pleed.bot/commands"
+await fetch(API_URL);
+
+
+
+if(!response.ok){
+
+throw new Error(
+"API returned " + response.status
 );
+
+}
 
 
 
@@ -239,13 +279,30 @@ await response.json();
 
 
 
-displayCommands(allCommands);
+apiStatus.textContent =
+"API Online";
+
+
+
+commandCount.textContent =
+`${allCommands.length} Commands Available`;
+
+
+
+displayCommands(
+allCommands
+);
 
 
 
 }
 
 catch(error){
+
+
+apiStatus.textContent =
+"API Offline";
+
 
 
 container.innerHTML = `
@@ -265,13 +322,18 @@ Pleed API is currently unavailable.
 `;
 
 
-console.error(error);
+
+console.error(
+error
+);
 
 
 }
 
 
 }
+
+
 
 
 
@@ -283,7 +345,38 @@ function displayCommands(commands){
 container.innerHTML = "";
 
 
+
+if(commands.length === 0){
+
+
+container.innerHTML = `
+
+<div class="card">
+
+<h2>
+No commands found
+</h2>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+
+
 commands.forEach(command => {
+
+
+
+const permissions =
+command.permissions?.length
+? command.permissions.join(", ")
+: "Everyone";
+
 
 
 container.innerHTML += `
@@ -293,11 +386,14 @@ container.innerHTML += `
 data-category="${command.category}">
 
 
+
 <div class="command-name">
 
-/${command.name}
+${command.type === "prefix" ? "!" : "/"}${command.name}
 
 </div>
+
+
 
 
 <h3>
@@ -307,6 +403,8 @@ ${command.category}
 </h3>
 
 
+
+
 <p>
 
 ${command.description}
@@ -314,12 +412,26 @@ ${command.description}
 </p>
 
 
-<span>
+
+
+<div class="command-meta">
+
+Type:
+${command.type || "unknown"}
+
+</div>
+
+
+
+
+<div class="command-meta">
 
 Permission:
-${command.permission}
+${permissions}
 
-</span>
+</div>
+
+
 
 
 <code>
@@ -327,6 +439,7 @@ ${command.permission}
 ${command.usage}
 
 </code>
+
 
 
 </div>
@@ -343,12 +456,18 @@ ${command.usage}
 
 
 
+
+
+
 function filterCommands(category){
+
 
 
 if(category === "all"){
 
-displayCommands(allCommands);
+displayCommands(
+allCommands
+);
 
 return;
 
@@ -366,7 +485,11 @@ command.category === category
 );
 
 
+
 }
+
+
+
 
 
 
@@ -395,6 +518,7 @@ JSON.stringify(command)
 
 
 });
+
 
 
 
