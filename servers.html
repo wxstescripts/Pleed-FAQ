@@ -45,44 +45,18 @@
   </section>
 
   <script>
-    const container = document.getElementById("servers");
-
     async function loadServers() {
       try {
-        const response = await fetch("data/showcase.json");
+        const response = await fetch("https://pleed-api.onrender.com/servers");
 
         if (!response.ok) {
           throw new Error("Failed to load server data");
         }
 
         const data = await response.json();
-        container.innerHTML = "";
-
-        data.servers.forEach(server => {
-          container.innerHTML += `
-            <div class="command-card">
-              ${server.banner ? `<img src="${server.banner}" class="server-banner" alt="${server.name} banner">` : ""}
-              
-              <div class="server-header">
-                <img src="${server.icon}" class="server-icon" alt="${server.name} icon">
-                <div>
-                  <h2>
-                    ${server.name}
-                    ${server.verified ? " ✓" : ""}
-                  </h2>
-                  <p>${server.members.toLocaleString()} Members</p>
-                </div>
-              </div>
-
-              <p>${server.description}</p>
-
-              <div class="command-meta">
-                Usage: ${server.usageCount ? server.usageCount.toLocaleString() : 0}
-              </div>
-            </div>
-          `;
-        });
+        displayServers(data.servers || []);
       } catch (error) {
+        const container = document.getElementById("servers");
         container.innerHTML = `
           <div class="card">
             <h2>Unable to load servers</h2>
@@ -90,6 +64,45 @@
         `;
         console.error("Error loading servers:", error);
       }
+    }
+
+    function displayServers(servers) {
+      const container = document.getElementById("servers");
+      container.innerHTML = "";
+
+      if (servers.length === 0) {
+        container.innerHTML = `
+          <div class="card">
+            <h2>No servers found</h2>
+          </div>
+        `;
+        return;
+      }
+
+      servers.forEach(server => {
+        container.innerHTML += `
+          <div class="server-card">
+            ${server.banner ? `<img class="server-banner" src="${server.banner}" alt="${server.name} banner">` : ""}
+
+            <div class="server-content">
+              <img class="server-icon" src="${server.icon}" alt="${server.name} icon">
+
+              <h2>
+                ${server.name}
+                ${server.verified ? " ✓" : ""}
+              </h2>
+
+              <p>${(server.members || 0).toLocaleString()} Members</p>
+
+              <p>${server.description || ""}</p>
+
+              <span>
+                Usage: ${(server.usageCount || 0).toLocaleString()}
+              </span>
+            </div>
+          </div>
+        `;
+      });
     }
 
     loadServers();
