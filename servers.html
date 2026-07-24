@@ -94,7 +94,11 @@
 
       servers.forEach(server => {
         container.innerHTML += `
-          <div class="server-card">
+          <div 
+            class="server-card"
+            onclick="openServer('${server.id}')"
+            style="cursor: pointer;"
+          >
             <div class="server-banner">
               ${server.banner ? `<img src="${server.banner}" alt="Banner">` : `<div class="no-banner"></div>`}
             </div>
@@ -147,6 +151,10 @@
 
       displayServers(sorted);
     });
+
+    function openServer(id) {
+      window.location.href = `server.html?id=${id}`;
+    }
 
     loadServers();
   </script>
