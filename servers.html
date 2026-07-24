@@ -45,110 +45,109 @@
   </section>
 
   <script>
-      let allServers = [];
-      const container = document.getElementById("servers");
-  
-      async function loadServers() {
-        try {
-          const response = await fetch("https://pleed-api.onrender.com/servers");
-          const data = await response.json();
-          allServers = data.servers || [];
-          displayServers(allServers);
-        } catch (error) {
-          if (container) {
-            container.innerHTML = `
-              <div class="server-card">
-                <h2>Unable to load servers</h2>
-                <p>Pleed API unavailable</p>
-              </div>
-            `;
-          }
-          console.error(error);
-        }
-      }
-  
-      function displayServers(servers) {
-        if (!container) return;
-  
-        container.innerHTML = "";
-  
-        if (!servers || servers.length === 0) {
+    let allServers = [];
+    const container = document.getElementById("servers");
+
+    async function loadServers() {
+      try {
+        const response = await fetch("https://pleed-api.onrender.com/servers");
+        const data = await response.json();
+        allServers = data.servers || [];
+        displayServers(allServers);
+      } catch (error) {
+        if (container) {
           container.innerHTML = `
             <div class="server-card">
-              <h2>No servers found</h2>
+              <h2>Unable to load servers</h2>
+              <p>Pleed API unavailable</p>
             </div>
           `;
-          return;
         }
-  
-        servers.forEach(server => {
-          container.innerHTML += `
-            <div 
-              class="server-card"
-              onclick="openServer('${server.id}')"
-              style="cursor: pointer;"
-            >
-              <div class="server-banner">
-                ${server.banner ? `<img src="${server.banner}" alt="Banner">` : `<div class="no-banner"></div>`}
-              </div>
-  
-              <div class="server-info">
-                <img class="server-icon" src="${server.icon || 'assets/logo.png'}" alt="${server.name} Icon">
-                <div>
-                  <h2>
-                    ${server.name}
-                    ${server.verified ? '<span class="verified">✓</span>' : ''}
-                  </h2>
-                  <p>${server.description || 'Powered by Pleed'}</p>
-                </div>
-              </div>
-  
-              <div class="server-stats">
-                <div>
-                  <b>${(server.members || 0).toLocaleString()}</b>
-                  <span>Members</span>
-                </div>
-                <div>
-                  <b>${(server.usageCount || 0).toLocaleString()}</b>
-                  <span>Commands Used</span>
-                </div>
+        console.error(error);
+      }
+    }
+
+    function displayServers(servers) {
+      if (!container) return;
+
+      container.innerHTML = "";
+
+      if (!servers || servers.length === 0) {
+        container.innerHTML = `
+          <div class="server-card">
+            <h2>No servers found</h2>
+          </div>
+        `;
+        return;
+      }
+
+      servers.forEach(server => {
+        container.innerHTML += `
+          <div 
+            class="server-card"
+            onclick="openServer('${server.id}')"
+            style="cursor: pointer;"
+          >
+            <div class="server-banner">
+              ${server.banner ? `<img src="${server.banner}" alt="Banner">` : `<div class="no-banner"></div>`}
+            </div>
+
+            <div class="server-info">
+              <img class="server-icon" src="${server.icon || 'assets/logo.png'}" alt="${server.name} Icon">
+              <div>
+                <h2>
+                  ${server.name}
+                  ${server.verified ? '<span class="verified">✓</span>' : ''}
+                </h2>
+                <p>${server.description || 'Powered by Pleed'}</p>
               </div>
             </div>
-          `;
-        });
-      }
-  
-      // Optional chaining added to prevent null errors
-      document.getElementById("search")?.addEventListener("input", e => {
-        const value = e.target.value.toLowerCase();
-        displayServers(
-          allServers.filter(server =>
-            server.name.toLowerCase().includes(value)
-          )
-        );
+
+            <div class="server-stats">
+              <div>
+                <b>${(server.members || 0).toLocaleString()}</b>
+                <span>Members</span>
+              </div>
+              <div>
+                <b>${(server.usageCount || 0).toLocaleString()}</b>
+                <span>Commands Used</span>
+              </div>
+            </div>
+          </div>
+        `;
       });
-  
-      document.getElementById("sort")?.addEventListener("change", e => {
-        let sorted = [...allServers];
-  
-        if (e.target.value === "members") {
-          sorted.sort((a, b) => (b.members || 0) - (a.members || 0));
-        }
-  
-        if (e.target.value === "usage") {
-          sorted.sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0));
-        }
-  
-        displayServers(sorted);
-      });
-  
-      function openServer(id) {
-        console.log("Opening server:", id);
-        window.location.href = `server.html?id=${id}`;
+    }
+
+    document.getElementById("search")?.addEventListener("input", e => {
+      const value = e.target.value.toLowerCase();
+      displayServers(
+        allServers.filter(server =>
+          server.name.toLowerCase().includes(value)
+        )
+      );
+    });
+
+    document.getElementById("sort")?.addEventListener("change", e => {
+      let sorted = [...allServers];
+
+      if (e.target.value === "members") {
+        sorted.sort((a, b) => (b.members || 0) - (a.members || 0));
       }
-  
-      loadServers();
-    </script>
+
+      if (e.target.value === "usage") {
+        sorted.sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0));
+      }
+
+      displayServers(sorted);
+    });
+
+    function openServer(id) {
+      console.log("Opening server:", id);
+      window.location.href = `server.html?id=${id}`;
+    }
+
+    loadServers();
+  </script>
 </body>
 
 </html>
