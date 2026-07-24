@@ -705,3 +705,205 @@ footer {
 
 
 }
+
+
+/* =========================
+   Commands Page
+========================= */
+
+
+.command-search {
+
+display:flex;
+
+justify-content:center;
+
+margin-bottom:30px;
+
+}
+
+
+
+.command-search input {
+
+width:100%;
+
+max-width:600px;
+
+padding:18px 25px;
+
+border-radius:18px;
+
+border:
+
+1px solid rgba(194,166,195,.3);
+
+background:
+
+rgba(44,26,48,.7);
+
+color:white;
+
+font-size:16px;
+
+outline:none;
+
+}
+
+
+
+.command-search input:focus {
+
+border-color:var(--lavender);
+
+}
+
+
+
+.categories {
+
+display:flex;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+gap:15px;
+
+margin-bottom:40px;
+
+}
+
+
+
+.categories button {
+
+padding:12px 22px;
+
+border-radius:15px;
+
+border:
+
+1px solid var(--violet);
+
+background:
+
+transparent;
+
+color:var(--pink);
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+
+
+.categories button:hover {
+
+background:var(--lavender);
+
+color:var(--void);
+
+}
+
+
+
+.commands-grid {
+
+display:grid;
+
+grid-template-columns:
+
+repeat(auto-fit,minmax(280px,1fr));
+
+gap:25px;
+
+}
+
+
+
+.command-card {
+
+background:
+
+rgba(44,26,48,.7);
+
+border:
+
+1px solid rgba(194,166,195,.25);
+
+border-radius:25px;
+
+padding:30px;
+
+backdrop-filter:blur(15px);
+
+transition:.3s;
+
+}
+
+
+
+.command-card:hover {
+
+transform:translateY(-6px);
+
+border-color:var(--lavender);
+
+}
+
+
+
+.command-name {
+
+font-size:25px;
+
+font-weight:800;
+
+color:var(--lavender);
+
+margin-bottom:10px;
+
+}
+
+
+
+.command-card h3 {
+
+color:var(--white);
+
+}
+
+
+
+.command-card span {
+
+display:block;
+
+margin:15px 0;
+
+font-size:14px;
+
+opacity:.8;
+
+}
+
+
+
+.command-card code {
+
+display:block;
+
+background:
+
+rgba(9,5,11,.7);
+
+padding:15px;
+
+border-radius:12px;
+
+color:var(--pink);
+
+}
