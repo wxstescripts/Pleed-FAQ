@@ -1,1 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pleed | Commands</title>
+
+<link rel="icon" href="assets/favicon.png">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="background-glow"></div>
+
+
+
+<nav>
+
+
+<div class="brand">
+
+<img src="assets/logo.png" alt="Pleed Logo">
+
+<span>
+Pleed
+</span>
+
+</div>
+
+
+
+<div class="nav-links">
+
+<a href="index.html">
+Home
+</a>
+
+<a href="commands.html">
+Commands
+</a>
+
+<a href="docs.html">
+Docs
+</a>
+
+<a href="privacy.html">
+Privacy
+</a>
+
+</div>
+
+
+
+<a class="nav-button" href="#">
+Invite
+</a>
+
+
+</nav>
+
+
+
+
+
+<header class="hero command-hero">
+
+
+<div class="status">
+
+<span></span>
+
+Command Center
+
+</div>
+
+
+
+<h1>
+
+Pleed Commands
+
+</h1>
+
+
+
+<p>
+
+Explore Pleed's moderation,
+security, automation, and utility commands.
+
+</p>
+
+
+</header>
+
+
+
+
+
+<section>
+
+
+<div class="command-search">
+
+<input 
+type="text"
+id="search"
+placeholder="Search commands..."
+>
+
+
+</div>
+
+
+
+
+
+<div class="categories">
+
+
+<button onclick="filterCommands('all')">
+All
+</button>
+
+<button onclick="filterCommands('moderation')">
+Moderation
+</button>
+
+<button onclick="filterCommands('tickets')">
+Tickets
+</button>
+
+<button onclick="filterCommands('security')">
+Security
+</button>
+
+<button onclick="filterCommands('utility')">
+Utility
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="commands-grid" id="commands">
+
+
+
+
+
+<div class="command-card" data-category="moderation">
+
+
+<div class="command-name">
+
+/warn
+
+</div>
+
+
+<h3>
+Warn User
+</h3>
+
+
+<p>
+Issue a warning and log moderation action.
+</p>
+
+
+<span>
+Permission: Moderator
+</span>
+
+
+<code>
+/warn @user reason
+</code>
+
+
+</div>
+
+
+
+
+
+<div class="command-card" data-category="moderation">
+
+
+<div class="command-name">
+
+/kick
+
+</div>
+
+
+<h3>
+Kick Member
+</h3>
+
+
+<p>
+Remove a member from your server.
+</p>
+
+
+<span>
+Permission: Kick Members
+</span>
+
+
+<code>
+/kick @user reason
+</code>
+
+
+</div>
+
+
+
+
+
+<div class="command-card" data-category="tickets">
+
+
+<div class="command-name">
+
+/ticket setup
+
+</div>
+
+
+<h3>
+Ticket System
+</h3>
+
+
+<p>
+Create a professional support panel.
+</p>
+
+
+<span>
+Permission: Administrator
+</span>
+
+
+<code>
+/ticket setup
+</code>
+
+
+</div>
+
+
+
+
+
+<div class="command-card" data-category="security">
+
+
+<div class="command-name">
+
+/security
+
+</div>
+
+
+<h3>
+Security Panel
+</h3>
+
+
+<p>
+View and configure protection systems.
+</p>
+
+
+<span>
+Permission: Administrator
+</span>
+
+
+<code>
+/security config
+</code>
+
+
+</div>
+
+
+
+
+
+<div class="command-card" data-category="utility">
+
+
+<div class="command-name">
+
+/help
+
+</div>
+
+
+<h3>
+Help Menu
+</h3>
+
+
+<p>
+View all available Pleed commands.
+</p>
+
+
+<span>
+Permission: Everyone
+</span>
+
+
+<code>
+/help
+</code>
+
+
+</div>
+
+
+
+
+
+<div class="command-card" data-category="utility">
+
+
+<div class="command-name">
+
+/config
+
+</div>
+
+
+<h3>
+Configuration
+</h3>
+
+
+<p>
+Customize Pleed settings.
+</p>
+
+
+<span>
+Permission: Administrator
+</span>
+
+
+<code>
+/config
+</code>
+
+
+</div>
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<footer>
+
+
+<div class="footer-brand">
+
+<img src="assets/logo.png">
+
+<span>
+Pleed
+</span>
+
+</div>
+
+
+
+<div class="footer-links">
+
+<a href="privacy.html">
+Privacy
+</a>
+
+<a href="terms.html">
+Terms
+</a>
+
+<a href="https://discord.gg/AfCCQt2VHP">
+Support
+</a>
+
+</div>
+
+
+<p>
+© 2026 Pleed Development
+</p>
+
+
+</footer>
+
+
+
+
+
+
+<script>
+
+
+const search =
+document.getElementById("search");
+
+
+const cards =
+document.querySelectorAll(".command-card");
+
+
+
+search.addEventListener(
+"input",
+() => {
+
+
+let value =
+search.value.toLowerCase();
+
+
+
+cards.forEach(card => {
+
+
+let text =
+card.innerText.toLowerCase();
+
+
+
+if(text.includes(value)) {
+
+card.style.display = "block";
+
+}
+
+else {
+
+card.style.display = "none";
+
+}
+
+
+});
+
+
+});
+
+
+
+
+
+function filterCommands(category) {
+
+
+cards.forEach(card => {
+
+
+if(
+category === "all" ||
+card.dataset.category === category
+)
+
+{
+
+card.style.display = "block";
+
+}
+
+else {
+
+card.style.display = "none";
+
+}
+
+
+});
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
