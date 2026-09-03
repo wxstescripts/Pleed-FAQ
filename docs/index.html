@@ -1,112 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pleed Docs | Overview</title>
-  <link rel="stylesheet" href="../style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pleed Documentation - Introduction</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
 
-  <div class="background-glow"></div>
+    <!-- Minimal Mobile Header -->
+    <header class="doc-header">
+        <div class="header-left">
+            <img src="logo.png" alt="Pleed Logo" class="doc-logo">
+        </div>
+        <div class="header-right">
+            <button class="icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+    </header>
 
-  <nav>
-    <div class="brand">
-      <img src="../assets/logo.png" alt="Pleed Logo">
-      <span>Pleed</span>
+    <!-- Sub-header Breadcrumb Bar -->
+    <div class="breadcrumb-bar">
+        <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+        <div class="breadcrumbs">
+            <span>Overview</span>
+            <i class="fa-solid fa-chevron-right separator"></i>
+            <span class="active">Introduction</span>
+        </div>
     </div>
 
-    <div class="nav-links">
-      <a href="../index.html">Home</a>
-      <a href="../commands.html">Commands</a>
-      <a href="../servers.html">Servers</a>
-      <a href="../status.html">Status</a>
-    </div>
-
-    <a class="nav-button" href="index.html">Documentation</a>
-  </nav>
-
-  <header class="hero">
-    <h1>Pleed Documentation</h1>
-    <p>Everything you need to configure, automate, and manage your Discord server with Pleed.</p>
-    
-    <div style="margin-top: 20px; width: 100%; max-width: 500px;">
-      <input 
-        type="text" 
-        id="docsSearch" 
-        placeholder="Search documentation (e.g. moderation, tickets, API)..." 
-        style="width: 100%; padding: 14px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.4); color: #fff; font-size: 1rem; outline: none;"
-      >
-    </div>
-  </header>
-
-  <section class="docs-layout">
-    <aside class="docs-sidebar">
-      <h3>Documentation</h3>
-      <a href="index.html" class="active">Overview</a>
-      <a href="getting-started.html">Getting Started</a>
-      <a href="moderation.html">Moderation</a>
-      <a href="security.html">Security</a>
-      <a href="tickets.html">Tickets</a>
-      <a href="automation.html">Automation</a>
-      <a href="economy.html">Economy</a>
-      <a href="leveling.html">Leveling</a>
-      <a href="voice.html">Voice</a>
-      <a href="api.html">API Reference</a>
-      <a href="faq.html">FAQ</a>
-      <a href="roadmap.html">Roadmap</a>
-      <a href="changelog.html">Changelog</a>
-    </aside>
-
-    <main class="docs-content">
-      <div class="card">
-        <h2>Welcome to Pleed Docs</h2>
-        <p>Explore module guides, command setups, and configuration options to get the most out of Pleed in your community.</p>
-      </div>
-
-      <div class="docs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 20px;">
+    <!-- Main Content Container -->
+    <main class="docs-container">
         
-        <a href="getting-started.html" class="card doc-card" style="text-decoration: none; color: inherit;">
-          <h3>🚀 Getting Started</h3>
-          <p>Quick setup guide to invite Pleed and configure initial server permissions.</p>
-        </a>
+        <span class="category-title">Overview</span>
+        <h1 class="page-title">Introduction</h1>
+        <p class="page-description">
+            Learn how to set up Pleed in your server or enhance your everyday use with commands & more.
+        </p>
 
-        <a href="moderation.html" class="card doc-card" style="text-decoration: none; color: inherit;">
-          <h3>🛡️ Moderation</h3>
-          <p>Configure warn logs, automod rules, timeouts, and staff action commands.</p>
-        </a>
+        <h2 class="section-title">Guides</h2>
 
-        <a href="tickets.html" class="card doc-card" style="text-decoration: none; color: inherit;">
-          <h3>🎫 Ticket System</h3>
-          <p>Set up interactive support panels, transcript logging, and ticket categories.</p>
-        </a>
+        <!-- Info Callout Box -->
+        <div class="callout-box info">
+            <i class="fa-solid fa-circle-info callout-icon"></i>
+            <div class="callout-content">
+                Server prefix is set to <code>,</code> by default. Use <code>,prefix set (symbol)</code> to change it for your server.
+            </div>
+        </div>
 
-        <a href="security.html" class="card doc-card" style="text-decoration: none; color: inherit;">
-          <h3>🔒 Security & Anti-Raid</h3>
-          <p>Protect against raid accounts, spam, unauthorized bot invites, and mass mentions.</p>
-        </a>
+        <!-- Guide Cards Grid -->
+        <div class="guides-grid">
+            
+            <a href="security.html" class="guide-card">
+                <div class="guide-icon"><i class="fa-solid fa-gavel"></i></div>
+                <h3>Security Setup</h3>
+                <p>Quickly configure your server to use Pleed's advanced moderation system.</p>
+            </a>
 
-        <a href="automation.html" class="card doc-card" style="text-decoration: none; color: inherit;">
-          <h3>⚡ Automation</h3>
-          <p>Configure auto-roles, join messages, custom triggers, and automated workflows.</p>
-        </a>
+            <a href="config.html" class="guide-card">
+                <div class="guide-icon"><i class="fa-solid fa-sliders"></i></div>
+                <h3>Server Configuration</h3>
+                <p>Set up welcome & goodbye messages, auto-roles, and channel settings.</p>
+            </a>
 
-        <a href="api.html" class="card doc-card" style="text-decoration: none; color: inherit;">
-          <h3>📡 API Reference</h3>
-          <p>Integrate directly with the Pleed REST API to fetch stats, command details, and server data.</p>
-        </a>
+        </div>
 
-      </div>
     </main>
-  </section>
 
-  <footer>
-    <p>© 2026 Pleed Development</p>
-  </footer>
-
-  <script src="../assets/js/docs.js"></script>
 </body>
-
 </html>
