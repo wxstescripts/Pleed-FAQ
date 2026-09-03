@@ -777,26 +777,67 @@ footer {
 }
 
 /* ==========================================================================
-   Responsive / Mobile Styles
+   Responsive / Mobile Optimization Overrides
    ========================================================================== */
 
 @media (max-width: 800px) {
+    /* Compact Header Navigation */
     nav {
         flex-direction: column;
-        gap: 20px;
+        padding: 15px 5%;
+        gap: 12px;
     }
 
+    .brand {
+        font-size: 22px;
+    }
+
+    .brand img {
+        width: 36px;
+        height: 36px;
+    }
+
+    /* Horizontal scrollable nav links */
     .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
+        display: flex;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        justify-content: flex-start;
+        gap: 16px;
+        padding-bottom: 6px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-links a {
+        font-size: 0.95rem;
+    }
+
+    .nav-button {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    /* Hero Section Adjustments */
+    .hero {
+        padding: 40px 15px 20px;
     }
 
     .hero h1 {
-        font-size: 42px;
+        font-size: 34px;
+        margin: 15px auto 10px;
+        line-height: 1.2;
     }
 
     .hero p {
-        font-size: 18px;
+        font-size: 16px;
+        line-height: 1.4;
     }
 
     .buttons {
@@ -815,13 +856,32 @@ footer {
         flex-direction: column;
     }
 
+    /* Horizontal scrollable documentation sidebar */
     .docs-layout {
         flex-direction: column;
+        margin: 20px auto;
+        padding: 0 10px;
     }
 
     .docs-sidebar {
         width: 100%;
         position: relative;
         top: 0;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        white-space: nowrap;
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .docs-sidebar h3 {
+        display: none;
+    }
+
+    .docs-sidebar a {
+        flex-shrink: 0;
+        font-size: 0.85rem;
+        padding: 8px 12px;
     }
 }
