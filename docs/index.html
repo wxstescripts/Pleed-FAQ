@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pleed Documentation - Introduction</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome for icons -->
+    <title>Pleed Documentation - Overview</title>
+    <link rel="stylesheet" href="../style.css">
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Minimal Mobile Header -->
+    <!-- Top Navigation Header -->
     <header class="doc-header">
         <div class="header-left">
-            <img src="logo.png" alt="Pleed Logo" class="doc-logo">
+            <a href="../index.html">
+                <img src="../assets/logo.png" alt="Pleed Logo" class="doc-logo">
+            </a>
         </div>
         <div class="header-right">
-            <button class="icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-            <button class="icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+            <button class="icon-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="icon-btn" aria-label="Menu"><i class="fa-solid fa-ellipsis-vertical"></i></button>
         </div>
     </header>
 
@@ -31,13 +33,13 @@
         </div>
     </div>
 
-    <!-- Main Content Container -->
+    <!-- Main Documentation Content -->
     <main class="docs-container">
         
         <span class="category-title">Overview</span>
         <h1 class="page-title">Introduction</h1>
         <p class="page-description">
-            Learn how to set up Pleed in your server or enhance your everyday use with commands & more.
+            Learn how to set up Pleed in your server or enhance your everyday use with commands, moderation, and automation.
         </p>
 
         <h2 class="section-title">Guides</h2>
@@ -50,19 +52,25 @@
             </div>
         </div>
 
-        <!-- Guide Cards Grid -->
+        <!-- Guides Navigation Grid -->
         <div class="guides-grid">
             
             <a href="security.html" class="guide-card">
-                <div class="guide-icon"><i class="fa-solid fa-gavel"></i></div>
+                <div class="guide-icon"><i class="fa-solid fa-shield-halved"></i></div>
                 <h3>Security Setup</h3>
-                <p>Quickly configure your server to use Pleed's advanced moderation system.</p>
+                <p>Quickly configure your server to use Pleed's advanced moderation and antiraid systems.</p>
             </a>
 
-            <a href="config.html" class="guide-card">
+            <a href="configuration.html" class="guide-card">
                 <div class="guide-icon"><i class="fa-solid fa-sliders"></i></div>
                 <h3>Server Configuration</h3>
-                <p>Set up welcome & goodbye messages, auto-roles, and channel settings.</p>
+                <p>Set up welcome & goodbye messages, auto-roles, and custom channels.</p>
+            </a>
+
+            <a href="../commands.html" class="guide-card">
+                <div class="guide-icon"><i class="fa-solid fa-terminal"></i></div>
+                <h3>Command Reference</h3>
+                <p>Browse through the full list of available commands and module arguments.</p>
             </a>
 
         </div>
