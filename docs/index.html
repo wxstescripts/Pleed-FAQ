@@ -6,21 +6,24 @@
   <title>Bleed Documentation</title>
   <style>
     :root {
-      --bg-dark: #000000;
-      --bg-sidebar: #09090b;
-      --bg-card: #121215;
-      --bg-card-hover: #18181c;
-      --bg-code: #0a0a0c;
-      --border-color: #1f1f26;
+      --bg-dark: #0b0b0e;
+      --bg-sidebar: #0b0b0e;
+      --bg-card: #121217;
+      --bg-card-hover: #181820;
+      --bg-code: #0f0f14;
+      --border-color: #1c1c24;
       --border-active: #2e2e3a;
       --text-main: #f4f4f5;
       --text-muted: #8e8e98;
-      --accent-cyan: #22d3ee;
+      --accent-cyan: #38bdf8;
       --accent-green: #22c55e;
-      --warning-bg: rgba(234, 179, 8, 0.08);
-      --warning-border: rgba(234, 179, 8, 0.25);
-      --info-bg: #18181b;
-      --info-border: #27272a;
+      --accent-amber: #f59e0b;
+      --active-pill-bg: #1c1c26;
+      --active-pill-border: #2a2a38;
+      --warning-bg: rgba(245, 158, 11, 0.08);
+      --warning-border: rgba(245, 158, 11, 0.25);
+      --info-bg: #16161c;
+      --info-border: #22222d;
     }
 
     * {
@@ -47,11 +50,11 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(11, 11, 14, 0.85);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-color);
-      padding: 12px 20px;
+      padding: 14px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -60,24 +63,24 @@
     .nav-left {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
     }
 
     .brand-logo {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 36px;
-      height: 36px;
-      background: #0f172a;
-      border: 1px solid rgba(34, 211, 238, 0.3);
+      width: 38px;
+      height: 38px;
+      background: #0d1e2e;
+      border: 1px solid rgba(56, 189, 248, 0.3);
       border-radius: 10px;
       color: var(--accent-cyan);
     }
 
     .brand-logo svg {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
     }
 
     .breadcrumbs {
@@ -152,11 +155,11 @@
       width: 280px;
       background: var(--bg-sidebar);
       border-right: 1px solid var(--border-color);
-      height: calc(100vh - 61px);
+      height: calc(100vh - 65px);
       position: sticky;
-      top: 61px;
+      top: 65px;
       overflow-y: auto;
-      padding: 20px 14px 40px;
+      padding: 24px 14px 40px;
       flex-shrink: 0;
       z-index: 1100;
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -172,46 +175,56 @@
       color: var(--text-main);
       margin-bottom: 8px;
       padding: 0 10px;
+      letter-spacing: 0.01em;
     }
 
     .nav-item {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       width: 100%;
-      padding: 8px 12px;
+      padding: 9px 12px;
       background: transparent;
-      border: none;
-      border-radius: 8px;
+      border: 1px solid transparent;
+      border-radius: 12px;
       color: var(--text-muted);
       font-size: 14px;
-      font-weight: 400;
+      font-weight: 500;
       cursor: pointer;
       text-align: left;
       transition: all 0.2s ease;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
     }
 
     .nav-item:hover {
       color: var(--text-main);
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.03);
     }
 
     .nav-item.active {
-      background: rgba(255, 255, 255, 0.08);
+      background: var(--active-pill-bg);
+      border-color: var(--active-pill-border);
       color: var(--text-main);
       font-weight: 600;
     }
 
     .nav-item svg {
-      width: 16px;
-      height: 16px;
-      opacity: 0.7;
+      width: 18px;
+      height: 18px;
+      opacity: 0.6;
+      flex-shrink: 0;
     }
 
     .nav-item.active svg {
       opacity: 1;
       color: var(--text-main);
+    }
+
+    .nav-item .arrow-icon {
+      margin-left: auto;
+      width: 14px;
+      height: 14px;
+      opacity: 0.4;
     }
 
     /* ================= Main Content Container ================= */
@@ -240,7 +253,7 @@
     .section-title {
       font-size: 22px;
       font-weight: 700;
-      margin: 32px 0 16px;
+      margin: 36px 0 16px;
       color: var(--text-main);
     }
 
@@ -248,8 +261,8 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       font-size: 0.88em;
       background: rgba(255, 255, 255, 0.08);
-      padding: 2px 6px;
-      border-radius: 5px;
+      padding: 3px 7px;
+      border-radius: 6px;
       color: var(--text-main);
     }
 
@@ -262,23 +275,33 @@
     /* ================= Callout Box ================= */
     .callout {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 14px;
-      padding: 16px;
-      border-radius: 12px;
+      padding: 16px 20px;
+      border-radius: 16px;
       margin: 20px 0 24px;
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.6;
       background: var(--info-bg);
       border: 1px solid var(--info-border);
       color: #d4d4d8;
+    }
+
+    .callout.warning {
+      background: var(--warning-bg);
+      border-color: var(--warning-border);
     }
 
     .callout-icon {
       flex-shrink: 0;
       width: 20px;
       height: 20px;
+      margin-top: 2px;
       color: var(--text-muted);
+    }
+
+    .callout.warning .callout-icon {
+      color: var(--accent-amber);
     }
 
     /* ================= Guide Cards Grid ================= */
@@ -292,8 +315,8 @@
     .guide-card {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: 14px;
-      padding: 22px 20px;
+      border-radius: 16px;
+      padding: 24px 22px;
       cursor: pointer;
       transition: background 0.2s, border-color 0.2s, transform 0.15s ease;
     }
@@ -308,18 +331,18 @@
       width: 32px;
       height: 32px;
       color: #a1a1aa;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       display: flex;
       align-items: center;
     }
 
     .card-icon svg {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
     }
 
     .card-title {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 700;
       margin: 0 0 6px;
       color: var(--text-main);
@@ -336,7 +359,7 @@
     .code-box {
       background: var(--bg-code);
       border: 1px solid var(--border-color);
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
       margin: 20px 0;
     }
@@ -346,37 +369,37 @@
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid var(--border-color);
-      padding: 0 12px;
-      background: rgba(255, 255, 255, 0.02);
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.01);
     }
 
     .code-tabs {
       display: flex;
-      gap: 4px;
+      gap: 8px;
     }
 
     .tab-btn {
       background: transparent;
       border: none;
       color: var(--text-muted);
-      padding: 12px 16px;
+      padding: 8px 12px;
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
-      border-bottom: 2px solid transparent;
+      border-radius: 8px;
       transition: all 0.2s;
     }
 
     .tab-btn.active {
       color: var(--text-main);
-      border-bottom-color: var(--accent-cyan);
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .code-content {
       padding: 16px;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       font-size: 14px;
-      color: var(--accent-green);
+      color: var(--accent-cyan);
       overflow-x: auto;
     }
 
@@ -396,7 +419,7 @@
       gap: 8px;
       background: var(--bg-card);
       border: 1px solid var(--border-color);
-      padding: 14px 20px;
+      padding: 12px 18px;
       border-radius: 12px;
       color: var(--text-main);
       text-decoration: none;
@@ -423,6 +446,15 @@
     .footer-icons {
       display: flex;
       gap: 14px;
+    }
+
+    .footer-icons svg {
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .footer-icons svg:hover {
+      color: var(--text-main);
     }
 
     /* ================= Responsive Rules ================= */
@@ -470,7 +502,7 @@
 
       <div class="breadcrumbs">
         <span class="section" id="bcSection">Overview</span>
-        <span class="separator">></span>
+        <span class="separator">›</span>
         <span class="active" id="bcPage">Introduction</span>
       </div>
     </div>
@@ -502,7 +534,7 @@
       <div class="nav-group">
         <div class="group-title">Overview</div>
         <button class="nav-item active" onclick="loadDoc('overview', 'introduction', this)">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
           Introduction
         </button>
         <button class="nav-item" onclick="loadDoc('overview', 'donator-perks', this)">
@@ -538,6 +570,7 @@
         <button class="nav-item" onclick="loadDoc('server', 'tickets', this)">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 002 2 2 2 0 010 4 2 2 0 00-2 2v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 00-2-2 2 2 0 010-4 2 2 0 002-2V7a2 2 0 00-2-2H5z"></path></svg>
           Tickets
+          <svg class="arrow-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"></path></svg>
         </button>
         <button class="nav-item" onclick="loadDoc('server', 'voicemaster', this)">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 016 0v6a3 3 0 01-3 3z"></path></svg>
@@ -643,7 +676,7 @@
         desc: 'Donator perks are rewards given to those who choose to donate to Bleed.',
         content: `
           <h2 class="section-title">How to obtain Donator Perks</h2>
-          <p class="page-desc">Donator perks can be purchased via <code>server subscriptions</code> in our <a href="#" class="doc-link">Support Server</a>.</p>
+          <p class="page-desc">Donator perks can be purchased via <code>server subscriptions</code> in our <a href="#" class="doc-link">Support Server</a> which can be found at the top of the channel list labeled as <strong>Server Shop</strong>.</p>
           <div class="pagination-bar">
             <a href="#" class="page-nav-link" onclick="loadDoc('overview', 'introduction', document.querySelectorAll('.nav-item')[0]); return false;">‹ Introduction</a>
             <a href="#" class="page-nav-link" onclick="loadDoc('overview', 'customization', document.querySelectorAll('.nav-item')[2]); return false;">Customization ›</a>
@@ -656,10 +689,14 @@
         desc: "Customize bleed's avatar, banner, and bio.",
         content: `
           <h2 class="section-title">Overview</h2>
-          <p class="page-desc">Personalize bleed's appearance in your server by setting a custom avatar, banner, and/or bio.</p>
+          <p class="page-desc">Personalize bleed's appearance in your server by setting a custom avatar, banner, and/or bio to make your community stand out.</p>
+          <div class="callout warning">
+            <svg class="callout-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+            <div>This feature is actively monitored and logged. Uploading inappropriate content will lead to <strong>immediate removal</strong> of the bot from your server and <strong>forfeiture of access</strong>.</div>
+          </div>
           <div class="code-box">
             <div class="code-header">
-              <div class="code-tabs"><button class="tab-btn active">Syntax</button></div>
+              <div class="code-tabs"><button class="tab-btn active">Syntax</button><button class="tab-btn">Example</button></div>
             </div>
             <div class="code-content">,customize bio (text)</div>
           </div>
@@ -675,10 +712,10 @@
         desc: 'Protect your server from malicious raids and rogue administrators.',
         content: `
           <h2 class="section-title">How does the antinuke work?</h2>
-          <p class="page-desc">Antinuke sets a limit on the number of actions a moderator can perform in a certain time frame.</p>
+          <p class="page-desc">Antinuke sets a limit on the number of actions a moderator can perform in a certain time frame. If the limit is exceeded, the moderator will be punished and a message will be sent to the owner.</p>
           <div class="code-box">
             <div class="code-header">
-              <div class="code-tabs"><button class="tab-btn active">Syntax</button></div>
+              <div class="code-tabs"><button class="tab-btn active">Syntax</button><button class="tab-btn">Example</button></div>
             </div>
             <div class="code-content">,antinuke whitelist (user)</div>
           </div>
