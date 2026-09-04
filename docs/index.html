@@ -5,8 +5,340 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pleed Documentation - Overview</title>
     <link rel="stylesheet" href="../style.css">
-    <!-- Updated Font Awesome Icons -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0b0c0e;
+            --sidebar-bg: #0f1013;
+            --card-bg: #15171c;
+            --border-color: #22262f;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent: #5865f2;
+            --warning-bg: #271f13;
+            --warning-border: #d97706;
+            --warning-text: #fbbf24;
+            --info-bg: #111e2e;
+            --info-border: #2563eb;
+            --info-text: #60a5fa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Top Navigation Header */
+        .doc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            background-color: var(--bg-dark);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .doc-logo {
+            height: 28px;
+            width: auto;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: color 0.2s;
+        }
+
+        .icon-btn:hover {
+            color: var(--text-main);
+        }
+
+        /* Sub-header Breadcrumb Bar */
+        .breadcrumb-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-dark);
+            font-size: 0.875rem;
+        }
+
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+        }
+
+        .breadcrumbs .separator {
+            font-size: 0.7rem;
+        }
+
+        .breadcrumbs .active {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* App Container & Drawer Layout */
+        .app-layout {
+            display: flex;
+            flex: 1;
+            position: relative;
+        }
+
+        /* Sidebar Overlay for Mobile */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+            z-index: 200;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Sidebar Navigation Drawer */
+        .sidebar {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            height: calc(100vh - 105px);
+            overflow-y: auto;
+            position: sticky;
+            top: 105px;
+        }
+
+        @media (max-width: 850px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -300px;
+                height: 100vh;
+                z-index: 210;
+                transition: left 0.25s ease;
+            }
+            .sidebar.active {
+                left: 0;
+            }
+        }
+
+        .nav-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 6px;
+            padding-left: 8px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.04);
+            color: var(--text-main);
+        }
+
+        .nav-link.active {
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .nav-link i {
+            width: 18px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        /* Main Documentation Area */
+        .docs-container {
+            flex: 1;
+            padding: 32px 40px;
+            max-width: 860px;
+        }
+
+        @media (max-width: 600px) {
+            .docs-container {
+                padding: 20px 16px;
+            }
+        }
+
+        .category-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .page-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin: 6px 0 12px;
+        }
+
+        .page-description {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 28px 0 16px;
+        }
+
+        /* Callout Boxes */
+        .callout-box {
+            padding: 16px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            gap: 12px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid;
+        }
+
+        .callout-box.info {
+            background-color: var(--info-bg);
+            border-color: var(--info-border);
+            color: var(--info-text);
+        }
+
+        .callout-box.warning {
+            background-color: var(--warning-bg);
+            border-color: var(--warning-border);
+            color: var(--warning-text);
+        }
+
+        .callout-box code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        /* Guides Navigation Grid */
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .guide-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .guide-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .guide-icon {
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .guide-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .guide-card p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Page Footer Pagination Navigation */
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .nav-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-button:hover {
+            color: var(--text-main);
+        }
+    </style>
 </head>
 <body>
 
@@ -25,7 +357,9 @@
 
     <!-- Sub-header Breadcrumb Bar -->
     <div class="breadcrumb-bar">
-        <button class="menu-btn" aria-label="Toggle Navigation"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+        <button class="icon-btn menu-btn" id="menuToggle" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
         <div class="breadcrumbs">
             <span>Overview</span>
             <i class="fa-solid fa-chevron-right separator" aria-hidden="true"></i>
@@ -33,49 +367,114 @@
         </div>
     </div>
 
-    <!-- Main Documentation Content -->
-    <main class="docs-container">
-        
-        <span class="category-title">Overview</span>
-        <h1 class="page-title">Introduction</h1>
-        <p class="page-description">
-            Learn how to set up Pleed in your server or enhance your everyday use with commands, moderation, and automation.
-        </p>
+    <!-- Mobile Sidebar Drawer Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-        <h2 class="section-title">Guides</h2>
-
-        <!-- Info Callout Box -->
-        <div class="callout-box info">
-            <i class="fa-solid fa-circle-info callout-icon" aria-hidden="true"></i>
-            <div class="callout-content">
-                Server prefix is set to <code>,</code> by default. Use <code>,prefix set (symbol)</code> to change it for your server.
-            </div>
-        </div>
-
-        <!-- Guides Navigation Grid -->
-        <div class="guides-grid">
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
             
-            <a href="security.html" class="guide-card">
-                <div class="guide-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
-                <h3>Security Setup</h3>
-                <p>Quickly configure your server to use Pleed's advanced moderation and antiraid systems.</p>
-            </a>
+            <div class="nav-group">
+                <span class="nav-title">Overview</span>
+                <a href="index.html" class="nav-link active"><i class="fa-solid fa-circle-info"></i> Introduction</a>
+                <a href="donator.html" class="nav-link"><i class="fa-solid fa-dollar-sign"></i> Donator Perks</a>
+                <a href="customization.html" class="nav-link"><i class="fa-solid fa-pen"></i> Customization</a>
+            </div>
 
-            <a href="configuration.html" class="guide-card">
-                <div class="guide-icon"><i class="fa-solid fa-sliders" aria-hidden="true"></i></div>
-                <h3>Server Configuration</h3>
-                <p>Set up welcome & goodbye messages, auto-roles, and custom channels.</p>
-            </a>
+            <div class="nav-group">
+                <span class="nav-title">Security Setup</span>
+                <a href="antinuke.html" class="nav-link"><i class="fa-solid fa-user-shield"></i> Antinuke</a>
+                <a href="joingate.html" class="nav-link"><i class="fa-solid fa-door-open"></i> Join Gate</a>
+                <a href="moderation.html" class="nav-link"><i class="fa-solid fa-gavel"></i> Moderation</a>
+                <a href="fakepermissions.html" class="nav-link"><i class="fa-solid fa-shield-check"></i> Fake Permissions</a>
+                <a href="honeypot.html" class="nav-link"><i class="fa-solid fa-bug"></i> Honeypot</a>
+            </div>
 
-            <a href="../commands.html" class="guide-card">
-                <div class="guide-icon"><i class="fa-solid fa-terminal" aria-hidden="true"></i></div>
-                <h3>Command Reference</h3>
-                <p>Browse through the full list of available commands and module arguments.</p>
-            </a>
+            <div class="nav-group">
+                <span class="nav-title">Server Configuration</span>
+                <a href="tickets.html" class="nav-link"><i class="fa-solid fa-ticket"></i> Tickets</a>
+                <a href="roles.html" class="nav-link"><i class="fa-solid fa-users"></i> Roles</a>
+                <a href="messages.html" class="nav-link"><i class="fa-solid fa-message"></i> Messages</a>
+                <a href="starboard.html" class="nav-link"><i class="fa-solid fa-star"></i> Starboard</a>
+                <a href="voicemaster.html" class="nav-link"><i class="fa-solid fa-microphone"></i> VoiceMaster</a>
+            </div>
 
-        </div>
+            <div class="nav-group">
+                <span class="nav-title">Miscellaneous</span>
+                <a href="music.html" class="nav-link"><i class="fa-solid fa-music"></i> Music</a>
+                <a href="giveaway.html" class="nav-link"><i class="fa-solid fa-gift"></i> Giveaway</a>
+                <a href="counters.html" class="nav-link"><i class="fa-solid fa-chart-simple"></i> Counters</a>
+            </div>
 
-    </main>
+        </aside>
 
+        <!-- Main Documentation Content -->
+        <main class="docs-container">
+            
+            <span class="category-title">Overview</span>
+            <h1 class="page-title">Introduction</h1>
+            <p class="page-description">
+                Learn how to set up Pleed in your server or enhance your everyday use with commands, moderation, and automation.
+            </p>
+
+            <h2 class="section-title">Guides</h2>
+
+            <!-- Info Callout Box -->
+            <div class="callout-box info">
+                <i class="fa-solid fa-circle-info callout-icon" aria-hidden="true"></i>
+                <div class="callout-content">
+                    Server prefix is set to <code>,</code> by default. Use <code>,prefix set (symbol)</code> to change it for your server.
+                </div>
+            </div>
+
+            <!-- Guides Navigation Grid -->
+            <div class="guides-grid">
+                
+                <a href="security.html" class="guide-card">
+                    <div class="guide-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
+                    <h3>Security Setup</h3>
+                    <p>Quickly configure your server to use Pleed's advanced moderation and antiraid systems.</p>
+                </a>
+
+                <a href="configuration.html" class="guide-card">
+                    <div class="guide-icon"><i class="fa-solid fa-sliders" aria-hidden="true"></i></div>
+                    <h3>Server Configuration</h3>
+                    <p>Set up welcome & goodbye messages, auto-roles, and custom channels.</p>
+                </a>
+
+                <a href="../commands.html" class="guide-card">
+                    <div class="guide-icon"><i class="fa-solid fa-terminal" aria-hidden="true"></i></div>
+                    <h3>Command Reference</h3>
+                    <p>Browse through the full list of available commands and module arguments.</p>
+                </a>
+
+            </div>
+
+            <!-- Bottom Pagination Navigation -->
+            <div class="page-navigation">
+                <span></span>
+                <a href="donator.html" class="nav-button">
+                    <span>Donator Perks</span>
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </a>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // Sidebar Toggle Script for Mobile/Responsive views
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+
+        function toggleMenu() {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+    </script>
 </body>
 </html>
