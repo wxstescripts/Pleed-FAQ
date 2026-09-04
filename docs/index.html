@@ -37,6 +37,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Top Navigation Header */
@@ -61,6 +62,7 @@
         .doc-logo {
             height: 28px;
             width: auto;
+            display: block;
         }
 
         .icon-btn {
@@ -71,11 +73,12 @@
             cursor: pointer;
             padding: 8px;
             border-radius: 6px;
-            transition: color 0.2s;
+            transition: color 0.2s, background-color 0.2s;
         }
 
         .icon-btn:hover {
             color: var(--text-main);
+            background-color: rgba(255, 255, 255, 0.05);
         }
 
         /* Sub-header Breadcrumb Bar */
@@ -105,7 +108,7 @@
             font-weight: 500;
         }
 
-        /* App Container & Drawer Layout */
+        /* App Container Layout */
         .app-layout {
             display: flex;
             flex: 1;
@@ -122,7 +125,7 @@
             background: rgba(0, 0, 0, 0.6);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.25s ease;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
             z-index: 200;
         }
 
@@ -185,7 +188,7 @@
             text-decoration: none;
             border-radius: 6px;
             font-size: 0.9rem;
-            transition: all 0.2s;
+            transition: background-color 0.2s, color 0.2s;
         }
 
         .nav-link:hover {
@@ -230,6 +233,7 @@
             font-size: 2.25rem;
             font-weight: 800;
             margin: 6px 0 12px;
+            line-height: 1.2;
         }
 
         .page-description {
@@ -255,6 +259,7 @@
             font-size: 0.9rem;
             line-height: 1.5;
             border-left: 4px solid;
+            align-items: flex-start;
         }
 
         .callout-box.info {
@@ -269,11 +274,16 @@
             color: var(--warning-text);
         }
 
+        .callout-icon {
+            margin-top: 2px;
+            font-size: 1rem;
+        }
+
         .callout-box code {
             background: rgba(255, 255, 255, 0.1);
             padding: 2px 6px;
             border-radius: 4px;
-            font-family: monospace;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         }
 
         /* Guides Navigation Grid */
@@ -345,26 +355,30 @@
     <!-- Top Navigation Header -->
     <header class="doc-header">
         <div class="header-left">
-            <a href="../index.html">
+            <a href="../index.html" aria-label="Pleed Homepage">
                 <img src="../assets/logo.png" alt="Pleed Logo" class="doc-logo">
             </a>
         </div>
         <div class="header-right">
-            <button class="icon-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
-            <button class="icon-btn" aria-label="Menu"><i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i></button>
+            <button class="icon-btn" aria-label="Search Documentation">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            </button>
+            <button class="icon-btn" aria-label="Open Menu Options">
+                <i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
+            </button>
         </div>
     </header>
 
     <!-- Sub-header Breadcrumb Bar -->
     <div class="breadcrumb-bar">
-        <button class="icon-btn menu-btn" id="menuToggle" aria-label="Toggle Navigation">
+        <button class="icon-btn menu-btn" id="menuToggle" aria-label="Toggle Navigation Drawer" aria-expanded="false">
             <i class="fa-solid fa-bars" aria-hidden="true"></i>
         </button>
-        <div class="breadcrumbs">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
             <span>Overview</span>
             <i class="fa-solid fa-chevron-right separator" aria-hidden="true"></i>
-            <span class="active">Introduction</span>
-        </div>
+            <span class="active" aria-current="page">Introduction</span>
+        </nav>
     </div>
 
     <!-- Mobile Sidebar Drawer Overlay -->
@@ -372,38 +386,38 @@
 
     <div class="app-layout">
         <!-- Sidebar Navigation -->
-        <aside class="sidebar" id="sidebar">
+        <aside class="sidebar" id="sidebar" aria-label="Main Navigation">
             
             <div class="nav-group">
                 <span class="nav-title">Overview</span>
-                <a href="index.html" class="nav-link active"><i class="fa-solid fa-circle-info"></i> Introduction</a>
-                <a href="donator.html" class="nav-link"><i class="fa-solid fa-dollar-sign"></i> Donator Perks</a>
-                <a href="customization.html" class="nav-link"><i class="fa-solid fa-pen"></i> Customization</a>
+                <a href="index.html" class="nav-link active" aria-current="page"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Introduction</a>
+                <a href="donator.html" class="nav-link"><i class="fa-solid fa-dollar-sign" aria-hidden="true"></i> Donator Perks</a>
+                <a href="customization.html" class="nav-link"><i class="fa-solid fa-pen" aria-hidden="true"></i> Customization</a>
             </div>
 
             <div class="nav-group">
                 <span class="nav-title">Security Setup</span>
-                <a href="antinuke.html" class="nav-link"><i class="fa-solid fa-user-shield"></i> Antinuke</a>
-                <a href="joingate.html" class="nav-link"><i class="fa-solid fa-door-open"></i> Join Gate</a>
-                <a href="moderation.html" class="nav-link"><i class="fa-solid fa-gavel"></i> Moderation</a>
-                <a href="fakepermissions.html" class="nav-link"><i class="fa-solid fa-shield-check"></i> Fake Permissions</a>
-                <a href="honeypot.html" class="nav-link"><i class="fa-solid fa-bug"></i> Honeypot</a>
+                <a href="antinuke.html" class="nav-link"><i class="fa-solid fa-user-shield" aria-hidden="true"></i> Antinuke</a>
+                <a href="joingate.html" class="nav-link"><i class="fa-solid fa-door-open" aria-hidden="true"></i> Join Gate</a>
+                <a href="moderation.html" class="nav-link"><i class="fa-solid fa-gavel" aria-hidden="true"></i> Moderation</a>
+                <a href="fakepermissions.html" class="nav-link"><i class="fa-solid fa-shield-cat" aria-hidden="true"></i> Fake Permissions</a>
+                <a href="honeypot.html" class="nav-link"><i class="fa-solid fa-bug" aria-hidden="true"></i> Honeypot</a>
             </div>
 
             <div class="nav-group">
                 <span class="nav-title">Server Configuration</span>
-                <a href="tickets.html" class="nav-link"><i class="fa-solid fa-ticket"></i> Tickets</a>
-                <a href="roles.html" class="nav-link"><i class="fa-solid fa-users"></i> Roles</a>
-                <a href="messages.html" class="nav-link"><i class="fa-solid fa-message"></i> Messages</a>
-                <a href="starboard.html" class="nav-link"><i class="fa-solid fa-star"></i> Starboard</a>
-                <a href="voicemaster.html" class="nav-link"><i class="fa-solid fa-microphone"></i> VoiceMaster</a>
+                <a href="tickets.html" class="nav-link"><i class="fa-solid fa-ticket" aria-hidden="true"></i> Tickets</a>
+                <a href="roles.html" class="nav-link"><i class="fa-solid fa-users" aria-hidden="true"></i> Roles</a>
+                <a href="messages.html" class="nav-link"><i class="fa-solid fa-message" aria-hidden="true"></i> Messages</a>
+                <a href="starboard.html" class="nav-link"><i class="fa-solid fa-star" aria-hidden="true"></i> Starboard</a>
+                <a href="voicemaster.html" class="nav-link"><i class="fa-solid fa-microphone" aria-hidden="true"></i> VoiceMaster</a>
             </div>
 
             <div class="nav-group">
                 <span class="nav-title">Miscellaneous</span>
-                <a href="music.html" class="nav-link"><i class="fa-solid fa-music"></i> Music</a>
-                <a href="giveaway.html" class="nav-link"><i class="fa-solid fa-gift"></i> Giveaway</a>
-                <a href="counters.html" class="nav-link"><i class="fa-solid fa-chart-simple"></i> Counters</a>
+                <a href="music.html" class="nav-link"><i class="fa-solid fa-music" aria-hidden="true"></i> Music</a>
+                <a href="giveaway.html" class="nav-link"><i class="fa-solid fa-gift" aria-hidden="true"></i> Giveaway</a>
+                <a href="counters.html" class="nav-link"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i> Counters</a>
             </div>
 
         </aside>
@@ -439,7 +453,7 @@
                 <a href="configuration.html" class="guide-card">
                     <div class="guide-icon"><i class="fa-solid fa-sliders" aria-hidden="true"></i></div>
                     <h3>Server Configuration</h3>
-                    <p>Set up welcome & goodbye messages, auto-roles, and custom channels.</p>
+                    <p>Set up welcome &amp; goodbye messages, auto-roles, and custom channels.</p>
                 </a>
 
                 <a href="../commands.html" class="guide-card">
@@ -451,30 +465,39 @@
             </div>
 
             <!-- Bottom Pagination Navigation -->
-            <div class="page-navigation">
+            <nav class="page-navigation" aria-label="Pagination Navigation">
                 <span></span>
                 <a href="donator.html" class="nav-button">
                     <span>Donator Perks</span>
                     <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
                 </a>
-            </div>
+            </nav>
 
         </main>
     </div>
 
     <script>
-        // Sidebar Toggle Script for Mobile/Responsive views
+        // Responsive Sidebar Toggle Management
         const menuToggle = document.getElementById('menuToggle');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('sidebarOverlay');
 
         function toggleMenu() {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
             sidebar.classList.toggle('active');
             overlay.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
         }
 
         menuToggle.addEventListener('click', toggleMenu);
         overlay.addEventListener('click', toggleMenu);
+
+        // Close sidebar on Escape key press
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
     </script>
 </body>
 </html>
