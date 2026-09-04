@@ -1,508 +1,390 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Command Documentation</title>
-  <style>
-    :root {
-      --void: #09050b;
-      --plum: #140d16;
-      --card-bg: rgba(44, 26, 48, 0.6);
-      --violet: #674b6c;
-      --lavender: #c2a6c3;
-      --pink: #ead8e8;
-      --white: #f4ecf3;
-      --border: rgba(194, 166, 195, 0.25);
-      --code-bg: rgba(9, 5, 11, 0.8);
-      --accent-green: #72ff8a;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pleed Documentation - Overview</title>
+    <link rel="stylesheet" href="../style.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Structural layout only - deferring color palette to ../style.css */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-    * {
-      box-sizing: border-box;
-    }
+        .doc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    body {
-      margin: 0;
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--void);
-      color: var(--pink);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-    body.menu-open {
-      overflow: hidden;
-    }
+        .doc-logo {
+            height: 28px;
+            width: auto;
+        }
 
-    /* Mobile Header / Top Bar */
-    .mobile-header {
-      display: none;
-      align-items: center;
-      justify-content: space-between;
-      padding: 15px 20px;
-      background: var(--plum);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            color: inherit;
+        }
 
-    .mobile-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--white);
-    }
+        .breadcrumb-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            font-size: 0.875rem;
+        }
 
-    .menu-toggle-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--pink);
-      font-size: 20px;
-      padding: 6px 12px;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-    }
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-    .menu-toggle-btn:hover {
-      background: var(--card-bg);
-      color: var(--white);
-    }
+        .breadcrumbs .separator {
+            font-size: 0.7rem;
+        }
 
-    /* Layout Wrapper */
-    .app-container {
-      display: flex;
-      flex: 1;
-      width: 100%;
-    }
+        .app-layout {
+            display: flex;
+            flex: 1;
+            position: relative;
+        }
 
-    /* Drawer Overlay */
-    .drawer-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(9, 5, 11, 0.75);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      z-index: 9998;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+            z-index: 200;
+        }
 
-    .drawer-overlay.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
 
-    /* Sidebar Navigation */
-    .sidebar-nav {
-      width: 280px;
-      background: var(--plum);
-      border-right: 1px solid var(--border);
-      padding: 25px 15px;
-      height: 100vh;
-      overflow-y: auto;
-      position: sticky;
-      top: 0;
-      flex-shrink: 0;
-      z-index: 9999;
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+        .sidebar {
+            width: 280px;
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            height: calc(100vh - 105px);
+            overflow-y: auto;
+            position: sticky;
+            top: 105px;
+        }
 
-    .sidebar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      padding: 0 5px;
-    }
+        @media (max-width: 850px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -300px;
+                height: 100vh;
+                z-index: 210;
+                transition: left 0.25s ease;
+            }
+            .sidebar.active {
+                left: 0;
+            }
+        }
 
-    .sidebar-header h2 {
-      margin: 0;
-      font-size: 18px;
-      color: var(--white);
-      font-weight: 700;
-    }
+        .nav-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
 
-    .close-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--pink);
-      font-size: 20px;
-      cursor: pointer;
-    }
+        .nav-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            margin-bottom: 6px;
+            padding-left: 8px;
+            opacity: 0.7;
+        }
 
-    .category-btn {
-      width: 100%;
-      text-align: left;
-      background: transparent;
-      border: 1px solid transparent;
-      color: var(--pink);
-      padding: 12px 14px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 6px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all 0.2s ease;
-    }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            color: inherit;
+            opacity: 0.8;
+        }
 
-    .category-btn:hover {
-      background: rgba(194, 166, 195, 0.1);
-      color: var(--white);
-    }
+        .nav-link:hover, .nav-link.active {
+            opacity: 1;
+            font-weight: 500;
+        }
 
-    .category-btn.active {
-      background: var(--card-bg);
-      border-color: var(--border);
-      color: var(--white);
-      font-weight: 700;
-    }
+        .nav-link i {
+            width: 18px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
 
-    .count-badge {
-      font-size: 12px;
-      background: rgba(9, 5, 11, 0.6);
-      border: 1px solid var(--border);
-      padding: 2px 8px;
-      border-radius: 12px;
-      color: var(--lavender);
-    }
+        .docs-container {
+            flex: 1;
+            padding: 32px 40px;
+            max-width: 860px;
+        }
 
-    /* Main Content Area */
-    .content-area {
-      flex: 1;
-      padding: 40px;
-      max-width: 950px;
-      margin: 0 auto;
-      width: 100%;
-    }
+        @media (max-width: 600px) {
+            .docs-container {
+                padding: 20px 16px;
+            }
+        }
 
-    .content-header {
-      margin-bottom: 30px;
-    }
+        .category-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            opacity: 0.7;
+        }
 
-    .content-header h1 {
-      font-size: 32px;
-      margin: 0 0 20px 0;
-      color: var(--white);
-    }
+        .page-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin: 6px 0 12px;
+        }
 
-    /* Live Search Input */
-    .search-box {
-      width: 100%;
-      padding: 14px 18px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      color: var(--white);
-      font-size: 15px;
-      outline: none;
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
+        .page-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            opacity: 0.8;
+        }
 
-    .search-box:focus {
-      border-color: var(--lavender);
-      box-shadow: 0 0 15px rgba(194, 166, 195, 0.2);
-    }
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 28px 0 16px;
+        }
 
-    .search-box::placeholder {
-      color: rgba(234, 216, 232, 0.5);
-    }
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
 
-    /* Command Cards */
-    .command-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 20px;
-      margin-bottom: 16px;
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
+        .guide-card {
+            border-radius: 8px;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s, border-color 0.2s;
+        }
 
-    .command-card:hover {
-      border-color: var(--lavender);
-      transform: translateY(-2px);
-    }
+        .guide-card:hover {
+            transform: translateY(-2px);
+        }
 
-    .command-header-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 10px;
-      flex-wrap: wrap;
-    }
+        .guide-icon {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
 
-    .command-name {
-      font-family: "Fira Code", monospace;
-      font-size: 18px;
-      color: var(--lavender);
-      font-weight: 800;
-    }
+        .guide-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
 
-    .command-usage {
-      font-family: "Fira Code", monospace;
-      background: var(--code-bg);
-      border: 1px solid rgba(114, 255, 138, 0.2);
-      padding: 4px 10px;
-      border-radius: 8px;
-      font-size: 13px;
-      color: var(--accent-green);
-    }
+        .guide-card p {
+            font-size: 0.875rem;
+            line-height: 1.5;
+            opacity: 0.8;
+        }
 
-    .command-desc {
-      color: var(--pink);
-      opacity: 0.9;
-      font-size: 14px;
-      margin: 0;
-      line-height: 1.5;
-    }
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 48px;
+            padding-top: 24px;
+        }
 
-    /* Responsive Styles */
-    @media (max-width: 800px) {
-      .mobile-header {
-        display: flex;
-      }
+        .nav-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            color: inherit;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
 
-      .sidebar-nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        transform: translateX(-100%);
-        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8);
-      }
-
-      .sidebar-nav.open {
-        transform: translateX(0);
-      }
-
-      .close-btn {
-        display: block;
-      }
-
-      .content-area {
-        padding: 20px 15px;
-      }
-
-      .content-header h1 {
-        font-size: 26px;
-      }
-    }
-  </style>
+        .nav-button:hover {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Mobile Top Header Bar -->
-  <header class="mobile-header">
-    <span class="mobile-title">Documentation</span>
-    <button id="menu-btn" class="menu-toggle-btn" aria-label="Open Navigation">☰</button>
-  </header>
+    <!-- Top Navigation Header -->
+    <header class="doc-header">
+        <div class="header-left">
+            <a href="../index.html">
+                <img src="../assets/logo.png" alt="Pleed Logo" class="doc-logo">
+            </a>
+        </div>
+        <div class="header-right">
+            <button class="icon-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
+            <button class="icon-btn" aria-label="Menu"><i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i></button>
+        </div>
+    </header>
 
-  <div class="app-container">
-    <!-- Mobile Drawer Overlay -->
-    <div id="drawer-overlay" class="drawer-overlay"></div>
+    <!-- Sub-header Breadcrumb Bar -->
+    <div class="breadcrumb-bar">
+        <button class="icon-btn menu-btn" id="menuToggle" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <div class="breadcrumbs">
+            <span>Overview</span>
+            <i class="fa-solid fa-chevron-right separator" aria-hidden="true"></i>
+            <span class="active">Introduction</span>
+        </div>
+    </div>
 
-    <!-- Navigation Drawer / Sidebar -->
-    <nav class="sidebar-nav" id="sidebarNav">
-      <div class="sidebar-header">
-        <h2>Categories</h2>
-        <button id="close-drawer" class="close-btn" aria-label="Close Navigation">✕</button>
-      </div>
-      <div id="categoriesList"></div>
-    </nav>
+    <!-- Mobile Sidebar Drawer Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- Main Content Area -->
-    <main class="content-area">
-      <div class="content-header">
-        <h1 id="activeCategoryTitle">Commands</h1>
-        <input 
-          type="text" 
-          id="searchInput" 
-          class="search-box" 
-          placeholder="Search commands, syntax, or descriptions..." 
-        />
-      </div>
-      <div id="commandList"></div>
-    </main>
-  </div>
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            
+            <div class="nav-group">
+                <span class="nav-title">Overview</span>
+                <a href="index.html" class="nav-link active"><i class="fa-solid fa-circle-info"></i> Introduction</a>
+                <a href="donator.html" class="nav-link"><i class="fa-solid fa-dollar-sign"></i> Donator Perks</a>
+                <a href="customization.html" class="nav-link"><i class="fa-solid fa-pen"></i> Customization</a>
+            </div>
 
-  <script>
-    // Commands data source
-    const commandsData = {
-      "AI": [{ "name": "ai", "usage": ",ai <question>", "description": "Ask the AI a question." }],
-      "AntiNuke": [{ "name": "antinuke", "usage": ",antinuke", "description": "Configure antinuke protection." }],
-      "AutoMod": [{ "name": "automod", "usage": ",automod", "description": "Configure automod settings." }],
-      "Automation": [
-        { "name": "automation", "usage": ",automation", "description": "Automation control panel." },
-        { "name": "reactadd", "usage": ",reactadd <emoji> <trigger>", "description": "Add auto reaction." },
-        { "name": "autorespond", "usage": ",autorespond <trigger> <response>", "description": "Add auto response." }
-      ],
-      "Benchmark": [
-        { "name": "benchmark", "usage": ",benchmark", "description": "Run full performance benchmark." },
-        { "name": "benchdb", "usage": ",benchdb", "description": "Run database benchmark." }
-      ],
-      "Config": [
-        { "name": "prefix", "usage": ",prefix <new_prefix>", "description": "Set server command prefix." },
-        { "name": "setwelcome", "usage": ",setwelcome <channel>", "description": "Set welcome channel." }
-      ],
-      "Economy": [
-        { "name": "balance", "usage": ",balance [member]", "description": "View balance." },
-        { "name": "work", "usage": ",work", "description": "Work to earn money." },
-        { "name": "daily", "usage": ",daily", "description": "Claim daily reward." }
-      ],
-      "Leveling": [
-        { "name": "rank", "usage": ",rank [member]", "description": "View your rank or another user's rank." },
-        { "name": "leaderboard", "usage": ",leaderboard", "description": "View leveling leaderboard." }
-      ],
-      "Moderation": [
-        { "name": "kick", "usage": ",kick <member> [reason]", "description": "Kick a member from the server." },
-        { "name": "ban", "usage": ",ban <member> [reason]", "description": "Ban a member from the server." },
-        { "name": "mute", "usage": ",mute <member> [duration]", "description": "Mute a member." },
-        { "name": "purge", "usage": ",purge <amount>", "description": "Delete messages in channel." }
-      ],
-      "Music": [
-        { "name": "play", "usage": ",play <query>", "description": "Play a song in voice channel." },
-        { "name": "skip", "usage": ",skip", "description": "Skip current playing song." },
-        { "name": "queue", "usage": ",queue [page]", "description": "Show music queue." }
-      ],
-      "VoiceMaster": [
-        { "name": "setupvc", "usage": ",setupvc [category]", "description": "Setup VoiceMaster trigger channel." },
-        { "name": "vclock", "usage": ",vclock", "description": "Lock private voice channel." },
-        { "name": "vcpermit", "usage": ",vcpermit <member>", "description": "Permit member into locked channel." }
-      ]
-    };
+            <div class="nav-group">
+                <span class="nav-title">Security Setup</span>
+                <a href="antinuke.html" class="nav-link"><i class="fa-solid fa-user-shield"></i> Antinuke</a>
+                <a href="joingate.html" class="nav-link"><i class="fa-solid fa-door-open"></i> Join Gate</a>
+                <a href="moderation.html" class="nav-link"><i class="fa-solid fa-gavel"></i> Moderation</a>
+                <a href="fakepermissions.html" class="nav-link"><i class="fa-solid fa-shield-check"></i> Fake Permissions</a>
+                <a href="honeypot.html" class="nav-link"><i class="fa-solid fa-bug"></i> Honeypot</a>
+            </div>
 
-    let currentCategory = Object.keys(commandsData)[0];
+            <div class="nav-group">
+                <span class="nav-title">Server Configuration</span>
+                <a href="tickets.html" class="nav-link"><i class="fa-solid fa-ticket"></i> Tickets</a>
+                <a href="roles.html" class="nav-link"><i class="fa-solid fa-users"></i> Roles</a>
+                <a href="messages.html" class="nav-link"><i class="fa-solid fa-message"></i> Messages</a>
+                <a href="starboard.html" class="nav-link"><i class="fa-solid fa-star"></i> Starboard</a>
+                <a href="voicemaster.html" class="nav-link"><i class="fa-solid fa-microphone"></i> VoiceMaster</a>
+            </div>
 
-    // DOM Elements
-    const menuBtn = document.getElementById("menu-btn");
-    const closeBtn = document.getElementById("close-drawer");
-    const sidebarNav = document.getElementById("sidebarNav");
-    const drawerOverlay = document.getElementById("drawer-overlay");
-    const categoriesList = document.getElementById("categoriesList");
-    const commandList = document.getElementById("commandList");
-    const searchInput = document.getElementById("searchInput");
-    const activeCategoryTitle = document.getElementById("activeCategoryTitle");
+            <div class="nav-group">
+                <span class="nav-title">Miscellaneous</span>
+                <a href="music.html" class="nav-link"><i class="fa-solid fa-music"></i> Music</a>
+                <a href="giveaway.html" class="nav-link"><i class="fa-solid fa-gift"></i> Giveaway</a>
+                <a href="counters.html" class="nav-link"><i class="fa-solid fa-chart-simple"></i> Counters</a>
+            </div>
 
-    // Drawer Controls
-    function openDrawer() {
-      sidebarNav.classList.add("open");
-      drawerOverlay.classList.add("visible");
-      document.body.classList.add("menu-open");
-    }
+        </aside>
 
-    function closeDrawer() {
-      sidebarNav.classList.remove("open");
-      drawerOverlay.classList.remove("visible");
-      document.body.classList.remove("menu-open");
-    }
+        <!-- Main Documentation Content -->
+        <main class="docs-container">
+            
+            <span class="category-title">Overview</span>
+            <h1 class="page-title">Introduction</h1>
+            <p class="page-description">
+                Learn how to set up Pleed in your server or enhance your everyday use with commands, moderation, and automation.
+            </p>
 
-    // Render Sidebar Navigation
-    function renderSidebar() {
-      categoriesList.innerHTML = "";
+            <h2 class="section-title">Guides</h2>
 
-      Object.keys(commandsData).forEach((cat) => {
-        const btn = document.createElement("button");
-        btn.className = `category-btn ${cat === currentCategory ? "active" : ""}`;
-        btn.innerHTML = `<span>${cat}</span><span class="count-badge">${commandsData[cat].length}</span>`;
-        btn.onclick = () => {
-          currentCategory = cat;
-          searchInput.value = "";
-          selectCategory(cat, btn);
-          closeDrawer();
-        };
-        categoriesList.appendChild(btn);
-      });
+            <!-- Info Callout Box -->
+            <div class="callout-box info">
+                <i class="fa-solid fa-circle-info callout-icon" aria-hidden="true"></i>
+                <div class="callout-content">
+                    Server prefix is set to <code>,</code> by default. Use <code>,prefix set (symbol)</code> to change it for your server.
+                </div>
+            </div>
 
-      if (currentCategory) {
-        loadCommands(commandsData[currentCategory]);
-      }
-    }
+            <!-- Guides Navigation Grid -->
+            <div class="guides-grid">
+                
+                <a href="security.html" class="guide-card">
+                    <div class="guide-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
+                    <h3>Security Setup</h3>
+                    <p>Quickly configure your server to use Pleed's advanced moderation and antiraid systems.</p>
+                </a>
 
-    function selectCategory(category, btnElement) {
-      document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
-      if (btnElement) btnElement.classList.add("active");
-      activeCategoryTitle.innerText = `${category} Commands`;
-      loadCommands(commandsData[category] || []);
-    }
+                <a href="configuration.html" class="guide-card">
+                    <div class="guide-icon"><i class="fa-solid fa-sliders" aria-hidden="true"></i></div>
+                    <h3>Server Configuration</h3>
+                    <p>Set up welcome & goodbye messages, auto-roles, and custom channels.</p>
+                </a>
 
-    // Render Commands Cards
-    function loadCommands(list) {
-      commandList.innerHTML = "";
+                <a href="../commands.html" class="guide-card">
+                    <div class="guide-icon"><i class="fa-solid fa-terminal" aria-hidden="true"></i></div>
+                    <h3>Command Reference</h3>
+                    <p>Browse through the full list of available commands and module arguments.</p>
+                </a>
 
-      if (!list || list.length === 0) {
-        commandList.innerHTML = "<p style='color: var(--pink); opacity: 0.6;'>No commands found matching your criteria.</p>";
-        return;
-      }
+            </div>
 
-      list.forEach(cmd => {
-        const card = document.createElement("div");
-        card.className = "command-card";
-        card.innerHTML = `
-          <div class="command-header-row">
-            <span class="command-name">${cmd.name}</span>
-            <span class="command-usage">${cmd.usage}</span>
-          </div>
-          <p class="command-desc">${cmd.description || "No description provided."}</p>
-        `;
-        commandList.appendChild(card);
-      });
-    }
+            <!-- Bottom Pagination Navigation -->
+            <div class="page-navigation">
+                <span></span>
+                <a href="donator.html" class="nav-button">
+                    <span>Donator Perks</span>
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </a>
+            </div>
 
-    // Live Search Filter
-    searchInput.addEventListener("input", (e) => {
-      const query = e.target.value.toLowerCase().trim();
+        </main>
+    </div>
 
-      if (!query) {
-        activeCategoryTitle.innerText = `${currentCategory} Commands`;
-        loadCommands(commandsData[currentCategory]);
-        return;
-      }
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
 
-      activeCategoryTitle.innerText = "Search Results";
-      
-      // Filter across all categories
-      const filtered = [];
-      Object.keys(commandsData).forEach(cat => {
-        commandsData[cat].forEach(cmd => {
-          if (
-            cmd.name.toLowerCase().includes(query) ||
-            cmd.usage.toLowerCase().includes(query) ||
-            cmd.description.toLowerCase().includes(query)
-          ) {
-            filtered.push(cmd);
-          }
-        });
-      });
+        function toggleMenu() {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
 
-      // Clear active styling from sidebar buttons while searching
-      document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
-      loadCommands(filtered);
-    });
-
-    // Event Listeners
-    if (menuBtn) menuBtn.addEventListener("click", openDrawer);
-    if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
-    if (drawerOverlay) drawerOverlay.addEventListener("click", closeDrawer);
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && sidebarNav.classList.contains("open")) {
-        closeDrawer();
-      }
-    });
-
-    // Initialize Page
-    renderSidebar();
-  </script>
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+    </script>
 </body>
 </html>
