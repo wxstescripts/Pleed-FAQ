@@ -43,6 +43,12 @@ a {
     transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
 }
 
+/* Image safety constraint to prevent full-screen image blowouts */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 /* ==========================================================================
    Background Effects
    ========================================================================== */
@@ -736,7 +742,7 @@ footer {
 }
 
 /* ==========================================================================
-   Bleed-Style Documentation Layout
+   Bleed-Style Documentation Layout & Fixes
    ========================================================================== */
 
 .doc-header {
@@ -748,10 +754,19 @@ footer {
     border-bottom: 1px solid var(--doc-card-border);
 }
 
+/* Fix logo sizing in header to prevent giant images */
 .doc-logo {
     width: 38px;
     height: 38px;
+    max-width: 38px;
+    max-height: 38px;
     border-radius: 10px;
+    object-fit: contain;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
 }
 
 .icon-btn {
@@ -802,6 +817,14 @@ footer {
     max-width: 800px;
     margin: 0 auto;
     padding: 30px 20px 60px;
+    background: var(--doc-bg);
+}
+
+/* Fix dark mode link colors across documentation elements */
+.docs-container a,
+.docs-container a:visited {
+    color: var(--doc-text-main);
+    text-decoration: none;
 }
 
 .category-title {
@@ -882,7 +905,7 @@ footer {
 
 .guide-icon {
     font-size: 20px;
-    color: var(--doc-text-main);
+    color: var(--doc-accent);
     margin-bottom: 12px;
 }
 
@@ -890,13 +913,13 @@ footer {
     margin: 0 0 6px;
     font-size: 17px;
     font-weight: 600;
-    color: var(--doc-text-main);
+    color: var(--doc-text-main) !important;
 }
 
 .guide-card p {
     margin: 0;
     font-size: 14px;
-    color: var(--doc-text-muted);
+    color: var(--doc-text-muted) !important;
     line-height: 1.4;
 }
 
