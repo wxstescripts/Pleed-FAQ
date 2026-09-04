@@ -39,11 +39,15 @@ body {
     overflow-x: hidden;
 }
 
+/* Lock body scroll when mobile drawer is open */
+body.menu-open {
+    overflow: hidden;
+}
+
 a {
     transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Image safety constraint to prevent full-screen image blowouts */
 img {
     max-width: 100%;
     height: auto;
@@ -74,6 +78,8 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 25px 8%;
+    position: relative;
+    z-index: 10;
 }
 
 .brand {
@@ -180,7 +186,7 @@ nav {
 }
 
 /* ==========================================================================
-   Buttons
+   Buttons & Layout Containers
    ========================================================================== */
 
 .buttons {
@@ -218,14 +224,12 @@ nav {
     background: rgba(194, 166, 195, 0.1);
 }
 
-/* ==========================================================================
-   Sections
-   ========================================================================== */
-
 section {
     max-width: 1100px;
     margin: auto;
     padding: 70px 20px;
+    position: relative;
+    z-index: 1;
 }
 
 section h2 {
@@ -236,7 +240,7 @@ section h2 {
 }
 
 /* ==========================================================================
-   Stats Grid
+   Stats & Cards
    ========================================================================== */
 
 .stats-grid {
@@ -263,10 +267,6 @@ section h2 {
 .stat p {
     margin-bottom: 0;
 }
-
-/* ==========================================================================
-   Cards & Components
-   ========================================================================== */
 
 .feature-grid {
     display: grid;
@@ -295,16 +295,12 @@ section h2 {
     color: var(--white);
 }
 
-.large {
-    text-align: center;
-}
-
-.cta {
+.large, .cta {
     text-align: center;
 }
 
 /* ==========================================================================
-   SERVER SHOWCASE CARDS
+   Server Showcase Cards
    ========================================================================== */
 
 .servers-grid {
@@ -489,60 +485,7 @@ section h2 {
 }
 
 /* ==========================================================================
-   Animations
-   ========================================================================== */
-
-.hidden {
-    opacity: 0;
-    transform: translateY(30px);
-}
-
-.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ==========================================================================
-   Footer
-   ========================================================================== */
-
-footer {
-    padding: 50px 20px;
-    opacity: 0.85;
-    text-align: center;
-}
-
-.footer-brand {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    font-size: 25px;
-    font-weight: bold;
-}
-
-.footer-brand img {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-}
-
-.footer-links {
-    margin: 25px 0;
-}
-
-.footer-links a {
-    margin: 10px;
-    color: var(--pink);
-    text-decoration: none;
-}
-
-.footer-links a:hover {
-    color: var(--lavender);
-}
-
-/* ==========================================================================
-   Commands Page
+   Commands & Search
    ========================================================================== */
 
 .command-search {
@@ -638,7 +581,7 @@ footer {
 }
 
 /* ==========================================================================
-   Documentation Modern Enhancements
+   Documentation & Mobile Drawer Fixes
    ========================================================================== */
 
 .docs-layout {
@@ -649,7 +592,8 @@ footer {
     padding: 0 20px;
 }
 
-.docs-sidebar {
+.docs-sidebar,
+.sidebar-nav {
     width: 260px;
     flex-shrink: 0;
     display: flex;
@@ -660,10 +604,11 @@ footer {
     height: fit-content;
     padding: 20px;
     border-radius: 20px;
-    background: rgba(44, 26, 48, 0.7);
+    background: var(--plum); /* Solid color preventing bleed-through */
     border: 1px solid rgba(194, 166, 195, 0.25);
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
+    z-index: 100;
 }
 
 .docs-sidebar h3 {
@@ -694,6 +639,8 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    position: relative;
+    z-index: 1;
 }
 
 .docs-content code {
@@ -704,6 +651,41 @@ footer {
     color: var(--lavender);
     font-family: 'Fira Code', monospace, sans-serif;
     font-size: 0.9rem;
+}
+
+/* Fixed Mobile Navigation Drawer (Open State) */
+.mobile-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: #140d16; /* Solid dark plum base */
+    border-right: 1px solid rgba(194, 166, 195, 0.3);
+    z-index: 9999;       /* Renders above page body */
+    overflow-y: auto;
+    padding: 25px 20px;
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-drawer.closed {
+    transform: translateX(-100%);
+}
+
+.drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(9, 5, 11, 0.75);
+    backdrop-filter: blur(4px);
+    z-index: 9998;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.drawer-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Modern Command Syntax Cards */
@@ -733,16 +715,11 @@ footer {
     font-size: 0.95rem;
 }
 
-.param {
-    color: #a78bfa;
-}
-
-.required {
-    color: #f43f5e;
-}
+.param { color: #a78bfa; }
+.required { color: #f43f5e; }
 
 /* ==========================================================================
-   Bleed-Style Documentation Layout & Fixes
+   Bleed-Style Documentation Layout
    ========================================================================== */
 
 .doc-header {
@@ -754,7 +731,6 @@ footer {
     border-bottom: 1px solid var(--doc-card-border);
 }
 
-/* Fix logo sizing in header to prevent giant images */
 .doc-logo {
     width: 38px;
     height: 38px;
@@ -804,14 +780,8 @@ footer {
     color: var(--doc-text-muted);
 }
 
-.breadcrumbs .separator {
-    font-size: 10px;
-}
-
-.breadcrumbs .active {
-    color: var(--doc-text-main);
-    font-weight: 600;
-}
+.breadcrumbs .separator { font-size: 10px; }
+.breadcrumbs .active { color: var(--doc-text-main); font-weight: 600; }
 
 .docs-container {
     max-width: 800px;
@@ -820,7 +790,6 @@ footer {
     background: var(--doc-bg);
 }
 
-/* Fix dark mode link colors across documentation elements */
 .docs-container a,
 .docs-container a:visited {
     color: var(--doc-text-main);
@@ -974,27 +943,72 @@ footer {
 }
 
 /* ==========================================================================
+   Animations
+   ========================================================================== */
+
+.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+footer {
+    padding: 50px 20px;
+    opacity: 0.85;
+    text-align: center;
+}
+
+.footer-brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.footer-brand img {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.footer-links {
+    margin: 25px 0;
+}
+
+.footer-links a {
+    margin: 10px;
+    color: var(--pink);
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: var(--lavender);
+}
+
+/* ==========================================================================
    Responsive / Mobile Optimization Overrides
    ========================================================================== */
 
 @media (max-width: 800px) {
-    /* Compact Header Navigation */
     nav {
         flex-direction: column;
         padding: 15px 5%;
         gap: 12px;
     }
 
-    .brand {
-        font-size: 22px;
-    }
+    .brand { font-size: 22px; }
+    .brand img { width: 36px; height: 36px; }
 
-    .brand img {
-        width: 36px;
-        height: 36px;
-    }
-
-    /* Horizontal scrollable nav links */
     .nav-links {
         display: flex;
         width: 100%;
@@ -1006,13 +1020,8 @@ footer {
         -webkit-overflow-scrolling: touch;
     }
 
-    .nav-links::-webkit-scrollbar {
-        display: none;
-    }
-
-    .nav-links a {
-        font-size: 0.95rem;
-    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a { font-size: 0.95rem; }
 
     .nav-button {
         width: 100%;
@@ -1021,10 +1030,7 @@ footer {
         font-size: 0.9rem;
     }
 
-    /* Hero Section Adjustments */
-    .hero {
-        padding: 40px 15px 20px;
-    }
+    .hero { padding: 40px 15px 20px; }
 
     .hero h1 {
         font-size: 34px;
@@ -1049,11 +1055,8 @@ footer {
         text-align: center;
     }
 
-    .server-controls {
-        flex-direction: column;
-    }
+    .server-controls { flex-direction: column; }
 
-    /* Horizontal scrollable documentation sidebar */
     .docs-layout {
         flex-direction: column;
         margin: 20px auto;
@@ -1072,9 +1075,7 @@ footer {
         padding: 10px;
     }
 
-    .docs-sidebar h3 {
-        display: none;
-    }
+    .docs-sidebar h3 { display: none; }
 
     .docs-sidebar a {
         flex-shrink: 0;
