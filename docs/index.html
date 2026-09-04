@@ -6,127 +6,338 @@
   <title>Command Documentation</title>
   <style>
     :root {
-      --bg-main: #0b0d12;
-      --bg-card: #131620;
-      --accent: #5865f2;
-      --text: #f2f3f5;
-      --text-muted: #949ba4;
-      --border: #23272a;
+      --void: #09050b;
+      --plum: #140d16;
+      --card-bg: rgba(44, 26, 48, 0.6);
+      --violet: #674b6c;
+      --lavender: #c2a6c3;
+      --pink: #ead8e8;
+      --white: #f4ecf3;
+      --border: rgba(194, 166, 195, 0.25);
+      --code-bg: rgba(9, 5, 11, 0.8);
+      --accent-green: #72ff8a;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg-main);
-      color: var(--text);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--void);
+      color: var(--pink);
       display: flex;
+      flex-direction: column;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* Sidebar Styling */
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    /* Mobile Header / Top Bar */
+    .mobile-header {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 20px;
+      background: var(--plum);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .mobile-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .menu-toggle-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--pink);
+      font-size: 20px;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .menu-toggle-btn:hover {
+      background: var(--card-bg);
+      color: var(--white);
+    }
+
+    /* Layout Wrapper */
+    .app-container {
+      display: flex;
+      flex: 1;
+      width: 100%;
+    }
+
+    /* Drawer Overlay */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 5, 11, 0.75);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 9998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .drawer-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Sidebar Navigation */
     .sidebar-nav {
-      width: 260px;
-      background: #0f1117;
+      width: 280px;
+      background: var(--plum);
       border-right: 1px solid var(--border);
-      padding: 20px 10px;
+      padding: 25px 15px;
       height: 100vh;
       overflow-y: auto;
       position: sticky;
       top: 0;
+      flex-shrink: 0;
+      z-index: 9999;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 0 5px;
+    }
+
+    .sidebar-header h2 {
+      margin: 0;
+      font-size: 18px;
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .close-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--pink);
+      font-size: 20px;
+      cursor: pointer;
     }
 
     .category-btn {
       width: 100%;
       text-align: left;
       background: transparent;
-      border: none;
-      color: var(--text-muted);
-      padding: 10px 14px;
-      border-radius: 6px;
+      border: 1px solid transparent;
+      color: var(--pink);
+      padding: 12px 14px;
+      border-radius: 12px;
       cursor: pointer;
       font-size: 14px;
       font-weight: 500;
-      margin-bottom: 2px;
+      margin-bottom: 6px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: all 0.2s ease;
     }
 
-    .category-btn:hover, .category-btn.active {
-      background: var(--bg-card);
-      color: var(--text);
+    .category-btn:hover {
+      background: rgba(194, 166, 195, 0.1);
+      color: var(--white);
     }
 
     .category-btn.active {
-      border-left: 3px solid var(--accent);
+      background: var(--card-bg);
+      border-color: var(--border);
+      color: var(--white);
+      font-weight: 700;
     }
 
     .count-badge {
-      font-size: 11px;
-      background: #202432;
-      padding: 2px 6px;
-      border-radius: 10px;
-      color: var(--text-muted);
+      font-size: 12px;
+      background: rgba(9, 5, 11, 0.6);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 12px;
+      color: var(--lavender);
     }
 
     /* Main Content Area */
     .content-area {
       flex: 1;
-      padding: 30px;
-      max-width: 900px;
+      padding: 40px;
+      max-width: 950px;
+      margin: 0 auto;
+      width: 100%;
     }
 
-    .command-card {
-      background: var(--bg-card);
+    .content-header {
+      margin-bottom: 30px;
+    }
+
+    .content-header h1 {
+      font-size: 32px;
+      margin: 0 0 20px 0;
+      color: var(--white);
+    }
+
+    /* Live Search Input */
+    .search-box {
+      width: 100%;
+      padding: 14px 18px;
+      background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 16px;
-      margin-bottom: 12px;
+      border-radius: 14px;
+      color: var(--white);
+      font-size: 15px;
+      outline: none;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .command-header {
+    .search-box:focus {
+      border-color: var(--lavender);
+      box-shadow: 0 0 15px rgba(194, 166, 195, 0.2);
+    }
+
+    .search-box::placeholder {
+      color: rgba(234, 216, 232, 0.5);
+    }
+
+    /* Command Cards */
+    .command-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .command-card:hover {
+      border-color: var(--lavender);
+      transform: translateY(-2px);
+    }
+
+    .command-header-row {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
     }
 
     .command-name {
-      font-family: monospace;
-      font-size: 16px;
-      color: var(--accent);
-      font-weight: bold;
+      font-family: "Fira Code", monospace;
+      font-size: 18px;
+      color: var(--lavender);
+      font-weight: 800;
     }
 
     .command-usage {
-      font-family: monospace;
-      background: #090a0e;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 12px;
-      color: #00e676;
+      font-family: "Fira Code", monospace;
+      background: var(--code-bg);
+      border: 1px solid rgba(114, 255, 138, 0.2);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--accent-green);
     }
 
     .command-desc {
-      color: var(--text-muted);
+      color: var(--pink);
+      opacity: 0.9;
       font-size: 14px;
       margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 800px) {
+      .mobile-header {
+        display: flex;
+      }
+
+      .sidebar-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translateX(-100%);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8);
+      }
+
+      .sidebar-nav.open {
+        transform: translateX(0);
+      }
+
+      .close-btn {
+        display: block;
+      }
+
+      .content-area {
+        padding: 20px 15px;
+      }
+
+      .content-header h1 {
+        font-size: 26px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Drawer -->
-  <nav class="sidebar-nav" id="sidebarNav"></nav>
+  <!-- Mobile Top Header Bar -->
+  <header class="mobile-header">
+    <span class="mobile-title">Documentation</span>
+    <button id="menu-btn" class="menu-toggle-btn" aria-label="Open Navigation">☰</button>
+  </header>
 
-  <!-- Commands Container -->
-  <main class="content-area">
-    <h1 id="activeCategoryTitle">Commands</h1>
-    <div id="commandList"></div>
-  </main>
+  <div class="app-container">
+    <!-- Mobile Drawer Overlay -->
+    <div id="drawer-overlay" class="drawer-overlay"></div>
+
+    <!-- Navigation Drawer / Sidebar -->
+    <nav class="sidebar-nav" id="sidebarNav">
+      <div class="sidebar-header">
+        <h2>Categories</h2>
+        <button id="close-drawer" class="close-btn" aria-label="Close Navigation">✕</button>
+      </div>
+      <div id="categoriesList"></div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+      <div class="content-header">
+        <h1 id="activeCategoryTitle">Commands</h1>
+        <input 
+          type="text" 
+          id="searchInput" 
+          class="search-box" 
+          placeholder="Search commands, syntax, or descriptions..." 
+        />
+      </div>
+      <div id="commandList"></div>
+    </main>
+  </div>
 
   <script>
-    // Commands data source matching commands_2.json
+    // Commands data source
     const commandsData = {
       "AI": [{ "name": "ai", "usage": ",ai <question>", "description": "Ask the AI a question." }],
       "AntiNuke": [{ "name": "antinuke", "usage": ",antinuke", "description": "Configure antinuke protection." }],
@@ -171,37 +382,66 @@
       ]
     };
 
-    function renderSidebar() {
-      const sidebarNav = document.getElementById("sidebarNav");
-      sidebarNav.innerHTML = "";
+    let currentCategory = Object.keys(commandsData)[0];
 
-      Object.keys(commandsData).forEach((cat, index) => {
+    // DOM Elements
+    const menuBtn = document.getElementById("menu-btn");
+    const closeBtn = document.getElementById("close-drawer");
+    const sidebarNav = document.getElementById("sidebarNav");
+    const drawerOverlay = document.getElementById("drawer-overlay");
+    const categoriesList = document.getElementById("categoriesList");
+    const commandList = document.getElementById("commandList");
+    const searchInput = document.getElementById("searchInput");
+    const activeCategoryTitle = document.getElementById("activeCategoryTitle");
+
+    // Drawer Controls
+    function openDrawer() {
+      sidebarNav.classList.add("open");
+      drawerOverlay.classList.add("visible");
+      document.body.classList.add("menu-open");
+    }
+
+    function closeDrawer() {
+      sidebarNav.classList.remove("open");
+      drawerOverlay.classList.remove("visible");
+      document.body.classList.remove("menu-open");
+    }
+
+    // Render Sidebar Navigation
+    function renderSidebar() {
+      categoriesList.innerHTML = "";
+
+      Object.keys(commandsData).forEach((cat) => {
         const btn = document.createElement("button");
-        btn.className = `category-btn ${index === 0 ? "active" : ""}`;
+        btn.className = `category-btn ${cat === currentCategory ? "active" : ""}`;
         btn.innerHTML = `<span>${cat}</span><span class="count-badge">${commandsData[cat].length}</span>`;
-        btn.onclick = () => selectCategory(cat, btn);
-        sidebarNav.appendChild(btn);
+        btn.onclick = () => {
+          currentCategory = cat;
+          searchInput.value = "";
+          selectCategory(cat, btn);
+          closeDrawer();
+        };
+        categoriesList.appendChild(btn);
       });
 
-      // Default load first category
-      const firstCat = Object.keys(commandsData)[0];
-      if (firstCat) loadCommands(firstCat);
+      if (currentCategory) {
+        loadCommands(commandsData[currentCategory]);
+      }
     }
 
     function selectCategory(category, btnElement) {
       document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
-      btnElement.classList.add("active");
-      loadCommands(category);
+      if (btnElement) btnElement.classList.add("active");
+      activeCategoryTitle.innerText = `${category} Commands`;
+      loadCommands(commandsData[category] || []);
     }
 
-    function loadCommands(category) {
-      document.getElementById("activeCategoryTitle").innerText = `${category} Commands`;
-      const container = document.getElementById("commandList");
-      container.innerHTML = "";
+    // Render Commands Cards
+    function loadCommands(list) {
+      commandList.innerHTML = "";
 
-      const list = commandsData[category] || [];
-      if (list.length === 0) {
-        container.innerHTML = "<p style='color: var(--text-muted);'>No commands available in this tab.</p>";
+      if (!list || list.length === 0) {
+        commandList.innerHTML = "<p style='color: var(--pink); opacity: 0.6;'>No commands found matching your criteria.</p>";
         return;
       }
 
@@ -209,16 +449,59 @@
         const card = document.createElement("div");
         card.className = "command-card";
         card.innerHTML = `
-          <div class="command-header">
+          <div class="command-header-row">
             <span class="command-name">${cmd.name}</span>
             <span class="command-usage">${cmd.usage}</span>
           </div>
           <p class="command-desc">${cmd.description || "No description provided."}</p>
         `;
-        container.appendChild(card);
+        commandList.appendChild(card);
       });
     }
 
+    // Live Search Filter
+    searchInput.addEventListener("input", (e) => {
+      const query = e.target.value.toLowerCase().trim();
+
+      if (!query) {
+        activeCategoryTitle.innerText = `${currentCategory} Commands`;
+        loadCommands(commandsData[currentCategory]);
+        return;
+      }
+
+      activeCategoryTitle.innerText = "Search Results";
+      
+      // Filter across all categories
+      const filtered = [];
+      Object.keys(commandsData).forEach(cat => {
+        commandsData[cat].forEach(cmd => {
+          if (
+            cmd.name.toLowerCase().includes(query) ||
+            cmd.usage.toLowerCase().includes(query) ||
+            cmd.description.toLowerCase().includes(query)
+          ) {
+            filtered.push(cmd);
+          }
+        });
+      });
+
+      // Clear active styling from sidebar buttons while searching
+      document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
+      loadCommands(filtered);
+    });
+
+    // Event Listeners
+    if (menuBtn) menuBtn.addEventListener("click", openDrawer);
+    if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
+    if (drawerOverlay) drawerOverlay.addEventListener("click", closeDrawer);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && sidebarNav.classList.contains("open")) {
+        closeDrawer();
+      }
+    });
+
+    // Initialize Page
     renderSidebar();
   </script>
 </body>
