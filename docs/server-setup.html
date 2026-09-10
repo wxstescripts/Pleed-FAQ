@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pleed Docs | Server Setup</title>
+<meta name="description" content="Welcome messages, update logs, invite panels, first-time setup.">
+<link rel="icon" href="../assets/favicon.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="docs.css">
+
+</head>
+<body>
+<div class="background-glow"></div>
+<nav>
+<div class="brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="nav-links">
+<a href="../index.html">Home</a>
+<a href="../commands.html">Commands</a>
+<a href="../servers.html">Servers</a>
+<a href="index.html">Docs</a>
+<a href="../status.html">Status</a>
+</div>
+<a class="nav-button" href="https://discord.com/oauth2/authorize?client_id=1484703029243416757">Invite</a>
+</nav>
+
+<div class="docs-shell">
+<aside class="docs-sidebar">
+<h4>Documentation</h4>
+<a href="index.html" class="">Overview</a>
+<a href="getting-started.html" class="">Getting Started</a>
+<a href="moderation.html" class="">Moderation</a>
+<a href="security.html" class="">Security & Antinuke</a>
+<a href="tickets.html" class="">Tickets</a>
+<a href="economy.html" class="">Economy & Leveling</a>
+<a href="automation.html" class="">Automation</a>
+<a href="server-setup.html" class="active">Server Setup</a>
+<a href="voice.html" class="">Voice</a>
+<a href="utility.html" class="">Information & Utility</a>
+<a href="fun.html" class="">Fun & Miscellaneous</a>
+</aside>
+<main class="docs-main">
+
+<div class="docs-eyebrow">Server Setup</div>
+<h1>Server Setup</h1>
+<p class="docs-lede">First-time configuration: the setup center, welcome/goodbye messages, invite
+tracking, and the update logger for announcing changes to your community.</p>
+
+<h2>The setup center</h2>
+<p>Rather than hunting for individual config commands, <code>!setup</code> opens a panel that links
+out to every setup flow. If you just want jail/mute infrastructure created quickly:</p>
+<ul>
+<li><code>!setupjail</code> &mdash; creates the jail channel and role.</li>
+<li><code>!setupmute</code> &mdash; creates the mute role and channel permissions.</li>
+<li><code>!setupall</code> &mdash; runs both jail and mute setup together.</li>
+<li><code>!setupstatus</code> &mdash; check what's already configured.</li>
+<li><code>!fixjailperms</code> &mdash; re-apply jail role permission overwrites across every channel if something looks off.</li>
+<li><code>!jailroles [state]</code> &mdash; toggle whether jailing a member also strips their existing roles.</li>
+</ul>
+
+<h2>Welcome &amp; goodbye messages</h2>
+<p>Configured under the <code>!messages</code> group:</p>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><code class="cmd-usage">!messages welcomechannel &lt;channel&gt;</code></td><td>Set where welcome messages post.</td></tr>
+<tr><td><code class="cmd-usage">!messages welcomemessage &lt;text&gt;</code></td><td>Set the welcome message text.</td></tr>
+<tr><td><code class="cmd-usage">!messages welcometoggle &lt;state&gt;</code></td><td>Turn welcome messages on/off.</td></tr>
+<tr><td><code class="cmd-usage">!messages testwelcome [member]</code></td><td>Preview the welcome message.</td></tr>
+<tr><td><code class="cmd-usage">!messages goodbyechannel &lt;channel&gt;</code></td><td>Set where goodbye messages post.</td></tr>
+<tr><td><code class="cmd-usage">!messages goodbyemessage &lt;text&gt;</code></td><td>Set the goodbye message text.</td></tr>
+<tr><td><code class="cmd-usage">!messages goodbyetoggle &lt;state&gt;</code></td><td>Turn goodbye messages on/off.</td></tr>
+<tr><td><code class="cmd-usage">!messages testgoodbye [member]</code></td><td>Preview the goodbye message.</td></tr>
+</tbody>
+</table>
+
+<h2>Update logger</h2>
+<p>Post polished, templated changelog announcements to your community. Set it up once with
+<code>/setup_updates &lt;channel&gt; [role] [footer]</code>, then either open the full builder with
+<code>/post_update</code> or fire off a fast one with
+<code>/quick_update &lt;title&gt; [overview] [added] [fixed] [improved] [removed] [notes]</code>.
+Save reusable presets with <code>/save_update_template</code> and <code>/save_update_theme</code>
+(color, emoji, footer), review past posts with <code>/update_history</code>, and fix mistakes with
+<code>/edit_last_update</code> or <code>/delete_last_update</code>.</p>
+
+<h2>Invite panel &amp; guild announcements</h2>
+<p><code>!addbotpanel</code> / <code>!refreshbotpanel</code> manage an invite-tracking panel, and
+<code>!guildinform</code> / <code>!guildmessage &lt;member&gt;</code> handle server-wide announcement
+messaging.</p>
+<div class="toc-inline"><a href="#bot-config">Bot Config <span class="section-count">(2)</span></a>
+<a href="#guild-info-posting">Guild Info Posting <span class="section-count">(2)</span></a>
+<a href="#invite-panel">Invite Panel <span class="section-count">(2)</span></a>
+<a href="#welcome-goodbye-messages">Welcome / Goodbye Messages <span class="section-count">(9)</span></a>
+<a href="#server-setup-wizard">Server Setup Wizard <span class="section-count">(7)</span></a>
+<a href="#update-logger">Update Logger <span class="section-count">(12)</span></a></div><h3 id="bot-config">Bot Config <span class="section-count">— 2 commands</span></h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr>
+<td><code class="cmd-usage">!prefix &lt;new_prefix&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!setwelcome &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="guild-info-posting">Guild Info Posting <span class="section-count">— 2 commands</span></h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr>
+<td><code class="cmd-usage">!guildinform</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!guildmessage &lt;member&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka guilddm)</span></td>
+<td>No description available.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="invite-panel">Invite Panel <span class="section-count">— 2 commands</span></h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr>
+<td><code class="cmd-usage">!addbotpanel</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!refreshbotpanel</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="welcome-goodbye-messages">Welcome / Goodbye Messages <span class="section-count">— 9 commands</span></h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr>
+<td><code class="cmd-usage">!messages</code><span class="badge prefix">prefix</span></td>
+<td>Configure welcome and goodbye messages.</td>
+</tr><tr>
+<td><code class="cmd-usage">!messages goodbyechannel &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Set the goodbye channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!messages goodbyemessage &lt;text&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Set the goodbye message.</td>
+</tr><tr>
+<td><code class="cmd-usage">!messages goodbyetoggle &lt;state&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Enable or disable goodbye messages.</td>
+</tr><tr>
+<td><code class="cmd-usage">!messages testgoodbye [member]</code><span class="badge prefix">prefix</span></td>
+<td>Send a test goodbye message.</td>
+</tr><tr>
+<td><code class="cmd-usage">!messages testwelcome [member]</code><span class="badge prefix">prefix</span></td>
+<td>Send a test welcome message.</td>
+</tr><tr>
+<td><code class="cmd-usage">!messages welcomechannel &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Set the welcome channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!messages welcomemessage &lt;text&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Set the welcome message.</td>
+</tr><tr>
+<td><code class="cmd-usage">!messages welcometoggle &lt;state&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Enable or disable welcome messages.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="server-setup-wizard">Server Setup Wizard <span class="section-count">— 7 commands</span></h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr>
+<td><code class="cmd-usage">!fixjailperms</code><span class="badge prefix">prefix</span></td>
+<td>Re-apply jail role lockdown to all channels.</td>
+</tr><tr>
+<td><code class="cmd-usage">!jailroles [state]</code><span class="badge prefix">prefix</span></td>
+<td>Toggle or set role removal on jail. Usage: ,jailroles on/off</td>
+</tr><tr>
+<td><code class="cmd-usage">!setup</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka setupcenter, setups)</span></td>
+<td>Open the setup center panel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!setupall</code><span class="badge prefix">prefix</span></td>
+<td>Create jail + mute setup together.</td>
+</tr><tr>
+<td><code class="cmd-usage">!setupjail</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka setme)</span></td>
+<td>Create jail channels and role.</td>
+</tr><tr>
+<td><code class="cmd-usage">!setupmute</code><span class="badge prefix">prefix</span></td>
+<td>Create mute roles and channels.</td>
+</tr><tr>
+<td><code class="cmd-usage">!setupstatus</code><span class="badge prefix">prefix</span></td>
+<td>Show current setup status.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="update-logger">Update Logger <span class="section-count">— 12 commands</span></h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr>
+<td><code class="cmd-usage">/delete_last_update</code><span class="badge slash">slash</span></td>
+<td>Delete the last posted update log.</td>
+</tr><tr>
+<td><code class="cmd-usage">/edit_last_update</code><span class="badge slash">slash</span></td>
+<td>Edit the last posted update log.</td>
+</tr><tr>
+<td><code class="cmd-usage">/list_update_presets</code><span class="badge slash">slash</span></td>
+<td>Show saved update logger themes and templates.</td>
+</tr><tr>
+<td><code class="cmd-usage">/post_update [template_name] [theme_name] [ping_role_override] [attachment_1] [attachment_2] [attachment_3] [attachment_4]</code><span class="badge slash">slash</span></td>
+<td>Open the update logger builder.</td>
+</tr><tr>
+<td><code class="cmd-usage">/quick_update &lt;title&gt; [overview] [added] [fixed] [improved] [removed] [notes] [template_name] [theme_name] [ping_role_override]</code><span class="badge slash">slash</span></td>
+<td>Post a quick update without opening the large modal.</td>
+</tr><tr>
+<td><code class="cmd-usage">/save_update_template &lt;template_name&gt; [theme_name] [title_prefix] [added_label] [improved_label] [fixed_label] [removed_label] [notes_label] [overview_label]</code><span class="badge slash">slash</span></td>
+<td>Save or update a reusable update template.</td>
+</tr><tr>
+<td><code class="cmd-usage">/save_update_theme &lt;theme_name&gt; &lt;color_hex&gt; [emoji] [title_prefix] [footer_text]</code><span class="badge slash">slash</span></td>
+<td>Save or update an update embed theme.</td>
+</tr><tr>
+<td><code class="cmd-usage">/setup_updates &lt;channel&gt; [role] [footer]</code><span class="badge slash">slash</span></td>
+<td>Set the channel and ping role for update logs.</td>
+</tr><tr>
+<td><code class="cmd-usage">/update_config</code><span class="badge slash">slash</span></td>
+<td>View the current update logger config.</td>
+</tr><tr>
+<td><code class="cmd-usage">/update_history [limit]</code><span class="badge slash">slash</span></td>
+<td>Show recent update history.</td>
+</tr><tr>
+<td><code class="cmd-usage">/update_media_defaults [image_url] [thumbnail_url] [use_server_icon]</code><span class="badge slash">slash</span></td>
+<td>Set default media URLs used in update posts.</td>
+</tr><tr>
+<td><code class="cmd-usage">/update_toggle [auto_caps] [markers] [ping_enabled] [use_server_icon] [compact_mode] [title_prefix] [default_color]</code><span class="badge slash">slash</span></td>
+<td>Change default update logger settings.</td>
+</tr>
+</tbody>
+</table>
+</main>
+</div>
+
+<footer>
+<div class="footer-brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="footer-links">
+<a href="../privacy.html">Privacy</a>
+<a href="../terms.html">Terms</a>
+<a href="https://discord.gg/AfCCQt2VHP">Support</a>
+</div>
+<p>© 2026 Pleed Development</p>
+</footer>
+</body>
+</html>

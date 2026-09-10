@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pleed Docs | Fun &amp; Miscellaneous</title>
+<meta name="description" content="Games, music, Spotify, webhooks, server customization.">
+<link rel="icon" href="../assets/favicon.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="docs.css">
+
+</head>
+<body>
+<div class="background-glow"></div>
+<nav>
+<div class="brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="nav-links">
+<a href="../index.html">Home</a>
+<a href="../commands.html">Commands</a>
+<a href="../servers.html">Servers</a>
+<a href="index.html">Docs</a>
+<a href="../status.html">Status</a>
+</div>
+<a class="nav-button" href="https://discord.com/oauth2/authorize?client_id=1484703029243416757">Invite</a>
+</nav>
+
+<div class="docs-shell">
+<aside class="docs-sidebar">
+<h4>Documentation</h4>
+<a href="index.html" class="">Overview</a>
+<a href="getting-started.html" class="">Getting Started</a>
+<a href="moderation.html" class="">Moderation</a>
+<a href="security.html" class="">Security & Antinuke</a>
+<a href="tickets.html" class="">Tickets</a>
+<a href="economy.html" class="">Economy & Leveling</a>
+<a href="automation.html" class="">Automation</a>
+<a href="server-setup.html" class="">Server Setup</a>
+<a href="voice.html" class="">Voice</a>
+<a href="utility.html" class="">Information & Utility</a>
+<a href="fun.html" class="active">Fun & Miscellaneous</a>
+</aside>
+<main class="docs-main">
+
+<div class="docs-eyebrow">Fun &amp; Miscellaneous</div>
+<h1>Fun &amp; Miscellaneous</h1>
+<p class="docs-lede">Games, music playback, Spotify integration, server counters, webhook relays,
+and bot appearance customization.</p>
+
+<h3 id="games">Games (slash commands)</h3>
+<p>A full arcade of slash-command games, solo or with a friend: <code>/8ball</code>, <code>/coinflip</code>,
+<code>/slots</code>, <code>/blackjack</code> (with split &amp; double down), <code>/higherlower</code>,
+<code>/hangman</code>, <code>/wordle</code>, <code>/trivia</code>, <code>/rps [member]</code>,
+<code>/tictactoe &lt;member&gt;</code>, <code>/connectfour &lt;member&gt;</code>,
+<code>/poker &lt;member&gt;</code> (multi-stage Texas Hold'em with community cards), <code>/uno</code>
+(multiplayer queue with House Rules), and <code>/pool</code> (open lobby for multiple players).</p>
+
+<h3 id="music">Music</h3>
+<p>Standard voice-channel music playback: <code>!play &lt;query&gt;</code> to queue a track,
+<code>!skip</code>, <code>!pause</code>/<code>!resume</code>, <code>!stop</code>,
+<code>!queue [page]</code> (with <code>clear</code>, <code>move</code>, and <code>remove</code>
+subcommands), <code>!volume &lt;percentage&gt;</code>, <code>!seek &lt;position&gt;</code>,
+<code>!repeat &lt;mode&gt;</code>, and <code>!nowplaying</code>. Save your preferred setup with
+<code>!preset [name]</code>, and adjust server-wide playback rules (like DJ role or autoplay) under
+<code>!settings</code>.</p>
+
+<h3 id="spotify">Spotify</h3>
+<p>Deeper Spotify integration for members who link an account: <code>!spotify login</code> to connect,
+<code>!spotify play &lt;query&gt;</code> or <code>!spotify vc &lt;query&gt;</code> to play a track (or
+your current Spotify track) straight into voice chat, plus <code>now</code>/<code>nowplaying</code>,
+<code>like</code>/<code>unlike</code>, <code>queue</code>, <code>artists</code>/<code>tracks [timeframe]</code>
+for listening stats, and <code>!spotify code &lt;code_or_url&gt;</code> to render a scannable Spotify code.</p>
+
+<h3 id="server-counters">Server counters</h3>
+<p>Auto-updating voice or text channels that display a live stat (member count, boosts, etc.):
+<code>!counter add &lt;option&gt; [channel_type] [flags]</code> to create one, <code>!counter options</code>
+to see what stats are available, <code>!counter refresh</code> to force an update, and
+<code>!counter remove &lt;channel&gt;</code> to delete one.</p>
+
+<h3 id="webhooks">Webhooks</h3>
+<p>Send and manage messages through saved webhook identifiers instead of the raw webhook UI — handy
+for relaying content into a channel under a custom name/avatar: <code>!webhook create &lt;channel&gt; &lt;name&gt;</code>,
+<code>!webhook send &lt;identifier&gt; &lt;payload&gt;</code>, plus <code>edit</code>, <code>deletemsg</code>,
+<code>avatar</code>, <code>name</code>, <code>list</code>, and <code>delete</code>. The slash version
+(<code>/send</code>) exposes the same thing as individual embed fields (title, description, color,
+footer, image, thumbnail) instead of one raw payload.</p>
+
+<h3 id="bot-customization">Bot customization</h3>
+<p>Give Pleed a server-specific identity: <code>!customize avatar [image_url]</code>,
+<code>!customize banner [image_url]</code>, and <code>!customize bio &lt;text&gt;</code> change how
+the bot appears in your server specifically, without affecting other servers. Check current settings
+with <code>!customize view</code> and roll any of them back with <code>!customize reset &lt;option&gt;</code>.</p>
+<div class="toc-inline"><a href="#server-counters">Server Counters <span class="section-count">(5)</span></a>
+<a href="#bot-customization">Bot Customization <span class="section-count">(7)</span></a>
+<a href="#games">Games <span class="section-count">(14)</span></a>
+<a href="#music">Music <span class="section-count">(19)</span></a>
+<a href="#spotify">Spotify <span class="section-count">(28)</span></a>
+<a href="#webhooks-slash">Webhooks (Slash) <span class="section-count">(9)</span></a>
+<a href="#webhooks">Webhooks <span class="section-count">(11)</span></a></div><h3 id="server-counters">Server Counters <span class="section-count">— 5 commands</span></h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr>
+<td><code class="cmd-usage">!counter</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka counters)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!counter add &lt;option&gt; [channel_type] [flags]</code><span class="badge prefix">prefix</span></td>
+<td>Add a counter. Example: ,counter add members voice --name Members: {count}</td>
+</tr><tr>
+<td><code class="cmd-usage">!counter options</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!counter refresh</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka update)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!counter remove &lt;channel&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka delete, del)</span></td>
+<td>No description available.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bot-customization">Bot Customization <span class="section-count">— 7 commands</span></h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr>
+<td><code class="cmd-usage">!customize</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka customise, customization)</span></td>
+<td>Customize Pleed's server appearance.</td>
+</tr><tr>
+<td><code class="cmd-usage">!customize avatar [image_url]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka pfp, icon)</span></td>
+<td>Set the server-custom bot avatar image.</td>
+</tr><tr>
+<td><code class="cmd-usage">!customize banner [image_url]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka background)</span></td>
+<td>Set the server-custom bot banner image.</td>
+</tr><tr>
+<td><code class="cmd-usage">!customize bio &lt;text&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka about, description)</span></td>
+<td>Set the server-custom bot bio.</td>
+</tr><tr>
+<td><code class="cmd-usage">!customize help</code><span class="badge prefix">prefix</span></td>
+<td>Show command usage.</td>
+</tr><tr>
+<td><code class="cmd-usage">!customize reset &lt;option&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka clear, remove)</span></td>
+<td>Reset avatar, banner, bio, or all.</td>
+</tr><tr>
+<td><code class="cmd-usage">!customize view</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka show, preview)</span></td>
+<td>View current customization settings.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="games">Games <span class="section-count">— 14 commands</span></h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr>
+<td><code class="cmd-usage">/8ball</code><span class="badge slash">slash</span></td>
+<td>Ask the magic 8-ball any question via a form.</td>
+</tr><tr>
+<td><code class="cmd-usage">/blackjack</code><span class="badge slash">slash</span></td>
+<td>Play blackjack with split &amp; double down.</td>
+</tr><tr>
+<td><code class="cmd-usage">/coinflip</code><span class="badge slash">slash</span></td>
+<td>Flip a coin for luck.</td>
+</tr><tr>
+<td><code class="cmd-usage">/connectfour &lt;member&gt;</code><span class="badge slash">slash</span></td>
+<td>Play Connect Four with a friend.</td>
+</tr><tr>
+<td><code class="cmd-usage">/hangman</code><span class="badge slash">slash</span></td>
+<td>Play a solo game of Hangman.</td>
+</tr><tr>
+<td><code class="cmd-usage">/higherlower</code><span class="badge slash">slash</span></td>
+<td>Guess if the next number will be higher or lower.</td>
+</tr><tr>
+<td><code class="cmd-usage">/poker &lt;member&gt;</code><span class="badge slash">slash</span></td>
+<td>Play a multi-stage Texas Hold'em poker match with community cards.</td>
+</tr><tr>
+<td><code class="cmd-usage">/pool</code><span class="badge slash">slash</span></td>
+<td>Host an open pool lobby for multiple players.</td>
+</tr><tr>
+<td><code class="cmd-usage">/rps [member]</code><span class="badge slash">slash</span></td>
+<td>Play Rock Paper Scissors solo or PvP.</td>
+</tr><tr>
+<td><code class="cmd-usage">/slots</code><span class="badge slash">slash</span></td>
+<td>Spin the casino slots.</td>
+</tr><tr>
+<td><code class="cmd-usage">/tictactoe &lt;member&gt;</code><span class="badge slash">slash</span></td>
+<td>Play a classic 2-player Tic-Tac-Toe match.</td>
+</tr><tr>
+<td><code class="cmd-usage">/trivia</code><span class="badge slash">slash</span></td>
+<td>Answer a trivia question.</td>
+</tr><tr>
+<td><code class="cmd-usage">/uno</code><span class="badge slash">slash</span></td>
+<td>Host a multiplayer UNO match queue with House Rules.</td>
+</tr><tr>
+<td><code class="cmd-usage">/wordle</code><span class="badge slash">slash</span></td>
+<td>Play Discord Wordle.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="music">Music <span class="section-count">— 19 commands</span></h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr>
+<td><code class="cmd-usage">!disconnect</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka dc, leave)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!nowplaying</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka np, current)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!pause</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!play &lt;query&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka p)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!preset [name]</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!preset active</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!queue [page]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka q)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!queue clear</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!queue move &lt;position&gt; &lt;new_position&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka mv)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!queue remove &lt;position&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka delete, rm)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!repeat &lt;mode&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka loop)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!resume</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka unpause)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!seek &lt;position&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!settings</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!settings autoplay &lt;toggle&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka auto)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!settings dj [role]</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!skip</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka sk)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!stop</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!volume &lt;percentage&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka vol)</span></td>
+<td>No description available.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="spotify">Spotify <span class="section-count">— 28 commands</span></h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr>
+<td><code class="cmd-usage">!spotify [query]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka spot)</span></td>
+<td>Main Spotify command. Shortcuts: ,spot &lt;song name&gt; -&gt; plays in voice ,spotify &lt;song name&gt; -&gt; plays in voice ,spot &lt;song + artist&gt; -&gt; plays in voice</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify artists [timeframe]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka topartists)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify clear</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify code &lt;code_or_url&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka submit)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify device [device_query]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka devices)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify find &lt;query&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka searchsource)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify join</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka connectvc, vconnect)</span></td>
+<td>Joins your voice channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify leave</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka disconnectvc, vcleave, vcdc)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify like</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka save)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify login</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka connect)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify logout</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka disconnect)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify next</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka skip)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify now</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka musicnp, vcnp)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify nowplaying</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka np, current)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify pause</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify play &lt;query&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka p)</span></td>
+<td>Plays a song in voice chat using Spotify metadata + yt-dlp audio source.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify previous</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka prev, back)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify queue [query]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka add, q)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify remove &lt;position&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka rm)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify repeat [mode]</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify resume</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka unpause)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify seek &lt;position&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify shuffle [state]</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify tracks [timeframe]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka toptracks)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify unlike</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka unsave)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify vc [query]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka voice, replicate, sync)</span></td>
+<td>Join your voice channel and play either: - your current Spotify track - a searched Spotify track if a query is provided</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify vcstop</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka stopvc, stop)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!spotify volume &lt;percentage&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka vol)</span></td>
+<td>No description available.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="webhooks-slash">Webhooks (Slash) <span class="section-count">— 9 commands</span></h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr>
+<td><code class="cmd-usage">/avatar &lt;identifier&gt; [image_url]</code><span class="badge slash">slash</span></td>
+<td>Change the avatar/image of a saved webhook</td>
+</tr><tr>
+<td><code class="cmd-usage">/create &lt;channel&gt; &lt;name&gt;</code><span class="badge slash">slash</span></td>
+<td>Create a new relay webhook in a specified channel</td>
+</tr><tr>
+<td><code class="cmd-usage">/delete &lt;identifier&gt;</code><span class="badge slash">slash</span></td>
+<td>Delete a saved webhook</td>
+</tr><tr>
+<td><code class="cmd-usage">/deletemsg &lt;message_link&gt;</code><span class="badge slash">slash</span></td>
+<td>Delete a message previously sent through this system</td>
+</tr><tr>
+<td><code class="cmd-usage">/edit &lt;message_link&gt; &lt;new_message&gt;</code><span class="badge slash">slash</span></td>
+<td>Edit the content inside a webhook message embed</td>
+</tr><tr>
+<td><code class="cmd-usage">/list</code><span class="badge slash">slash</span></td>
+<td>List every saved webhook in this server</td>
+</tr><tr>
+<td><code class="cmd-usage">/name &lt;identifier&gt; &lt;new_name&gt;</code><span class="badge slash">slash</span></td>
+<td>Change the name of a saved webhook</td>
+</tr><tr>
+<td><code class="cmd-usage">/send &lt;identifier&gt; [message] [embed_title] [embed_description] [embed_color] [embed_footer] [embed_image] [embed_thumbnail] [embed_json] [username] [avatar] [thread] [silent]</code><span class="badge slash">slash</span></td>
+<td>Send a message through a saved webhook</td>
+</tr><tr>
+<td><code class="cmd-usage">/variables</code><span class="badge slash">slash</span></td>
+<td>Show variables you can use in messages/embeds</td>
+</tr>
+</tbody>
+</table>
+<h3 id="webhooks">Webhooks <span class="section-count">— 11 commands</span></h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr>
+<td><code class="cmd-usage">!webhook</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka webhooks, wh)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!webhook avatar &lt;identifier&gt; [image_url]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka image, editavatar, editimage)</span></td>
+<td>Change the avatar/image of a saved webhook.</td>
+</tr><tr>
+<td><code class="cmd-usage">!webhook create &lt;channel&gt; &lt;name&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka add, new)</span></td>
+<td>Create a new webhook in the specified channel under a short identifier.</td>
+</tr><tr>
+<td><code class="cmd-usage">!webhook delete &lt;identifier&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka remove, del)</span></td>
+<td>Delete a saved webhook, after confirmation.</td>
+</tr><tr>
+<td><code class="cmd-usage">!webhook deletemsg &lt;message_link&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka delmsg)</span></td>
+<td>Delete a message that was previously sent through this system.</td>
+</tr><tr>
+<td><code class="cmd-usage">!webhook edit &lt;message_link&gt; &lt;new_message&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Edit the embed content of a message previously sent through this system.</td>
+</tr><tr>
+<td><code class="cmd-usage">!webhook list</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka show, all)</span></td>
+<td>List every saved webhook in this server, paginated.</td>
+</tr><tr>
+<td><code class="cmd-usage">!webhook name &lt;identifier&gt; &lt;new_name&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka editname, rename)</span></td>
+<td>Change the name of a saved webhook.</td>
+</tr><tr>
+<td><code class="cmd-usage">!webhook send &lt;identifier&gt; &lt;payload&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Send a message through a saved webhook.</td>
+</tr><tr>
+<td><code class="cmd-usage">!webhook stats</code><span class="badge prefix">prefix</span></td>
+<td>Developer-only: cross-guild webhook usage counts.</td>
+</tr><tr>
+<td><code class="cmd-usage">!webhook variables</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka vars)</span></td>
+<td>No description available.</td>
+</tr>
+</tbody>
+</table>
+</main>
+</div>
+
+<footer>
+<div class="footer-brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="footer-links">
+<a href="../privacy.html">Privacy</a>
+<a href="../terms.html">Terms</a>
+<a href="https://discord.gg/AfCCQt2VHP">Support</a>
+</div>
+<p>© 2026 Pleed Development</p>
+</footer>
+</body>
+</html>

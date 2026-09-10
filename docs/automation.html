@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pleed Docs | Automation</title>
+<meta name="description" content="Auto-responders, reaction triggers, filters, and custom commands.">
+<link rel="icon" href="../assets/favicon.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="docs.css">
+
+</head>
+<body>
+<div class="background-glow"></div>
+<nav>
+<div class="brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="nav-links">
+<a href="../index.html">Home</a>
+<a href="../commands.html">Commands</a>
+<a href="../servers.html">Servers</a>
+<a href="index.html">Docs</a>
+<a href="../status.html">Status</a>
+</div>
+<a class="nav-button" href="https://discord.com/oauth2/authorize?client_id=1484703029243416757">Invite</a>
+</nav>
+
+<div class="docs-shell">
+<aside class="docs-sidebar">
+<h4>Documentation</h4>
+<a href="index.html" class="">Overview</a>
+<a href="getting-started.html" class="">Getting Started</a>
+<a href="moderation.html" class="">Moderation</a>
+<a href="security.html" class="">Security & Antinuke</a>
+<a href="tickets.html" class="">Tickets</a>
+<a href="economy.html" class="">Economy & Leveling</a>
+<a href="automation.html" class="active">Automation</a>
+<a href="server-setup.html" class="">Server Setup</a>
+<a href="voice.html" class="">Voice</a>
+<a href="utility.html" class="">Information & Utility</a>
+<a href="fun.html" class="">Fun & Miscellaneous</a>
+</aside>
+<main class="docs-main">
+
+<div class="docs-eyebrow">Automation</div>
+<h1>Automation</h1>
+<p class="docs-lede">Build trigger-and-response rules without writing code: automations react to
+message content, reaction shortcuts respond to keywords with an emoji, and custom commands let you
+create your own server-specific commands.</p>
+
+<h2>Automations (trigger &rarr; response)</h2>
+<p>An automation matches messages against a trigger and fires a response — a reply, a reaction, or
+both — with fine-grained control over who and where it applies.</p>
+<ol>
+<li><code>!automation addresponse &lt;name&gt; &lt;data&gt;</code> or <code>!automation addreaction &lt;name&gt; &lt;data&gt;</code> to create one.</li>
+<li><code>!automation match &lt;automation_id&gt; &lt;match_type&gt;</code> &mdash; choose how strictly the trigger has to match (exact, contains, starts with, etc.).</li>
+<li><code>!automation filters</code>, plus the dedicated <code>!filters channels/roles/users</code> and their <code>block*</code> counterparts, scope an automation to (or exclude it from) specific channels, roles, or members.</li>
+<li><code>!automation cooldown &lt;automation_id&gt; &lt;seconds&gt;</code> and <code>!automation chance &lt;automation_id&gt; &lt;chance&gt;</code> stop a rule from firing on every single match.</li>
+<li><code>!automation priority</code> decides which rule wins when more than one matches the same message.</li>
+<li><code>!automation stats</code> / <code>!automation resetstats</code> show (or clear) how often each rule has triggered.</li>
+</ol>
+<p>Manage the full list with <code>!automation list [category]</code>, inspect one with
+<code>!automation view &lt;automation_id&gt;</code>, duplicate one with <code>!automation clone</code>,
+and toggle individual rules on/off with <code>!automation enable</code> / <code>!automation disable</code>
+without deleting them.</p>
+
+<h3 id="reacts-shortcuts">Auto-reacts &amp; auto-responses (quick version)</h3>
+<p>For simple one-off cases you don't need the full automation builder:</p>
+<ul>
+<li><code>!reactadd &lt;emoji&gt; &lt;trigger&gt;</code> &mdash; react with an emoji whenever the trigger word appears (<code>!reacts</code> to list, <code>!reactdel</code> to remove).</li>
+<li><code>!autorespond &lt;trigger&gt; &lt;response&gt;</code> &mdash; reply with fixed text whenever the trigger appears (<code>!autoresponses</code> to list, <code>!autoresponddel</code> to remove).</li>
+</ul>
+
+<h2>Custom commands</h2>
+<p>Create your own server-specific commands under your existing prefix:</p>
+<ul>
+<li><code>!addcmd &lt;name&gt; &lt;response&gt;</code> &mdash; create a custom command.</li>
+<li><code>!editcmd &lt;name&gt; &lt;response&gt;</code> / <code>!delcmd &lt;name&gt;</code> &mdash; edit or remove one.</li>
+<li><code>!testcmd &lt;raw_text&gt;</code> &mdash; dry-run how a command body would parse before saving it.</li>
+<li><code>!listcmds</code> / <code>!viewcmd &lt;name&gt;</code> &mdash; browse what's already set up.</li>
+</ul>
+
+<h2>AutoMod (spam &amp; word filtering)</h2>
+<p>AutoMod lives under <a href="moderation.html#automod">Moderation</a> — it handles blocked words,
+per-category punishment escalation, and strike tracking, separate from the trigger-based automations
+on this page.</p>
+<div class="toc-inline"><a href="#automation-rules">Automation Rules <span class="section-count">(32)</span></a>
+<a href="#custom-commands">Custom Commands <span class="section-count">(6)</span></a></div><h3 id="automation-rules">Automation Rules <span class="section-count">— 32 commands</span></h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr>
+<td><code class="cmd-usage">!automation</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka automations, am)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation addreaction &lt;name&gt; &lt;data&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka addreact, createreaction)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation addresponse &lt;name&gt; &lt;data&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka createresponse, addauto)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation chance &lt;automation_id&gt; &lt;chance&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation clear [category]</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation clone &lt;automation_id&gt; &lt;new_name&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation cooldown &lt;automation_id&gt; &lt;seconds&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation delete &lt;automation_id&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka remove, del)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation deleteafter &lt;automation_id&gt; &lt;seconds&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka autodelete)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation disable &lt;automation_id&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation enable &lt;automation_id&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation filters</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation list [category]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka ls)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation match &lt;automation_id&gt; &lt;match_type&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation priority &lt;automation_id&gt; &lt;priority&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation reply &lt;automation_id&gt; &lt;state&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation resetstats</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation stats</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automation view &lt;automation_id&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka info, show)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!automationsetup</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka autosetup, amsettings)</span></td>
+<td>Open the automation settings panel with toggle buttons.</td>
+</tr><tr>
+<td><code class="cmd-usage">!autorespond &lt;trigger&gt; &lt;response&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka auto, respond)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!autoresponddel &lt;trigger&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka delauto, removeresponse)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!autoresponses</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka autolist)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!filters blockchannels &lt;automation_id&gt; &lt;action&gt; &lt;channels&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!filters blockroles &lt;automation_id&gt; &lt;action&gt; &lt;roles&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!filters blockusers &lt;automation_id&gt; &lt;action&gt; &lt;users&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!filters channels &lt;automation_id&gt; &lt;action&gt; &lt;channels&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!filters roles &lt;automation_id&gt; &lt;action&gt; &lt;roles&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!filters users &lt;automation_id&gt; &lt;action&gt; &lt;users&gt;</code><span class="badge prefix">prefix</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!reactadd &lt;emoji&gt; &lt;trigger&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka ar, react)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!reactdel &lt;trigger&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka reactremove, delreact)</span></td>
+<td>No description available.</td>
+</tr><tr>
+<td><code class="cmd-usage">!reacts</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka reactlist)</span></td>
+<td>No description available.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="custom-commands">Custom Commands <span class="section-count">— 6 commands</span></h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr>
+<td><code class="cmd-usage">!addcmd &lt;name&gt; &lt;response&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka addscript, scriptadd)</span></td>
+<td>Create a custom script command.</td>
+</tr><tr>
+<td><code class="cmd-usage">!delcmd &lt;name&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka delscript, removecmd)</span></td>
+<td>Delete a custom command.</td>
+</tr><tr>
+<td><code class="cmd-usage">!editcmd &lt;name&gt; &lt;response&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka editscript, setcmd)</span></td>
+<td>Edit an existing custom command.</td>
+</tr><tr>
+<td><code class="cmd-usage">!listcmds</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka listscripts, cmds)</span></td>
+<td>List all custom commands in this server.</td>
+</tr><tr>
+<td><code class="cmd-usage">!testcmd &lt;raw_text&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka testscript)</span></td>
+<td>Test how a custom command parses.</td>
+</tr><tr>
+<td><code class="cmd-usage">!viewcmd &lt;name&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka viewscript, cmdinfo)</span></td>
+<td>View a custom command's response.</td>
+</tr>
+</tbody>
+</table>
+</main>
+</div>
+
+<footer>
+<div class="footer-brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="footer-links">
+<a href="../privacy.html">Privacy</a>
+<a href="../terms.html">Terms</a>
+<a href="https://discord.gg/AfCCQt2VHP">Support</a>
+</div>
+<p>© 2026 Pleed Development</p>
+</footer>
+</body>
+</html>

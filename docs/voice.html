@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pleed Docs | Voice</title>
+<meta name="description" content="VoiceMaster temp voice channels and voice controls.">
+<link rel="icon" href="../assets/favicon.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="docs.css">
+
+</head>
+<body>
+<div class="background-glow"></div>
+<nav>
+<div class="brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="nav-links">
+<a href="../index.html">Home</a>
+<a href="../commands.html">Commands</a>
+<a href="../servers.html">Servers</a>
+<a href="index.html">Docs</a>
+<a href="../status.html">Status</a>
+</div>
+<a class="nav-button" href="https://discord.com/oauth2/authorize?client_id=1484703029243416757">Invite</a>
+</nav>
+
+<div class="docs-shell">
+<aside class="docs-sidebar">
+<h4>Documentation</h4>
+<a href="index.html" class="">Overview</a>
+<a href="getting-started.html" class="">Getting Started</a>
+<a href="moderation.html" class="">Moderation</a>
+<a href="security.html" class="">Security & Antinuke</a>
+<a href="tickets.html" class="">Tickets</a>
+<a href="economy.html" class="">Economy & Leveling</a>
+<a href="automation.html" class="">Automation</a>
+<a href="server-setup.html" class="">Server Setup</a>
+<a href="voice.html" class="active">Voice</a>
+<a href="utility.html" class="">Information & Utility</a>
+<a href="fun.html" class="">Fun & Miscellaneous</a>
+</aside>
+<main class="docs-main">
+
+<div class="docs-eyebrow">Voice</div>
+<h1>Voice</h1>
+<p class="docs-lede">VoiceMaster gives every member their own temporary, fully-controlled voice
+channel that's created on the fly and cleaned up automatically when it's empty.</p>
+
+<h2>Setting it up (staff)</h2>
+<ol>
+<li><code>!setupvc [category]</code> &mdash; creates the trigger channel members join to spawn their own voice channel, optionally inside a specific category.</li>
+<li><code>!voicemaster category &lt;category&gt;</code> &mdash; choose where new temp channels get created.</li>
+<li><code>!voicemaster name &lt;template&gt;</code> &mdash; set the default name template for new channels.</li>
+<li><code>!voicemaster limit &lt;amount&gt;</code> &mdash; set the default member cap for new channels.</li>
+<li><code>!voicemaster trigger &lt;channel&gt;</code> &mdash; manually point at an existing channel as the trigger, instead of creating a new one.</li>
+</ol>
+
+<h2>Managing your own channel (members)</h2>
+<p>Once you join the trigger channel and get your own voice channel, it's yours to control with the
+<code>vc</code>-prefixed commands:</p>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><code class="cmd-usage">!vcrename &lt;name&gt;</code></td><td>Rename your channel.</td></tr>
+<tr><td><code class="cmd-usage">!vclimit &lt;amount&gt;</code></td><td>Set the member limit.</td></tr>
+<tr><td><code class="cmd-usage">!vcbitrate &lt;kbps&gt;</code></td><td>Set the channel bitrate.</td></tr>
+<tr><td><code class="cmd-usage">!vclock</code> / <code class="cmd-usage">!vcunlock</code></td><td>Lock or unlock your channel to new joiners.</td></tr>
+<tr><td><code class="cmd-usage">!vchide</code> / <code class="cmd-usage">!vcunhide</code></td><td>Hide or unhide your channel from the channel list.</td></tr>
+<tr><td><code class="cmd-usage">!vcpermit &lt;member&gt;</code></td><td>Let a specific member into a locked channel.</td></tr>
+<tr><td><code class="cmd-usage">!vcdeny &lt;member&gt;</code></td><td>Deny a specific member.</td></tr>
+<tr><td><code class="cmd-usage">!vckick &lt;member&gt;</code></td><td>Kick a member out of your channel.</td></tr>
+<tr><td><code class="cmd-usage">!vcmute &lt;member&gt;</code> / <code class="cmd-usage">!vcunmute &lt;member&gt;</code></td><td>Server mute/unmute a member in your channel.</td></tr>
+<tr><td><code class="cmd-usage">!vctransfer &lt;member&gt;</code></td><td>Hand channel ownership to someone else.</td></tr>
+<tr><td><code class="cmd-usage">!vcclaim</code></td><td>Claim an abandoned temp channel if the owner left.</td></tr>
+<tr><td><code class="cmd-usage">!vcinfo</code></td><td>View info about the current temp voice channel.</td></tr>
+</tbody>
+</table>
+<div class="toc-inline"><a href="#voicemaster-temp-channels">VoiceMaster (Temp Channels) <span class="section-count">(21)</span></a></div><h3 id="voicemaster-temp-channels">VoiceMaster (Temp Channels) <span class="section-count">— 21 commands</span></h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr>
+<td><code class="cmd-usage">!setupvc [category]</code><span class="badge prefix">prefix</span></td>
+<td>Setup the VoiceMaster trigger channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!vcbitrate &lt;kbps&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Set the bitrate for your private voice channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!vcclaim</code><span class="badge prefix">prefix</span></td>
+<td>Claim an abandoned temp voice channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!vcdeny &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Deny a user from your voice channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!vchide</code><span class="badge prefix">prefix</span></td>
+<td>Hide your private voice channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!vcinfo</code><span class="badge prefix">prefix</span></td>
+<td>Show info about your current temp voice channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!vckick &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Kick a member from your voice channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!vclimit &lt;amount&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Set the user limit for your private voice channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!vclock</code><span class="badge prefix">prefix</span></td>
+<td>Lock your private voice channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!vcmute &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Server mute a member in your voice channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!vcpermit &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Permit a user to join your locked voice channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!vcrename &lt;name&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Rename your private voice channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!vctransfer &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Transfer your voice channel ownership.</td>
+</tr><tr>
+<td><code class="cmd-usage">!vcunhide</code><span class="badge prefix">prefix</span></td>
+<td>Unhide your private voice channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!vcunlock</code><span class="badge prefix">prefix</span></td>
+<td>Unlock your private voice channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!vcunmute &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Server unmute a member in your voice channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!voicemaster</code><span class="badge prefix">prefix</span></td>
+<td>Configure VoiceMaster.</td>
+</tr><tr>
+<td><code class="cmd-usage">!voicemaster category &lt;category&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Set the category for created channels.</td>
+</tr><tr>
+<td><code class="cmd-usage">!voicemaster limit &lt;amount&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Set the default user limit for created channels.</td>
+</tr><tr>
+<td><code class="cmd-usage">!voicemaster name &lt;template&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Set the default channel name template.</td>
+</tr><tr>
+<td><code class="cmd-usage">!voicemaster trigger &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Set the trigger channel manually.</td>
+</tr>
+</tbody>
+</table>
+</main>
+</div>
+
+<footer>
+<div class="footer-brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="footer-links">
+<a href="../privacy.html">Privacy</a>
+<a href="../terms.html">Terms</a>
+<a href="https://discord.gg/AfCCQt2VHP">Support</a>
+</div>
+<p>© 2026 Pleed Development</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pleed Docs | Tickets</title>
+<meta name="description" content="Support ticket panels, claiming, and blacklists.">
+<link rel="icon" href="../assets/favicon.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="docs.css">
+
+</head>
+<body>
+<div class="background-glow"></div>
+<nav>
+<div class="brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="nav-links">
+<a href="../index.html">Home</a>
+<a href="../commands.html">Commands</a>
+<a href="../servers.html">Servers</a>
+<a href="index.html">Docs</a>
+<a href="../status.html">Status</a>
+</div>
+<a class="nav-button" href="https://discord.com/oauth2/authorize?client_id=1484703029243416757">Invite</a>
+</nav>
+
+<div class="docs-shell">
+<aside class="docs-sidebar">
+<h4>Documentation</h4>
+<a href="index.html" class="">Overview</a>
+<a href="getting-started.html" class="">Getting Started</a>
+<a href="moderation.html" class="">Moderation</a>
+<a href="security.html" class="">Security & Antinuke</a>
+<a href="tickets.html" class="active">Tickets</a>
+<a href="economy.html" class="">Economy & Leveling</a>
+<a href="automation.html" class="">Automation</a>
+<a href="server-setup.html" class="">Server Setup</a>
+<a href="voice.html" class="">Voice</a>
+<a href="utility.html" class="">Information & Utility</a>
+<a href="fun.html" class="">Fun & Miscellaneous</a>
+</aside>
+<main class="docs-main">
+
+<div class="docs-eyebrow">Tickets</div>
+<h1>Tickets</h1>
+<p class="docs-lede">A full support-ticket system: panels members click to open a ticket, staff
+claiming, blacklists, and transcripts-friendly channel naming.</p>
+
+<h2>Setting up your first panel</h2>
+<ol>
+<li>Run <code>!setupticket</code> and follow the interactive wizard — it will ask for a channel to post the panel in and the categories/options members can choose from.</li>
+<li>Use <code>!panels</code> any time to see every panel configured in the server, and <code>!editpanel &lt;panel_id&gt;</code> to change options after the fact.</li>
+<li>Remove a panel entirely with <code>!ticketdeletepanel &lt;panel_id&gt;</code>.</li>
+</ol>
+
+<h2>Working a ticket</h2>
+<p>Once a member opens a ticket, staff typically:</p>
+<ul>
+<li><code>!claim</code> &mdash; take ownership of the ticket so other staff know it's being handled (<code>!unclaim</code> to release it).</li>
+<li><code>!tadd &lt;member&gt;</code> / <code>!tremove &lt;member&gt;</code> &mdash; add or remove a participant from the ticket channel.</li>
+<li><code>!rename &lt;new_name&gt;</code> &mdash; rename the ticket channel.</li>
+<li><code>!tinfo</code> &mdash; show ticket metadata (opener, claim status, age).</li>
+<li><code>!close [reason]</code> &mdash; close out the ticket.</li>
+</ul>
+
+<h2>Keeping tickets under control</h2>
+<p>Block repeat troublemakers from opening new tickets with <code>!tblacklist &lt;target&gt;</code>
+(accepts a user or a role) and lift it later with <code>!tunblacklist &lt;target&gt;</code>.</p>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr>
+<td><code class="cmd-usage">!claim</code><span class="badge prefix">prefix</span></td>
+<td>Claim the current ticket.</td>
+</tr><tr>
+<td><code class="cmd-usage">!close [reason]</code><span class="badge prefix">prefix</span></td>
+<td>Close the current ticket.</td>
+</tr><tr>
+<td><code class="cmd-usage">!editpanel &lt;panel_id&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka editpanels)</span></td>
+<td>Interactive wizard to edit an existing ticket panel, its options, support roles, and settings.</td>
+</tr><tr>
+<td><code class="cmd-usage">!panels</code><span class="badge prefix">prefix</span></td>
+<td>List all ticket panels for this server.</td>
+</tr><tr>
+<td><code class="cmd-usage">!rename &lt;new_name&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Rename the current ticket channel.</td>
+</tr><tr>
+<td><code class="cmd-usage">!setupticket</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka ticketsetup)</span></td>
+<td>Interactive ticket system setup wizard.</td>
+</tr><tr>
+<td><code class="cmd-usage">!tadd &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Add a user to the current ticket.</td>
+</tr><tr>
+<td><code class="cmd-usage">!tblacklist &lt;target&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Blacklist a user or role from opening tickets. Mention a user or role.</td>
+</tr><tr>
+<td><code class="cmd-usage">!ticketdeletepanel &lt;panel_id&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Delete a ticket panel and its options.</td>
+</tr><tr>
+<td><code class="cmd-usage">!tinfo</code><span class="badge prefix">prefix</span></td>
+<td>Show info about the current ticket.</td>
+</tr><tr>
+<td><code class="cmd-usage">!tremove &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Remove a user from the current ticket.</td>
+</tr><tr>
+<td><code class="cmd-usage">!tunblacklist &lt;target&gt;</code><span class="badge prefix">prefix</span></td>
+<td>Remove a user or role from the ticket blacklist.</td>
+</tr><tr>
+<td><code class="cmd-usage">!unclaim</code><span class="badge prefix">prefix</span></td>
+<td>Unclaim the current ticket.</td>
+</tr>
+</tbody>
+</table>
+</main>
+</div>
+
+<footer>
+<div class="footer-brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="footer-links">
+<a href="../privacy.html">Privacy</a>
+<a href="../terms.html">Terms</a>
+<a href="https://discord.gg/AfCCQt2VHP">Support</a>
+</div>
+<p>© 2026 Pleed Development</p>
+</footer>
+</body>
+</html>

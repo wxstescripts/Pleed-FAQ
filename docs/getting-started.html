@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pleed Docs | Getting Started</title>
+<meta name="description" content="Invite Pleed, set your prefix, and run the setup wizards.">
+<link rel="icon" href="../assets/favicon.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="docs.css">
+
+</head>
+<body>
+<div class="background-glow"></div>
+<nav>
+<div class="brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="nav-links">
+<a href="../index.html">Home</a>
+<a href="../commands.html">Commands</a>
+<a href="../servers.html">Servers</a>
+<a href="index.html">Docs</a>
+<a href="../status.html">Status</a>
+</div>
+<a class="nav-button" href="https://discord.com/oauth2/authorize?client_id=1484703029243416757">Invite</a>
+</nav>
+
+<div class="docs-shell">
+<aside class="docs-sidebar">
+<h4>Documentation</h4>
+<a href="index.html" class="">Overview</a>
+<a href="getting-started.html" class="active">Getting Started</a>
+<a href="moderation.html" class="">Moderation</a>
+<a href="security.html" class="">Security & Antinuke</a>
+<a href="tickets.html" class="">Tickets</a>
+<a href="economy.html" class="">Economy & Leveling</a>
+<a href="automation.html" class="">Automation</a>
+<a href="server-setup.html" class="">Server Setup</a>
+<a href="voice.html" class="">Voice</a>
+<a href="utility.html" class="">Information & Utility</a>
+<a href="fun.html" class="">Fun & Miscellaneous</a>
+</aside>
+<main class="docs-main">
+
+<div class="docs-eyebrow">Getting Started</div>
+<h1>Getting Started with Pleed</h1>
+<p class="docs-lede">A quick walkthrough for adding Pleed to your server and getting it configured.</p>
+
+<h2>1. Invite the bot</h2>
+<p>Use the <a href="../index.html#stats">Invite</a> button on the homepage, or go straight to the
+OAuth invite link. Grant Administrator (recommended for full moderation/antinuke coverage) or a
+curated set of permissions if you prefer to scope it down manually.</p>
+
+<h2>2. Check your prefix</h2>
+<p>Pleed responds to prefix commands (default <code>!</code>) and slash commands (<code>/</code>).
+Both work side by side — use whichever is faster for a given command.</p>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><code class="cmd-usage">!prefix &lt;new_prefix&gt;</code></td><td>Change the server's command prefix.</td></tr>
+<tr><td><code class="cmd-usage">!help [command_name]</code></td><td>Open the interactive help menu, or look up one command.</td></tr>
+<tr><td><code class="cmd-usage">!helpsetup</code></td><td>Open the help panel configuration.</td></tr>
+<tr><td><code class="cmd-usage">!ai &lt;question&gt;</code></td><td>Ask Pleed's built-in AI assistant a question.</td></tr>
+</tbody>
+</table>
+
+<h2>3. Run the setup wizard</h2>
+<p>Most modules have their own guided setup command rather than a dozen manual config commands.
+Start with the server setup wizard, then layer on the specific modules you want:</p>
+<ul>
+<li><code>!setup</code> &mdash; general first-time server configuration (see <a href="server-setup.html">Server Setup</a>).</li>
+<li><code>!setupticket</code> &mdash; create your first ticket panel (see <a href="tickets.html">Tickets</a>).</li>
+<li><code>!antinuke enable</code> &mdash; turn on raid/nuke protection (see <a href="security.html">Security</a>).</li>
+<li><code>!automationsetup</code> &mdash; toggle auto-moderation and automation features (see <a href="automation.html">Automation</a>).</li>
+<li><code>!voicemaster</code> setup command &mdash; enable temp voice channels (see <a href="voice.html">Voice</a>).</li>
+</ul>
+
+<h2>4. Understand permissions</h2>
+<p>Every command that changes server settings checks your Discord permissions before running (usually
+<strong>Manage Server</strong>, <strong>Manage Roles</strong>, <strong>Manage Channels</strong>, or
+<strong>Administrator</strong>, depending on the command). If a command silently refuses to run, check
+that both you <em>and</em> Pleed's role have the permission needed, and that Pleed's role sits above
+any roles it needs to manage.</p>
+
+<div class="callout warn">
+<strong>Role hierarchy matters.</strong> For moderation actions (ban, kick, timeout, jail, role
+management) Pleed's own role must be positioned above the target member's highest role in Server
+Settings &rarr; Roles, or the action will fail.</p>
+</div>
+
+<h2>Where to go next</h2>
+<div class="toc-inline">
+<a href="moderation.html">Moderation</a>
+<a href="security.html">Security &amp; AntiNuke</a>
+<a href="tickets.html">Tickets</a>
+<a href="economy.html">Economy &amp; Leveling</a>
+<a href="automation.html">Automation</a>
+<a href="server-setup.html">Server Setup</a>
+<a href="voice.html">Voice</a>
+<a href="utility.html">Information &amp; Utility</a>
+<a href="fun.html">Fun &amp; Miscellaneous</a>
+</div>
+
+</main>
+</div>
+
+<footer>
+<div class="footer-brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="footer-links">
+<a href="../privacy.html">Privacy</a>
+<a href="../terms.html">Terms</a>
+<a href="https://discord.gg/AfCCQt2VHP">Support</a>
+</div>
+<p>© 2026 Pleed Development</p>
+</footer>
+</body>
+</html>

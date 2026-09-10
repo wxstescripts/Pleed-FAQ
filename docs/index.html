@@ -1,557 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bleed Documentation - Overview</title>
-    <link rel="stylesheet" href="../style.css">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        :root {
-            --bg-dark: #08090a;
-            --sidebar-bg: #08090a;
-            --card-bg: #121316;
-            --card-border: #1e2025;
-            --active-pill-bg: #15181e;
-            --active-pill-border: #2b303b;
-            --border-color: #1a1c23;
-            --text-main: #f3f4f6;
-            --text-muted: #8b949e;
-            --text-subtle: #6e7681;
-            --accent: #38bdf8;
-            
-            --callout-bg: #111318;
-            --callout-border: #20242d;
-            --code-bg: #1c1f26;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pleed Docs | Overview</title>
+<meta name="description" content="Pleed documentation home — guides and command reference for every module.">
+<link rel="icon" href="../assets/favicon.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="docs.css">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Top Header Navigation */
-        .doc-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 24px;
-            background-color: var(--bg-dark);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .doc-logo {
-            height: 26px;
-            width: auto;
-            display: block;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .icon-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            cursor: pointer;
-            padding: 6px;
-            border-radius: 6px;
-            transition: color 0.2s;
-        }
-
-        .icon-btn:hover {
-            color: var(--text-main);
-        }
-
-        /* Sub-header Breadcrumb Bar */
-        .breadcrumb-bar {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 24px;
-            border-bottom: 1px solid var(--border-color);
-            background-color: var(--bg-dark);
-            font-size: 0.875rem;
-        }
-
-        .breadcrumbs {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-muted);
-        }
-
-        .breadcrumbs .separator {
-            font-size: 0.75rem;
-            color: var(--text-subtle);
-        }
-
-        .breadcrumbs .active {
-            color: var(--text-main);
-            font-weight: 600;
-        }
-
-        /* Layout */
-        .app-layout {
-            display: flex;
-            flex: 1;
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.7);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.25s, visibility 0.25s;
-            z-index: 200;
-        }
-
-        .sidebar-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Sidebar Navigation Drawer */
-        .sidebar {
-            width: 280px;
-            background-color: var(--sidebar-bg);
-            padding: 24px 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            height: calc(100vh - 110px);
-            overflow-y: auto;
-            position: sticky;
-            top: 110px;
-        }
-
-        @media (max-width: 850px) {
-            .sidebar {
-                position: fixed;
-                top: 0;
-                left: -300px;
-                height: 100vh;
-                z-index: 210;
-                transition: left 0.25s ease;
-            }
-            .sidebar.active {
-                left: 0;
-            }
-        }
-
-        .nav-group {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .nav-title {
-            font-size: 0.8rem;
-            color: var(--text-main);
-            font-weight: 600;
-            margin-bottom: 8px;
-            padding-left: 8px;
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 8px 12px;
-            color: var(--text-muted);
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            border: 1px solid transparent;
-            transition: all 0.15s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--text-main);
-        }
-
-        .nav-link.active {
-            background-color: var(--active-pill-bg);
-            border-color: var(--active-pill-border);
-            color: var(--text-main);
-            font-weight: 500;
-        }
-
-        .nav-link i {
-            width: 16px;
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .nav-link.active i {
-            color: var(--text-main);
-        }
-
-        /* Documentation Area */
-        .docs-container {
-            flex: 1;
-            padding: 40px 48px;
-            max-width: 880px;
-        }
-
-        @media (max-width: 600px) {
-            .docs-container {
-                padding: 24px 18px;
-            }
-        }
-
-        .category-title {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .page-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 4px 0 12px;
-            color: var(--text-main);
-        }
-
-        .page-description {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            line-height: 1.6;
-            margin-bottom: 32px;
-        }
-
-        .section-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin: 32px 0 16px;
-        }
-
-        /* Callout / Information Box */
-        .callout-box {
-            background-color: var(--callout-bg);
-            border: 1px solid var(--callout-border);
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin: 24px 0;
-            display: flex;
-            gap: 14px;
-            font-size: 0.92rem;
-            line-height: 1.6;
-            color: var(--text-muted);
-            align-items: flex-start;
-        }
-
-        .callout-icon {
-            margin-top: 3px;
-            font-size: 1rem;
-            color: var(--text-muted);
-        }
-
-        .callout-box code {
-            background: var(--code-bg);
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            font-size: 0.85rem;
-            color: var(--text-main);
-            border: 1px solid var(--card-border);
-        }
-
-        /* Guide Card Grid */
-        .guides-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-            margin-top: 16px;
-        }
-
-        .guide-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 20px;
-            text-decoration: none;
-            color: inherit;
-            transition: border-color 0.2s, background-color 0.2s;
-        }
-
-        .guide-card:hover {
-            border-color: #2e3440;
-            background-color: #16181d;
-        }
-
-        .guide-icon {
-            font-size: 1.25rem;
-            color: var(--text-main);
-            margin-bottom: 12px;
-        }
-
-        .guide-card h3 {
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: var(--text-main);
-        }
-
-        .guide-card p {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        /* Pagination Footer Navigation */
-        .page-navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 64px;
-            padding-top: 24px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .nav-button {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-button:hover {
-            color: var(--text-main);
-        }
-
-        /* Mintlify Branding Footer */
-        .mintlify-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 32px 0 16px;
-            margin-top: 40px;
-            font-size: 0.85rem;
-            color: var(--text-subtle);
-        }
-
-        .mintlify-footer .social-links {
-            display: flex;
-            gap: 16px;
-        }
-
-        .mintlify-footer .social-links a {
-            color: var(--text-subtle);
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.2s;
-        }
-
-        .mintlify-footer .social-links a:hover {
-            color: var(--text-main);
-        }
-    </style>
 </head>
 <body>
+<div class="background-glow"></div>
+<nav>
+<div class="brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="nav-links">
+<a href="../index.html">Home</a>
+<a href="../commands.html">Commands</a>
+<a href="../servers.html">Servers</a>
+<a href="index.html">Docs</a>
+<a href="../status.html">Status</a>
+</div>
+<a class="nav-button" href="https://discord.com/oauth2/authorize?client_id=1484703029243416757">Invite</a>
+</nav>
 
-    <!-- Top Navigation Header -->
-    <header class="doc-header">
-        <div class="header-left">
-            <a href="../index.html" aria-label="Bleed Homepage">
-                <img src="../assets/logo.png" alt="Bleed Logo" class="doc-logo">
-            </a>
-        </div>
-        <div class="header-right">
-            <button class="icon-btn" aria-label="Search Documentation">
-                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-            </button>
-            <button class="icon-btn" aria-label="Open Menu Options">
-                <i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
-            </button>
-        </div>
-    </header>
+<div class="docs-shell">
+<aside class="docs-sidebar">
+<h4>Documentation</h4>
+<a href="index.html" class="active">Overview</a>
+<a href="getting-started.html" class="">Getting Started</a>
+<a href="moderation.html" class="">Moderation</a>
+<a href="security.html" class="">Security & Antinuke</a>
+<a href="tickets.html" class="">Tickets</a>
+<a href="economy.html" class="">Economy & Leveling</a>
+<a href="automation.html" class="">Automation</a>
+<a href="server-setup.html" class="">Server Setup</a>
+<a href="voice.html" class="">Voice</a>
+<a href="utility.html" class="">Information & Utility</a>
+<a href="fun.html" class="">Fun & Miscellaneous</a>
+</aside>
+<main class="docs-main">
 
-    <!-- Sub-header Breadcrumb Bar -->
-    <div class="breadcrumb-bar">
-        <button class="icon-btn menu-btn" id="menuToggle" aria-label="Toggle Navigation Drawer" aria-expanded="false">
-            <i class="fa-solid fa-bars" aria-hidden="true"></i>
-        </button>
-        <nav class="breadcrumbs" aria-label="Breadcrumbs">
-            <span>Overview</span>
-            <i class="fa-solid fa-chevron-right separator" aria-hidden="true"></i>
-            <span class="active" aria-current="page">Introduction</span>
-        </nav>
-    </div>
+<div class="docs-eyebrow">Documentation</div>
+<h1>Pleed Documentation</h1>
+<p class="docs-lede">Everything you need to set up and run Pleed in your server — 600 commands
+across moderation, security, economy, automation, tickets, voice, and more. Pick a section below,
+or use <a href="../commands.html">the full command browser</a> for a live searchable list.</p>
 
-    <!-- Mobile Sidebar Overlay -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="callout">
+<strong>Quick facts</strong> — Default prefix: <code>!</code> (change it anytime with <code>!prefix &lt;new_prefix&gt;</code>).
+Slash commands (<code>/</code>) work alongside prefix commands. Most moderation and configuration commands
+require the relevant Discord permission (Manage Server, Manage Roles, Administrator, etc.) — Pleed will
+tell you if you're missing one.
+</div>
 
-    <div class="app-layout">
-        <!-- Sidebar Navigation -->
-        <aside class="sidebar" id="sidebar" aria-label="Main Navigation">
-            
-            <div class="nav-group">
-                <span class="nav-title">Overview</span>
-                <a href="index.html" class="nav-link active" aria-current="page">
-                    <i class="fa-solid fa-box-archive" aria-hidden="true"></i> Introduction
-                </a>
-                <a href="donator.html" class="nav-link">
-                    <a href="donator.html" class="nav-link"><i class="fa-solid fa-dollar-sign" aria-hidden="true"></i> Donator Perks</a>
-                </a>
-                <a href="customization.html" class="nav-link">
-                    <i class="fa-solid fa-pen" aria-hidden="true"></i> Customization
-                </a>
-            </div>
+<h2>Browse by category</h2>
+<div class="cat-grid">
+<a class="cat-card" href="getting-started.html">
+<h3>Getting Started</h3>
+<p>Invite Pleed, set your prefix, and find your way around.</p>
+<span class="count">Start here</span>
+</a><a class="cat-card" href="moderation.html">
+<h3>Moderation</h3>
+<p>Kicks, bans, jail, warnings, lockdowns, logging, and role tools.</p>
+<span class="count">134 commands</span>
+</a><a class="cat-card" href="security.html">
+<h3>Security &amp; AntiNuke</h3>
+<p>AntiNuke protection, join gate, rate limiting, and raid defense.</p>
+<span class="count">81 commands</span>
+</a><a class="cat-card" href="tickets.html">
+<h3>Tickets</h3>
+<p>Support ticket panels, claiming, and blacklists.</p>
+<span class="count">13 commands</span>
+</a><a class="cat-card" href="economy.html">
+<h3>Economy &amp; Leveling</h3>
+<p>Wallets, businesses, stocks, gambling games, XP and levels.</p>
+<span class="count">81 commands</span>
+</a><a class="cat-card" href="automation.html">
+<h3>Automation</h3>
+<p>Auto-responders, reaction triggers, filters, and custom commands.</p>
+<span class="count">38 commands</span>
+</a><a class="cat-card" href="server-setup.html">
+<h3>Server Setup</h3>
+<p>Welcome messages, update logs, invite panels, first-time setup.</p>
+<span class="count">34 commands</span>
+</a><a class="cat-card" href="voice.html">
+<h3>Voice</h3>
+<p>VoiceMaster temp voice channels and voice controls.</p>
+<span class="count">21 commands</span>
+</a><a class="cat-card" href="utility.html">
+<h3>Information &amp; Utility</h3>
+<p>Lookups, snipe, highlights, image tools, server info.</p>
+<span class="count">102 commands</span>
+</a><a class="cat-card" href="fun.html">
+<h3>Fun &amp; Miscellaneous</h3>
+<p>Games, music, Spotify, webhooks, server customization.</p>
+<span class="count">93 commands</span>
+</a>
+</div>
 
-            <div class="nav-group">
-                <span class="nav-title">Security Setup</span>
-                <a href="antinuke.html" class="nav-link">
-                    <i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Antinuke
-                </a>
-                <a href="joingate.html" class="nav-link">
-                    <i class="fa-solid fa-person-walking-arrow-right" aria-hidden="true"></i> Join Gate
-                </a>
-                <a href="moderation.html" class="nav-link">
-                    <i class="fa-solid fa-gavel" aria-hidden="true"></i> Moderation
-                </a>
-                <a href="fakepermissions.html" class="nav-link">
-                    <i class="fa-solid fa-shield-cat" aria-hidden="true"></i> Fake Permissions
-                </a>
-                <a href="honeypot.html" class="nav-link">
-                    <i class="fa-solid fa-bug" aria-hidden="true"></i> Honeypot
-                </a>
-            </div>
+</main>
+</div>
 
-            <div class="nav-group">
-                <span class="nav-title">Server Configuration</span>
-                <a href="tickets.html" class="nav-link">
-                    <i class="fa-solid fa-ticket" aria-hidden="true"></i> Tickets
-                </a>
-                <a href="roles.html" class="nav-link">
-                    <i class="fa-solid fa-users" aria-hidden="true"></i> Roles
-                </a>
-                <a href="messages.html" class="nav-link">
-                    <i class="fa-solid fa-message" aria-hidden="true"></i> Messages
-                </a>
-                <a href="starboard.html" class="nav-link">
-                    <i class="fa-solid fa-star" aria-hidden="true"></i> Starboard
-                </a>
-                <a href="voicemaster.html" class="nav-link">
-                    <i class="fa-solid fa-microphone" aria-hidden="true"></i> VoiceMaster
-                </a>
-            </div>
-
-        </aside>
-
-        <!-- Main Content Area -->
-        <main class="docs-container">
-            
-            <span class="category-title">Overview</span>
-            <h1 class="page-title">Introduction</h1>
-            <p class="page-description">
-                Learn how to set up bleed in your server or enhance your everyday use with commands &amp; more.
-            </p>
-
-            <h2 class="section-title">Guides</h2>
-
-            <!-- Callout Container -->
-            <div class="callout-box">
-                <i class="fa-solid fa-circle-info callout-icon" aria-hidden="true"></i>
-                <div class="callout-content">
-                    Server prefix is set to <code>,</code> by default. Use <code>,prefix set (symbol)</code> to change it for your server.
-                </div>
-            </div>
-
-            <!-- Guides Navigation Grid -->
-            <div class="guides-grid">
-                
-                <a href="security.html" class="guide-card">
-                    <div class="guide-icon"><i class="fa-solid fa-hammer" aria-hidden="true"></i></div>
-                    <h3>Security Setup</h3>
-                    <p>Quickly configure your server to use bleed's advanced moderation system.</p>
-                </a>
-
-                <a href="configuration.html" class="guide-card">
-                    <div class="guide-icon"><i class="fa-solid fa-sliders" aria-hidden="true"></i></div>
-                    <h3>Server Configuration</h3>
-                    <p>Set up welcome &amp; goodbye messages, auto-roles, and custom channels.</p>
-                </a>
-
-            </div>
-
-            <!-- Pagination Navigation -->
-            <nav class="page-navigation" aria-label="Pagination Navigation">
-                <span></span>
-                <a href="donator.html" class="nav-button">
-                    <span>Donator Perks</span>
-                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                </a>
-            </nav>
-
-            <!-- Mintlify Site Footer -->
-            <footer class="mintlify-footer">
-                <div class="social-links">
-                    <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-                    <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                </div>
-                <span>Powered by mintlify</span>
-            </footer>
-
-        </main>
-    </div>
-
-    <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('sidebarOverlay');
-
-        function toggleMenu() {
-            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-            menuToggle.setAttribute('aria-expanded', !isExpanded);
-        }
-
-        menuToggle.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && sidebar.classList.contains('active')) {
-                toggleMenu();
-            }
-        });
-    </script>
+<footer>
+<div class="footer-brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="footer-links">
+<a href="../privacy.html">Privacy</a>
+<a href="../terms.html">Terms</a>
+<a href="https://discord.gg/AfCCQt2VHP">Support</a>
+</div>
+<p>© 2026 Pleed Development</p>
+</footer>
 </body>
 </html>
