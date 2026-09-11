@@ -91,15 +91,12 @@ curated set of permissions if you prefer to scope it down manually.</p>
 <h2 id="2-check-your-prefix">2. Check your prefix</h2>
 <p>Pleed responds to prefix commands (default <code>!</code>) and slash commands (<code>/</code>).
 Both work side by side — use whichever is faster for a given command.</p>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr><td><code class="cmd-usage">!prefix &lt;new_prefix&gt;</code></td><td>Change the server's command prefix.</td></tr>
-<tr><td><code class="cmd-usage">!help [command_name]</code></td><td>Open the interactive help menu, or look up one command.</td></tr>
-<tr><td><code class="cmd-usage">!helpsetup</code></td><td>Open the help panel configuration.</td></tr>
-<tr><td><code class="cmd-usage">!ai &lt;question&gt;</code></td><td>Ask Pleed's built-in AI assistant a question.</td></tr>
-</tbody>
-</table>
+<div class="code-block">
+<div class="code-block-head"><span>Example — change your prefix to ?</span><button class="code-copy-btn" onclick="copyCodeBlock(this)">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div>
+<pre><code>!prefix ?</code></pre>
+</div>
+<div class="cmd-grid"><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!prefix &lt;new_prefix&gt;</code></div><p>Change the server's command prefix.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!help [command_name]</code></div><p>Open the interactive help menu, or look up one command.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!helpsetup</code></div><p>Open the help panel configuration.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!ai &lt;question&gt;</code></div><p>Ask Pleed's built-in AI assistant a question.</p></div></div>
 
 <h2 id="3-run-the-setup-wizard">3. Run the setup wizard</h2>
 <p>Most modules have their own guided setup command rather than a dozen manual config commands.
@@ -219,6 +216,18 @@ Settings &rarr; Roles, or the action will fail.</p>
     if(window.innerWidth > 860) closeSidebar();
   });
 })();
+
+function copyCodeBlock(btn){
+  var block = btn.closest('.code-block');
+  var code = block.querySelector('code');
+  var text = code.textContent;
+  navigator.clipboard.writeText(text).then(function(){
+    var label = btn.querySelector('span');
+    var original = label.textContent;
+    label.textContent = 'Copied!';
+    setTimeout(function(){ label.textContent = original; }, 1500);
+  });
+}
 </script>
 
 </body>

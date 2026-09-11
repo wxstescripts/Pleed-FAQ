@@ -87,18 +87,7 @@ full jail system, channel access control, alias commands, AutoMod, logging, and 
 
 <h2 id="the-essentials">The essentials</h2>
 <p>Standard actions work the way you'd expect from any moderation bot:</p>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr><td><code class="cmd-usage">!warn &lt;member&gt; [reason]</code></td><td>Warn a member.</td></tr>
-<tr><td><code class="cmd-usage">!timeout &lt;member&gt; [duration] [reason]</code></td><td>Timeout a member — durations like <code>10m</code>, <code>2h</code>, <code>3d</code>, <code>1w</code>.</td></tr>
-<tr><td><code class="cmd-usage">!kick &lt;member&gt; [reason]</code></td><td>Kick a member from the server.</td></tr>
-<tr><td><code class="cmd-usage">!ban &lt;member&gt; [reason]</code></td><td>Ban a member from the server.</td></tr>
-<tr><td><code class="cmd-usage">!softban &lt;member&gt; [reason]</code></td><td>Ban, delete their last day of messages, then immediately unban.</td></tr>
-<tr><td><code class="cmd-usage">!hardban &lt;user_id&gt; [reason]</code></td><td>Ban by ID and store the user in a persistent hardban registry (they stay banned even if unbanned manually).</td></tr>
-<tr><td><code class="cmd-usage">!purge &lt;amount&gt;</code></td><td>Bulk-delete messages in the current channel.</td></tr>
-</tbody>
-</table>
+<div class="cmd-grid"><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!warn &lt;member&gt; [reason]</code></div><p>Warn a member.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!timeout &lt;member&gt; [duration] [reason]</code></div><p>Timeout a member — durations like <code>10m</code>, <code>2h</code>, <code>3d</code>, <code>1w</code>.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!kick &lt;member&gt; [reason]</code></div><p>Kick a member from the server.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!ban &lt;member&gt; [reason]</code></div><p>Ban a member from the server.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!softban &lt;member&gt; [reason]</code></div><p>Ban, delete their last day of messages, then immediately unban.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!hardban &lt;user_id&gt; [reason]</code></div><p>Ban by ID and store the user in a persistent hardban registry (they stay banned even if unbanned manually).</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!purge &lt;amount&gt;</code></div><p>Bulk-delete messages in the current channel.</p></div></div>
 
 <h2 id="server-lockdown">Server lockdown</h2>
 <p>For active raids, <code>!lockdown [reason]</code> locks every channel for @everyone in one shot,
@@ -125,464 +114,590 @@ restricted "jailed" role instead, so they stay in the server but can't interact 
 <a href="#jail-system">Jail System <span class="section-count">(11)</span></a>
 <a href="#server-logging">Server Logging <span class="section-count">(22)</span></a>
 <a href="#core-moderation">Core Moderation <span class="section-count">(25)</span></a>
-<a href="#role-management">Role Management <span class="section-count">(17)</span></a></div><h3 id="channel-access-control">Channel Access Control <span class="section-count">— 17 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!access</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!access clearlog</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!access commandrules</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!access panel</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!access reset &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!access rules [channel]</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!access setlog &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!access setup</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!access sync [channel]</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!accessclearlog</code><span class="badge prefix">prefix</span></td>
-<td>Disable access logs.</td>
-</tr><tr>
-<td><code class="cmd-usage">!accesspanel</code><span class="badge prefix">prefix</span></td>
-<td>Open a private channel access manager panel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!accessreset &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Reset all saved access rules for a channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!accessrules [channel]</code><span class="badge prefix">prefix</span></td>
-<td>Show saved visibility rules for a channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!accesssetlog &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Set the logs channel for access changes.</td>
-</tr><tr>
-<td><code class="cmd-usage">!accesssetup</code><span class="badge prefix">prefix</span></td>
-<td>Send the cleaner setup panel for access controls.</td>
-</tr><tr>
-<td><code class="cmd-usage">!accesssync [channel]</code><span class="badge prefix">prefix</span></td>
-<td>Re-apply all stored visibility rules.</td>
-</tr><tr>
-<td><code class="cmd-usage">!commandrules</code><span class="badge prefix">prefix</span></td>
-<td>Show bot command whitelist/blacklist channel rules.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="command-aliases">Command Aliases <span class="section-count">— 15 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!add &lt;name&gt; &lt;command&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Create a command alias.</td>
-</tr><tr>
-<td><code class="cmd-usage">!adminonly &lt;name&gt; &lt;enabled&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Require Manage Server to use an alias.</td>
-</tr><tr>
-<td><code class="cmd-usage">!alias</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!alias add &lt;name&gt; &lt;command&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!alias adminonly &lt;name&gt; &lt;value&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!alias cooldown &lt;name&gt; &lt;seconds&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!alias list</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!alias remove &lt;name&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka delete)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!alias response &lt;name&gt; &lt;response&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!alias view &lt;name&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!cooldown &lt;name&gt; &lt;seconds&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Set a per-user cooldown on an alias.</td>
-</tr><tr>
-<td><code class="cmd-usage">!list</code><span class="badge prefix">prefix</span></td>
-<td>List all aliases.</td>
-</tr><tr>
-<td><code class="cmd-usage">!remove &lt;name&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Remove an alias.</td>
-</tr><tr>
-<td><code class="cmd-usage">!response &lt;name&gt; &lt;response&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Create a text or embed response alias.</td>
-</tr><tr>
-<td><code class="cmd-usage">!view &lt;name&gt;</code><span class="badge prefix">prefix</span></td>
-<td>View an alias.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="automod">AutoMod <span class="section-count">— 18 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!automod</code><span class="badge prefix">prefix</span></td>
-<td>Configure automod settings.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automod ignore</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automod logs &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Set automod log channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automod punishment &lt;first&gt; [second]</code><span class="badge prefix">prefix</span></td>
-<td>Set the default punishment, or `automod punishment &lt;category&gt; &lt;mode&gt;` to override just one category (links, invites, spam, caps, mentions, repeats, badwords). Use `default` as the mode to clear a category override.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automod stats</code><span class="badge prefix">prefix</span></td>
-<td>Show how often each automod category has triggered.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automod strikes [member]</code><span class="badge prefix">prefix</span></td>
-<td>View a member's escalation strikes.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automod test &lt;content&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Check what a message would trigger without actually punishing anyone.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automod thresholds [setting] [value]</code><span class="badge prefix">prefix</span></td>
-<td>View or set automod trigger thresholds.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automod toggle &lt;feature&gt; &lt;state&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Toggle an automod setting on or off.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automod words</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!ignore channel &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Ignore a channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!ignore role &lt;role&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Ignore a role.</td>
-</tr><tr>
-<td><code class="cmd-usage">!ignore unchannel &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Stop ignoring a channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!ignore unrole &lt;role&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Stop ignoring a role.</td>
-</tr><tr>
-<td><code class="cmd-usage">!stats reset</code><span class="badge prefix">prefix</span></td>
-<td>Clear recorded automod stats for this server.</td>
-</tr><tr>
-<td><code class="cmd-usage">!strikes reset &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Clear a member's strikes.</td>
-</tr><tr>
-<td><code class="cmd-usage">!words add &lt;word&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Add a blocked word.</td>
-</tr><tr>
-<td><code class="cmd-usage">!words remove &lt;word&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Remove a blocked word.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="bump-reminders">Bump Reminders <span class="section-count">— 9 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!bumpreminder</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka br)</span></td>
-<td>View bump reminder help.</td>
-</tr><tr>
-<td><code class="cmd-usage">!bumpreminder autoclean &lt;state&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!bumpreminder autolock &lt;state&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!bumpreminder channel &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!bumpreminder config</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka settings)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!bumpreminder message &lt;message&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!bumpreminder reset</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!bumpreminder test</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!bumpreminder thankyou &lt;message&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka thanks, ty)</span></td>
-<td>No description available.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="jail-system">Jail System <span class="section-count">— 11 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!jail &lt;member&gt; [duration_or_reason] [reason]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka prison)</span></td>
-<td>,jail @user [duration] [reason] — e.g. ",jail @Bob 1h spamming" Checks permissions and hierarchy first. If jail-confirm is off for this server, jails immediately via `apply_jail`. If it's on, shows a `JailConfirmView` and waits for a qualified staff member to press Confirm before actually jailing anyone.</td>
-</tr><tr>
-<td><code class="cmd-usage">!jailconfirm</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka confirmjail)</span></td>
-<td>View or toggle whether `,jail` requires Confirm/Cancel buttons.</td>
-</tr><tr>
-<td><code class="cmd-usage">!jailconfirm off</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka disable, disabled, false)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!jailconfirm on</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka enable, enabled, true)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!jailpanel [member]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka jinfo, jailinfo)</span></td>
-<td>,jailpanel [@user] — opens an interactive jail management panel. Shows server-wide jail/mute counts and config, plus `member`'s status if given. From there you can pick any member from the dropdown, browse the full jailed-members list, pull up a member's history, jail or unjail them — all with buttons, no more typing commands. See `JailPanelView` above for the UI itself.</td>
-</tr><tr>
-<td><code class="cmd-usage">!jailtemplate</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka jtemplate, jailtemplates)</span></td>
-<td>,jailtemplate — list saved quick-jail templates (or use ,jailtemplate add/remove). Templates are duration+reason presets (e.g. "spam" -&gt; 1h, "Spamming in channels") that show up as one-click options in the ,jailpanel "Quick Jail" dropdown, so common jail reasons don't need to be typed out every time.</td>
-</tr><tr>
-<td><code class="cmd-usage">!jailtemplate add &lt;name&gt; &lt;duration&gt; [reason]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka set)</span></td>
-<td>,jailtemplate add &lt;name&gt; &lt;duration&gt; &lt;reason&gt; — duration accepts `1h`/`3d`/etc, or `perm` for none.</td>
-</tr><tr>
-<td><code class="cmd-usage">!jailtemplate remove &lt;name&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka delete)</span></td>
-<td>,jailtemplate remove &lt;name&gt;</td>
-</tr><tr>
-<td><code class="cmd-usage">!jailtime &lt;member&gt; &lt;adjustment&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka adjustjail)</span></td>
-<td>,jailtime @user &lt;adjustment&gt; — change an active jail's expiry. `adjustment` can be `+1h` / `-30m` (relative to current expiry, or to now if currently permanent), `2h` / `3d` (reset to that duration from now), or `perm` / `permanent` / `none` (remove the expiry). See `apply_jail_time_adjust` for the exact rules.</td>
-</tr><tr>
-<td><code class="cmd-usage">!sjail &lt;member&gt; [duration_or_reason] [reason]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka silentjail)</span></td>
-<td>,sjail @user [duration] [reason] — same as ,jail but skips the confirm buttons and the "you were jailed" DM. Permission and hierarchy checks still happen inside `apply_jail` itself.</td>
-</tr><tr>
-<td><code class="cmd-usage">!unjail &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka release)</span></td>
-<td>,unjail @user [reason] — releases `member` immediately via `apply_unjail`.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="server-logging">Server Logging <span class="section-count">— 22 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!channel add &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!channel remove &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!ignore channel</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!ignore list</code><span class="badge prefix">prefix</span></td>
-<td>List all ignored channels, roles, and users.</td>
-</tr><tr>
-<td><code class="cmd-usage">!ignore role</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!ignore user</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!logs</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka log)</span></td>
-<td>Manage advanced logging settings.</td>
-</tr><tr>
-<td><code class="cmd-usage">!logs all &lt;state&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Turn every log type on or off.</td>
-</tr><tr>
-<td><code class="cmd-usage">!logs ignore</code><span class="badge prefix">prefix</span></td>
-<td>Manage logging ignores.</td>
-</tr><tr>
-<td><code class="cmd-usage">!logs modules</code><span class="badge prefix">prefix</span></td>
-<td>Show module states.</td>
-</tr><tr>
-<td><code class="cmd-usage">!logs note [text]</code><span class="badge prefix">prefix</span></td>
-<td>Set the textbox note shown on the control panel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!logs panel</code><span class="badge prefix">prefix</span></td>
-<td>Open the interactive logging panel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!logs route &lt;log_type&gt; &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Route one log type to a different channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!logs style &lt;setting_name&gt; &lt;state&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Toggle panel style options: compact_mode, include_thumbnails, show_footer</td>
-</tr><tr>
-<td><code class="cmd-usage">!logs test</code><span class="badge prefix">prefix</span></td>
-<td>Send a test log embed.</td>
-</tr><tr>
-<td><code class="cmd-usage">!logs toggle &lt;log_type&gt; &lt;state&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Toggle a specific log type.</td>
-</tr><tr>
-<td><code class="cmd-usage">!logs unroute &lt;log_type&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Clear a custom route for one log type.</td>
-</tr><tr>
-<td><code class="cmd-usage">!role add &lt;role&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!role remove &lt;role&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!setlogs &lt;channel&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka setlog, setlogchannel)</span></td>
-<td>Set the main logging channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!user add &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!user remove &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="core-moderation">Core Moderation <span class="section-count">— 25 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!ban &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span></td>
-<td>Ban a member from the server.</td>
-</tr><tr>
-<td><code class="cmd-usage">!bind</code><span class="badge prefix">prefix</span></td>
-<td>Bind moderation security settings.</td>
-</tr><tr>
-<td><code class="cmd-usage">!bind staff [role]</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!clearwarns &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Clear all warnings for a member.</td>
-</tr><tr>
-<td><code class="cmd-usage">!hardban &lt;user_id&gt; [reason]</code><span class="badge prefix">prefix</span></td>
-<td>Hardban a user by ID and store them in the registry.</td>
-</tr><tr>
-<td><code class="cmd-usage">!invoke</code><span class="badge prefix">prefix</span></td>
-<td>Customize moderation invoke responses and DMs.</td>
-</tr><tr>
-<td><code class="cmd-usage">!invoke ban &lt;message_type&gt; &lt;message&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!invoke jail &lt;message_type&gt; &lt;message&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!invoke kick &lt;message_type&gt; &lt;message&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!kick &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span></td>
-<td>Kick a member from the server.</td>
-</tr><tr>
-<td><code class="cmd-usage">!lock [channel] [reason]</code><span class="badge prefix">prefix</span></td>
-<td>Lock a channel for @everyone.</td>
-</tr><tr>
-<td><code class="cmd-usage">!lockdown [reason]</code><span class="badge prefix">prefix</span></td>
-<td>Lock down the entire server immediately. Prefix version is not private.</td>
-</tr><tr>
-<td><code class="cmd-usage">!mute &lt;member&gt; [duration_or_reason] [reason]</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!purge &lt;amount&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Delete messages in the current channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!removewarn &lt;warn_id&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Remove a specific warning by ID.</td>
-</tr><tr>
-<td><code class="cmd-usage">!softban &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span></td>
-<td>Softban a member (ban, delete 1 day messages, then unban).</td>
-</tr><tr>
-<td><code class="cmd-usage">!staff list</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!timeout &lt;member&gt; [duration] [reason]</code><span class="badge prefix">prefix</span></td>
-<td>Timeout a member. Examples: 10m, 2h, 3d, 1w, or 60</td>
-</tr><tr>
-<td><code class="cmd-usage">!unban &lt;user_id&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Unban a user by ID.</td>
-</tr><tr>
-<td><code class="cmd-usage">!unlock [channel] [reason]</code><span class="badge prefix">prefix</span></td>
-<td>Unlock a channel for @everyone.</td>
-</tr><tr>
-<td><code class="cmd-usage">!unlockdown [reason]</code><span class="badge prefix">prefix</span></td>
-<td>Remove a server lockdown immediately. Prefix version is not private.</td>
-</tr><tr>
-<td><code class="cmd-usage">!unmute &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!untimeout &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Remove timeout from a member.</td>
-</tr><tr>
-<td><code class="cmd-usage">!warn &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span></td>
-<td>Warn a member.</td>
-</tr><tr>
-<td><code class="cmd-usage">!warnings &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>View a member's warnings.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="role-management">Role Management <span class="section-count">— 17 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!color edit &lt;args&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka set)</span></td>
-<td>Edit a role color. Use default, one hex, or two hex values separated by a comma.</td>
-</tr><tr>
-<td><code class="cmd-usage">!dragrole &lt;args&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Create a role and place it directly below another role.</td>
-</tr><tr>
-<td><code class="cmd-usage">!fetch</code><span class="badge prefix">prefix</span></td>
-<td>Fetch things from the server.</td>
-</tr><tr>
-<td><code class="cmd-usage">!fetch icon &lt;role_query&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Send a role's icon as a PNG file.</td>
-</tr><tr>
-<td><code class="cmd-usage">!giverole &lt;member&gt; &lt;role_query&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka addrole)</span></td>
-<td>Add a role to a member.</td>
-</tr><tr>
-<td><code class="cmd-usage">!icon set [args]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka update)</span></td>
-<td>Set a role's icon from an attached image, replied image, or emoji.</td>
-</tr><tr>
-<td><code class="cmd-usage">!newrole &lt;name&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka createrole)</span></td>
-<td>Create a new role.</td>
-</tr><tr>
-<td><code class="cmd-usage">!r [role_query]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka role, roles)</span></td>
-<td>Open the premium roles panel, view role info, or toggle a role on a member.</td>
-</tr><tr>
-<td><code class="cmd-usage">!r color [role_query]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka colour)</span></td>
-<td>View or edit a role's color.</td>
-</tr><tr>
-<td><code class="cmd-usage">!r icon [role_query]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka displayicon)</span></td>
-<td>View a role's icon, or use subcommands to manage it.</td>
-</tr><tr>
-<td><code class="cmd-usage">!r list</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka all, directory)</span></td>
-<td>Show every role in the server in a premium paged embed.</td>
-</tr><tr>
-<td><code class="cmd-usage">!r members &lt;role_query&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka in, memberlist)</span></td>
-<td>View members in a role.</td>
-</tr><tr>
-<td><code class="cmd-usage">!r perms &lt;role_query&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka permissions)</span></td>
-<td>View a role's enabled permissions.</td>
-</tr><tr>
-<td><code class="cmd-usage">!roledel &lt;role_query&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka deleterole)</span></td>
-<td>Delete a role.</td>
-</tr><tr>
-<td><code class="cmd-usage">!roleeditname &lt;args&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka renamerole)</span></td>
-<td>Rename a role.</td>
-</tr><tr>
-<td><code class="cmd-usage">!roleposition &lt;args&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Move a role to a specific position.</td>
-</tr><tr>
-<td><code class="cmd-usage">!roleremove &lt;member&gt; &lt;role_query&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka removerole, takerole)</span></td>
-<td>Remove a role from a member.</td>
-</tr>
-</tbody>
-</table>
+<a href="#role-management">Role Management <span class="section-count">(17)</span></a></div><details class="cmd-group" open>
+<summary><span class="cmd-group-title">Channel Access Control</span><span class="cmd-group-right"><span class="section-count">17 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="channel-access-control" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access clearlog</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access commandrules</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access panel</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access reset &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access rules [channel]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access setlog &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access setup</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access sync [channel]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!accessclearlog</code><span class="badge prefix">prefix</span></div>
+<p>Disable access logs.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!accesspanel</code><span class="badge prefix">prefix</span></div>
+<p>Open a private channel access manager panel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!accessreset &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Reset all saved access rules for a channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!accessrules [channel]</code><span class="badge prefix">prefix</span></div>
+<p>Show saved visibility rules for a channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!accesssetlog &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the logs channel for access changes.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!accesssetup</code><span class="badge prefix">prefix</span></div>
+<p>Send the cleaner setup panel for access controls.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!accesssync [channel]</code><span class="badge prefix">prefix</span></div>
+<p>Re-apply all stored visibility rules.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!commandrules</code><span class="badge prefix">prefix</span></div>
+<p>Show bot command whitelist/blacklist channel rules.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Command Aliases</span><span class="cmd-group-right"><span class="section-count">15 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="command-aliases" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!add &lt;name&gt; &lt;command&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Create a command alias.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!adminonly &lt;name&gt; &lt;enabled&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Require Manage Server to use an alias.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!alias</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!alias add &lt;name&gt; &lt;command&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!alias adminonly &lt;name&gt; &lt;value&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!alias cooldown &lt;name&gt; &lt;seconds&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!alias list</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!alias remove &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka delete</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!alias response &lt;name&gt; &lt;response&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!alias view &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!cooldown &lt;name&gt; &lt;seconds&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set a per-user cooldown on an alias.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!list</code><span class="badge prefix">prefix</span></div>
+<p>List all aliases.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!remove &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove an alias.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!response &lt;name&gt; &lt;response&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Create a text or embed response alias.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!view &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>View an alias.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">AutoMod</span><span class="cmd-group-right"><span class="section-count">18 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="automod" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod</code><span class="badge prefix">prefix</span></div>
+<p>Configure automod settings.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod ignore</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod logs &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set automod log channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod punishment &lt;first&gt; [second]</code><span class="badge prefix">prefix</span></div>
+<p>Set the default punishment, or `automod punishment &lt;category&gt; &lt;mode&gt;` to override just one category (links, invites, spam, caps, mentions, repeats, badwords). Use `default` as the mode to clear a category override.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod stats</code><span class="badge prefix">prefix</span></div>
+<p>Show how often each automod category has triggered.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod strikes [member]</code><span class="badge prefix">prefix</span></div>
+<p>View a member's escalation strikes.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod test &lt;content&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Check what a message would trigger without actually punishing anyone.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod thresholds [setting] [value]</code><span class="badge prefix">prefix</span></div>
+<p>View or set automod trigger thresholds.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod toggle &lt;feature&gt; &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Toggle an automod setting on or off.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod words</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ignore channel &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Ignore a channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ignore role &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Ignore a role.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ignore unchannel &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Stop ignoring a channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ignore unrole &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Stop ignoring a role.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!stats reset</code><span class="badge prefix">prefix</span></div>
+<p>Clear recorded automod stats for this server.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!strikes reset &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Clear a member's strikes.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!words add &lt;word&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Add a blocked word.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!words remove &lt;word&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove a blocked word.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Bump Reminders</span><span class="cmd-group-right"><span class="section-count">9 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="bump-reminders" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder</code><span class="badge prefix">prefix</span></div>
+<p>View bump reminder help.</p>
+<div class="cmd-aliases">aka br</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder autoclean &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder autolock &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder channel &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder config</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka settings</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder message &lt;message&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder reset</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder test</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder thankyou &lt;message&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka thanks, ty</div>
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Jail System</span><span class="cmd-group-right"><span class="section-count">11 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="jail-system" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jail &lt;member&gt; [duration_or_reason] [reason]</code><span class="badge prefix">prefix</span></div>
+<p>,jail @user [duration] [reason] — e.g. ",jail @Bob 1h spamming" Checks permissions and hierarchy first. If jail-confirm is off for this server, jails immediately via `apply_jail`. If it's on, shows a `JailConfirmView` and waits for a qualified staff member to press Confirm before actually jailing anyone.</p>
+<div class="cmd-aliases">aka prison</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jailconfirm</code><span class="badge prefix">prefix</span></div>
+<p>View or toggle whether `,jail` requires Confirm/Cancel buttons.</p>
+<div class="cmd-aliases">aka confirmjail</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jailconfirm off</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka disable, disabled, false</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jailconfirm on</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka enable, enabled, true</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jailpanel [member]</code><span class="badge prefix">prefix</span></div>
+<p>,jailpanel [@user] — opens an interactive jail management panel. Shows server-wide jail/mute counts and config, plus `member`'s status if given. From there you can pick any member from the dropdown, browse the full jailed-members list, pull up a member's history, jail or unjail them — all with buttons, no more typing commands. See `JailPanelView` above for the UI itself.</p>
+<div class="cmd-aliases">aka jinfo, jailinfo</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jailtemplate</code><span class="badge prefix">prefix</span></div>
+<p>,jailtemplate — list saved quick-jail templates (or use ,jailtemplate add/remove). Templates are duration+reason presets (e.g. "spam" -&gt; 1h, "Spamming in channels") that show up as one-click options in the ,jailpanel "Quick Jail" dropdown, so common jail reasons don't need to be typed out every time.</p>
+<div class="cmd-aliases">aka jtemplate, jailtemplates</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jailtemplate add &lt;name&gt; &lt;duration&gt; [reason]</code><span class="badge prefix">prefix</span></div>
+<p>,jailtemplate add &lt;name&gt; &lt;duration&gt; &lt;reason&gt; — duration accepts `1h`/`3d`/etc, or `perm` for none.</p>
+<div class="cmd-aliases">aka set</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jailtemplate remove &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>,jailtemplate remove &lt;name&gt;</p>
+<div class="cmd-aliases">aka delete</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jailtime &lt;member&gt; &lt;adjustment&gt;</code><span class="badge prefix">prefix</span></div>
+<p>,jailtime @user &lt;adjustment&gt; — change an active jail's expiry. `adjustment` can be `+1h` / `-30m` (relative to current expiry, or to now if currently permanent), `2h` / `3d` (reset to that duration from now), or `perm` / `permanent` / `none` (remove the expiry). See `apply_jail_time_adjust` for the exact rules.</p>
+<div class="cmd-aliases">aka adjustjail</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!sjail &lt;member&gt; [duration_or_reason] [reason]</code><span class="badge prefix">prefix</span></div>
+<p>,sjail @user [duration] [reason] — same as ,jail but skips the confirm buttons and the "you were jailed" DM. Permission and hierarchy checks still happen inside `apply_jail` itself.</p>
+<div class="cmd-aliases">aka silentjail</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!unjail &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span></div>
+<p>,unjail @user [reason] — releases `member` immediately via `apply_unjail`.</p>
+<div class="cmd-aliases">aka release</div>
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Server Logging</span><span class="cmd-group-right"><span class="section-count">22 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="server-logging" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!channel add &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!channel remove &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ignore channel</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ignore list</code><span class="badge prefix">prefix</span></div>
+<p>List all ignored channels, roles, and users.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ignore role</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ignore user</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs</code><span class="badge prefix">prefix</span></div>
+<p>Manage advanced logging settings.</p>
+<div class="cmd-aliases">aka log</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs all &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Turn every log type on or off.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs ignore</code><span class="badge prefix">prefix</span></div>
+<p>Manage logging ignores.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs modules</code><span class="badge prefix">prefix</span></div>
+<p>Show module states.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs note [text]</code><span class="badge prefix">prefix</span></div>
+<p>Set the textbox note shown on the control panel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs panel</code><span class="badge prefix">prefix</span></div>
+<p>Open the interactive logging panel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs route &lt;log_type&gt; &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Route one log type to a different channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs style &lt;setting_name&gt; &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Toggle panel style options: compact_mode, include_thumbnails, show_footer</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs test</code><span class="badge prefix">prefix</span></div>
+<p>Send a test log embed.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs toggle &lt;log_type&gt; &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Toggle a specific log type.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs unroute &lt;log_type&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Clear a custom route for one log type.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!role add &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!role remove &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!setlogs &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the main logging channel.</p>
+<div class="cmd-aliases">aka setlog, setlogchannel</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!user add &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!user remove &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Core Moderation</span><span class="cmd-group-right"><span class="section-count">25 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="core-moderation" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ban &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Ban a member from the server.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bind</code><span class="badge prefix">prefix</span></div>
+<p>Bind moderation security settings.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bind staff [role]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!clearwarns &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Clear all warnings for a member.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!hardban &lt;user_id&gt; [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Hardban a user by ID and store them in the registry.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!invoke</code><span class="badge prefix">prefix</span></div>
+<p>Customize moderation invoke responses and DMs.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!invoke ban &lt;message_type&gt; &lt;message&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!invoke jail &lt;message_type&gt; &lt;message&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!invoke kick &lt;message_type&gt; &lt;message&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kick &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Kick a member from the server.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!lock [channel] [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Lock a channel for @everyone.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!lockdown [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Lock down the entire server immediately. Prefix version is not private.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!mute &lt;member&gt; [duration_or_reason] [reason]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!purge &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Delete messages in the current channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!removewarn &lt;warn_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove a specific warning by ID.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!softban &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Softban a member (ban, delete 1 day messages, then unban).</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!staff list</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!timeout &lt;member&gt; [duration] [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Timeout a member. Examples: 10m, 2h, 3d, 1w, or 60</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!unban &lt;user_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Unban a user by ID.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!unlock [channel] [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Unlock a channel for @everyone.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!unlockdown [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Remove a server lockdown immediately. Prefix version is not private.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!unmute &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!untimeout &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove timeout from a member.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!warn &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Warn a member.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!warnings &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>View a member's warnings.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Role Management</span><span class="cmd-group-right"><span class="section-count">17 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="role-management" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!color edit &lt;args&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Edit a role color. Use default, one hex, or two hex values separated by a comma.</p>
+<div class="cmd-aliases">aka set</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!dragrole &lt;args&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Create a role and place it directly below another role.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!fetch</code><span class="badge prefix">prefix</span></div>
+<p>Fetch things from the server.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!fetch icon &lt;role_query&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Send a role's icon as a PNG file.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!giverole &lt;member&gt; &lt;role_query&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Add a role to a member.</p>
+<div class="cmd-aliases">aka addrole</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!icon set [args]</code><span class="badge prefix">prefix</span></div>
+<p>Set a role's icon from an attached image, replied image, or emoji.</p>
+<div class="cmd-aliases">aka update</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!newrole &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Create a new role.</p>
+<div class="cmd-aliases">aka createrole</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!r [role_query]</code><span class="badge prefix">prefix</span></div>
+<p>Open the premium roles panel, view role info, or toggle a role on a member.</p>
+<div class="cmd-aliases">aka role, roles</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!r color [role_query]</code><span class="badge prefix">prefix</span></div>
+<p>View or edit a role's color.</p>
+<div class="cmd-aliases">aka colour</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!r icon [role_query]</code><span class="badge prefix">prefix</span></div>
+<p>View a role's icon, or use subcommands to manage it.</p>
+<div class="cmd-aliases">aka displayicon</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!r list</code><span class="badge prefix">prefix</span></div>
+<p>Show every role in the server in a premium paged embed.</p>
+<div class="cmd-aliases">aka all, directory</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!r members &lt;role_query&gt;</code><span class="badge prefix">prefix</span></div>
+<p>View members in a role.</p>
+<div class="cmd-aliases">aka in, memberlist</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!r perms &lt;role_query&gt;</code><span class="badge prefix">prefix</span></div>
+<p>View a role's enabled permissions.</p>
+<div class="cmd-aliases">aka permissions</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!roledel &lt;role_query&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Delete a role.</p>
+<div class="cmd-aliases">aka deleterole</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!roleeditname &lt;args&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Rename a role.</p>
+<div class="cmd-aliases">aka renamerole</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!roleposition &lt;args&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Move a role to a specific position.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!roleremove &lt;member&gt; &lt;role_query&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove a role from a member.</p>
+<div class="cmd-aliases">aka removerole, takerole</div>
+</div></div>
+</div>
+</details>
 <div class="docs-pager"><a href="getting-started.html" class="prev">
 <span class="docs-pager-label">&#8249; Previous</span>
 <span class="docs-pager-title">Getting Started</span>
@@ -595,7 +710,7 @@ restricted "jailed" role instead, so they stay in the server but can't interact 
 <aside class="docs-toc">
 <div class="toc-title">On this page</div>
 <ul>
-<li class="lvl2"><a href="#the-essentials">The essentials</a></li><li class="lvl2"><a href="#server-lockdown">Server lockdown</a></li><li class="lvl3"><a href="#jail-system-guide">Jail System</a></li><li class="lvl3"><a href="#channel-access-control">Channel Access Control</a></li><li class="lvl3"><a href="#command-aliases">Command Aliases</a></li><li class="lvl3"><a href="#automod">AutoMod</a></li><li class="lvl3"><a href="#bump-reminders">Bump Reminders</a></li><li class="lvl3"><a href="#jail-system">Jail System</a></li><li class="lvl3"><a href="#server-logging">Server Logging</a></li><li class="lvl3"><a href="#core-moderation">Core Moderation</a></li><li class="lvl3"><a href="#role-management">Role Management</a></li>
+<li class="lvl2"><a href="#the-essentials">The essentials</a></li><li class="lvl2"><a href="#server-lockdown">Server lockdown</a></li><li class="lvl3"><a href="#jail-system-guide">Jail System</a></li>
 </ul>
 </aside>
 </div>
@@ -664,6 +779,18 @@ restricted "jailed" role instead, so they stay in the server but can't interact 
     if(window.innerWidth > 860) closeSidebar();
   });
 })();
+
+function copyCodeBlock(btn){
+  var block = btn.closest('.code-block');
+  var code = block.querySelector('code');
+  var text = code.textContent;
+  navigator.clipboard.writeText(text).then(function(){
+    var label = btn.querySelector('span');
+    var original = label.textContent;
+    label.textContent = 'Copied!';
+    setTimeout(function(){ label.textContent = original; }, 1500);
+  });
+}
 </script>
 
 </body>

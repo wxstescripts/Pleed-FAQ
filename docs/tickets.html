@@ -104,51 +104,59 @@ claiming, blacklists, and transcripts-friendly channel naming.</p>
 <h2 id="keeping-tickets-under-control">Keeping tickets under control</h2>
 <p>Block repeat troublemakers from opening new tickets with <code>!tblacklist &lt;target&gt;</code>
 (accepts a user or a role) and lift it later with <code>!tunblacklist &lt;target&gt;</code>.</p>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!claim</code><span class="badge prefix">prefix</span></td>
-<td>Claim the current ticket.</td>
-</tr><tr>
-<td><code class="cmd-usage">!close [reason]</code><span class="badge prefix">prefix</span></td>
-<td>Close the current ticket.</td>
-</tr><tr>
-<td><code class="cmd-usage">!editpanel &lt;panel_id&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka editpanels)</span></td>
-<td>Interactive wizard to edit an existing ticket panel, its options, support roles, and settings.</td>
-</tr><tr>
-<td><code class="cmd-usage">!panels</code><span class="badge prefix">prefix</span></td>
-<td>List all ticket panels for this server.</td>
-</tr><tr>
-<td><code class="cmd-usage">!rename &lt;new_name&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Rename the current ticket channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!setupticket</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka ticketsetup)</span></td>
-<td>Interactive ticket system setup wizard.</td>
-</tr><tr>
-<td><code class="cmd-usage">!tadd &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Add a user to the current ticket.</td>
-</tr><tr>
-<td><code class="cmd-usage">!tblacklist &lt;target&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Blacklist a user or role from opening tickets. Mention a user or role.</td>
-</tr><tr>
-<td><code class="cmd-usage">!ticketdeletepanel &lt;panel_id&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Delete a ticket panel and its options.</td>
-</tr><tr>
-<td><code class="cmd-usage">!tinfo</code><span class="badge prefix">prefix</span></td>
-<td>Show info about the current ticket.</td>
-</tr><tr>
-<td><code class="cmd-usage">!tremove &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Remove a user from the current ticket.</td>
-</tr><tr>
-<td><code class="cmd-usage">!tunblacklist &lt;target&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Remove a user or role from the ticket blacklist.</td>
-</tr><tr>
-<td><code class="cmd-usage">!unclaim</code><span class="badge prefix">prefix</span></td>
-<td>Unclaim the current ticket.</td>
-</tr>
-</tbody>
-</table>
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!claim</code><span class="badge prefix">prefix</span></div>
+<p>Claim the current ticket.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!close [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Close the current ticket.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!editpanel &lt;panel_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Interactive wizard to edit an existing ticket panel, its options, support roles, and settings.</p>
+<div class="cmd-aliases">aka editpanels</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!panels</code><span class="badge prefix">prefix</span></div>
+<p>List all ticket panels for this server.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!rename &lt;new_name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Rename the current ticket channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!setupticket</code><span class="badge prefix">prefix</span></div>
+<p>Interactive ticket system setup wizard.</p>
+<div class="cmd-aliases">aka ticketsetup</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!tadd &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Add a user to the current ticket.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!tblacklist &lt;target&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Blacklist a user or role from opening tickets. Mention a user or role.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ticketdeletepanel &lt;panel_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Delete a ticket panel and its options.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!tinfo</code><span class="badge prefix">prefix</span></div>
+<p>Show info about the current ticket.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!tremove &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove a user from the current ticket.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!tunblacklist &lt;target&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove a user or role from the ticket blacklist.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!unclaim</code><span class="badge prefix">prefix</span></div>
+<p>Unclaim the current ticket.</p>
+
+</div></div>
 <div class="docs-pager"><a href="security.html" class="prev">
 <span class="docs-pager-label">&#8249; Previous</span>
 <span class="docs-pager-title">Security &amp; AntiNuke</span>
@@ -230,6 +238,18 @@ claiming, blacklists, and transcripts-friendly channel naming.</p>
     if(window.innerWidth > 860) closeSidebar();
   });
 })();
+
+function copyCodeBlock(btn){
+  var block = btn.closest('.code-block');
+  var code = block.querySelector('code');
+  var text = code.textContent;
+  navigator.clipboard.writeText(text).then(function(){
+    var label = btn.querySelector('span');
+    var original = label.textContent;
+    label.textContent = 'Copied!';
+    setTimeout(function(){ label.textContent = original; }, 1500);
+  });
+}
 </script>
 
 </body>

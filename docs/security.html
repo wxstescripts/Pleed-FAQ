@@ -113,284 +113,360 @@ economy commands to cause disruption.</p>
 <a href="#fake-permissions">Fake Permissions <span class="section-count">(8)</span></a>
 <a href="#join-gate-anti-alt">Join Gate / Anti-Alt <span class="section-count">(29)</span></a>
 <a href="#kick-trap">Kick Trap <span class="section-count">(25)</span></a>
-<a href="#rate-limiting">Rate Limiting <span class="section-count">(1)</span></a></div><h3 id="antinuke-protection">AntiNuke Protection <span class="section-count">— 18 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!admin remove &lt;user&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka delete, del)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!antinuke</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka an)</span></td>
-<td>Configure antinuke protection.</td>
-</tr><tr>
-<td><code class="cmd-usage">!antinuke admin [user]</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!antinuke admins</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!antinuke ban [status] &lt;args&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!antinuke botadd [status] &lt;args&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!antinuke channel [status] &lt;args&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!antinuke config</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka settings)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!antinuke disable</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!antinuke emoji [status] &lt;args&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!antinuke enable</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!antinuke kick [status] &lt;args&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!antinuke list</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka modules)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!antinuke role [status] &lt;args&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!antinuke vanity [status] &lt;args&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!antinuke webhook [status] &lt;args&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!antinuke whitelist [target]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka wl)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!whitelist remove &lt;target&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka delete, del)</span></td>
-<td>No description available.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="fake-permissions">Fake Permissions <span class="section-count">— 8 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!fakepermissions</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka fakeperms, fp)</span></td>
-<td>Manage Bleed-style role fake permissions.</td>
-</tr><tr>
-<td><code class="cmd-usage">!fakepermissions add &lt;role&gt; &lt;permissions&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka grant)</span></td>
-<td>Grant fake permissions to a role.</td>
-</tr><tr>
-<td><code class="cmd-usage">!fakepermissions check [member]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka inspect)</span></td>
-<td>Check fake permissions for a member.</td>
-</tr><tr>
-<td><code class="cmd-usage">!fakepermissions list [role]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka view, show)</span></td>
-<td>View fake permissions.</td>
-</tr><tr>
-<td><code class="cmd-usage">!fakepermissions permissions</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka valid)</span></td>
-<td>List valid fake permission names.</td>
-</tr><tr>
-<td><code class="cmd-usage">!fakepermissions preset &lt;role&gt; &lt;preset&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka recommended)</span></td>
-<td>Apply a recommended fake permission preset.</td>
-</tr><tr>
-<td><code class="cmd-usage">!fakepermissions remove &lt;role&gt; &lt;permissions&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka revoke)</span></td>
-<td>Revoke fake permissions from a role.</td>
-</tr><tr>
-<td><code class="cmd-usage">!fakepermissions reset [role]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka clear)</span></td>
-<td>Reset all fake permissions, or only one role.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="join-gate-anti-alt">Join Gate / Anti-Alt <span class="section-count">— 29 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!blacklist add &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Add a user to the Join Gate blacklist.</td>
-</tr><tr>
-<td><code class="cmd-usage">!blacklist remove &lt;member&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka delete)</span></td>
-<td>Remove a user from the Join Gate blacklist.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka jg)</span></td>
-<td>Configure Join Gate verification.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate accountage &lt;days&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka minage)</span></td>
-<td>Set the minimum account age in days required to verify.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate autokick &lt;minutes&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Set auto-kick time in minutes for unverified members. Use 0 to disable.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate blacklist</code><span class="badge prefix">prefix</span></td>
-<td>Manage Join Gate blacklist users.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate bypassrole &lt;role&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka bypass)</span></td>
-<td>Set the bypass role that skips Join Gate.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate channel &lt;channel&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka verifychannel)</span></td>
-<td>Set the verification channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate clearbypassrole</code><span class="badge prefix">prefix</span></td>
-<td>Clear the Join Gate bypass role.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate clearlogchannel</code><span class="badge prefix">prefix</span></td>
-<td>Clear the Join Gate-specific log channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate disable</code><span class="badge prefix">prefix</span></td>
-<td>Disable Join Gate.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate dmonjoin &lt;state&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka dm)</span></td>
-<td>Enable or disable Join Gate DMs on member join.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate enable</code><span class="badge prefix">prefix</span></td>
-<td>Enable Join Gate.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate lockverify</code><span class="badge prefix">prefix</span></td>
-<td>Lock down the verify channel for Join Gate.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate logchannel &lt;channel&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka logs)</span></td>
-<td>Set a Join Gate-specific log channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate panel</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka refreshpanel)</span></td>
-<td>Send, detect, or refresh the Join Gate verification panel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate permissions</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka perms)</span></td>
-<td>Check verify channel permissions for Join Gate.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate reset</code><span class="badge prefix">prefix</span></td>
-<td>Reset all Join Gate settings.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate resetpanel</code><span class="badge prefix">prefix</span></td>
-<td>Forget the stored panel message ID. This does not delete the panel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate reverify &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Force a member to go through Join Gate again.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate scanpanel</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka detectpanel)</span></td>
-<td>Scan the verification channel and remember the existing panel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate status</code><span class="badge prefix">prefix</span></td>
-<td>Show Join Gate status.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate unlockverify</code><span class="badge prefix">prefix</span></td>
-<td>Remove the forced verified-role hide from the verify channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate unverifiedrole &lt;role&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka unverified)</span></td>
-<td>Set the unverified role.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate verifiedrole &lt;role&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka verified)</span></td>
-<td>Set the verified role.</td>
-</tr><tr>
-<td><code class="cmd-usage">!joingate whitelist</code><span class="badge prefix">prefix</span></td>
-<td>Manage Join Gate whitelist users.</td>
-</tr><tr>
-<td><code class="cmd-usage">!verify</code><span class="badge prefix">prefix</span></td>
-<td>Verify yourself through Join Gate.</td>
-</tr><tr>
-<td><code class="cmd-usage">!whitelist add &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Add a user to the Join Gate whitelist.</td>
-</tr><tr>
-<td><code class="cmd-usage">!whitelist remove &lt;member&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka delete)</span></td>
-<td>Remove a user from the Join Gate whitelist.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="kick-trap">Kick Trap <span class="section-count">— 25 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!image add</code><span class="badge prefix">prefix</span></td>
-<td>Add an attached image or replied-to message image to the recurring scam database.</td>
-</tr><tr>
-<td><code class="cmd-usage">!image clear</code><span class="badge prefix">prefix</span></td>
-<td>Clear all scam image hashes for this server.</td>
-</tr><tr>
-<td><code class="cmd-usage">!image list</code><span class="badge prefix">prefix</span></td>
-<td>List all registered scam image hashes.</td>
-</tr><tr>
-<td><code class="cmd-usage">!intel add &lt;domain&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!intel remove &lt;domain&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!kicktrap</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka ktrap)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!kicktrap autokick &lt;toggle&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!kicktrap boostertimeout [minutes]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka booster, boosters, timeoutboosters)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!kicktrap clearroles &lt;user_id&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka clearrole)</span></td>
-<td>Manually purge saved roles for a user so they join fresh.</td>
-</tr><tr>
-<td><code class="cmd-usage">!kicktrap flags [member]</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!kicktrap image</code><span class="badge prefix">prefix</span></td>
-<td>Manage visual scam image hashes.</td>
-</tr><tr>
-<td><code class="cmd-usage">!kicktrap intel</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!kicktrap list</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!kicktrap logs [channel]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka log)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!kicktrap quarantine</code><span class="badge prefix">prefix</span></td>
-<td>Opens an interactive setup panel to configure quarantine settings.</td>
-</tr><tr>
-<td><code class="cmd-usage">!kicktrap recover &lt;member&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka verify, unlock, untimeout)</span></td>
-<td>Manually un-quarantines/recovers a member, removes restrictions, and restores their saved roles.</td>
-</tr><tr>
-<td><code class="cmd-usage">!kicktrap remove [channel]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka delete, off)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!kicktrap resend [channel]</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!kicktrap scam &lt;toggle&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!kicktrap set [channel]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka add, channel)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!kicktrapresend</code><span class="badge prefix">prefix</span></td>
-<td>Resend the warning embed in the current trap channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!listkicktraps</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka kicktraps)</span></td>
-<td>List all kick trap channels in this server.</td>
-</tr><tr>
-<td><code class="cmd-usage">!removekick</code><span class="badge prefix">prefix</span></td>
-<td>Remove the kick trap from the current channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!setupkick</code><span class="badge prefix">prefix</span></td>
-<td>Turn the current channel into a kick trap.</td>
-</tr><tr>
-<td><code class="cmd-usage">!synctraps</code><span class="badge prefix">prefix</span></td>
-<td>Scans all registered KickTrap channels, finds existing embed message IDs, and registers them in the database for updates.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="rate-limiting">Rate Limiting <span class="section-count">— 1 command</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!rlpanel</code><span class="badge prefix">prefix</span></td>
-<td>Spawns an interactive modern Control Panel View to fine tune adjustments.</td>
-</tr>
-</tbody>
-</table>
+<a href="#rate-limiting">Rate Limiting <span class="section-count">(1)</span></a></div><details class="cmd-group" open>
+<summary><span class="cmd-group-title">AntiNuke Protection</span><span class="cmd-group-right"><span class="section-count">18 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="antinuke-protection" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!admin remove &lt;user&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka delete, del</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!antinuke</code><span class="badge prefix">prefix</span></div>
+<p>Configure antinuke protection.</p>
+<div class="cmd-aliases">aka an</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!antinuke admin [user]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!antinuke admins</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!antinuke ban [status] &lt;args&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!antinuke botadd [status] &lt;args&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!antinuke channel [status] &lt;args&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!antinuke config</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka settings</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!antinuke disable</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!antinuke emoji [status] &lt;args&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!antinuke enable</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!antinuke kick [status] &lt;args&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!antinuke list</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka modules</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!antinuke role [status] &lt;args&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!antinuke vanity [status] &lt;args&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!antinuke webhook [status] &lt;args&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!antinuke whitelist [target]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka wl</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!whitelist remove &lt;target&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka delete, del</div>
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Fake Permissions</span><span class="cmd-group-right"><span class="section-count">8 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="fake-permissions" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!fakepermissions</code><span class="badge prefix">prefix</span></div>
+<p>Manage Bleed-style role fake permissions.</p>
+<div class="cmd-aliases">aka fakeperms, fp</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!fakepermissions add &lt;role&gt; &lt;permissions&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Grant fake permissions to a role.</p>
+<div class="cmd-aliases">aka grant</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!fakepermissions check [member]</code><span class="badge prefix">prefix</span></div>
+<p>Check fake permissions for a member.</p>
+<div class="cmd-aliases">aka inspect</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!fakepermissions list [role]</code><span class="badge prefix">prefix</span></div>
+<p>View fake permissions.</p>
+<div class="cmd-aliases">aka view, show</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!fakepermissions permissions</code><span class="badge prefix">prefix</span></div>
+<p>List valid fake permission names.</p>
+<div class="cmd-aliases">aka valid</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!fakepermissions preset &lt;role&gt; &lt;preset&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Apply a recommended fake permission preset.</p>
+<div class="cmd-aliases">aka recommended</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!fakepermissions remove &lt;role&gt; &lt;permissions&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Revoke fake permissions from a role.</p>
+<div class="cmd-aliases">aka revoke</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!fakepermissions reset [role]</code><span class="badge prefix">prefix</span></div>
+<p>Reset all fake permissions, or only one role.</p>
+<div class="cmd-aliases">aka clear</div>
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Join Gate / Anti-Alt</span><span class="cmd-group-right"><span class="section-count">29 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="join-gate-anti-alt" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!blacklist add &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Add a user to the Join Gate blacklist.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!blacklist remove &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove a user from the Join Gate blacklist.</p>
+<div class="cmd-aliases">aka delete</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate</code><span class="badge prefix">prefix</span></div>
+<p>Configure Join Gate verification.</p>
+<div class="cmd-aliases">aka jg</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate accountage &lt;days&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the minimum account age in days required to verify.</p>
+<div class="cmd-aliases">aka minage</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate autokick &lt;minutes&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set auto-kick time in minutes for unverified members. Use 0 to disable.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate blacklist</code><span class="badge prefix">prefix</span></div>
+<p>Manage Join Gate blacklist users.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate bypassrole &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the bypass role that skips Join Gate.</p>
+<div class="cmd-aliases">aka bypass</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate channel &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the verification channel.</p>
+<div class="cmd-aliases">aka verifychannel</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate clearbypassrole</code><span class="badge prefix">prefix</span></div>
+<p>Clear the Join Gate bypass role.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate clearlogchannel</code><span class="badge prefix">prefix</span></div>
+<p>Clear the Join Gate-specific log channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate disable</code><span class="badge prefix">prefix</span></div>
+<p>Disable Join Gate.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate dmonjoin &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Enable or disable Join Gate DMs on member join.</p>
+<div class="cmd-aliases">aka dm</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate enable</code><span class="badge prefix">prefix</span></div>
+<p>Enable Join Gate.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate lockverify</code><span class="badge prefix">prefix</span></div>
+<p>Lock down the verify channel for Join Gate.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate logchannel &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set a Join Gate-specific log channel.</p>
+<div class="cmd-aliases">aka logs</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate panel</code><span class="badge prefix">prefix</span></div>
+<p>Send, detect, or refresh the Join Gate verification panel.</p>
+<div class="cmd-aliases">aka refreshpanel</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate permissions</code><span class="badge prefix">prefix</span></div>
+<p>Check verify channel permissions for Join Gate.</p>
+<div class="cmd-aliases">aka perms</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate reset</code><span class="badge prefix">prefix</span></div>
+<p>Reset all Join Gate settings.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate resetpanel</code><span class="badge prefix">prefix</span></div>
+<p>Forget the stored panel message ID. This does not delete the panel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate reverify &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Force a member to go through Join Gate again.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate scanpanel</code><span class="badge prefix">prefix</span></div>
+<p>Scan the verification channel and remember the existing panel.</p>
+<div class="cmd-aliases">aka detectpanel</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate status</code><span class="badge prefix">prefix</span></div>
+<p>Show Join Gate status.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate unlockverify</code><span class="badge prefix">prefix</span></div>
+<p>Remove the forced verified-role hide from the verify channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate unverifiedrole &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the unverified role.</p>
+<div class="cmd-aliases">aka unverified</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate verifiedrole &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the verified role.</p>
+<div class="cmd-aliases">aka verified</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!joingate whitelist</code><span class="badge prefix">prefix</span></div>
+<p>Manage Join Gate whitelist users.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!verify</code><span class="badge prefix">prefix</span></div>
+<p>Verify yourself through Join Gate.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!whitelist add &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Add a user to the Join Gate whitelist.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!whitelist remove &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove a user from the Join Gate whitelist.</p>
+<div class="cmd-aliases">aka delete</div>
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Kick Trap</span><span class="cmd-group-right"><span class="section-count">25 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="kick-trap" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!image add</code><span class="badge prefix">prefix</span></div>
+<p>Add an attached image or replied-to message image to the recurring scam database.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!image clear</code><span class="badge prefix">prefix</span></div>
+<p>Clear all scam image hashes for this server.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!image list</code><span class="badge prefix">prefix</span></div>
+<p>List all registered scam image hashes.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!intel add &lt;domain&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!intel remove &lt;domain&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kicktrap</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka ktrap</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kicktrap autokick &lt;toggle&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kicktrap boostertimeout [minutes]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka booster, boosters, timeoutboosters</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kicktrap clearroles &lt;user_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Manually purge saved roles for a user so they join fresh.</p>
+<div class="cmd-aliases">aka clearrole</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kicktrap flags [member]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kicktrap image</code><span class="badge prefix">prefix</span></div>
+<p>Manage visual scam image hashes.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kicktrap intel</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kicktrap list</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kicktrap logs [channel]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka log</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kicktrap quarantine</code><span class="badge prefix">prefix</span></div>
+<p>Opens an interactive setup panel to configure quarantine settings.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kicktrap recover &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Manually un-quarantines/recovers a member, removes restrictions, and restores their saved roles.</p>
+<div class="cmd-aliases">aka verify, unlock, untimeout</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kicktrap remove [channel]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka delete, off</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kicktrap resend [channel]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kicktrap scam &lt;toggle&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kicktrap set [channel]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka add, channel</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kicktrapresend</code><span class="badge prefix">prefix</span></div>
+<p>Resend the warning embed in the current trap channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!listkicktraps</code><span class="badge prefix">prefix</span></div>
+<p>List all kick trap channels in this server.</p>
+<div class="cmd-aliases">aka kicktraps</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!removekick</code><span class="badge prefix">prefix</span></div>
+<p>Remove the kick trap from the current channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!setupkick</code><span class="badge prefix">prefix</span></div>
+<p>Turn the current channel into a kick trap.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!synctraps</code><span class="badge prefix">prefix</span></div>
+<p>Scans all registered KickTrap channels, finds existing embed message IDs, and registers them in the database for updates.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Rate Limiting</span><span class="cmd-group-right"><span class="section-count">1 command</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="rate-limiting" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!rlpanel</code><span class="badge prefix">prefix</span></div>
+<p>Spawns an interactive modern Control Panel View to fine tune adjustments.</p>
+
+</div></div>
+</div>
+</details>
 <div class="docs-pager"><a href="moderation.html" class="prev">
 <span class="docs-pager-label">&#8249; Previous</span>
 <span class="docs-pager-title">Moderation</span>
@@ -403,7 +479,7 @@ economy commands to cause disruption.</p>
 <aside class="docs-toc">
 <div class="toc-title">On this page</div>
 <ul>
-<li class="lvl3"><a href="#antinuke-setup">Setting up AntiNuke</a></li><li class="lvl3"><a href="#join-gate-guide">Join Gate / Anti-Alt</a></li><li class="lvl3"><a href="#rate-limiting-guide">Rate Limiting</a></li><li class="lvl3"><a href="#antinuke-protection">AntiNuke Protection</a></li><li class="lvl3"><a href="#fake-permissions">Fake Permissions</a></li><li class="lvl3"><a href="#join-gate-anti-alt">Join Gate / Anti-Alt</a></li><li class="lvl3"><a href="#kick-trap">Kick Trap</a></li><li class="lvl3"><a href="#rate-limiting">Rate Limiting</a></li>
+<li class="lvl3"><a href="#antinuke-setup">Setting up AntiNuke</a></li><li class="lvl3"><a href="#join-gate-guide">Join Gate / Anti-Alt</a></li><li class="lvl3"><a href="#rate-limiting-guide">Rate Limiting</a></li>
 </ul>
 </aside>
 </div>
@@ -472,6 +548,18 @@ economy commands to cause disruption.</p>
     if(window.innerWidth > 860) closeSidebar();
   });
 })();
+
+function copyCodeBlock(btn){
+  var block = btn.closest('.code-block');
+  var code = block.querySelector('code');
+  var text = code.textContent;
+  navigator.clipboard.writeText(text).then(function(){
+    var label = btn.querySelector('span');
+    var original = label.textContent;
+    label.textContent = 'Copied!';
+    setTimeout(function(){ label.textContent = original; }, 1500);
+  });
+}
 </script>
 
 </body>

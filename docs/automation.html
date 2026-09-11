@@ -122,134 +122,170 @@ without deleting them.</p>
 per-category punishment escalation, and strike tracking, separate from the trigger-based automations
 on this page.</p>
 <div class="toc-inline"><a href="#automation-rules">Automation Rules <span class="section-count">(32)</span></a>
-<a href="#custom-commands">Custom Commands <span class="section-count">(6)</span></a></div><h3 id="automation-rules">Automation Rules <span class="section-count">— 32 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!automation</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka automations, am)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation addreaction &lt;name&gt; &lt;data&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka addreact, createreaction)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation addresponse &lt;name&gt; &lt;data&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka createresponse, addauto)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation chance &lt;automation_id&gt; &lt;chance&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation clear [category]</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation clone &lt;automation_id&gt; &lt;new_name&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation cooldown &lt;automation_id&gt; &lt;seconds&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation delete &lt;automation_id&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka remove, del)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation deleteafter &lt;automation_id&gt; &lt;seconds&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka autodelete)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation disable &lt;automation_id&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation enable &lt;automation_id&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation filters</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation list [category]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka ls)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation match &lt;automation_id&gt; &lt;match_type&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation priority &lt;automation_id&gt; &lt;priority&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation reply &lt;automation_id&gt; &lt;state&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation resetstats</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation stats</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automation view &lt;automation_id&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka info, show)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!automationsetup</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka autosetup, amsettings)</span></td>
-<td>Open the automation settings panel with toggle buttons.</td>
-</tr><tr>
-<td><code class="cmd-usage">!autorespond &lt;trigger&gt; &lt;response&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka auto, respond)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!autoresponddel &lt;trigger&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka delauto, removeresponse)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!autoresponses</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka autolist)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!filters blockchannels &lt;automation_id&gt; &lt;action&gt; &lt;channels&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!filters blockroles &lt;automation_id&gt; &lt;action&gt; &lt;roles&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!filters blockusers &lt;automation_id&gt; &lt;action&gt; &lt;users&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!filters channels &lt;automation_id&gt; &lt;action&gt; &lt;channels&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!filters roles &lt;automation_id&gt; &lt;action&gt; &lt;roles&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!filters users &lt;automation_id&gt; &lt;action&gt; &lt;users&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!reactadd &lt;emoji&gt; &lt;trigger&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka ar, react)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!reactdel &lt;trigger&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka reactremove, delreact)</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!reacts</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka reactlist)</span></td>
-<td>No description available.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="custom-commands-2">Custom Commands <span class="section-count">— 6 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!addcmd &lt;name&gt; &lt;response&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka addscript, scriptadd)</span></td>
-<td>Create a custom script command.</td>
-</tr><tr>
-<td><code class="cmd-usage">!delcmd &lt;name&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka delscript, removecmd)</span></td>
-<td>Delete a custom command.</td>
-</tr><tr>
-<td><code class="cmd-usage">!editcmd &lt;name&gt; &lt;response&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka editscript, setcmd)</span></td>
-<td>Edit an existing custom command.</td>
-</tr><tr>
-<td><code class="cmd-usage">!listcmds</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka listscripts, cmds)</span></td>
-<td>List all custom commands in this server.</td>
-</tr><tr>
-<td><code class="cmd-usage">!testcmd &lt;raw_text&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka testscript)</span></td>
-<td>Test how a custom command parses.</td>
-</tr><tr>
-<td><code class="cmd-usage">!viewcmd &lt;name&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka viewscript, cmdinfo)</span></td>
-<td>View a custom command's response.</td>
-</tr>
-</tbody>
-</table>
+<a href="#custom-commands">Custom Commands <span class="section-count">(6)</span></a></div><details class="cmd-group" open>
+<summary><span class="cmd-group-title">Automation Rules</span><span class="cmd-group-right"><span class="section-count">32 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="automation-rules" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka automations, am</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation addreaction &lt;name&gt; &lt;data&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka addreact, createreaction</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation addresponse &lt;name&gt; &lt;data&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka createresponse, addauto</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation chance &lt;automation_id&gt; &lt;chance&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation clear [category]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation clone &lt;automation_id&gt; &lt;new_name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation cooldown &lt;automation_id&gt; &lt;seconds&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation delete &lt;automation_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka remove, del</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation deleteafter &lt;automation_id&gt; &lt;seconds&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka autodelete</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation disable &lt;automation_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation enable &lt;automation_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation filters</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation list [category]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka ls</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation match &lt;automation_id&gt; &lt;match_type&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation priority &lt;automation_id&gt; &lt;priority&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation reply &lt;automation_id&gt; &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation resetstats</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation stats</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automation view &lt;automation_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka info, show</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automationsetup</code><span class="badge prefix">prefix</span></div>
+<p>Open the automation settings panel with toggle buttons.</p>
+<div class="cmd-aliases">aka autosetup, amsettings</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!autorespond &lt;trigger&gt; &lt;response&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka auto, respond</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!autoresponddel &lt;trigger&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka delauto, removeresponse</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!autoresponses</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka autolist</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!filters blockchannels &lt;automation_id&gt; &lt;action&gt; &lt;channels&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!filters blockroles &lt;automation_id&gt; &lt;action&gt; &lt;roles&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!filters blockusers &lt;automation_id&gt; &lt;action&gt; &lt;users&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!filters channels &lt;automation_id&gt; &lt;action&gt; &lt;channels&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!filters roles &lt;automation_id&gt; &lt;action&gt; &lt;roles&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!filters users &lt;automation_id&gt; &lt;action&gt; &lt;users&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!reactadd &lt;emoji&gt; &lt;trigger&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka ar, react</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!reactdel &lt;trigger&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka reactremove, delreact</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!reacts</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka reactlist</div>
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Custom Commands</span><span class="cmd-group-right"><span class="section-count">6 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="custom-commands" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!addcmd &lt;name&gt; &lt;response&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Create a custom script command.</p>
+<div class="cmd-aliases">aka addscript, scriptadd</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!delcmd &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Delete a custom command.</p>
+<div class="cmd-aliases">aka delscript, removecmd</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!editcmd &lt;name&gt; &lt;response&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Edit an existing custom command.</p>
+<div class="cmd-aliases">aka editscript, setcmd</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!listcmds</code><span class="badge prefix">prefix</span></div>
+<p>List all custom commands in this server.</p>
+<div class="cmd-aliases">aka listscripts, cmds</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!testcmd &lt;raw_text&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Test how a custom command parses.</p>
+<div class="cmd-aliases">aka testscript</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!viewcmd &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>View a custom command's response.</p>
+<div class="cmd-aliases">aka viewscript, cmdinfo</div>
+</div></div>
+</div>
+</details>
 <div class="docs-pager"><a href="economy.html" class="prev">
 <span class="docs-pager-label">&#8249; Previous</span>
 <span class="docs-pager-title">Economy &amp; Leveling</span>
@@ -262,7 +298,7 @@ on this page.</p>
 <aside class="docs-toc">
 <div class="toc-title">On this page</div>
 <ul>
-<li class="lvl2"><a href="#automations-trigger-rarr-response">Automations (trigger &amp;rarr; response)</a></li><li class="lvl3"><a href="#reacts-shortcuts">Auto-reacts &amp;amp; auto-responses (quick version)</a></li><li class="lvl2"><a href="#custom-commands">Custom commands</a></li><li class="lvl2"><a href="#automod-spam-amp-word-filtering">AutoMod (spam &amp;amp; word filtering)</a></li><li class="lvl3"><a href="#automation-rules">Automation Rules</a></li><li class="lvl3"><a href="#custom-commands-2">Custom Commands</a></li>
+<li class="lvl2"><a href="#automations-trigger-rarr-response">Automations (trigger &amp;rarr; response)</a></li><li class="lvl3"><a href="#reacts-shortcuts">Auto-reacts &amp;amp; auto-responses (quick version)</a></li><li class="lvl2"><a href="#custom-commands">Custom commands</a></li><li class="lvl2"><a href="#automod-spam-amp-word-filtering">AutoMod (spam &amp;amp; word filtering)</a></li>
 </ul>
 </aside>
 </div>
@@ -331,6 +367,18 @@ on this page.</p>
     if(window.innerWidth > 860) closeSidebar();
   });
 })();
+
+function copyCodeBlock(btn){
+  var block = btn.closest('.code-block');
+  var code = block.querySelector('code');
+  var text = code.textContent;
+  navigator.clipboard.writeText(text).then(function(){
+    var label = btn.querySelector('span');
+    var original = label.textContent;
+    label.textContent = 'Copied!';
+    setTimeout(function(){ label.textContent = original; }, 1500);
+  });
+}
 </script>
 
 </body>

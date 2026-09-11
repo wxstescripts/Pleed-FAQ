@@ -85,17 +85,7 @@
 casino-style games, and a separate XP/leveling system with role rewards.</p>
 
 <h2 id="the-basics">The basics</h2>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr><td><code class="cmd-usage">!balance [member]</code></td><td>Check a wallet balance.</td></tr>
-<tr><td><code class="cmd-usage">!work</code></td><td>Work a job to earn money (has a cooldown).</td></tr>
-<tr><td><code class="cmd-usage">!daily</code></td><td>Claim your daily reward.</td></tr>
-<tr><td><code class="cmd-usage">!deposit &lt;amount&gt;</code> / <code class="cmd-usage">!withdraw &lt;amount&gt;</code></td><td>Move money between wallet and bank — banked money is safe from <code>!rob</code>.</td></tr>
-<tr><td><code class="cmd-usage">!pay &lt;member&gt; &lt;amount&gt;</code></td><td>Send money to another member.</td></tr>
-<tr><td><code class="cmd-usage">!richest</code></td><td>Server economy leaderboard.</td></tr>
-</tbody>
-</table>
+<div class="cmd-grid"><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!balance [member]</code></div><p>Check a wallet balance.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!work</code></div><p>Work a job to earn money (has a cooldown).</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!daily</code></div><p>Claim your daily reward.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!deposit &lt;amount&gt;</code> / <code class="cmd-usage">!withdraw &lt;amount&gt;</code></div><p>Move money between wallet and bank — banked money is safe from <code>!rob</code>.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!pay &lt;member&gt; &lt;amount&gt;</code></div><p>Send money to another member.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!richest</code></div><p>Server economy leaderboard.</p></div></div>
 
 <h3 id="wallet-games">Games &amp; risk</h3>
 <p>Casino-style ways to grow (or lose) your balance: <code>!coinflip</code>, <code>!slots</code>,
@@ -134,277 +124,354 @@ Use <code>!reroll &lt;message_id&gt; &lt;winners&gt;</code> if a winner doesn't 
 <div class="toc-inline"><a href="#wallet-games">Wallet & Games <span class="section-count">(42)</span></a>
 <a href="#giveaways">Giveaways <span class="section-count">(6)</span></a>
 <a href="#leveling-xp">Leveling / XP <span class="section-count">(31)</span></a>
-<a href="#poker">Poker <span class="section-count">(2)</span></a></div><h3 id="wallet-games-2">Wallet &amp; Games <span class="section-count">— 42 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!addmoney &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Add money to a user's wallet.</td>
-</tr><tr>
-<td><code class="cmd-usage">!autobank &lt;business_id&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Toggle whether a business auto-banks collected income.</td>
-</tr><tr>
-<td><code class="cmd-usage">!balance [member]</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka bal, money)</span></td>
-<td>View your balance or another user's balance.</td>
-</tr><tr>
-<td><code class="cmd-usage">!bank [member]</code><span class="badge prefix">prefix</span></td>
-<td>View your bank balance.</td>
-</tr><tr>
-<td><code class="cmd-usage">!blackjack &lt;amount&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka bj)</span></td>
-<td>Play blackjack.</td>
-</tr><tr>
-<td><code class="cmd-usage">!business &lt;business_id&gt;</code><span class="badge prefix">prefix</span></td>
-<td>View one business by ID.</td>
-</tr><tr>
-<td><code class="cmd-usage">!businessefficiency &lt;business_id&gt; [amount]</code><span class="badge prefix">prefix</span></td>
-<td>Upgrade business efficiency. Example: businessefficiency 4 3 / businessefficiency 4 max</td>
-</tr><tr>
-<td><code class="cmd-usage">!businesses</code><span class="badge prefix">prefix</span></td>
-<td>View available businesses to buy.</td>
-</tr><tr>
-<td><code class="cmd-usage">!businesslb</code><span class="badge prefix">prefix</span></td>
-<td>Show the business leaderboard.</td>
-</tr><tr>
-<td><code class="cmd-usage">!buy &lt;item_id&gt; [amount]</code><span class="badge prefix">prefix</span></td>
-<td>Buy an item from the shop.</td>
-</tr><tr>
-<td><code class="cmd-usage">!buybusiness &lt;business_type&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Buy a business.</td>
-</tr><tr>
-<td><code class="cmd-usage">!buyshares &lt;symbol&gt; &lt;shares&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Buy shares from the stock market.</td>
-</tr><tr>
-<td><code class="cmd-usage">!coinflip &lt;choice&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Flip a coin.</td>
-</tr><tr>
-<td><code class="cmd-usage">!collect &lt;business_id&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Collect income from one business.</td>
-</tr><tr>
-<td><code class="cmd-usage">!collectall</code><span class="badge prefix">prefix</span></td>
-<td>Collect income from all your businesses.</td>
-</tr><tr>
-<td><code class="cmd-usage">!daily</code><span class="badge prefix">prefix</span></td>
-<td>Claim your daily reward.</td>
-</tr><tr>
-<td><code class="cmd-usage">!deposit &lt;amount&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka dep)</span></td>
-<td>Deposit money into your bank.</td>
-</tr><tr>
-<td><code class="cmd-usage">!gamble &lt;amount&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Gamble your money.</td>
-</tr><tr>
-<td><code class="cmd-usage">!hire &lt;business_id&gt; [amount]</code><span class="badge prefix">prefix</span></td>
-<td>Hire workers for a business. Example: hire 4 3 / hire 4 max</td>
-</tr><tr>
-<td><code class="cmd-usage">!insurebusiness &lt;business_id&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Buy insurance for a business.</td>
-</tr><tr>
-<td><code class="cmd-usage">!inventory [member]</code><span class="badge prefix">prefix</span></td>
-<td>View your inventory.</td>
-</tr><tr>
-<td><code class="cmd-usage">!item &lt;item_id&gt;</code><span class="badge prefix">prefix</span></td>
-<td>View one item from the shop.</td>
-</tr><tr>
-<td><code class="cmd-usage">!mybusinesses [member]</code><span class="badge prefix">prefix</span></td>
-<td>List your businesses.</td>
-</tr><tr>
-<td><code class="cmd-usage">!pay &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka give)</span></td>
-<td>Pay another user.</td>
-</tr><tr>
-<td><code class="cmd-usage">!portfolio [member]</code><span class="badge prefix">prefix</span></td>
-<td>View your stock portfolio.</td>
-</tr><tr>
-<td><code class="cmd-usage">!removemoney &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Remove money from a user's wallet.</td>
-</tr><tr>
-<td><code class="cmd-usage">!resetmoney &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Reset a user's wallet and bank.</td>
-</tr><tr>
-<td><code class="cmd-usage">!richest</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka ecolb, moneylb)</span></td>
-<td>Show the economy leaderboard.</td>
-</tr><tr>
-<td><code class="cmd-usage">!risk &lt;amount&gt;</code><span class="badge prefix">prefix</span></td>
-<td>High risk, high reward.</td>
-</tr><tr>
-<td><code class="cmd-usage">!rob &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Attempt to rob another user.</td>
-</tr><tr>
-<td><code class="cmd-usage">!sabotage &lt;target&gt; &lt;business_id&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Attempt to sabotage another user's business.</td>
-</tr><tr>
-<td><code class="cmd-usage">!sellbusiness &lt;business_id&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Sell one of your businesses.</td>
-</tr><tr>
-<td><code class="cmd-usage">!sellitem &lt;item_id&gt; [amount]</code><span class="badge prefix">prefix</span></td>
-<td>Sell an item from your inventory.</td>
-</tr><tr>
-<td><code class="cmd-usage">!sellshares &lt;symbol&gt; &lt;shares&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Sell shares from the stock market.</td>
-</tr><tr>
-<td><code class="cmd-usage">!setmoney &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Set a user's wallet balance.</td>
-</tr><tr>
-<td><code class="cmd-usage">!shop</code><span class="badge prefix">prefix</span></td>
-<td>View the item shop.</td>
-</tr><tr>
-<td><code class="cmd-usage">!slots &lt;amount&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Play the slot machine.</td>
-</tr><tr>
-<td><code class="cmd-usage">!stocks</code><span class="badge prefix">prefix</span></td>
-<td>View the stock market.</td>
-</tr><tr>
-<td><code class="cmd-usage">!switchbusiness &lt;business_id&gt; &lt;business_type&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Switch one business to another type.</td>
-</tr><tr>
-<td><code class="cmd-usage">!upgradebusiness &lt;business_id&gt; [amount]</code><span class="badge prefix">prefix</span></td>
-<td>Upgrade a business. Example: upgradebusiness 4 3 / upgradebusiness 4 max</td>
-</tr><tr>
-<td><code class="cmd-usage">!withdraw &lt;amount&gt;</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka with)</span></td>
-<td>Withdraw money from your bank.</td>
-</tr><tr>
-<td><code class="cmd-usage">!work</code><span class="badge prefix">prefix</span></td>
-<td>Work to earn money.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="giveaways-2">Giveaways <span class="section-count">— 6 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!create &lt;prize&gt; &lt;duration&gt; &lt;winners&gt; [channel] [messages_required] [roles_bonus_entries]</code><span class="badge prefix">prefix</span></td>
-<td>Create a giveaway.</td>
-</tr><tr>
-<td><code class="cmd-usage">!delete &lt;message_id&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Delete a giveaway.</td>
-</tr><tr>
-<td><code class="cmd-usage">!end &lt;message_id&gt;</code><span class="badge prefix">prefix</span></td>
-<td>End a giveaway.</td>
-</tr><tr>
-<td><code class="cmd-usage">!giveaways</code><span class="badge prefix">prefix</span></td>
-<td>List all ongoing giveaways.</td>
-</tr><tr>
-<td><code class="cmd-usage">!host &lt;role&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Give perms to a role.</td>
-</tr><tr>
-<td><code class="cmd-usage">!reroll &lt;message_id&gt; &lt;winners&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Reroll the winner(s) of a giveaway.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="leveling-xp">Leveling / XP <span class="section-count">— 31 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!addxp &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Add XP to a user.</td>
-</tr><tr>
-<td><code class="cmd-usage">!channel add &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!channel remove &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!leaderboard</code><span class="badge prefix">prefix</span> <span style="color:var(--pl-muted);font-size:12px;">(aka lb)</span></td>
-<td>View the server leveling leaderboard.</td>
-</tr><tr>
-<td><code class="cmd-usage">!levelchannels</code><span class="badge prefix">prefix</span></td>
-<td>Manage which channels give XP.</td>
-</tr><tr>
-<td><code class="cmd-usage">!levelchannels add &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Allow a channel to give XP.</td>
-</tr><tr>
-<td><code class="cmd-usage">!levelchannels list</code><span class="badge prefix">prefix</span></td>
-<td>List all channels that can give XP.</td>
-</tr><tr>
-<td><code class="cmd-usage">!levelchannels remove &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Remove a channel from XP-allowed channels.</td>
-</tr><tr>
-<td><code class="cmd-usage">!levelchannels reset</code><span class="badge prefix">prefix</span></td>
-<td>Reset XP channels so all channels can give XP again.</td>
-</tr><tr>
-<td><code class="cmd-usage">!levelconfig</code><span class="badge prefix">prefix</span></td>
-<td>View the server leveling configuration.</td>
-</tr><tr>
-<td><code class="cmd-usage">!levelignore</code><span class="badge prefix">prefix</span></td>
-<td>Manage leveling ignore lists.</td>
-</tr><tr>
-<td><code class="cmd-usage">!levelignore channel</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!levelignore list</code><span class="badge prefix">prefix</span></td>
-<td>List ignored channels and roles for leveling.</td>
-</tr><tr>
-<td><code class="cmd-usage">!levelignore role</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!levelreward &lt;level&gt; &lt;role&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Set a role reward for a specific level.</td>
-</tr><tr>
-<td><code class="cmd-usage">!levelrewardremove &lt;level&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Remove a level reward.</td>
-</tr><tr>
-<td><code class="cmd-usage">!levelrewardreset</code><span class="badge prefix">prefix</span></td>
-<td>Remove all level rewards.</td>
-</tr><tr>
-<td><code class="cmd-usage">!levelrewards</code><span class="badge prefix">prefix</span></td>
-<td>List all level reward roles.</td>
-</tr><tr>
-<td><code class="cmd-usage">!leveltoggle &lt;state&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Enable or disable level-up messages.</td>
-</tr><tr>
-<td><code class="cmd-usage">!rank [member]</code><span class="badge prefix">prefix</span></td>
-<td>View your rank or another user's rank.</td>
-</tr><tr>
-<td><code class="cmd-usage">!removexp &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Remove XP from a user.</td>
-</tr><tr>
-<td><code class="cmd-usage">!resetlevelchannel</code><span class="badge prefix">prefix</span></td>
-<td>Reset the level-up channel back to the current channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!resetxp &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Reset a user's XP.</td>
-</tr><tr>
-<td><code class="cmd-usage">!role add &lt;role&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!role remove &lt;role&gt;</code><span class="badge prefix">prefix</span></td>
-<td>No description available.</td>
-</tr><tr>
-<td><code class="cmd-usage">!setlevel &lt;member&gt; &lt;level&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Set a user's level directly.</td>
-</tr><tr>
-<td><code class="cmd-usage">!setlevelchannel &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Set the channel where level-up messages are sent.</td>
-</tr><tr>
-<td><code class="cmd-usage">!setxp &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Set a user's XP directly.</td>
-</tr><tr>
-<td><code class="cmd-usage">!setxpcooldown &lt;seconds&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Set the XP cooldown in seconds. Recommended: 30-90.</td>
-</tr><tr>
-<td><code class="cmd-usage">!xpinfo &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Show raw XP stats for a member.</td>
-</tr><tr>
-<td><code class="cmd-usage">!xptoggle &lt;state&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Enable or disable XP gain completely.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="poker-2">Poker <span class="section-count">— 2 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!pokercancel</code><span class="badge prefix">prefix</span></td>
-<td>Cancel the current poker game (host only).</td>
-</tr><tr>
-<td><code class="cmd-usage">!pokercreate &lt;buy_in&gt; [max_players]</code><span class="badge prefix">prefix</span></td>
-<td>Create a Texas Hold'em poker game. Usage: pokercreate &lt;buy-in&gt; &lt;max_players 2-4&gt;</td>
-</tr>
-</tbody>
-</table>
+<a href="#poker">Poker <span class="section-count">(2)</span></a></div><details class="cmd-group" open>
+<summary><span class="cmd-group-title">Wallet &amp; Games</span><span class="cmd-group-right"><span class="section-count">42 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="wallet-games" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!addmoney &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Add money to a user's wallet.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!autobank &lt;business_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Toggle whether a business auto-banks collected income.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!balance [member]</code><span class="badge prefix">prefix</span></div>
+<p>View your balance or another user's balance.</p>
+<div class="cmd-aliases">aka bal, money</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bank [member]</code><span class="badge prefix">prefix</span></div>
+<p>View your bank balance.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!blackjack &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Play blackjack.</p>
+<div class="cmd-aliases">aka bj</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!business &lt;business_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>View one business by ID.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!businessefficiency &lt;business_id&gt; [amount]</code><span class="badge prefix">prefix</span></div>
+<p>Upgrade business efficiency. Example: businessefficiency 4 3 / businessefficiency 4 max</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!businesses</code><span class="badge prefix">prefix</span></div>
+<p>View available businesses to buy.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!businesslb</code><span class="badge prefix">prefix</span></div>
+<p>Show the business leaderboard.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!buy &lt;item_id&gt; [amount]</code><span class="badge prefix">prefix</span></div>
+<p>Buy an item from the shop.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!buybusiness &lt;business_type&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Buy a business.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!buyshares &lt;symbol&gt; &lt;shares&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Buy shares from the stock market.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!coinflip &lt;choice&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Flip a coin.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!collect &lt;business_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Collect income from one business.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!collectall</code><span class="badge prefix">prefix</span></div>
+<p>Collect income from all your businesses.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!daily</code><span class="badge prefix">prefix</span></div>
+<p>Claim your daily reward.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!deposit &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Deposit money into your bank.</p>
+<div class="cmd-aliases">aka dep</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!gamble &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Gamble your money.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!hire &lt;business_id&gt; [amount]</code><span class="badge prefix">prefix</span></div>
+<p>Hire workers for a business. Example: hire 4 3 / hire 4 max</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!insurebusiness &lt;business_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Buy insurance for a business.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!inventory [member]</code><span class="badge prefix">prefix</span></div>
+<p>View your inventory.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!item &lt;item_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>View one item from the shop.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!mybusinesses [member]</code><span class="badge prefix">prefix</span></div>
+<p>List your businesses.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!pay &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Pay another user.</p>
+<div class="cmd-aliases">aka give</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!portfolio [member]</code><span class="badge prefix">prefix</span></div>
+<p>View your stock portfolio.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!removemoney &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove money from a user's wallet.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!resetmoney &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Reset a user's wallet and bank.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!richest</code><span class="badge prefix">prefix</span></div>
+<p>Show the economy leaderboard.</p>
+<div class="cmd-aliases">aka ecolb, moneylb</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!risk &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>High risk, high reward.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!rob &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Attempt to rob another user.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!sabotage &lt;target&gt; &lt;business_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Attempt to sabotage another user's business.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!sellbusiness &lt;business_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Sell one of your businesses.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!sellitem &lt;item_id&gt; [amount]</code><span class="badge prefix">prefix</span></div>
+<p>Sell an item from your inventory.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!sellshares &lt;symbol&gt; &lt;shares&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Sell shares from the stock market.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!setmoney &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set a user's wallet balance.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!shop</code><span class="badge prefix">prefix</span></div>
+<p>View the item shop.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!slots &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Play the slot machine.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!stocks</code><span class="badge prefix">prefix</span></div>
+<p>View the stock market.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!switchbusiness &lt;business_id&gt; &lt;business_type&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Switch one business to another type.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!upgradebusiness &lt;business_id&gt; [amount]</code><span class="badge prefix">prefix</span></div>
+<p>Upgrade a business. Example: upgradebusiness 4 3 / upgradebusiness 4 max</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!withdraw &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Withdraw money from your bank.</p>
+<div class="cmd-aliases">aka with</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!work</code><span class="badge prefix">prefix</span></div>
+<p>Work to earn money.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Giveaways</span><span class="cmd-group-right"><span class="section-count">6 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="giveaways" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!create &lt;prize&gt; &lt;duration&gt; &lt;winners&gt; [channel] [messages_required] [roles_bonus_entries]</code><span class="badge prefix">prefix</span></div>
+<p>Create a giveaway.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!delete &lt;message_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Delete a giveaway.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!end &lt;message_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>End a giveaway.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!giveaways</code><span class="badge prefix">prefix</span></div>
+<p>List all ongoing giveaways.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!host &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Give perms to a role.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!reroll &lt;message_id&gt; &lt;winners&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Reroll the winner(s) of a giveaway.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Leveling / XP</span><span class="cmd-group-right"><span class="section-count">31 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="leveling-xp" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!addxp &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Add XP to a user.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!channel add &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!channel remove &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!leaderboard</code><span class="badge prefix">prefix</span></div>
+<p>View the server leveling leaderboard.</p>
+<div class="cmd-aliases">aka lb</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelchannels</code><span class="badge prefix">prefix</span></div>
+<p>Manage which channels give XP.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelchannels add &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Allow a channel to give XP.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelchannels list</code><span class="badge prefix">prefix</span></div>
+<p>List all channels that can give XP.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelchannels remove &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove a channel from XP-allowed channels.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelchannels reset</code><span class="badge prefix">prefix</span></div>
+<p>Reset XP channels so all channels can give XP again.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelconfig</code><span class="badge prefix">prefix</span></div>
+<p>View the server leveling configuration.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelignore</code><span class="badge prefix">prefix</span></div>
+<p>Manage leveling ignore lists.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelignore channel</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelignore list</code><span class="badge prefix">prefix</span></div>
+<p>List ignored channels and roles for leveling.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelignore role</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelreward &lt;level&gt; &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set a role reward for a specific level.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelrewardremove &lt;level&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove a level reward.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelrewardreset</code><span class="badge prefix">prefix</span></div>
+<p>Remove all level rewards.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelrewards</code><span class="badge prefix">prefix</span></div>
+<p>List all level reward roles.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!leveltoggle &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Enable or disable level-up messages.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!rank [member]</code><span class="badge prefix">prefix</span></div>
+<p>View your rank or another user's rank.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!removexp &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove XP from a user.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!resetlevelchannel</code><span class="badge prefix">prefix</span></div>
+<p>Reset the level-up channel back to the current channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!resetxp &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Reset a user's XP.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!role add &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!role remove &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!setlevel &lt;member&gt; &lt;level&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set a user's level directly.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!setlevelchannel &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the channel where level-up messages are sent.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!setxp &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set a user's XP directly.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!setxpcooldown &lt;seconds&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the XP cooldown in seconds. Recommended: 30-90.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!xpinfo &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Show raw XP stats for a member.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!xptoggle &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Enable or disable XP gain completely.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Poker</span><span class="cmd-group-right"><span class="section-count">2 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="poker" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!pokercancel</code><span class="badge prefix">prefix</span></div>
+<p>Cancel the current poker game (host only).</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!pokercreate &lt;buy_in&gt; [max_players]</code><span class="badge prefix">prefix</span></div>
+<p>Create a Texas Hold'em poker game. Usage: pokercreate &lt;buy-in&gt; &lt;max_players 2-4&gt;</p>
+
+</div></div>
+</div>
+</details>
 <div class="docs-pager"><a href="tickets.html" class="prev">
 <span class="docs-pager-label">&#8249; Previous</span>
 <span class="docs-pager-title">Tickets</span>
@@ -417,7 +484,7 @@ Use <code>!reroll &lt;message_id&gt; &lt;winners&gt;</code> if a winner doesn't 
 <aside class="docs-toc">
 <div class="toc-title">On this page</div>
 <ul>
-<li class="lvl2"><a href="#the-basics">The basics</a></li><li class="lvl3"><a href="#wallet-games">Games &amp;amp; risk</a></li><li class="lvl3"><a href="#businesses">Businesses &amp;amp; the stock market</a></li><li class="lvl3"><a href="#poker">Poker</a></li><li class="lvl2"><a href="#leveling-amp-xp">Leveling &amp;amp; XP</a></li><li class="lvl2"><a href="#giveaways">Giveaways</a></li><li class="lvl3"><a href="#wallet-games-2">Wallet &amp;amp; Games</a></li><li class="lvl3"><a href="#giveaways-2">Giveaways</a></li><li class="lvl3"><a href="#leveling-xp">Leveling / XP</a></li><li class="lvl3"><a href="#poker-2">Poker</a></li>
+<li class="lvl2"><a href="#the-basics">The basics</a></li><li class="lvl3"><a href="#wallet-games">Games &amp;amp; risk</a></li><li class="lvl3"><a href="#businesses">Businesses &amp;amp; the stock market</a></li><li class="lvl3"><a href="#poker">Poker</a></li><li class="lvl2"><a href="#leveling-amp-xp">Leveling &amp;amp; XP</a></li><li class="lvl2"><a href="#giveaways">Giveaways</a></li>
 </ul>
 </aside>
 </div>
@@ -486,6 +553,18 @@ Use <code>!reroll &lt;message_id&gt; &lt;winners&gt;</code> if a winner doesn't 
     if(window.innerWidth > 860) closeSidebar();
   });
 })();
+
+function copyCodeBlock(btn){
+  var block = btn.closest('.code-block');
+  var code = block.querySelector('code');
+  var text = code.textContent;
+  navigator.clipboard.writeText(text).then(function(){
+    var label = btn.querySelector('span');
+    var original = label.textContent;
+    label.textContent = 'Copied!';
+    setTimeout(function(){ label.textContent = original; }, 1500);
+  });
+}
 </script>
 
 </body>

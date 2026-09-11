@@ -96,93 +96,97 @@ channel that's created on the fly and cleaned up automatically when it's empty.<
 <h2 id="managing-your-own-channel-members">Managing your own channel (members)</h2>
 <p>Once you join the trigger channel and get your own voice channel, it's yours to control with the
 <code>vc</code>-prefixed commands:</p>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr><td><code class="cmd-usage">!vcrename &lt;name&gt;</code></td><td>Rename your channel.</td></tr>
-<tr><td><code class="cmd-usage">!vclimit &lt;amount&gt;</code></td><td>Set the member limit.</td></tr>
-<tr><td><code class="cmd-usage">!vcbitrate &lt;kbps&gt;</code></td><td>Set the channel bitrate.</td></tr>
-<tr><td><code class="cmd-usage">!vclock</code> / <code class="cmd-usage">!vcunlock</code></td><td>Lock or unlock your channel to new joiners.</td></tr>
-<tr><td><code class="cmd-usage">!vchide</code> / <code class="cmd-usage">!vcunhide</code></td><td>Hide or unhide your channel from the channel list.</td></tr>
-<tr><td><code class="cmd-usage">!vcpermit &lt;member&gt;</code></td><td>Let a specific member into a locked channel.</td></tr>
-<tr><td><code class="cmd-usage">!vcdeny &lt;member&gt;</code></td><td>Deny a specific member.</td></tr>
-<tr><td><code class="cmd-usage">!vckick &lt;member&gt;</code></td><td>Kick a member out of your channel.</td></tr>
-<tr><td><code class="cmd-usage">!vcmute &lt;member&gt;</code> / <code class="cmd-usage">!vcunmute &lt;member&gt;</code></td><td>Server mute/unmute a member in your channel.</td></tr>
-<tr><td><code class="cmd-usage">!vctransfer &lt;member&gt;</code></td><td>Hand channel ownership to someone else.</td></tr>
-<tr><td><code class="cmd-usage">!vcclaim</code></td><td>Claim an abandoned temp channel if the owner left.</td></tr>
-<tr><td><code class="cmd-usage">!vcinfo</code></td><td>View info about the current temp voice channel.</td></tr>
-</tbody>
-</table>
-<div class="toc-inline"><a href="#voicemaster-temp-channels">VoiceMaster (Temp Channels) <span class="section-count">(21)</span></a></div><h3 id="voicemaster-temp-channels">VoiceMaster (Temp Channels) <span class="section-count">— 21 commands</span></h3>
-<table class="cmd-table">
-<thead><tr><th>Command</th><th>Description</th></tr></thead>
-<tbody>
-<tr>
-<td><code class="cmd-usage">!setupvc [category]</code><span class="badge prefix">prefix</span></td>
-<td>Setup the VoiceMaster trigger channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!vcbitrate &lt;kbps&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Set the bitrate for your private voice channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!vcclaim</code><span class="badge prefix">prefix</span></td>
-<td>Claim an abandoned temp voice channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!vcdeny &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Deny a user from your voice channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!vchide</code><span class="badge prefix">prefix</span></td>
-<td>Hide your private voice channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!vcinfo</code><span class="badge prefix">prefix</span></td>
-<td>Show info about your current temp voice channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!vckick &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Kick a member from your voice channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!vclimit &lt;amount&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Set the user limit for your private voice channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!vclock</code><span class="badge prefix">prefix</span></td>
-<td>Lock your private voice channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!vcmute &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Server mute a member in your voice channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!vcpermit &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Permit a user to join your locked voice channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!vcrename &lt;name&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Rename your private voice channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!vctransfer &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Transfer your voice channel ownership.</td>
-</tr><tr>
-<td><code class="cmd-usage">!vcunhide</code><span class="badge prefix">prefix</span></td>
-<td>Unhide your private voice channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!vcunlock</code><span class="badge prefix">prefix</span></td>
-<td>Unlock your private voice channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!vcunmute &lt;member&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Server unmute a member in your voice channel.</td>
-</tr><tr>
-<td><code class="cmd-usage">!voicemaster</code><span class="badge prefix">prefix</span></td>
-<td>Configure VoiceMaster.</td>
-</tr><tr>
-<td><code class="cmd-usage">!voicemaster category &lt;category&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Set the category for created channels.</td>
-</tr><tr>
-<td><code class="cmd-usage">!voicemaster limit &lt;amount&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Set the default user limit for created channels.</td>
-</tr><tr>
-<td><code class="cmd-usage">!voicemaster name &lt;template&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Set the default channel name template.</td>
-</tr><tr>
-<td><code class="cmd-usage">!voicemaster trigger &lt;channel&gt;</code><span class="badge prefix">prefix</span></td>
-<td>Set the trigger channel manually.</td>
-</tr>
-</tbody>
-</table>
+<div class="cmd-grid"><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vcrename &lt;name&gt;</code></div><p>Rename your channel.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vclimit &lt;amount&gt;</code></div><p>Set the member limit.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vcbitrate &lt;kbps&gt;</code></div><p>Set the channel bitrate.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vclock</code> / <code class="cmd-usage">!vcunlock</code></div><p>Lock or unlock your channel to new joiners.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vchide</code> / <code class="cmd-usage">!vcunhide</code></div><p>Hide or unhide your channel from the channel list.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vcpermit &lt;member&gt;</code></div><p>Let a specific member into a locked channel.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vcdeny &lt;member&gt;</code></div><p>Deny a specific member.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vckick &lt;member&gt;</code></div><p>Kick a member out of your channel.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vcmute &lt;member&gt;</code> / <code class="cmd-usage">!vcunmute &lt;member&gt;</code></div><p>Server mute/unmute a member in your channel.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vctransfer &lt;member&gt;</code></div><p>Hand channel ownership to someone else.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vcclaim</code></div><p>Claim an abandoned temp channel if the owner left.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vcinfo</code></div><p>View info about the current temp voice channel.</p></div></div>
+<div class="toc-inline"><a href="#voicemaster-temp-channels">VoiceMaster (Temp Channels) <span class="section-count">(21)</span></a></div><details class="cmd-group" open>
+<summary><span class="cmd-group-title">VoiceMaster (Temp Channels)</span><span class="cmd-group-right"><span class="section-count">21 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="voicemaster-temp-channels" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!setupvc [category]</code><span class="badge prefix">prefix</span></div>
+<p>Setup the VoiceMaster trigger channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcbitrate &lt;kbps&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the bitrate for your private voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcclaim</code><span class="badge prefix">prefix</span></div>
+<p>Claim an abandoned temp voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcdeny &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Deny a user from your voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vchide</code><span class="badge prefix">prefix</span></div>
+<p>Hide your private voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcinfo</code><span class="badge prefix">prefix</span></div>
+<p>Show info about your current temp voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vckick &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Kick a member from your voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vclimit &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the user limit for your private voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vclock</code><span class="badge prefix">prefix</span></div>
+<p>Lock your private voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcmute &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Server mute a member in your voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcpermit &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Permit a user to join your locked voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcrename &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Rename your private voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vctransfer &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Transfer your voice channel ownership.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcunhide</code><span class="badge prefix">prefix</span></div>
+<p>Unhide your private voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcunlock</code><span class="badge prefix">prefix</span></div>
+<p>Unlock your private voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcunmute &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Server unmute a member in your voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!voicemaster</code><span class="badge prefix">prefix</span></div>
+<p>Configure VoiceMaster.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!voicemaster category &lt;category&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the category for created channels.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!voicemaster limit &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the default user limit for created channels.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!voicemaster name &lt;template&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the default channel name template.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!voicemaster trigger &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the trigger channel manually.</p>
+
+</div></div>
+</div>
+</details>
 <div class="docs-pager"><a href="server-setup.html" class="prev">
 <span class="docs-pager-label">&#8249; Previous</span>
 <span class="docs-pager-title">Server Setup</span>
@@ -195,7 +199,7 @@ channel that's created on the fly and cleaned up automatically when it's empty.<
 <aside class="docs-toc">
 <div class="toc-title">On this page</div>
 <ul>
-<li class="lvl2"><a href="#setting-it-up-staff">Setting it up (staff)</a></li><li class="lvl2"><a href="#managing-your-own-channel-members">Managing your own channel (members)</a></li><li class="lvl3"><a href="#voicemaster-temp-channels">VoiceMaster (Temp Channels)</a></li>
+<li class="lvl2"><a href="#setting-it-up-staff">Setting it up (staff)</a></li><li class="lvl2"><a href="#managing-your-own-channel-members">Managing your own channel (members)</a></li>
 </ul>
 </aside>
 </div>
@@ -264,6 +268,18 @@ channel that's created on the fly and cleaned up automatically when it's empty.<
     if(window.innerWidth > 860) closeSidebar();
   });
 })();
+
+function copyCodeBlock(btn){
+  var block = btn.closest('.code-block');
+  var code = block.querySelector('code');
+  var text = code.textContent;
+  navigator.clipboard.writeText(text).then(function(){
+    var label = btn.querySelector('span');
+    var original = label.textContent;
+    label.textContent = 'Copied!';
+    setTimeout(function(){ label.textContent = original; }, 1500);
+  });
+}
 </script>
 
 </body>
