@@ -1,5 +1,10 @@
 # Pleed Docs — drop-in for Pleed-FAQ
 
+**v2:** restructured to a 3-column Mintlify-style layout (grouped left sidebar with
+search filter + icons, "On this page" right-hand TOC) inspired by docs.bleed.bot.
+Color palette is untouched — same `--pl-*` variables as before, just a new shell
+around the content.
+
 This is a full `docs/` folder generated from your `cogs/` export (600 public-facing
 commands across 10 categories, owner/dev-only commands like `dev.py` and `benchmark.py`
 excluded on purpose).
