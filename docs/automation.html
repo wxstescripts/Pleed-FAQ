@@ -29,19 +29,37 @@
 
 <div class="docs-shell">
 <aside class="docs-sidebar">
-<h4>Documentation</h4>
-<a href="index.html" class="">Overview</a>
-<a href="getting-started.html" class="">Getting Started</a>
-<a href="moderation.html" class="">Moderation</a>
-<a href="security.html" class="">Security & Antinuke</a>
-<a href="tickets.html" class="">Tickets</a>
-<a href="economy.html" class="">Economy & Leveling</a>
-<a href="automation.html" class="active">Automation</a>
-<a href="server-setup.html" class="">Server Setup</a>
-<a href="voice.html" class="">Voice</a>
-<a href="utility.html" class="">Information & Utility</a>
-<a href="fun.html" class="">Fun & Miscellaneous</a>
+<div class="docs-search">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+<input id="docs-search-input" type="text" placeholder="Search docs...">
+<kbd>/</kbd>
+</div>
+<div class="docs-group">
+<h4>Get Started</h4>
+<a href="index.html" class="navlink" data-label="overview"><span class="ic">&#9673;</span>Overview</a><a href="getting-started.html" class="navlink" data-label="getting started"><span class="ic">&#9654;</span>Getting Started</a>
+</div>
+<div class="docs-group">
+<h4>Moderation &amp; Security</h4>
+<a href="moderation.html" class="navlink" data-label="moderation"><span class="ic">&#128737;</span>Moderation</a><a href="security.html" class="navlink" data-label="security &amp; antinuke"><span class="ic">&#128272;</span>Security &amp; AntiNuke</a><a href="tickets.html" class="navlink" data-label="tickets"><span class="ic">&#127991;</span>Tickets</a>
+</div>
+<div class="docs-group">
+<h4>Economy</h4>
+<a href="economy.html" class="navlink" data-label="economy &amp; leveling"><span class="ic">&#128176;</span>Economy &amp; Leveling</a>
+</div>
+<div class="docs-group">
+<h4>Automation</h4>
+<a href="automation.html" class="navlink active" data-label="automation"><span class="ic">&#9881;</span>Automation</a>
+</div>
+<div class="docs-group">
+<h4>Server</h4>
+<a href="server-setup.html" class="navlink" data-label="server setup"><span class="ic">&#128295;</span>Server Setup</a><a href="voice.html" class="navlink" data-label="voice"><span class="ic">&#128266;</span>Voice</a>
+</div>
+<div class="docs-group">
+<h4>Miscellaneous</h4>
+<a href="utility.html" class="navlink" data-label="information &amp; utility"><span class="ic">&#8505;</span>Information &amp; Utility</a><a href="fun.html" class="navlink" data-label="fun &amp; miscellaneous"><span class="ic">&#127918;</span>Fun &amp; Miscellaneous</a>
+</div>
 </aside>
+
 <main class="docs-main">
 
 <div class="docs-eyebrow">Automation</div>
@@ -50,7 +68,7 @@
 message content, reaction shortcuts respond to keywords with an emoji, and custom commands let you
 create your own server-specific commands.</p>
 
-<h2>Automations (trigger &rarr; response)</h2>
+<h2 id="automations-trigger-rarr-response">Automations (trigger &rarr; response)</h2>
 <p>An automation matches messages against a trigger and fires a response — a reply, a reaction, or
 both — with fine-grained control over who and where it applies.</p>
 <ol>
@@ -73,7 +91,7 @@ without deleting them.</p>
 <li><code>!autorespond &lt;trigger&gt; &lt;response&gt;</code> &mdash; reply with fixed text whenever the trigger appears (<code>!autoresponses</code> to list, <code>!autoresponddel</code> to remove).</li>
 </ul>
 
-<h2>Custom commands</h2>
+<h2 id="custom-commands">Custom commands</h2>
 <p>Create your own server-specific commands under your existing prefix:</p>
 <ul>
 <li><code>!addcmd &lt;name&gt; &lt;response&gt;</code> &mdash; create a custom command.</li>
@@ -82,7 +100,7 @@ without deleting them.</p>
 <li><code>!listcmds</code> / <code>!viewcmd &lt;name&gt;</code> &mdash; browse what's already set up.</li>
 </ul>
 
-<h2>AutoMod (spam &amp; word filtering)</h2>
+<h2 id="automod-spam-amp-word-filtering">AutoMod (spam &amp; word filtering)</h2>
 <p>AutoMod lives under <a href="moderation.html#automod">Moderation</a> — it handles blocked words,
 per-category punishment escalation, and strike tracking, separate from the trigger-based automations
 on this page.</p>
@@ -190,7 +208,7 @@ on this page.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="custom-commands">Custom Commands <span class="section-count">— 6 commands</span></h3>
+<h3 id="custom-commands-2">Custom Commands <span class="section-count">— 6 commands</span></h3>
 <table class="cmd-table">
 <thead><tr><th>Command</th><th>Description</th></tr></thead>
 <tbody>
@@ -216,6 +234,13 @@ on this page.</p>
 </tbody>
 </table>
 </main>
+
+<aside class="docs-toc">
+<div class="toc-title">On this page</div>
+<ul>
+<li class="lvl2"><a href="#automations-trigger-rarr-response">Automations (trigger &amp;rarr; response)</a></li><li class="lvl3"><a href="#reacts-shortcuts">Auto-reacts &amp;amp; auto-responses (quick version)</a></li><li class="lvl2"><a href="#custom-commands">Custom commands</a></li><li class="lvl2"><a href="#automod-spam-amp-word-filtering">AutoMod (spam &amp;amp; word filtering)</a></li><li class="lvl3"><a href="#automation-rules">Automation Rules</a></li><li class="lvl3"><a href="#custom-commands-2">Custom Commands</a></li>
+</ul>
+</aside>
 </div>
 
 <footer>
@@ -230,5 +255,24 @@ on this page.</p>
 </div>
 <p>© 2026 Pleed Development</p>
 </footer>
+
+<script>
+(function(){
+  var input = document.getElementById('docs-search-input');
+  if(!input) return;
+  input.addEventListener('input', function(){
+    var q = input.value.trim().toLowerCase();
+    document.querySelectorAll('.docs-group .navlink').forEach(function(a){
+      var match = !q || a.dataset.label.indexOf(q) !== -1;
+      a.classList.toggle('hidden', !match);
+    });
+    document.querySelectorAll('.docs-group').forEach(function(g){
+      var anyVisible = g.querySelectorAll('.navlink:not(.hidden)').length > 0;
+      g.style.display = anyVisible ? '' : 'none';
+    });
+  });
+})();
+</script>
+
 </body>
 </html>

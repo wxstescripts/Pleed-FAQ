@@ -29,19 +29,37 @@
 
 <div class="docs-shell">
 <aside class="docs-sidebar">
-<h4>Documentation</h4>
-<a href="index.html" class="">Overview</a>
-<a href="getting-started.html" class="">Getting Started</a>
-<a href="moderation.html" class="">Moderation</a>
-<a href="security.html" class="active">Security & Antinuke</a>
-<a href="tickets.html" class="">Tickets</a>
-<a href="economy.html" class="">Economy & Leveling</a>
-<a href="automation.html" class="">Automation</a>
-<a href="server-setup.html" class="">Server Setup</a>
-<a href="voice.html" class="">Voice</a>
-<a href="utility.html" class="">Information & Utility</a>
-<a href="fun.html" class="">Fun & Miscellaneous</a>
+<div class="docs-search">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+<input id="docs-search-input" type="text" placeholder="Search docs...">
+<kbd>/</kbd>
+</div>
+<div class="docs-group">
+<h4>Get Started</h4>
+<a href="index.html" class="navlink" data-label="overview"><span class="ic">&#9673;</span>Overview</a><a href="getting-started.html" class="navlink" data-label="getting started"><span class="ic">&#9654;</span>Getting Started</a>
+</div>
+<div class="docs-group">
+<h4>Moderation &amp; Security</h4>
+<a href="moderation.html" class="navlink" data-label="moderation"><span class="ic">&#128737;</span>Moderation</a><a href="security.html" class="navlink active" data-label="security &amp; antinuke"><span class="ic">&#128272;</span>Security &amp; AntiNuke</a><a href="tickets.html" class="navlink" data-label="tickets"><span class="ic">&#127991;</span>Tickets</a>
+</div>
+<div class="docs-group">
+<h4>Economy</h4>
+<a href="economy.html" class="navlink" data-label="economy &amp; leveling"><span class="ic">&#128176;</span>Economy &amp; Leveling</a>
+</div>
+<div class="docs-group">
+<h4>Automation</h4>
+<a href="automation.html" class="navlink" data-label="automation"><span class="ic">&#9881;</span>Automation</a>
+</div>
+<div class="docs-group">
+<h4>Server</h4>
+<a href="server-setup.html" class="navlink" data-label="server setup"><span class="ic">&#128295;</span>Server Setup</a><a href="voice.html" class="navlink" data-label="voice"><span class="ic">&#128266;</span>Voice</a>
+</div>
+<div class="docs-group">
+<h4>Miscellaneous</h4>
+<a href="utility.html" class="navlink" data-label="information &amp; utility"><span class="ic">&#8505;</span>Information &amp; Utility</a><a href="fun.html" class="navlink" data-label="fun &amp; miscellaneous"><span class="ic">&#127918;</span>Fun &amp; Miscellaneous</a>
+</div>
 </aside>
+
 <main class="docs-main">
 
 <div class="docs-eyebrow">Security</div>
@@ -50,7 +68,7 @@
 channel deletion, role deletion, webhook spam) and automatically punishes whoever triggers them,
 plus a join gate for raid protection and rate limiting for command abuse.</p>
 
-<h3 id="antinuke-protection">Setting up AntiNuke</h3>
+<h3 id="antinuke-setup">Setting up AntiNuke</h3>
 <p>AntiNuke protects against compromised staff accounts or malicious bots by watching audit-log
 actions and punishing whoever crosses a threshold within a short window. Each module (bans, kicks,
 channel deletes, role deletes, emoji deletes, webhook creation, bot adds, vanity URL changes) has
@@ -67,11 +85,11 @@ its own independent threshold and punishment.</p>
 must sit above the accounts it may need to punish, or it won't be able to act in time.
 </div>
 
-<h3 id="join-gate-anti-alt">Join Gate / Anti-Alt</h3>
+<h3 id="join-gate-guide">Join Gate / Anti-Alt</h3>
 <p>Screens new joins for very new or suspicious accounts (common in raid bot waves) and can hold
 them back from full access until they pass your checks.</p>
 
-<h3 id="rate-limiting">Rate Limiting</h3>
+<h3 id="rate-limiting-guide">Rate Limiting</h3>
 <p>Throttles command spam so a single user (or a compromised account) can't hammer moderation or
 economy commands to cause disruption.</p>
 <div class="toc-inline"><a href="#antinuke-protection">AntiNuke Protection <span class="section-count">(18)</span></a>
@@ -357,6 +375,13 @@ economy commands to cause disruption.</p>
 </tbody>
 </table>
 </main>
+
+<aside class="docs-toc">
+<div class="toc-title">On this page</div>
+<ul>
+<li class="lvl3"><a href="#antinuke-setup">Setting up AntiNuke</a></li><li class="lvl3"><a href="#join-gate-guide">Join Gate / Anti-Alt</a></li><li class="lvl3"><a href="#rate-limiting-guide">Rate Limiting</a></li><li class="lvl3"><a href="#antinuke-protection">AntiNuke Protection</a></li><li class="lvl3"><a href="#fake-permissions">Fake Permissions</a></li><li class="lvl3"><a href="#join-gate-anti-alt">Join Gate / Anti-Alt</a></li><li class="lvl3"><a href="#kick-trap">Kick Trap</a></li><li class="lvl3"><a href="#rate-limiting">Rate Limiting</a></li>
+</ul>
+</aside>
 </div>
 
 <footer>
@@ -371,5 +396,24 @@ economy commands to cause disruption.</p>
 </div>
 <p>© 2026 Pleed Development</p>
 </footer>
+
+<script>
+(function(){
+  var input = document.getElementById('docs-search-input');
+  if(!input) return;
+  input.addEventListener('input', function(){
+    var q = input.value.trim().toLowerCase();
+    document.querySelectorAll('.docs-group .navlink').forEach(function(a){
+      var match = !q || a.dataset.label.indexOf(q) !== -1;
+      a.classList.toggle('hidden', !match);
+    });
+    document.querySelectorAll('.docs-group').forEach(function(g){
+      var anyVisible = g.querySelectorAll('.navlink:not(.hidden)').length > 0;
+      g.style.display = anyVisible ? '' : 'none';
+    });
+  });
+})();
+</script>
+
 </body>
 </html>

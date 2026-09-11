@@ -29,31 +29,49 @@
 
 <div class="docs-shell">
 <aside class="docs-sidebar">
-<h4>Documentation</h4>
-<a href="index.html" class="">Overview</a>
-<a href="getting-started.html" class="active">Getting Started</a>
-<a href="moderation.html" class="">Moderation</a>
-<a href="security.html" class="">Security & Antinuke</a>
-<a href="tickets.html" class="">Tickets</a>
-<a href="economy.html" class="">Economy & Leveling</a>
-<a href="automation.html" class="">Automation</a>
-<a href="server-setup.html" class="">Server Setup</a>
-<a href="voice.html" class="">Voice</a>
-<a href="utility.html" class="">Information & Utility</a>
-<a href="fun.html" class="">Fun & Miscellaneous</a>
+<div class="docs-search">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+<input id="docs-search-input" type="text" placeholder="Search docs...">
+<kbd>/</kbd>
+</div>
+<div class="docs-group">
+<h4>Get Started</h4>
+<a href="index.html" class="navlink" data-label="overview"><span class="ic">&#9673;</span>Overview</a><a href="getting-started.html" class="navlink active" data-label="getting started"><span class="ic">&#9654;</span>Getting Started</a>
+</div>
+<div class="docs-group">
+<h4>Moderation &amp; Security</h4>
+<a href="moderation.html" class="navlink" data-label="moderation"><span class="ic">&#128737;</span>Moderation</a><a href="security.html" class="navlink" data-label="security &amp; antinuke"><span class="ic">&#128272;</span>Security &amp; AntiNuke</a><a href="tickets.html" class="navlink" data-label="tickets"><span class="ic">&#127991;</span>Tickets</a>
+</div>
+<div class="docs-group">
+<h4>Economy</h4>
+<a href="economy.html" class="navlink" data-label="economy &amp; leveling"><span class="ic">&#128176;</span>Economy &amp; Leveling</a>
+</div>
+<div class="docs-group">
+<h4>Automation</h4>
+<a href="automation.html" class="navlink" data-label="automation"><span class="ic">&#9881;</span>Automation</a>
+</div>
+<div class="docs-group">
+<h4>Server</h4>
+<a href="server-setup.html" class="navlink" data-label="server setup"><span class="ic">&#128295;</span>Server Setup</a><a href="voice.html" class="navlink" data-label="voice"><span class="ic">&#128266;</span>Voice</a>
+</div>
+<div class="docs-group">
+<h4>Miscellaneous</h4>
+<a href="utility.html" class="navlink" data-label="information &amp; utility"><span class="ic">&#8505;</span>Information &amp; Utility</a><a href="fun.html" class="navlink" data-label="fun &amp; miscellaneous"><span class="ic">&#127918;</span>Fun &amp; Miscellaneous</a>
+</div>
 </aside>
+
 <main class="docs-main">
 
 <div class="docs-eyebrow">Getting Started</div>
 <h1>Getting Started with Pleed</h1>
 <p class="docs-lede">A quick walkthrough for adding Pleed to your server and getting it configured.</p>
 
-<h2>1. Invite the bot</h2>
+<h2 id="1-invite-the-bot">1. Invite the bot</h2>
 <p>Use the <a href="../index.html#stats">Invite</a> button on the homepage, or go straight to the
 OAuth invite link. Grant Administrator (recommended for full moderation/antinuke coverage) or a
 curated set of permissions if you prefer to scope it down manually.</p>
 
-<h2>2. Check your prefix</h2>
+<h2 id="2-check-your-prefix">2. Check your prefix</h2>
 <p>Pleed responds to prefix commands (default <code>!</code>) and slash commands (<code>/</code>).
 Both work side by side — use whichever is faster for a given command.</p>
 <table class="cmd-table">
@@ -66,7 +84,7 @@ Both work side by side — use whichever is faster for a given command.</p>
 </tbody>
 </table>
 
-<h2>3. Run the setup wizard</h2>
+<h2 id="3-run-the-setup-wizard">3. Run the setup wizard</h2>
 <p>Most modules have their own guided setup command rather than a dozen manual config commands.
 Start with the server setup wizard, then layer on the specific modules you want:</p>
 <ul>
@@ -77,7 +95,7 @@ Start with the server setup wizard, then layer on the specific modules you want:
 <li><code>!voicemaster</code> setup command &mdash; enable temp voice channels (see <a href="voice.html">Voice</a>).</li>
 </ul>
 
-<h2>4. Understand permissions</h2>
+<h2 id="4-understand-permissions">4. Understand permissions</h2>
 <p>Every command that changes server settings checks your Discord permissions before running (usually
 <strong>Manage Server</strong>, <strong>Manage Roles</strong>, <strong>Manage Channels</strong>, or
 <strong>Administrator</strong>, depending on the command). If a command silently refuses to run, check
@@ -90,7 +108,7 @@ management) Pleed's own role must be positioned above the target member's highes
 Settings &rarr; Roles, or the action will fail.</p>
 </div>
 
-<h2>Where to go next</h2>
+<h2 id="where-to-go-next">Where to go next</h2>
 <div class="toc-inline">
 <a href="moderation.html">Moderation</a>
 <a href="security.html">Security &amp; AntiNuke</a>
@@ -104,6 +122,13 @@ Settings &rarr; Roles, or the action will fail.</p>
 </div>
 
 </main>
+
+<aside class="docs-toc">
+<div class="toc-title">On this page</div>
+<ul>
+<li class="lvl2"><a href="#1-invite-the-bot">1. Invite the bot</a></li><li class="lvl2"><a href="#2-check-your-prefix">2. Check your prefix</a></li><li class="lvl2"><a href="#3-run-the-setup-wizard">3. Run the setup wizard</a></li><li class="lvl2"><a href="#4-understand-permissions">4. Understand permissions</a></li><li class="lvl2"><a href="#where-to-go-next">Where to go next</a></li>
+</ul>
+</aside>
 </div>
 
 <footer>
@@ -118,5 +143,24 @@ Settings &rarr; Roles, or the action will fail.</p>
 </div>
 <p>© 2026 Pleed Development</p>
 </footer>
+
+<script>
+(function(){
+  var input = document.getElementById('docs-search-input');
+  if(!input) return;
+  input.addEventListener('input', function(){
+    var q = input.value.trim().toLowerCase();
+    document.querySelectorAll('.docs-group .navlink').forEach(function(a){
+      var match = !q || a.dataset.label.indexOf(q) !== -1;
+      a.classList.toggle('hidden', !match);
+    });
+    document.querySelectorAll('.docs-group').forEach(function(g){
+      var anyVisible = g.querySelectorAll('.navlink:not(.hidden)').length > 0;
+      g.style.display = anyVisible ? '' : 'none';
+    });
+  });
+})();
+</script>
+
 </body>
 </html>

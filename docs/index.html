@@ -29,19 +29,37 @@
 
 <div class="docs-shell">
 <aside class="docs-sidebar">
-<h4>Documentation</h4>
-<a href="index.html" class="active">Overview</a>
-<a href="getting-started.html" class="">Getting Started</a>
-<a href="moderation.html" class="">Moderation</a>
-<a href="security.html" class="">Security & Antinuke</a>
-<a href="tickets.html" class="">Tickets</a>
-<a href="economy.html" class="">Economy & Leveling</a>
-<a href="automation.html" class="">Automation</a>
-<a href="server-setup.html" class="">Server Setup</a>
-<a href="voice.html" class="">Voice</a>
-<a href="utility.html" class="">Information & Utility</a>
-<a href="fun.html" class="">Fun & Miscellaneous</a>
+<div class="docs-search">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+<input id="docs-search-input" type="text" placeholder="Search docs...">
+<kbd>/</kbd>
+</div>
+<div class="docs-group">
+<h4>Get Started</h4>
+<a href="index.html" class="navlink active" data-label="overview"><span class="ic">&#9673;</span>Overview</a><a href="getting-started.html" class="navlink" data-label="getting started"><span class="ic">&#9654;</span>Getting Started</a>
+</div>
+<div class="docs-group">
+<h4>Moderation &amp; Security</h4>
+<a href="moderation.html" class="navlink" data-label="moderation"><span class="ic">&#128737;</span>Moderation</a><a href="security.html" class="navlink" data-label="security &amp; antinuke"><span class="ic">&#128272;</span>Security &amp; AntiNuke</a><a href="tickets.html" class="navlink" data-label="tickets"><span class="ic">&#127991;</span>Tickets</a>
+</div>
+<div class="docs-group">
+<h4>Economy</h4>
+<a href="economy.html" class="navlink" data-label="economy &amp; leveling"><span class="ic">&#128176;</span>Economy &amp; Leveling</a>
+</div>
+<div class="docs-group">
+<h4>Automation</h4>
+<a href="automation.html" class="navlink" data-label="automation"><span class="ic">&#9881;</span>Automation</a>
+</div>
+<div class="docs-group">
+<h4>Server</h4>
+<a href="server-setup.html" class="navlink" data-label="server setup"><span class="ic">&#128295;</span>Server Setup</a><a href="voice.html" class="navlink" data-label="voice"><span class="ic">&#128266;</span>Voice</a>
+</div>
+<div class="docs-group">
+<h4>Miscellaneous</h4>
+<a href="utility.html" class="navlink" data-label="information &amp; utility"><span class="ic">&#8505;</span>Information &amp; Utility</a><a href="fun.html" class="navlink" data-label="fun &amp; miscellaneous"><span class="ic">&#127918;</span>Fun &amp; Miscellaneous</a>
+</div>
 </aside>
+
 <main class="docs-main">
 
 <div class="docs-eyebrow">Documentation</div>
@@ -57,52 +75,59 @@ require the relevant Discord permission (Manage Server, Manage Roles, Administra
 tell you if you're missing one.
 </div>
 
-<h2>Browse by category</h2>
+<h2 id="browse-by-category">Browse by category</h2>
 <div class="cat-grid">
 <a class="cat-card" href="getting-started.html">
-<h3>Getting Started</h3>
+<h3 id="getting-started">Getting Started</h3>
 <p>Invite Pleed, set your prefix, and find your way around.</p>
 <span class="count">Start here</span>
 </a><a class="cat-card" href="moderation.html">
-<h3>Moderation</h3>
+<h3 id="moderation">Moderation</h3>
 <p>Kicks, bans, jail, warnings, lockdowns, logging, and role tools.</p>
 <span class="count">134 commands</span>
 </a><a class="cat-card" href="security.html">
-<h3>Security &amp; AntiNuke</h3>
+<h3 id="security-amp-antinuke">Security &amp; AntiNuke</h3>
 <p>AntiNuke protection, join gate, rate limiting, and raid defense.</p>
 <span class="count">81 commands</span>
 </a><a class="cat-card" href="tickets.html">
-<h3>Tickets</h3>
+<h3 id="tickets">Tickets</h3>
 <p>Support ticket panels, claiming, and blacklists.</p>
 <span class="count">13 commands</span>
 </a><a class="cat-card" href="economy.html">
-<h3>Economy &amp; Leveling</h3>
+<h3 id="economy-amp-leveling">Economy &amp; Leveling</h3>
 <p>Wallets, businesses, stocks, gambling games, XP and levels.</p>
 <span class="count">81 commands</span>
 </a><a class="cat-card" href="automation.html">
-<h3>Automation</h3>
+<h3 id="automation">Automation</h3>
 <p>Auto-responders, reaction triggers, filters, and custom commands.</p>
 <span class="count">38 commands</span>
 </a><a class="cat-card" href="server-setup.html">
-<h3>Server Setup</h3>
+<h3 id="server-setup">Server Setup</h3>
 <p>Welcome messages, update logs, invite panels, first-time setup.</p>
 <span class="count">34 commands</span>
 </a><a class="cat-card" href="voice.html">
-<h3>Voice</h3>
+<h3 id="voice">Voice</h3>
 <p>VoiceMaster temp voice channels and voice controls.</p>
 <span class="count">21 commands</span>
 </a><a class="cat-card" href="utility.html">
-<h3>Information &amp; Utility</h3>
+<h3 id="information-amp-utility">Information &amp; Utility</h3>
 <p>Lookups, snipe, highlights, image tools, server info.</p>
 <span class="count">102 commands</span>
 </a><a class="cat-card" href="fun.html">
-<h3>Fun &amp; Miscellaneous</h3>
+<h3 id="fun-amp-miscellaneous">Fun &amp; Miscellaneous</h3>
 <p>Games, music, Spotify, webhooks, server customization.</p>
 <span class="count">93 commands</span>
 </a>
 </div>
 
 </main>
+
+<aside class="docs-toc">
+<div class="toc-title">On this page</div>
+<ul>
+<li class="lvl2"><a href="#browse-by-category">Browse by category</a></li><li class="lvl3"><a href="#getting-started">Getting Started</a></li><li class="lvl3"><a href="#moderation">Moderation</a></li><li class="lvl3"><a href="#security-amp-antinuke">Security &amp;amp; AntiNuke</a></li><li class="lvl3"><a href="#tickets">Tickets</a></li><li class="lvl3"><a href="#economy-amp-leveling">Economy &amp;amp; Leveling</a></li><li class="lvl3"><a href="#automation">Automation</a></li><li class="lvl3"><a href="#server-setup">Server Setup</a></li><li class="lvl3"><a href="#voice">Voice</a></li><li class="lvl3"><a href="#information-amp-utility">Information &amp;amp; Utility</a></li><li class="lvl3"><a href="#fun-amp-miscellaneous">Fun &amp;amp; Miscellaneous</a></li>
+</ul>
+</aside>
 </div>
 
 <footer>
@@ -117,5 +142,24 @@ tell you if you're missing one.
 </div>
 <p>© 2026 Pleed Development</p>
 </footer>
+
+<script>
+(function(){
+  var input = document.getElementById('docs-search-input');
+  if(!input) return;
+  input.addEventListener('input', function(){
+    var q = input.value.trim().toLowerCase();
+    document.querySelectorAll('.docs-group .navlink').forEach(function(a){
+      var match = !q || a.dataset.label.indexOf(q) !== -1;
+      a.classList.toggle('hidden', !match);
+    });
+    document.querySelectorAll('.docs-group').forEach(function(g){
+      var anyVisible = g.querySelectorAll('.navlink:not(.hidden)').length > 0;
+      g.style.display = anyVisible ? '' : 'none';
+    });
+  });
+})();
+</script>
+
 </body>
 </html>

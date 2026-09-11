@@ -29,19 +29,37 @@
 
 <div class="docs-shell">
 <aside class="docs-sidebar">
-<h4>Documentation</h4>
-<a href="index.html" class="">Overview</a>
-<a href="getting-started.html" class="">Getting Started</a>
-<a href="moderation.html" class="">Moderation</a>
-<a href="security.html" class="">Security & Antinuke</a>
-<a href="tickets.html" class="">Tickets</a>
-<a href="economy.html" class="active">Economy & Leveling</a>
-<a href="automation.html" class="">Automation</a>
-<a href="server-setup.html" class="">Server Setup</a>
-<a href="voice.html" class="">Voice</a>
-<a href="utility.html" class="">Information & Utility</a>
-<a href="fun.html" class="">Fun & Miscellaneous</a>
+<div class="docs-search">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+<input id="docs-search-input" type="text" placeholder="Search docs...">
+<kbd>/</kbd>
+</div>
+<div class="docs-group">
+<h4>Get Started</h4>
+<a href="index.html" class="navlink" data-label="overview"><span class="ic">&#9673;</span>Overview</a><a href="getting-started.html" class="navlink" data-label="getting started"><span class="ic">&#9654;</span>Getting Started</a>
+</div>
+<div class="docs-group">
+<h4>Moderation &amp; Security</h4>
+<a href="moderation.html" class="navlink" data-label="moderation"><span class="ic">&#128737;</span>Moderation</a><a href="security.html" class="navlink" data-label="security &amp; antinuke"><span class="ic">&#128272;</span>Security &amp; AntiNuke</a><a href="tickets.html" class="navlink" data-label="tickets"><span class="ic">&#127991;</span>Tickets</a>
+</div>
+<div class="docs-group">
+<h4>Economy</h4>
+<a href="economy.html" class="navlink active" data-label="economy &amp; leveling"><span class="ic">&#128176;</span>Economy &amp; Leveling</a>
+</div>
+<div class="docs-group">
+<h4>Automation</h4>
+<a href="automation.html" class="navlink" data-label="automation"><span class="ic">&#9881;</span>Automation</a>
+</div>
+<div class="docs-group">
+<h4>Server</h4>
+<a href="server-setup.html" class="navlink" data-label="server setup"><span class="ic">&#128295;</span>Server Setup</a><a href="voice.html" class="navlink" data-label="voice"><span class="ic">&#128266;</span>Voice</a>
+</div>
+<div class="docs-group">
+<h4>Miscellaneous</h4>
+<a href="utility.html" class="navlink" data-label="information &amp; utility"><span class="ic">&#8505;</span>Information &amp; Utility</a><a href="fun.html" class="navlink" data-label="fun &amp; miscellaneous"><span class="ic">&#127918;</span>Fun &amp; Miscellaneous</a>
+</div>
 </aside>
+
 <main class="docs-main">
 
 <div class="docs-eyebrow">Economy &amp; Leveling</div>
@@ -49,7 +67,7 @@
 <p class="docs-lede">A full virtual economy — wallets, a bank, businesses, a stock market, a shop,
 casino-style games, and a separate XP/leveling system with role rewards.</p>
 
-<h2>The basics</h2>
+<h2 id="the-basics">The basics</h2>
 <table class="cmd-table">
 <thead><tr><th>Command</th><th>Description</th></tr></thead>
 <tbody>
@@ -80,7 +98,7 @@ trade on the built-in stock market; check prices with <code>!stocks</code> and y
 <p>A multiplayer Texas Hold'em table: <code>!pokercreate &lt;buy_in&gt; [max_players]</code> starts a
 table, others join in, and the host can end it early with <code>!pokercancel</code>.</p>
 
-<h2>Leveling &amp; XP</h2>
+<h2 id="leveling-amp-xp">Leveling &amp; XP</h2>
 <p>A separate activity-based system: members earn XP for chatting and level up, with optional role
 rewards at chosen levels.</p>
 <ul>
@@ -91,7 +109,7 @@ rewards at chosen levels.</p>
 <li><code>!leveltoggle</code> / <code>!xptoggle</code> &mdash; turn level-up announcements or XP gain off entirely.</li>
 </ul>
 
-<h2>Giveaways</h2>
+<h2 id="giveaways">Giveaways</h2>
 <p>Run giveaways with role-based bonus entries and message-count requirements:
 <code>!create &lt;prize&gt; &lt;duration&gt; &lt;winners&gt; [channel] [messages_required] [roles_bonus_entries]</code>.
 Use <code>!reroll &lt;message_id&gt; &lt;winners&gt;</code> if a winner doesn't claim their prize, or
@@ -99,7 +117,7 @@ Use <code>!reroll &lt;message_id&gt; &lt;winners&gt;</code> if a winner doesn't 
 <div class="toc-inline"><a href="#wallet-games">Wallet & Games <span class="section-count">(42)</span></a>
 <a href="#giveaways">Giveaways <span class="section-count">(6)</span></a>
 <a href="#leveling-xp">Leveling / XP <span class="section-count">(31)</span></a>
-<a href="#poker">Poker <span class="section-count">(2)</span></a></div><h3 id="wallet-games">Wallet &amp; Games <span class="section-count">— 42 commands</span></h3>
+<a href="#poker">Poker <span class="section-count">(2)</span></a></div><h3 id="wallet-games-2">Wallet &amp; Games <span class="section-count">— 42 commands</span></h3>
 <table class="cmd-table">
 <thead><tr><th>Command</th><th>Description</th></tr></thead>
 <tbody>
@@ -232,7 +250,7 @@ Use <code>!reroll &lt;message_id&gt; &lt;winners&gt;</code> if a winner doesn't 
 </tr>
 </tbody>
 </table>
-<h3 id="giveaways">Giveaways <span class="section-count">— 6 commands</span></h3>
+<h3 id="giveaways-2">Giveaways <span class="section-count">— 6 commands</span></h3>
 <table class="cmd-table">
 <thead><tr><th>Command</th><th>Description</th></tr></thead>
 <tbody>
@@ -357,7 +375,7 @@ Use <code>!reroll &lt;message_id&gt; &lt;winners&gt;</code> if a winner doesn't 
 </tr>
 </tbody>
 </table>
-<h3 id="poker">Poker <span class="section-count">— 2 commands</span></h3>
+<h3 id="poker-2">Poker <span class="section-count">— 2 commands</span></h3>
 <table class="cmd-table">
 <thead><tr><th>Command</th><th>Description</th></tr></thead>
 <tbody>
@@ -371,6 +389,13 @@ Use <code>!reroll &lt;message_id&gt; &lt;winners&gt;</code> if a winner doesn't 
 </tbody>
 </table>
 </main>
+
+<aside class="docs-toc">
+<div class="toc-title">On this page</div>
+<ul>
+<li class="lvl2"><a href="#the-basics">The basics</a></li><li class="lvl3"><a href="#wallet-games">Games &amp;amp; risk</a></li><li class="lvl3"><a href="#businesses">Businesses &amp;amp; the stock market</a></li><li class="lvl3"><a href="#poker">Poker</a></li><li class="lvl2"><a href="#leveling-amp-xp">Leveling &amp;amp; XP</a></li><li class="lvl2"><a href="#giveaways">Giveaways</a></li><li class="lvl3"><a href="#wallet-games-2">Wallet &amp;amp; Games</a></li><li class="lvl3"><a href="#giveaways-2">Giveaways</a></li><li class="lvl3"><a href="#leveling-xp">Leveling / XP</a></li><li class="lvl3"><a href="#poker-2">Poker</a></li>
+</ul>
+</aside>
 </div>
 
 <footer>
@@ -385,5 +410,24 @@ Use <code>!reroll &lt;message_id&gt; &lt;winners&gt;</code> if a winner doesn't 
 </div>
 <p>© 2026 Pleed Development</p>
 </footer>
+
+<script>
+(function(){
+  var input = document.getElementById('docs-search-input');
+  if(!input) return;
+  input.addEventListener('input', function(){
+    var q = input.value.trim().toLowerCase();
+    document.querySelectorAll('.docs-group .navlink').forEach(function(a){
+      var match = !q || a.dataset.label.indexOf(q) !== -1;
+      a.classList.toggle('hidden', !match);
+    });
+    document.querySelectorAll('.docs-group').forEach(function(g){
+      var anyVisible = g.querySelectorAll('.navlink:not(.hidden)').length > 0;
+      g.style.display = anyVisible ? '' : 'none';
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
