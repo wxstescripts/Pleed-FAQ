@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github, Twitter, MessageSquare } from "lucide-react";
+import { MessageSquare, Globe, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -18,10 +18,10 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <a href="#" className="text-gray-500 hover:text-white transition-colors">
-                <Twitter className="w-5 h-5" />
+                <Globe className="w-5 h-5" />
               </a>
               <a href="#" className="text-gray-500 hover:text-white transition-colors">
-                <Github className="w-5 h-5" />
+                <Mail className="w-5 h-5" />
               </a>
               <a href="#" className="text-gray-500 hover:text-white transition-colors">
                 <MessageSquare className="w-5 h-5" />
@@ -34,7 +34,6 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-gray-400">
               <li><Link href="#features" className="hover:text-purple-400 transition-colors">Features</Link></li>
               <li><Link href="/commands" className="hover:text-purple-400 transition-colors">Commands</Link></li>
-              <li><Link href="/dashboard" className="hover:text-purple-400 transition-colors">Dashboard</Link></li>
               <li><Link href="/status" className="hover:text-purple-400 transition-colors">Status</Link></li>
             </ul>
           </div>
@@ -44,7 +43,6 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-gray-400">
               <li><Link href="/terms" className="hover:text-purple-400 transition-colors">Terms of Service</Link></li>
               <li><Link href="/privacy" className="hover:text-purple-400 transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/docs" className="hover:text-purple-400 transition-colors">Documentation</Link></li>
             </ul>
           </div>
         </div>
