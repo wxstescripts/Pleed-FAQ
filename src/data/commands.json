@@ -1,0 +1,3647 @@
+[
+    {
+        "name": "enable",
+        "description": "No description provided.",
+        "category": "Antinuke"
+    },
+    {
+        "name": "disable",
+        "description": "No description provided.",
+        "category": "Antinuke"
+    },
+    {
+        "name": "config",
+        "description": "No description provided.",
+        "category": "Antinuke"
+    },
+    {
+        "name": "list",
+        "description": "No description provided.",
+        "category": "Antinuke"
+    },
+    {
+        "name": "admins",
+        "description": "No description provided.",
+        "category": "Antinuke"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Antinuke"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Antinuke"
+    },
+    {
+        "name": "ban",
+        "description": "No description provided.",
+        "category": "Antinuke"
+    },
+    {
+        "name": "kick",
+        "description": "No description provided.",
+        "category": "Antinuke"
+    },
+    {
+        "name": "channel",
+        "description": "No description provided.",
+        "category": "Antinuke"
+    },
+    {
+        "name": "role",
+        "description": "No description provided.",
+        "category": "Antinuke"
+    },
+    {
+        "name": "emoji",
+        "description": "No description provided.",
+        "category": "Antinuke"
+    },
+    {
+        "name": "webhook",
+        "description": "No description provided.",
+        "category": "Antinuke"
+    },
+    {
+        "name": "botadd",
+        "description": "No description provided.",
+        "category": "Antinuke"
+    },
+    {
+        "name": "vanity",
+        "description": "No description provided.",
+        "category": "Antinuke"
+    },
+    {
+        "name": "addreaction",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "addresponse",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "list",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "view",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "delete",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "enable",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "disable",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "match",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "cooldown",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "chance",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "reply",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "deleteafter",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "priority",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "channels",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "blockchannels",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "roles",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "blockroles",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "users",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "blockusers",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "stats",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "resetstats",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "clone",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "clear",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "automationsetup",
+        "description": "Open the automation settings panel with toggle buttons.",
+        "category": "Automation"
+    },
+    {
+        "name": "reactadd",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "reactdel",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "reacts",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "autorespond",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "autoresponddel",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "autoresponses",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "addcmd",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "editcmd",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "delcmd",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "viewcmd",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "listcmds",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "testcmd",
+        "description": "No description provided.",
+        "category": "Automation"
+    },
+    {
+        "name": "ai",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "ai",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "benchmark",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "benchdb",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "benchnet",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "benchmem",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "benchcogs",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "benchlag",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "commandsearch",
+        "description": "Open a command/alias search panel.",
+        "category": "Core"
+    },
+    {
+        "name": "commandpanel",
+        "description": "Open the command search panel.",
+        "category": "Core"
+    },
+    {
+        "name": "aliassearch",
+        "description": "Find commands using an alias or exact command name.",
+        "category": "Core"
+    },
+    {
+        "name": "cmdwhere",
+        "description": "Show where a command or alias is registered from.",
+        "category": "Core"
+    },
+    {
+        "name": "aliasconflicts",
+        "description": "Show duplicate command/alias names currently loaded.",
+        "category": "Core"
+    },
+    {
+        "name": "prefix",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "setwelcome",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "devpanel",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "devhelp",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "filebrowser",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "directorylist",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "viewfile",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "sendfile",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "sendfiles",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "listfiles",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "databases",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "zipdir",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "zipdiscord",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "uploadfolder",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "cleanupbackups",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "backups",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "rollbackfile",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "rollbackui",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "load",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "unload",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "reload",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "reloadall",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "update",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "restart",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "reloadchanged",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "hotreload",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "cogs",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "autowatch",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "watchstatus",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "stopwatching",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "sync",
+        "description": "`,sync`        copy global commands to this server (instant, for testing)",
+        "category": "Core"
+    },
+    {
+        "name": "eval",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "shell",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "liveshell",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "disk",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "shellhistory",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "pipinstall",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "pipupgrade",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "pipuninstall",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "devdeps",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "devinstall",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "devinstallmissing",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitdoall",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitstatus",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitpull",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitfetch",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitadd",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitcommit",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitpush",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitquickpush",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitlog",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitdiff",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitdiffstaged",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitfiles",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitbranch",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitbranchnew",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitcheckout",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitstash",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitstashlist",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitstashpop",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitresethard",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitresetsoft",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitclean",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitrestore",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitremote",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitremoteadd",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitremoteset",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitinit",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitclone",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitmerge",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitlast",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitblame",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitrun",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "githelp",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitcommits",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "diffpreview",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitpushset",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitpushtags",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitpushupstream",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitrebase",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitconfig",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitsetuser",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitunstage",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitrestorestaged",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitstashapply",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitremoteremove",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitremoteurl",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gitcurrent",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "gittag",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "graphbench",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "liveperf",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "stopliveperf",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "clearcommandlatency",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "commandlatency",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "snapshotproject",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "comparefiles",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "exportdocs",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "dashboardpublic",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "dashboardtoken",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "dashboardlink",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "dashboardaccess",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "dashboardallpages",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "dashboardopen",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "dashboardpassword",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "dashboardsafemode",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "devdashboard",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "zipprovider",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "deletepanel",
+        "description": "Open the multi-delete panel.",
+        "category": "Core"
+    },
+    {
+        "name": "deletefiles",
+        "description": "Delete multiple files at once. Usage: ,deletefiles [path1] [path2] ...",
+        "category": "Core"
+    },
+    {
+        "name": "deletefile",
+        "description": "Delete a single file.",
+        "category": "Core"
+    },
+    {
+        "name": "deletefolder",
+        "description": "Delete a folder.",
+        "category": "Core"
+    },
+    {
+        "name": "forcedelete",
+        "description": "Delete immediately without confirmation.",
+        "category": "Core"
+    },
+    {
+        "name": "restoredelete",
+        "description": "Restore a deleted file backup.",
+        "category": "Core"
+    },
+    {
+        "name": "updatefile",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "uploadfile",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "uploadfiles",
+        "description": "Attach several `.py` files in one message (optionally give a folder first to narrow",
+        "category": "Core"
+    },
+    {
+        "name": "replace",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "multireplace",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "autoreplace",
+        "description": "Attach any number of files in one message. For each attachment the bot looks",
+        "category": "Core"
+    },
+    {
+        "name": "startpaste",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "pastechunk",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "pastepreview",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "endpaste",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "cancelpaste",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "help",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "helpsetup",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "helpsetup",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "help",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "selftest",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "statuspanel",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "setstatus",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "statuspresence",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "statustype",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "statusmobile",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "statusstreamurl",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "statuspreset",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "statusclear",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "statusrotate",
+        "description": "No description provided.",
+        "category": "Core"
+    },
+    {
+        "name": "balance",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "bank",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "work",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "daily",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "deposit",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "withdraw",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "pay",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "rob",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "gamble",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "slots",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "coinflip",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "blackjack",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "risk",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "businesses",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "mybusinesses",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "buybusiness",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "business",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "collect",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "collectall",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "upgradebusiness",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "businessefficiency",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "hire",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "insurebusiness",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "sellbusiness",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "switchbusiness",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "autobank",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "sabotage",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "businesslb",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "stocks",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "buyshares",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "sellshares",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "portfolio",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "shop",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "buy",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "sellitem",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "inventory",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "item",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "richest",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "addmoney",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "removemoney",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "setmoney",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "resetmoney",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "create",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "delete",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "end",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "reroll",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "host",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "giveaways",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "rank",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "leaderboard",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "levelconfig",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "setlevelchannel",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "resetlevelchannel",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "leveltoggle",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "xptoggle",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "setxpcooldown",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "add",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "reset",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "list",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "list",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "add",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "add",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "levelreward",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "levelrewardremove",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "levelrewardreset",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "levelrewards",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "addxp",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "removexp",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "resetxp",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "setlevel",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "setxp",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "xpinfo",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "pokercreate",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "pokercancel",
+        "description": "No description provided.",
+        "category": "Economy"
+    },
+    {
+        "name": "lock",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "list",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "unlock",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "config",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "set",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "channel",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "role",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "list",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "tag",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "add",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "rename",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "cleanup",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "removeduplicates",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "add",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "rename",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "stats",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "information",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "addmany",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "removemany",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "afk",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "ping",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "status",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "donate",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "inviteinfo",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "lost",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "emotes",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "bots",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "hide",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "unhide",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "seen",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "membercount",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "channelinfo",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "avatar",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "serveravatar",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "serverbanner",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "banner",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "guildicon",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "servericon",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "guildbanner",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "splash",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "serverinfo",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "userinfo",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "firstmessage",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "weather",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "list",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "set",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "add",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "list",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "list",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "reset",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "rotate",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "compress",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "invert",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "hex",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "screenshot",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "osu",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "define",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "urbandictionary",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "telegram",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "steam",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "github",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "todiscord",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "fromdiscord",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "outfits",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "template",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "cashapp",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "xbox",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "snapchatstory",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "snapchat",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "valorant",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "minecraft",
+        "description": "No description provided.",
+        "category": "Information"
+    },
+    {
+        "name": "add",
+        "description": "Add a counter. Example: ,counter add members voice --name Members: {count}",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "refresh",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "options",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "avatar",
+        "description": "Set the bot's server avatar (attach an image, reply to one, or pass a URL).",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "banner",
+        "description": "Set the bot's server banner (attach an image, reply to one, or pass a URL).",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "bio",
+        "description": "Set the bot's server bio.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "nickname",
+        "description": "Set the bot's server nickname.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "view",
+        "description": "Show the current customization (read-only).",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "reset",
+        "description": "Reset avatar, banner, bio, nickname, or all.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "help",
+        "description": "Show command usage.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "avatar",
+        "description": "Set the bot's global avatar (attach an image, reply to one, or pass a URL).",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "banner",
+        "description": "Set the bot's global banner (attach an image, reply to one, or pass a URL).",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "name",
+        "description": "Change the bot's global username (Discord limits how often).",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "reset",
+        "description": "Reset the global avatar, banner, or both.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "view",
+        "description": "Show the bot's current global profile.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "8ball",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "poker",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "pool",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "uno",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "connectfour",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "rps",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "slots",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "trivia",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "wordle",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "blackjack",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "coinflip",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "higherlower",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "tictactoe",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "hangman",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "dj",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "autoplay",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "play",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "move",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "clear",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "skip",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "pause",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "resume",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "seek",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "volume",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "repeat",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "nowplaying",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "stop",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "disconnect",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "active",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "login",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "code",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "logout",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "nowplaying",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "find",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "play",
+        "description": "Plays a song in voice chat using Spotify metadata + yt-dlp audio source.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "queue",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "volume",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "seek",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "device",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "next",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "previous",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "pause",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "resume",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "shuffle",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "repeat",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "like",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "unlike",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "artists",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "tracks",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "vc",
+        "description": "Join your voice channel and play either:",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "vcstop",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "now",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "clear",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "join",
+        "description": "Joins your voice channel.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "leave",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "create",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "send",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "edit",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "name",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "avatar",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "deletemsg",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "delete",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "list",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "cleanup",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "variables",
+        "description": "No description provided.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "create",
+        "description": "Create a new webhook in the specified channel under a short identifier.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "send",
+        "description": "Send a message (and any attachments) through a saved webhook.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "edit",
+        "description": "Edit a message previously sent through this system (text, embed code, or JSON).",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "name",
+        "description": "Change the name of a saved webhook.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "avatar",
+        "description": "Change a webhook's avatar. Attach an image, reply to one, or pass a URL.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "deletemsg",
+        "description": "Delete a message that was previously sent through this system.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "delete",
+        "description": "Delete a saved webhook, after confirmation.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "list",
+        "description": "Open the webhook manager: browse, rename, test and delete.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "cleanup",
+        "description": "Forget saved webhooks that no longer exist on Discord.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "variables",
+        "description": "Show the variables you can use in messages and embeds.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "stats",
+        "description": "Developer-only: cross-guild webhook usage counts.",
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "setup",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "panel",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "rules",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "commandrules",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "setlog",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "clearlog",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "reset",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "sync",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "add",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "response",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "view",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "list",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "cooldown",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "adminonly",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "add",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "response",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "view",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "list",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "cooldown",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "adminonly",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "test",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "strikes",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "panel",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "channel",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "message",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "thankyou",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "pingrole",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "autolock",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "autoclean",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "interval",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "pause",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "resume",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "test",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "view",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "stats",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "reset",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "channel",
+        "description": "Set the channel bump reminders are sent in.",
+        "category": "Moderation"
+    },
+    {
+        "name": "message",
+        "description": "Set the reminder message. Plain text, or `title: x | description: y | color: #fff`.",
+        "category": "Moderation"
+    },
+    {
+        "name": "thankyou",
+        "description": "Set the message sent after someone bumps. Supports `{user}` and the mini-language.",
+        "category": "Moderation"
+    },
+    {
+        "name": "pingrole",
+        "description": "Set (or clear) the role mentioned on every reminder.",
+        "category": "Moderation"
+    },
+    {
+        "name": "autolock",
+        "description": "Lock the channel between bump windows (`on`/`off`).",
+        "category": "Moderation"
+    },
+    {
+        "name": "autoclean",
+        "description": "Delete off-topic messages in the bump channel (`on`/`off`).",
+        "category": "Moderation"
+    },
+    {
+        "name": "interval",
+        "description": "Set the minutes between reminders (30-720). DISBOARD's own cooldown is 120.",
+        "category": "Moderation"
+    },
+    {
+        "name": "pause",
+        "description": "Pause reminders without losing the configuration.",
+        "category": "Moderation"
+    },
+    {
+        "name": "resume",
+        "description": "Resume paused reminders.",
+        "category": "Moderation"
+    },
+    {
+        "name": "test",
+        "description": "Send a reminder right now, without affecting the schedule.",
+        "category": "Moderation"
+    },
+    {
+        "name": "view",
+        "description": "Show the current configuration.",
+        "category": "Moderation"
+    },
+    {
+        "name": "stats",
+        "description": "Show bump stats for this server.",
+        "category": "Moderation"
+    },
+    {
+        "name": "panel",
+        "description": "Open the interactive config panel (same as plain `bumpreminder`).",
+        "category": "Moderation"
+    },
+    {
+        "name": "reset",
+        "description": "Reset the bump reminder configuration for this server.",
+        "category": "Moderation"
+    },
+    {
+        "name": "on",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "off",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "jail",
+        "description": ",jail @user [duration] [reason]  \u2014 e.g. \",jail @Bob 1h spamming\"",
+        "category": "Moderation"
+    },
+    {
+        "name": "sjail",
+        "description": ",sjail @user [duration] [reason] \u2014 same as ,jail but skips the",
+        "category": "Moderation"
+    },
+    {
+        "name": "unjail",
+        "description": ",unjail @user [reason] \u2014 releases `member` immediately via `apply_unjail`.",
+        "category": "Moderation"
+    },
+    {
+        "name": "jailtime",
+        "description": ",jailtime @user <adjustment> \u2014 change an active jail's expiry.",
+        "category": "Moderation"
+    },
+    {
+        "name": "add",
+        "description": ",jailtemplate add <name> <duration> <reason> \u2014 duration accepts `1h`/`3d`/etc, or `perm` for none.",
+        "category": "Moderation"
+    },
+    {
+        "name": "remove",
+        "description": ",jailtemplate remove <name>",
+        "category": "Moderation"
+    },
+    {
+        "name": "jailpanel",
+        "description": ",jailpanel [@user] \u2014 opens an interactive jail management panel.",
+        "category": "Moderation"
+    },
+    {
+        "name": "panel",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "channel",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "toggle",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "all",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "route",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "unroute",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "test",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "ignore",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "unignore",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "setlogs",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "panel",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "channel",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "toggle",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "all",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "modules",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "route",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "unroute",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "note",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "style",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "test",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "list",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "add",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "add",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "add",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "mute",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "unmute",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "list",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "jail",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "kick",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "ban",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "kick",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "ban",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "hardban",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "softban",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "unban",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "timeout",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "untimeout",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "purge",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "warn",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "warnings",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "removewarn",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "clearwarns",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "lock",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "unlock",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "lockdown",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "unlockdown",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "kick",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "ban",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "hardban",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "softban",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "unban",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "timeout",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "untimeout",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "purge",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "warn",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "warnings",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "removewarn",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "clearwarns",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "lock",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "unlock",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "lockdown",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "unlockdown",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "list",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "set",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "members",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "perms",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "edit",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "giverole",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "roleremove",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "newrole",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "roleeditname",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "roledel",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "roleposition",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "dragrole",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "icon",
+        "description": "No description provided.",
+        "category": "Moderation"
+    },
+    {
+        "name": "setupticket",
+        "description": "Interactive ticket system setup wizard.",
+        "category": "Moderation"
+    },
+    {
+        "name": "close",
+        "description": "Close the current ticket.",
+        "category": "Moderation"
+    },
+    {
+        "name": "claim",
+        "description": "Claim the current ticket.",
+        "category": "Moderation"
+    },
+    {
+        "name": "unclaim",
+        "description": "Unclaim the current ticket.",
+        "category": "Moderation"
+    },
+    {
+        "name": "rename",
+        "description": "Rename the current ticket channel.",
+        "category": "Moderation"
+    },
+    {
+        "name": "tadd",
+        "description": "Add a user to the current ticket.",
+        "category": "Moderation"
+    },
+    {
+        "name": "tremove",
+        "description": "Remove a user from the current ticket.",
+        "category": "Moderation"
+    },
+    {
+        "name": "tblacklist",
+        "description": "Blacklist a user or role from opening tickets. Mention a user or role.",
+        "category": "Moderation"
+    },
+    {
+        "name": "tunblacklist",
+        "description": "Remove a user or role from the ticket blacklist.",
+        "category": "Moderation"
+    },
+    {
+        "name": "tinfo",
+        "description": "Show info about the current ticket.",
+        "category": "Moderation"
+    },
+    {
+        "name": "ticketdeletepanel",
+        "description": "Delete a ticket panel and its options.",
+        "category": "Moderation"
+    },
+    {
+        "name": "panels",
+        "description": "List all ticket panels for this server.",
+        "category": "Moderation"
+    },
+    {
+        "name": "editpanel",
+        "description": "Interactive wizard to edit an existing ticket panel, its options, support roles, and settings.",
+        "category": "Moderation"
+    },
+    {
+        "name": "add",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "list",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "reset",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "check",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "preset",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "permissions",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "simulate",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "status",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "enable",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "disable",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "channel",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "verifiedrole",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "unverifiedrole",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "bypassrole",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "clearbypassrole",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "accountage",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "autokick",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "dmonjoin",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "logchannel",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "clearlogchannel",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "panel",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "scanpanel",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "resetpanel",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "reset",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "pending",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "refreshall",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "add",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "add",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "reverify",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "verify",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "permissions",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "lockverify",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "unlockverify",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "synctraps",
+        "description": "Scans all registered KickTrap channels, finds existing embed message IDs,",
+        "category": "Security"
+    },
+    {
+        "name": "set",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "list",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "resend",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "logs",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "scam",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "autokick",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "boostertimeout",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "quarantine",
+        "description": "Opens an interactive setup panel to configure quarantine settings.",
+        "category": "Security"
+    },
+    {
+        "name": "add",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "remove",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "recover",
+        "description": "Manually un-quarantines/recovers a member, removes restrictions, and restores their saved roles.",
+        "category": "Security"
+    },
+    {
+        "name": "flags",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "clearroles",
+        "description": "Manually purge saved roles for a user so they join fresh.",
+        "category": "Security"
+    },
+    {
+        "name": "add",
+        "description": "Add an attached image or replied-to message image to the recurring scam database.",
+        "category": "Security"
+    },
+    {
+        "name": "list",
+        "description": "List all registered scam image hashes.",
+        "category": "Security"
+    },
+    {
+        "name": "clear",
+        "description": "Clear all scam image hashes for this server.",
+        "category": "Security"
+    },
+    {
+        "name": "setupkick",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "removekick",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "listkicktraps",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "kicktrapresend",
+        "description": "No description provided.",
+        "category": "Security"
+    },
+    {
+        "name": "rlpanel",
+        "description": "Spawns an interactive Control Panel to fine tune adjustments in real time.",
+        "category": "Security"
+    },
+    {
+        "name": "guildinform",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "guildmessage",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "addbotpanel",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "refreshbotpanel",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "welcomechannel",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "goodbyechannel",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "welcomemessage",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "goodbyemessage",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "welcometoggle",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "goodbyetoggle",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "testwelcome",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "testgoodbye",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "setup",
+        "description": "Open the setup center panel.",
+        "category": "Server"
+    },
+    {
+        "name": "setupjail",
+        "description": "Create jail channels and role.",
+        "category": "Server"
+    },
+    {
+        "name": "setupmute",
+        "description": "Create mute roles and channels.",
+        "category": "Server"
+    },
+    {
+        "name": "setupall",
+        "description": "Create jail + mute setup together.",
+        "category": "Server"
+    },
+    {
+        "name": "setupstatus",
+        "description": "Show current setup status.",
+        "category": "Server"
+    },
+    {
+        "name": "fixjailperms",
+        "description": "Re-apply jail role lockdown to all channels.",
+        "category": "Server"
+    },
+    {
+        "name": "jailroles",
+        "description": "Toggle or set role removal on jail. Usage: ,jailroles on/off",
+        "category": "Server"
+    },
+    {
+        "name": "setup_updates",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "update_config",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "update_toggle",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "update_media_defaults",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "save_update_theme",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "save_update_template",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "list_update_presets",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "post_update",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "quick_update",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "append_update",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "update_history",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "edit_last_update",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "delete_last_update",
+        "description": "No description provided.",
+        "category": "Server"
+    },
+    {
+        "name": "snipe",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "snipepanel",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "usersnipe",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "guildsnipe",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "editsnipe",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "editsnipepanel",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "reactionsnipe",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "reactionhistory",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "reactionhistorypanel",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "ghostsnipe",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "ghostpanel",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "bulksnipe",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "snipesearch",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "snipelist",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "snipestats",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "clearsnipe",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "cleardeletedsnipes",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "cleareditsnipes",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "clearghostsnipes",
+        "description": "No description provided.",
+        "category": "Snipe"
+    },
+    {
+        "name": "setupvc",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "category",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "name",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "limit",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "trigger",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "vcrename",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "vclimit",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "vcbitrate",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "vclock",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "vcunlock",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "vchide",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "vcunhide",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "vcpermit",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "vcdeny",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "vckick",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "vcmute",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "vcunmute",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "vctransfer",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "vcclaim",
+        "description": "No description provided.",
+        "category": "Voice"
+    },
+    {
+        "name": "vcinfo",
+        "description": "No description provided.",
+        "category": "Voice"
+    }
+]
