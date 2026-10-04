@@ -109,7 +109,7 @@ export default function CommandsPage() {
                       exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
                       key={`${cmd.name}-${idx}`}
-                      className="bg-white/5 border border-white/10 hover:border-indigo-500/30 rounded-xl p-5 hover:bg-white/10 transition-colors group"
+                      className="bg-white/5 border border-white/10 hover:border-indigo-500/30 rounded-xl p-5 hover:bg-white/10 transition-colors group flex flex-col h-full"
                     >
                       <div className="flex items-start justify-between mb-3">
                         <h3 className="font-bold text-white text-lg flex items-center gap-2">
@@ -120,11 +120,16 @@ export default function CommandsPage() {
                           {cmd.category}
                         </span>
                       </div>
-                      <p className="text-sm text-gray-400 leading-relaxed">
-                        {cmd.description !== "No description provided." 
-                          ? cmd.description 
-                          : "This command currently lacks a description."}
+                      <p className="text-sm text-gray-400 leading-relaxed mb-4 flex-grow">
+                        {cmd.description}
                       </p>
+                      
+                      {cmd.usage && (
+                        <div className="bg-black/50 border border-white/5 rounded-md p-3 mt-auto">
+                          <p className="text-xs text-gray-500 mb-1 font-semibold uppercase tracking-wider">Usage Steps</p>
+                          <code className="text-xs text-indigo-300 font-mono">{cmd.usage}</code>
+                        </div>
+                      )}
                     </motion.div>
                   ))}
                 </AnimatePresence>

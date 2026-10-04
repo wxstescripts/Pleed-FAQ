@@ -1,3647 +1,4376 @@
 [
     {
         "name": "enable",
-        "description": "No description provided.",
-        "category": "Antinuke"
+        "description": "Executes the enable command.",
+        "category": "Antinuke",
+        "usage": "!enable"
     },
     {
         "name": "disable",
-        "description": "No description provided.",
-        "category": "Antinuke"
+        "description": "Executes the disable command.",
+        "category": "Antinuke",
+        "usage": "!disable"
     },
     {
         "name": "config",
-        "description": "No description provided.",
-        "category": "Antinuke"
+        "description": "Executes the config command.",
+        "category": "Antinuke",
+        "usage": "!config"
     },
     {
         "name": "list",
-        "description": "No description provided.",
-        "category": "Antinuke"
+        "description": "Executes the list command.",
+        "category": "Antinuke",
+        "usage": "!list"
     },
     {
         "name": "admins",
-        "description": "No description provided.",
-        "category": "Antinuke"
+        "description": "Executes the admins command.",
+        "category": "Antinuke",
+        "usage": "!admins"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Antinuke"
+        "description": "Executes the remove command.",
+        "category": "Antinuke",
+        "usage": "!remove <user>"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Antinuke"
+        "description": "Executes the remove command.",
+        "category": "Antinuke",
+        "usage": "!remove <target>"
     },
     {
         "name": "ban",
-        "description": "No description provided.",
-        "category": "Antinuke"
+        "description": "Bans a user from the server permanently.",
+        "category": "Antinuke",
+        "usage": "!ban <status> [args...]"
     },
     {
         "name": "kick",
-        "description": "No description provided.",
-        "category": "Antinuke"
+        "description": "Kicks a user from the server.",
+        "category": "Antinuke",
+        "usage": "!kick <status> [args...]"
     },
     {
         "name": "channel",
-        "description": "No description provided.",
-        "category": "Antinuke"
+        "description": "Executes the channel command.",
+        "category": "Antinuke",
+        "usage": "!channel <status> [args...]"
     },
     {
         "name": "role",
-        "description": "No description provided.",
-        "category": "Antinuke"
+        "description": "Executes the role command.",
+        "category": "Antinuke",
+        "usage": "!role <status> [args...]"
     },
     {
         "name": "emoji",
-        "description": "No description provided.",
-        "category": "Antinuke"
+        "description": "Executes the emoji command.",
+        "category": "Antinuke",
+        "usage": "!emoji <status> [args...]"
     },
     {
         "name": "webhook",
-        "description": "No description provided.",
-        "category": "Antinuke"
+        "description": "Executes the webhook command.",
+        "category": "Antinuke",
+        "usage": "!webhook <status> [args...]"
     },
     {
         "name": "botadd",
-        "description": "No description provided.",
-        "category": "Antinuke"
+        "description": "Executes the botadd command.",
+        "category": "Antinuke",
+        "usage": "!botadd <status> [args...]"
     },
     {
         "name": "vanity",
-        "description": "No description provided.",
-        "category": "Antinuke"
+        "description": "Executes the vanity command.",
+        "category": "Antinuke",
+        "usage": "!vanity <status> [args...]"
     },
     {
         "name": "addreaction",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the addreaction command.",
+        "category": "Automation",
+        "usage": "!addreaction <name>"
     },
     {
         "name": "addresponse",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the addresponse command.",
+        "category": "Automation",
+        "usage": "!addresponse <name>"
     },
     {
         "name": "list",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the list command.",
+        "category": "Automation",
+        "usage": "!list <category>"
     },
     {
         "name": "view",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the view command.",
+        "category": "Automation",
+        "usage": "!view <automation_id>"
     },
     {
         "name": "delete",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the delete command.",
+        "category": "Automation",
+        "usage": "!delete <automation_id>"
     },
     {
         "name": "enable",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the enable command.",
+        "category": "Automation",
+        "usage": "!enable <automation_id>"
     },
     {
         "name": "disable",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the disable command.",
+        "category": "Automation",
+        "usage": "!disable <automation_id>"
     },
     {
         "name": "match",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the match command.",
+        "category": "Automation",
+        "usage": "!match <automation_id> <match_type>"
     },
     {
         "name": "cooldown",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the cooldown command.",
+        "category": "Automation",
+        "usage": "!cooldown <automation_id> <seconds>"
     },
     {
         "name": "chance",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the chance command.",
+        "category": "Automation",
+        "usage": "!chance <automation_id> <chance>"
     },
     {
         "name": "reply",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the reply command.",
+        "category": "Automation",
+        "usage": "!reply <automation_id> <state>"
     },
     {
         "name": "deleteafter",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the deleteafter command.",
+        "category": "Automation",
+        "usage": "!deleteafter <automation_id> <seconds>"
     },
     {
         "name": "priority",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the priority command.",
+        "category": "Automation",
+        "usage": "!priority <automation_id> <priority>"
     },
     {
         "name": "channels",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the channels command.",
+        "category": "Automation",
+        "usage": "!channels <automation_id> <action> [channels...]"
     },
     {
         "name": "blockchannels",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the blockchannels command.",
+        "category": "Automation",
+        "usage": "!blockchannels <automation_id> <action> [channels...]"
     },
     {
         "name": "roles",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the roles command.",
+        "category": "Automation",
+        "usage": "!roles <automation_id> <action> [roles...]"
     },
     {
         "name": "blockroles",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the blockroles command.",
+        "category": "Automation",
+        "usage": "!blockroles <automation_id> <action> [roles...]"
     },
     {
         "name": "users",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the users command.",
+        "category": "Automation",
+        "usage": "!users <automation_id> <action> [users...]"
     },
     {
         "name": "blockusers",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the blockusers command.",
+        "category": "Automation",
+        "usage": "!blockusers <automation_id> <action> [users...]"
     },
     {
         "name": "stats",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the stats command.",
+        "category": "Automation",
+        "usage": "!stats"
     },
     {
         "name": "resetstats",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the resetstats command.",
+        "category": "Automation",
+        "usage": "!resetstats"
     },
     {
         "name": "clone",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the clone command.",
+        "category": "Automation",
+        "usage": "!clone <automation_id>"
     },
     {
         "name": "clear",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the clear command.",
+        "category": "Automation",
+        "usage": "!clear <category>"
     },
     {
         "name": "automationsetup",
         "description": "Open the automation settings panel with toggle buttons.",
-        "category": "Automation"
+        "category": "Automation",
+        "usage": "!automationsetup"
     },
     {
         "name": "reactadd",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the reactadd command.",
+        "category": "Automation",
+        "usage": "!reactadd <emoji>"
     },
     {
         "name": "reactdel",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the reactdel command.",
+        "category": "Automation",
+        "usage": "!reactdel"
     },
     {
         "name": "reacts",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the reacts command.",
+        "category": "Automation",
+        "usage": "!reacts"
     },
     {
         "name": "autorespond",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the autorespond command.",
+        "category": "Automation",
+        "usage": "!autorespond <trigger>"
     },
     {
         "name": "autoresponddel",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the autoresponddel command.",
+        "category": "Automation",
+        "usage": "!autoresponddel"
     },
     {
         "name": "autoresponses",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the autoresponses command.",
+        "category": "Automation",
+        "usage": "!autoresponses"
     },
     {
         "name": "addcmd",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the addcmd command.",
+        "category": "Automation",
+        "usage": "!addcmd <name>"
     },
     {
         "name": "editcmd",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the editcmd command.",
+        "category": "Automation",
+        "usage": "!editcmd <name>"
     },
     {
         "name": "delcmd",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the delcmd command.",
+        "category": "Automation",
+        "usage": "!delcmd <name>"
     },
     {
         "name": "viewcmd",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the viewcmd command.",
+        "category": "Automation",
+        "usage": "!viewcmd <name>"
     },
     {
         "name": "listcmds",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the listcmds command.",
+        "category": "Automation",
+        "usage": "!listcmds"
     },
     {
         "name": "testcmd",
-        "description": "No description provided.",
-        "category": "Automation"
+        "description": "Executes the testcmd command.",
+        "category": "Automation",
+        "usage": "!testcmd"
     },
     {
         "name": "ai",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the ai command.",
+        "category": "Core",
+        "usage": "!ai"
     },
     {
         "name": "ai",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the ai command.",
+        "category": "Core",
+        "usage": "!ai <question>"
     },
     {
         "name": "benchmark",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the benchmark command.",
+        "category": "Core",
+        "usage": "!benchmark"
     },
     {
         "name": "benchdb",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the benchdb command.",
+        "category": "Core",
+        "usage": "!benchdb"
     },
     {
         "name": "benchnet",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the benchnet command.",
+        "category": "Core",
+        "usage": "!benchnet"
     },
     {
         "name": "benchmem",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the benchmem command.",
+        "category": "Core",
+        "usage": "!benchmem"
     },
     {
         "name": "benchcogs",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the benchcogs command.",
+        "category": "Core",
+        "usage": "!benchcogs"
     },
     {
         "name": "benchlag",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the benchlag command.",
+        "category": "Core",
+        "usage": "!benchlag"
     },
     {
         "name": "commandsearch",
         "description": "Open a command/alias search panel.",
-        "category": "Core"
+        "category": "Core",
+        "usage": "!commandsearch"
     },
     {
         "name": "commandpanel",
         "description": "Open the command search panel.",
-        "category": "Core"
+        "category": "Core",
+        "usage": "!commandpanel"
     },
     {
         "name": "aliassearch",
         "description": "Find commands using an alias or exact command name.",
-        "category": "Core"
+        "category": "Core",
+        "usage": "!aliassearch"
     },
     {
         "name": "cmdwhere",
         "description": "Show where a command or alias is registered from.",
-        "category": "Core"
+        "category": "Core",
+        "usage": "!cmdwhere"
     },
     {
         "name": "aliasconflicts",
         "description": "Show duplicate command/alias names currently loaded.",
-        "category": "Core"
+        "category": "Core",
+        "usage": "!aliasconflicts"
     },
     {
         "name": "prefix",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the prefix command.",
+        "category": "Core",
+        "usage": "!prefix <new_prefix>"
     },
     {
         "name": "setwelcome",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the setwelcome command.",
+        "category": "Core",
+        "usage": "!setwelcome <channel>"
     },
     {
         "name": "devpanel",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the devpanel command.",
+        "category": "Core",
+        "usage": "!devpanel"
     },
     {
         "name": "devhelp",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the devhelp command.",
+        "category": "Core",
+        "usage": "!devhelp"
     },
     {
         "name": "filebrowser",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the filebrowser command.",
+        "category": "Core",
+        "usage": "!filebrowser <folder>"
     },
     {
         "name": "directorylist",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the directorylist command.",
+        "category": "Core",
+        "usage": "!directorylist <folder>"
     },
     {
         "name": "viewfile",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the viewfile command.",
+        "category": "Core",
+        "usage": "!viewfile"
     },
     {
         "name": "sendfile",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the sendfile command.",
+        "category": "Core",
+        "usage": "!sendfile"
     },
     {
         "name": "sendfiles",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the sendfiles command.",
+        "category": "Core",
+        "usage": "!sendfiles <folder>"
     },
     {
         "name": "listfiles",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the listfiles command.",
+        "category": "Core",
+        "usage": "!listfiles <folder>"
     },
     {
         "name": "databases",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the databases command.",
+        "category": "Core",
+        "usage": "!databases"
     },
     {
         "name": "zipdir",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the zipdir command.",
+        "category": "Core",
+        "usage": "!zipdir <folder>"
     },
     {
         "name": "zipdiscord",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the zipdiscord command.",
+        "category": "Core",
+        "usage": "!zipdiscord <folder>"
     },
     {
         "name": "uploadfolder",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the uploadfolder command.",
+        "category": "Core",
+        "usage": "!uploadfolder <path> <reload>"
     },
     {
         "name": "cleanupbackups",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the cleanupbackups command.",
+        "category": "Core",
+        "usage": "!cleanupbackups <days>"
     },
     {
         "name": "backups",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the backups command.",
+        "category": "Core",
+        "usage": "!backups"
     },
     {
         "name": "rollbackfile",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the rollbackfile command.",
+        "category": "Core",
+        "usage": "!rollbackfile <target> <backup_name> <reload>"
     },
     {
         "name": "rollbackui",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the rollbackui command.",
+        "category": "Core",
+        "usage": "!rollbackui"
     },
     {
         "name": "load",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the load command.",
+        "category": "Core",
+        "usage": "!load"
     },
     {
         "name": "unload",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the unload command.",
+        "category": "Core",
+        "usage": "!unload"
     },
     {
         "name": "reload",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the reload command.",
+        "category": "Core",
+        "usage": "!reload"
     },
     {
         "name": "reloadall",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the reloadall command.",
+        "category": "Core",
+        "usage": "!reloadall"
     },
     {
         "name": "update",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the update command.",
+        "category": "Core",
+        "usage": "!update"
     },
     {
         "name": "restart",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the restart command.",
+        "category": "Core",
+        "usage": "!restart"
     },
     {
         "name": "reloadchanged",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the reloadchanged command.",
+        "category": "Core",
+        "usage": "!reloadchanged"
     },
     {
         "name": "hotreload",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the hotreload command.",
+        "category": "Core",
+        "usage": "!hotreload"
     },
     {
         "name": "cogs",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the cogs command.",
+        "category": "Core",
+        "usage": "!cogs"
     },
     {
         "name": "autowatch",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the autowatch command.",
+        "category": "Core",
+        "usage": "!autowatch <folder>"
     },
     {
         "name": "watchstatus",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the watchstatus command.",
+        "category": "Core",
+        "usage": "!watchstatus"
     },
     {
         "name": "stopwatching",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the stopwatching command.",
+        "category": "Core",
+        "usage": "!stopwatching"
     },
     {
         "name": "sync",
         "description": "`,sync`        copy global commands to this server (instant, for testing)",
-        "category": "Core"
+        "category": "Core",
+        "usage": "!sync <guilds> <spec>"
     },
     {
         "name": "eval",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the eval command.",
+        "category": "Core",
+        "usage": "!eval"
     },
     {
         "name": "shell",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the shell command.",
+        "category": "Core",
+        "usage": "!shell"
     },
     {
         "name": "liveshell",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the liveshell command.",
+        "category": "Core",
+        "usage": "!liveshell"
     },
     {
         "name": "disk",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the disk command.",
+        "category": "Core",
+        "usage": "!disk <drive>"
     },
     {
         "name": "shellhistory",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the shellhistory command.",
+        "category": "Core",
+        "usage": "!shellhistory"
     },
     {
         "name": "pipinstall",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the pipinstall command.",
+        "category": "Core",
+        "usage": "!pipinstall"
     },
     {
         "name": "pipupgrade",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the pipupgrade command.",
+        "category": "Core",
+        "usage": "!pipupgrade"
     },
     {
         "name": "pipuninstall",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the pipuninstall command.",
+        "category": "Core",
+        "usage": "!pipuninstall"
     },
     {
         "name": "devdeps",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the devdeps command.",
+        "category": "Core",
+        "usage": "!devdeps"
     },
     {
         "name": "devinstall",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the devinstall command.",
+        "category": "Core",
+        "usage": "!devinstall"
     },
     {
         "name": "devinstallmissing",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the devinstallmissing command.",
+        "category": "Core",
+        "usage": "!devinstallmissing"
     },
     {
         "name": "gitdoall",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitdoall command.",
+        "category": "Core",
+        "usage": "!gitdoall"
     },
     {
         "name": "gitstatus",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitstatus command.",
+        "category": "Core",
+        "usage": "!gitstatus"
     },
     {
         "name": "gitpull",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitpull command.",
+        "category": "Core",
+        "usage": "!gitpull <remote> <branch>"
     },
     {
         "name": "gitfetch",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitfetch command.",
+        "category": "Core",
+        "usage": "!gitfetch <remote>"
     },
     {
         "name": "gitadd",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitadd command.",
+        "category": "Core",
+        "usage": "!gitadd"
     },
     {
         "name": "gitcommit",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitcommit command.",
+        "category": "Core",
+        "usage": "!gitcommit"
     },
     {
         "name": "gitpush",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitpush command.",
+        "category": "Core",
+        "usage": "!gitpush <remote> <branch>"
     },
     {
         "name": "gitquickpush",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitquickpush command.",
+        "category": "Core",
+        "usage": "!gitquickpush"
     },
     {
         "name": "gitlog",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitlog command.",
+        "category": "Core",
+        "usage": "!gitlog <count>"
     },
     {
         "name": "gitdiff",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitdiff command.",
+        "category": "Core",
+        "usage": "!gitdiff"
     },
     {
         "name": "gitdiffstaged",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitdiffstaged command.",
+        "category": "Core",
+        "usage": "!gitdiffstaged"
     },
     {
         "name": "gitfiles",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitfiles command.",
+        "category": "Core",
+        "usage": "!gitfiles"
     },
     {
         "name": "gitbranch",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitbranch command.",
+        "category": "Core",
+        "usage": "!gitbranch"
     },
     {
         "name": "gitbranchnew",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitbranchnew command.",
+        "category": "Core",
+        "usage": "!gitbranchnew"
     },
     {
         "name": "gitcheckout",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitcheckout command.",
+        "category": "Core",
+        "usage": "!gitcheckout"
     },
     {
         "name": "gitstash",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitstash command.",
+        "category": "Core",
+        "usage": "!gitstash"
     },
     {
         "name": "gitstashlist",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitstashlist command.",
+        "category": "Core",
+        "usage": "!gitstashlist"
     },
     {
         "name": "gitstashpop",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitstashpop command.",
+        "category": "Core",
+        "usage": "!gitstashpop"
     },
     {
         "name": "gitresethard",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitresethard command.",
+        "category": "Core",
+        "usage": "!gitresethard <target>"
     },
     {
         "name": "gitresetsoft",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitresetsoft command.",
+        "category": "Core",
+        "usage": "!gitresetsoft <target>"
     },
     {
         "name": "gitclean",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitclean command.",
+        "category": "Core",
+        "usage": "!gitclean <confirm>"
     },
     {
         "name": "gitrestore",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitrestore command.",
+        "category": "Core",
+        "usage": "!gitrestore"
     },
     {
         "name": "gitremote",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitremote command.",
+        "category": "Core",
+        "usage": "!gitremote"
     },
     {
         "name": "gitremoteadd",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitremoteadd command.",
+        "category": "Core",
+        "usage": "!gitremoteadd <name> <url>"
     },
     {
         "name": "gitremoteset",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitremoteset command.",
+        "category": "Core",
+        "usage": "!gitremoteset <name> <url>"
     },
     {
         "name": "gitinit",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitinit command.",
+        "category": "Core",
+        "usage": "!gitinit"
     },
     {
         "name": "gitclone",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitclone command.",
+        "category": "Core",
+        "usage": "!gitclone <url> <folder>"
     },
     {
         "name": "gitmerge",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitmerge command.",
+        "category": "Core",
+        "usage": "!gitmerge"
     },
     {
         "name": "gitlast",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitlast command.",
+        "category": "Core",
+        "usage": "!gitlast"
     },
     {
         "name": "gitblame",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitblame command.",
+        "category": "Core",
+        "usage": "!gitblame"
     },
     {
         "name": "gitrun",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitrun command.",
+        "category": "Core",
+        "usage": "!gitrun"
     },
     {
         "name": "githelp",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the githelp command.",
+        "category": "Core",
+        "usage": "!githelp"
     },
     {
         "name": "gitcommits",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitcommits command.",
+        "category": "Core",
+        "usage": "!gitcommits <limit>"
     },
     {
         "name": "diffpreview",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the diffpreview command.",
+        "category": "Core",
+        "usage": "!diffpreview"
     },
     {
         "name": "gitpushset",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitpushset command.",
+        "category": "Core",
+        "usage": "!gitpushset <remote> <branch>"
     },
     {
         "name": "gitpushtags",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitpushtags command.",
+        "category": "Core",
+        "usage": "!gitpushtags <remote>"
     },
     {
         "name": "gitpushupstream",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitpushupstream command.",
+        "category": "Core",
+        "usage": "!gitpushupstream <remote> <branch>"
     },
     {
         "name": "gitrebase",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitrebase command.",
+        "category": "Core",
+        "usage": "!gitrebase"
     },
     {
         "name": "gitconfig",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitconfig command.",
+        "category": "Core",
+        "usage": "!gitconfig"
     },
     {
         "name": "gitsetuser",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitsetuser command.",
+        "category": "Core",
+        "usage": "!gitsetuser <name> <email>"
     },
     {
         "name": "gitunstage",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitunstage command.",
+        "category": "Core",
+        "usage": "!gitunstage"
     },
     {
         "name": "gitrestorestaged",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitrestorestaged command.",
+        "category": "Core",
+        "usage": "!gitrestorestaged"
     },
     {
         "name": "gitstashapply",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitstashapply command.",
+        "category": "Core",
+        "usage": "!gitstashapply <stash>"
     },
     {
         "name": "gitremoteremove",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitremoteremove command.",
+        "category": "Core",
+        "usage": "!gitremoteremove <name>"
     },
     {
         "name": "gitremoteurl",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitremoteurl command.",
+        "category": "Core",
+        "usage": "!gitremoteurl <name>"
     },
     {
         "name": "gitcurrent",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gitcurrent command.",
+        "category": "Core",
+        "usage": "!gitcurrent"
     },
     {
         "name": "gittag",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the gittag command.",
+        "category": "Core",
+        "usage": "!gittag <tag>"
     },
     {
         "name": "graphbench",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the graphbench command.",
+        "category": "Core",
+        "usage": "!graphbench <rounds>"
     },
     {
         "name": "liveperf",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the liveperf command.",
+        "category": "Core",
+        "usage": "!liveperf <interval>"
     },
     {
         "name": "stopliveperf",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the stopliveperf command.",
+        "category": "Core",
+        "usage": "!stopliveperf"
     },
     {
         "name": "clearcommandlatency",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the clearcommandlatency command.",
+        "category": "Core",
+        "usage": "!clearcommandlatency"
     },
     {
         "name": "commandlatency",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the commandlatency command.",
+        "category": "Core",
+        "usage": "!commandlatency"
     },
     {
         "name": "snapshotproject",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the snapshotproject command.",
+        "category": "Core",
+        "usage": "!snapshotproject <folder>"
     },
     {
         "name": "comparefiles",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the comparefiles command.",
+        "category": "Core",
+        "usage": "!comparefiles <first> <second>"
     },
     {
         "name": "exportdocs",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the exportdocs command.",
+        "category": "Core",
+        "usage": "!exportdocs"
     },
     {
         "name": "dashboardpublic",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the dashboardpublic command.",
+        "category": "Core",
+        "usage": "!dashboardpublic <mode>"
     },
     {
         "name": "dashboardtoken",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the dashboardtoken command.",
+        "category": "Core",
+        "usage": "!dashboardtoken <action>"
     },
     {
         "name": "dashboardlink",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the dashboardlink command.",
+        "category": "Core",
+        "usage": "!dashboardlink <page>"
     },
     {
         "name": "dashboardaccess",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the dashboardaccess command.",
+        "category": "Core",
+        "usage": "!dashboardaccess"
     },
     {
         "name": "dashboardallpages",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the dashboardallpages command.",
+        "category": "Core",
+        "usage": "!dashboardallpages"
     },
     {
         "name": "dashboardopen",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the dashboardopen command.",
+        "category": "Core",
+        "usage": "!dashboardopen <page>"
     },
     {
         "name": "dashboardpassword",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the dashboardpassword command.",
+        "category": "Core",
+        "usage": "!dashboardpassword"
     },
     {
         "name": "dashboardsafemode",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the dashboardsafemode command.",
+        "category": "Core",
+        "usage": "!dashboardsafemode <mode>"
     },
     {
         "name": "devdashboard",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the devdashboard command.",
+        "category": "Core",
+        "usage": "!devdashboard <action>"
     },
     {
         "name": "zipprovider",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the zipprovider command.",
+        "category": "Core",
+        "usage": "!zipprovider"
     },
     {
         "name": "deletepanel",
         "description": "Open the multi-delete panel.",
-        "category": "Core"
+        "category": "Core",
+        "usage": "!deletepanel"
     },
     {
         "name": "deletefiles",
         "description": "Delete multiple files at once. Usage: ,deletefiles [path1] [path2] ...",
-        "category": "Core"
+        "category": "Core",
+        "usage": "!deletefiles [paths...]"
     },
     {
         "name": "deletefile",
         "description": "Delete a single file.",
-        "category": "Core"
+        "category": "Core",
+        "usage": "!deletefile"
     },
     {
         "name": "deletefolder",
         "description": "Delete a folder.",
-        "category": "Core"
+        "category": "Core",
+        "usage": "!deletefolder"
     },
     {
         "name": "forcedelete",
         "description": "Delete immediately without confirmation.",
-        "category": "Core"
+        "category": "Core",
+        "usage": "!forcedelete"
     },
     {
         "name": "restoredelete",
         "description": "Restore a deleted file backup.",
-        "category": "Core"
+        "category": "Core",
+        "usage": "!restoredelete <backup_name>"
     },
     {
         "name": "updatefile",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the updatefile command.",
+        "category": "Core",
+        "usage": "!updatefile <path>"
     },
     {
         "name": "uploadfile",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the uploadfile command.",
+        "category": "Core",
+        "usage": "!uploadfile <path> <reload>"
     },
     {
         "name": "uploadfiles",
         "description": "Attach several `.py` files in one message (optionally give a folder first to narrow",
-        "category": "Core"
+        "category": "Core",
+        "usage": "!uploadfiles <folder> <reload>"
     },
     {
         "name": "replace",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the replace command.",
+        "category": "Core",
+        "usage": "!replace <target> <reload>"
     },
     {
         "name": "multireplace",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the multireplace command.",
+        "category": "Core",
+        "usage": "!multireplace <folder> <reload>"
     },
     {
         "name": "autoreplace",
         "description": "Attach any number of files in one message. For each attachment the bot looks",
-        "category": "Core"
+        "category": "Core",
+        "usage": "!autoreplace <reload>"
     },
     {
         "name": "startpaste",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the startpaste command.",
+        "category": "Core",
+        "usage": "!startpaste"
     },
     {
         "name": "pastechunk",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the pastechunk command.",
+        "category": "Core",
+        "usage": "!pastechunk"
     },
     {
         "name": "pastepreview",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the pastepreview command.",
+        "category": "Core",
+        "usage": "!pastepreview"
     },
     {
         "name": "endpaste",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the endpaste command.",
+        "category": "Core",
+        "usage": "!endpaste <reload>"
     },
     {
         "name": "cancelpaste",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the cancelpaste command.",
+        "category": "Core",
+        "usage": "!cancelpaste"
     },
     {
         "name": "help",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Displays the help menu.",
+        "category": "Core",
+        "usage": "!help"
     },
     {
         "name": "helpsetup",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the helpsetup command.",
+        "category": "Core",
+        "usage": "!helpsetup"
     },
     {
         "name": "helpsetup",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the helpsetup command.",
+        "category": "Core",
+        "usage": "!helpsetup"
     },
     {
         "name": "help",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Displays the help menu.",
+        "category": "Core",
+        "usage": "!help <command_name>"
     },
     {
         "name": "selftest",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the selftest command.",
+        "category": "Core",
+        "usage": "!selftest"
     },
     {
         "name": "statuspanel",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the statuspanel command.",
+        "category": "Core",
+        "usage": "!statuspanel"
     },
     {
         "name": "setstatus",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the setstatus command.",
+        "category": "Core",
+        "usage": "!setstatus"
     },
     {
         "name": "statuspresence",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the statuspresence command.",
+        "category": "Core",
+        "usage": "!statuspresence <presence>"
     },
     {
         "name": "statustype",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the statustype command.",
+        "category": "Core",
+        "usage": "!statustype <activity_type>"
     },
     {
         "name": "statusmobile",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the statusmobile command.",
+        "category": "Core",
+        "usage": "!statusmobile <mode>"
     },
     {
         "name": "statusstreamurl",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the statusstreamurl command.",
+        "category": "Core",
+        "usage": "!statusstreamurl <url>"
     },
     {
         "name": "statuspreset",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the statuspreset command.",
+        "category": "Core",
+        "usage": "!statuspreset <kind> <presence>"
     },
     {
         "name": "statusclear",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the statusclear command.",
+        "category": "Core",
+        "usage": "!statusclear"
     },
     {
         "name": "statusrotate",
-        "description": "No description provided.",
-        "category": "Core"
+        "description": "Executes the statusrotate command.",
+        "category": "Core",
+        "usage": "!statusrotate <action> [args...]"
     },
     {
         "name": "balance",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the balance command.",
+        "category": "Economy",
+        "usage": "!balance <member>"
     },
     {
         "name": "bank",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the bank command.",
+        "category": "Economy",
+        "usage": "!bank <member>"
     },
     {
         "name": "work",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the work command.",
+        "category": "Economy",
+        "usage": "!work"
     },
     {
         "name": "daily",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the daily command.",
+        "category": "Economy",
+        "usage": "!daily"
     },
     {
         "name": "deposit",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the deposit command.",
+        "category": "Economy",
+        "usage": "!deposit <amount>"
     },
     {
         "name": "withdraw",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the withdraw command.",
+        "category": "Economy",
+        "usage": "!withdraw <amount>"
     },
     {
         "name": "pay",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the pay command.",
+        "category": "Economy",
+        "usage": "!pay <member> <amount>"
     },
     {
         "name": "rob",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the rob command.",
+        "category": "Economy",
+        "usage": "!rob <member>"
     },
     {
         "name": "gamble",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the gamble command.",
+        "category": "Economy",
+        "usage": "!gamble <amount>"
     },
     {
         "name": "slots",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the slots command.",
+        "category": "Economy",
+        "usage": "!slots <amount>"
     },
     {
         "name": "coinflip",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the coinflip command.",
+        "category": "Economy",
+        "usage": "!coinflip <choice> <amount>"
     },
     {
         "name": "blackjack",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the blackjack command.",
+        "category": "Economy",
+        "usage": "!blackjack <amount>"
     },
     {
         "name": "risk",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the risk command.",
+        "category": "Economy",
+        "usage": "!risk <amount>"
     },
     {
         "name": "businesses",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the businesses command.",
+        "category": "Economy",
+        "usage": "!businesses"
     },
     {
         "name": "mybusinesses",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the mybusinesses command.",
+        "category": "Economy",
+        "usage": "!mybusinesses <member>"
     },
     {
         "name": "buybusiness",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the buybusiness command.",
+        "category": "Economy",
+        "usage": "!buybusiness <business_type>"
     },
     {
         "name": "business",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the business command.",
+        "category": "Economy",
+        "usage": "!business <business_id>"
     },
     {
         "name": "collect",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the collect command.",
+        "category": "Economy",
+        "usage": "!collect <business_id>"
     },
     {
         "name": "collectall",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the collectall command.",
+        "category": "Economy",
+        "usage": "!collectall"
     },
     {
         "name": "upgradebusiness",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the upgradebusiness command.",
+        "category": "Economy",
+        "usage": "!upgradebusiness <business_id> <amount>"
     },
     {
         "name": "businessefficiency",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the businessefficiency command.",
+        "category": "Economy",
+        "usage": "!businessefficiency <business_id> <amount>"
     },
     {
         "name": "hire",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the hire command.",
+        "category": "Economy",
+        "usage": "!hire <business_id> <amount>"
     },
     {
         "name": "insurebusiness",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the insurebusiness command.",
+        "category": "Economy",
+        "usage": "!insurebusiness <business_id>"
     },
     {
         "name": "sellbusiness",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the sellbusiness command.",
+        "category": "Economy",
+        "usage": "!sellbusiness <business_id>"
     },
     {
         "name": "switchbusiness",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the switchbusiness command.",
+        "category": "Economy",
+        "usage": "!switchbusiness <business_id> <business_type>"
     },
     {
         "name": "autobank",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the autobank command.",
+        "category": "Economy",
+        "usage": "!autobank <business_id>"
     },
     {
         "name": "sabotage",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the sabotage command.",
+        "category": "Economy",
+        "usage": "!sabotage <target> <business_id>"
     },
     {
         "name": "businesslb",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the businesslb command.",
+        "category": "Economy",
+        "usage": "!businesslb"
     },
     {
         "name": "stocks",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the stocks command.",
+        "category": "Economy",
+        "usage": "!stocks"
     },
     {
         "name": "buyshares",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the buyshares command.",
+        "category": "Economy",
+        "usage": "!buyshares <symbol> <shares>"
     },
     {
         "name": "sellshares",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the sellshares command.",
+        "category": "Economy",
+        "usage": "!sellshares <symbol> <shares>"
     },
     {
         "name": "portfolio",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the portfolio command.",
+        "category": "Economy",
+        "usage": "!portfolio <member>"
     },
     {
         "name": "shop",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the shop command.",
+        "category": "Economy",
+        "usage": "!shop"
     },
     {
         "name": "buy",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the buy command.",
+        "category": "Economy",
+        "usage": "!buy <item_id> <amount>"
     },
     {
         "name": "sellitem",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the sellitem command.",
+        "category": "Economy",
+        "usage": "!sellitem <item_id> <amount>"
     },
     {
         "name": "inventory",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the inventory command.",
+        "category": "Economy",
+        "usage": "!inventory <member>"
     },
     {
         "name": "item",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the item command.",
+        "category": "Economy",
+        "usage": "!item <item_id>"
     },
     {
         "name": "richest",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the richest command.",
+        "category": "Economy",
+        "usage": "!richest"
     },
     {
         "name": "addmoney",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the addmoney command.",
+        "category": "Economy",
+        "usage": "!addmoney <member> <amount>"
     },
     {
         "name": "removemoney",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the removemoney command.",
+        "category": "Economy",
+        "usage": "!removemoney <member> <amount>"
     },
     {
         "name": "setmoney",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the setmoney command.",
+        "category": "Economy",
+        "usage": "!setmoney <member> <amount>"
     },
     {
         "name": "resetmoney",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the resetmoney command.",
+        "category": "Economy",
+        "usage": "!resetmoney <member>"
     },
     {
         "name": "create",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the create command.",
+        "category": "Economy",
+        "usage": "!create <prize> <duration> <winners> <channel> <messages_required> <roles_bonus_entries>"
     },
     {
         "name": "delete",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the delete command.",
+        "category": "Economy",
+        "usage": "!delete <message_id>"
     },
     {
         "name": "end",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the end command.",
+        "category": "Economy",
+        "usage": "!end <message_id>"
     },
     {
         "name": "reroll",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the reroll command.",
+        "category": "Economy",
+        "usage": "!reroll <message_id> <winners>"
     },
     {
         "name": "host",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the host command.",
+        "category": "Economy",
+        "usage": "!host <role>"
     },
     {
         "name": "giveaways",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the giveaways command.",
+        "category": "Economy",
+        "usage": "!giveaways"
     },
     {
         "name": "rank",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the rank command.",
+        "category": "Economy",
+        "usage": "!rank <member>"
     },
     {
         "name": "leaderboard",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the leaderboard command.",
+        "category": "Economy",
+        "usage": "!leaderboard"
     },
     {
         "name": "levelconfig",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the levelconfig command.",
+        "category": "Economy",
+        "usage": "!levelconfig"
     },
     {
         "name": "setlevelchannel",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the setlevelchannel command.",
+        "category": "Economy",
+        "usage": "!setlevelchannel <channel>"
     },
     {
         "name": "resetlevelchannel",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the resetlevelchannel command.",
+        "category": "Economy",
+        "usage": "!resetlevelchannel"
     },
     {
         "name": "leveltoggle",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the leveltoggle command.",
+        "category": "Economy",
+        "usage": "!leveltoggle <state>"
     },
     {
         "name": "xptoggle",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the xptoggle command.",
+        "category": "Economy",
+        "usage": "!xptoggle <state>"
     },
     {
         "name": "setxpcooldown",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the setxpcooldown command.",
+        "category": "Economy",
+        "usage": "!setxpcooldown <seconds>"
     },
     {
         "name": "add",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the add command.",
+        "category": "Economy",
+        "usage": "!add <channel>"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the remove command.",
+        "category": "Economy",
+        "usage": "!remove <channel>"
     },
     {
         "name": "reset",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the reset command.",
+        "category": "Economy",
+        "usage": "!reset"
     },
     {
         "name": "list",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the list command.",
+        "category": "Economy",
+        "usage": "!list"
     },
     {
         "name": "list",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the list command.",
+        "category": "Economy",
+        "usage": "!list"
     },
     {
         "name": "add",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the add command.",
+        "category": "Economy",
+        "usage": "!add <channel>"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the remove command.",
+        "category": "Economy",
+        "usage": "!remove <channel>"
     },
     {
         "name": "add",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the add command.",
+        "category": "Economy",
+        "usage": "!add <role>"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the remove command.",
+        "category": "Economy",
+        "usage": "!remove <role>"
     },
     {
         "name": "levelreward",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the levelreward command.",
+        "category": "Economy",
+        "usage": "!levelreward <level> <role>"
     },
     {
         "name": "levelrewardremove",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the levelrewardremove command.",
+        "category": "Economy",
+        "usage": "!levelrewardremove <level>"
     },
     {
         "name": "levelrewardreset",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the levelrewardreset command.",
+        "category": "Economy",
+        "usage": "!levelrewardreset"
     },
     {
         "name": "levelrewards",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the levelrewards command.",
+        "category": "Economy",
+        "usage": "!levelrewards"
     },
     {
         "name": "addxp",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the addxp command.",
+        "category": "Economy",
+        "usage": "!addxp <member> <amount>"
     },
     {
         "name": "removexp",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the removexp command.",
+        "category": "Economy",
+        "usage": "!removexp <member> <amount>"
     },
     {
         "name": "resetxp",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the resetxp command.",
+        "category": "Economy",
+        "usage": "!resetxp <member>"
     },
     {
         "name": "setlevel",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the setlevel command.",
+        "category": "Economy",
+        "usage": "!setlevel <member> <level>"
     },
     {
         "name": "setxp",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the setxp command.",
+        "category": "Economy",
+        "usage": "!setxp <member> <amount>"
     },
     {
         "name": "xpinfo",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the xpinfo command.",
+        "category": "Economy",
+        "usage": "!xpinfo <member>"
     },
     {
         "name": "pokercreate",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the pokercreate command.",
+        "category": "Economy",
+        "usage": "!pokercreate <buy_in> <max_players>"
     },
     {
         "name": "pokercancel",
-        "description": "No description provided.",
-        "category": "Economy"
+        "description": "Executes the pokercancel command.",
+        "category": "Economy",
+        "usage": "!pokercancel"
     },
     {
         "name": "lock",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Locks a channel so regular members cannot type.",
+        "category": "Information",
+        "usage": "!lock"
     },
     {
         "name": "list",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the list command.",
+        "category": "Information",
+        "usage": "!list"
     },
     {
         "name": "unlock",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Unlocks a channel.",
+        "category": "Information",
+        "usage": "!unlock"
     },
     {
         "name": "config",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the config command.",
+        "category": "Information",
+        "usage": "!config"
     },
     {
         "name": "set",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the set command.",
+        "category": "Information",
+        "usage": "!set"
     },
     {
         "name": "channel",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the channel command.",
+        "category": "Information",
+        "usage": "!channel <channel>"
     },
     {
         "name": "role",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the role command.",
+        "category": "Information",
+        "usage": "!role"
     },
     {
         "name": "list",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the list command.",
+        "category": "Information",
+        "usage": "!list"
     },
     {
         "name": "tag",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the tag command.",
+        "category": "Information",
+        "usage": "!tag"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the remove command.",
+        "category": "Information",
+        "usage": "!remove"
     },
     {
         "name": "add",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the add command.",
+        "category": "Information",
+        "usage": "!add <url>"
     },
     {
         "name": "rename",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the rename command.",
+        "category": "Information",
+        "usage": "!rename"
     },
     {
         "name": "cleanup",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the cleanup command.",
+        "category": "Information",
+        "usage": "!cleanup"
     },
     {
         "name": "removeduplicates",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the removeduplicates command.",
+        "category": "Information",
+        "usage": "!removeduplicates"
     },
     {
         "name": "add",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the add command.",
+        "category": "Information",
+        "usage": "!add <emoji>"
     },
     {
         "name": "rename",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the rename command.",
+        "category": "Information",
+        "usage": "!rename <emoji>"
     },
     {
         "name": "stats",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the stats command.",
+        "category": "Information",
+        "usage": "!stats"
     },
     {
         "name": "information",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the information command.",
+        "category": "Information",
+        "usage": "!information"
     },
     {
         "name": "addmany",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the addmany command.",
+        "category": "Information",
+        "usage": "!addmany"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the remove command.",
+        "category": "Information",
+        "usage": "!remove <emoji>"
     },
     {
         "name": "removemany",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the removemany command.",
+        "category": "Information",
+        "usage": "!removemany"
     },
     {
         "name": "afk",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the afk command.",
+        "category": "Information",
+        "usage": "!afk"
     },
     {
         "name": "ping",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Shows the bot's current latency.",
+        "category": "Information",
+        "usage": "!ping"
     },
     {
         "name": "status",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the status command.",
+        "category": "Information",
+        "usage": "!status"
     },
     {
         "name": "donate",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the donate command.",
+        "category": "Information",
+        "usage": "!donate"
     },
     {
         "name": "inviteinfo",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the inviteinfo command.",
+        "category": "Information",
+        "usage": "!inviteinfo <code>"
     },
     {
         "name": "lost",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the lost command.",
+        "category": "Information",
+        "usage": "!lost"
     },
     {
         "name": "emotes",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the emotes command.",
+        "category": "Information",
+        "usage": "!emotes"
     },
     {
         "name": "bots",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the bots command.",
+        "category": "Information",
+        "usage": "!bots"
     },
     {
         "name": "hide",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the hide command.",
+        "category": "Information",
+        "usage": "!hide <channel>"
     },
     {
         "name": "unhide",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the unhide command.",
+        "category": "Information",
+        "usage": "!unhide <channel>"
     },
     {
         "name": "seen",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the seen command.",
+        "category": "Information",
+        "usage": "!seen <member>"
     },
     {
         "name": "membercount",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the membercount command.",
+        "category": "Information",
+        "usage": "!membercount"
     },
     {
         "name": "channelinfo",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the channelinfo command.",
+        "category": "Information",
+        "usage": "!channelinfo <channel>"
     },
     {
         "name": "avatar",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Displays a user's avatar.",
+        "category": "Information",
+        "usage": "!avatar <user>"
     },
     {
         "name": "serveravatar",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the serveravatar command.",
+        "category": "Information",
+        "usage": "!serveravatar <user>"
     },
     {
         "name": "serverbanner",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the serverbanner command.",
+        "category": "Information",
+        "usage": "!serverbanner <user>"
     },
     {
         "name": "banner",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the banner command.",
+        "category": "Information",
+        "usage": "!banner <user>"
     },
     {
         "name": "guildicon",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the guildicon command.",
+        "category": "Information",
+        "usage": "!guildicon <guild_id>"
     },
     {
         "name": "servericon",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the servericon command.",
+        "category": "Information",
+        "usage": "!servericon"
     },
     {
         "name": "guildbanner",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the guildbanner command.",
+        "category": "Information",
+        "usage": "!guildbanner <guild_id>"
     },
     {
         "name": "splash",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the splash command.",
+        "category": "Information",
+        "usage": "!splash <guild_id>"
     },
     {
         "name": "serverinfo",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the serverinfo command.",
+        "category": "Information",
+        "usage": "!serverinfo <guild_id>"
     },
     {
         "name": "userinfo",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the userinfo command.",
+        "category": "Information",
+        "usage": "!userinfo <member>"
     },
     {
         "name": "firstmessage",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the firstmessage command.",
+        "category": "Information",
+        "usage": "!firstmessage"
     },
     {
         "name": "weather",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the weather command.",
+        "category": "Information",
+        "usage": "!weather"
     },
     {
         "name": "list",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the list command.",
+        "category": "Information",
+        "usage": "!list"
     },
     {
         "name": "set",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the set command.",
+        "category": "Information",
+        "usage": "!set"
     },
     {
         "name": "add",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the add command.",
+        "category": "Information",
+        "usage": "!add"
     },
     {
         "name": "list",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the list command.",
+        "category": "Information",
+        "usage": "!list"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the remove command.",
+        "category": "Information",
+        "usage": "!remove"
     },
     {
         "name": "list",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the list command.",
+        "category": "Information",
+        "usage": "!list"
     },
     {
         "name": "reset",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the reset command.",
+        "category": "Information",
+        "usage": "!reset"
     },
     {
         "name": "rotate",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the rotate command.",
+        "category": "Information",
+        "usage": "!rotate <degree> <url>"
     },
     {
         "name": "compress",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the compress command.",
+        "category": "Information",
+        "usage": "!compress <ratio> <url>"
     },
     {
         "name": "invert",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the invert command.",
+        "category": "Information",
+        "usage": "!invert <url>"
     },
     {
         "name": "hex",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the hex command.",
+        "category": "Information",
+        "usage": "!hex"
     },
     {
         "name": "screenshot",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the screenshot command.",
+        "category": "Information",
+        "usage": "!screenshot <url>"
     },
     {
         "name": "osu",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the osu command.",
+        "category": "Information",
+        "usage": "!osu <username> <game>"
     },
     {
         "name": "define",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the define command.",
+        "category": "Information",
+        "usage": "!define"
     },
     {
         "name": "urbandictionary",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the urbandictionary command.",
+        "category": "Information",
+        "usage": "!urbandictionary"
     },
     {
         "name": "telegram",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the telegram command.",
+        "category": "Information",
+        "usage": "!telegram"
     },
     {
         "name": "steam",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the steam command.",
+        "category": "Information",
+        "usage": "!steam"
     },
     {
         "name": "github",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the github command.",
+        "category": "Information",
+        "usage": "!github"
     },
     {
         "name": "todiscord",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the todiscord command.",
+        "category": "Information",
+        "usage": "!todiscord"
     },
     {
         "name": "fromdiscord",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the fromdiscord command.",
+        "category": "Information",
+        "usage": "!fromdiscord <user_id>"
     },
     {
         "name": "outfits",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the outfits command.",
+        "category": "Information",
+        "usage": "!outfits"
     },
     {
         "name": "template",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the template command.",
+        "category": "Information",
+        "usage": "!template <asset_id>"
     },
     {
         "name": "cashapp",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the cashapp command.",
+        "category": "Information",
+        "usage": "!cashapp"
     },
     {
         "name": "xbox",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the xbox command.",
+        "category": "Information",
+        "usage": "!xbox"
     },
     {
         "name": "snapchatstory",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the snapchatstory command.",
+        "category": "Information",
+        "usage": "!snapchatstory"
     },
     {
         "name": "snapchat",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the snapchat command.",
+        "category": "Information",
+        "usage": "!snapchat"
     },
     {
         "name": "valorant",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the valorant command.",
+        "category": "Information",
+        "usage": "!valorant"
     },
     {
         "name": "minecraft",
-        "description": "No description provided.",
-        "category": "Information"
+        "description": "Executes the minecraft command.",
+        "category": "Information",
+        "usage": "!minecraft"
     },
     {
         "name": "add",
         "description": "Add a counter. Example: ,counter add members voice --name Members: {count}",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!add <option> <channel_type>"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the remove command.",
+        "category": "Miscellaneous",
+        "usage": "!remove <channel>"
     },
     {
         "name": "refresh",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the refresh command.",
+        "category": "Miscellaneous",
+        "usage": "!refresh"
     },
     {
         "name": "options",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the options command.",
+        "category": "Miscellaneous",
+        "usage": "!options"
     },
     {
         "name": "avatar",
         "description": "Set the bot's server avatar (attach an image, reply to one, or pass a URL).",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!avatar"
     },
     {
         "name": "banner",
         "description": "Set the bot's server banner (attach an image, reply to one, or pass a URL).",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!banner"
     },
     {
         "name": "bio",
         "description": "Set the bot's server bio.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!bio"
     },
     {
         "name": "nickname",
         "description": "Set the bot's server nickname.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!nickname"
     },
     {
         "name": "view",
         "description": "Show the current customization (read-only).",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!view"
     },
     {
         "name": "reset",
         "description": "Reset avatar, banner, bio, nickname, or all.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!reset <option>"
     },
     {
         "name": "help",
         "description": "Show command usage.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!help"
     },
     {
         "name": "avatar",
         "description": "Set the bot's global avatar (attach an image, reply to one, or pass a URL).",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!avatar"
     },
     {
         "name": "banner",
         "description": "Set the bot's global banner (attach an image, reply to one, or pass a URL).",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!banner"
     },
     {
         "name": "name",
         "description": "Change the bot's global username (Discord limits how often).",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!name"
     },
     {
         "name": "reset",
         "description": "Reset the global avatar, banner, or both.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!reset <option>"
     },
     {
         "name": "view",
         "description": "Show the bot's current global profile.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!view"
     },
     {
         "name": "8ball",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the 8ball command.",
+        "category": "Miscellaneous",
+        "usage": "!8ball"
     },
     {
         "name": "poker",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the poker command.",
+        "category": "Miscellaneous",
+        "usage": "!poker <member>"
     },
     {
         "name": "pool",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the pool command.",
+        "category": "Miscellaneous",
+        "usage": "!pool"
     },
     {
         "name": "uno",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the uno command.",
+        "category": "Miscellaneous",
+        "usage": "!uno"
     },
     {
         "name": "connectfour",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the connectfour command.",
+        "category": "Miscellaneous",
+        "usage": "!connectfour <member>"
     },
     {
         "name": "rps",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the rps command.",
+        "category": "Miscellaneous",
+        "usage": "!rps <member>"
     },
     {
         "name": "slots",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the slots command.",
+        "category": "Miscellaneous",
+        "usage": "!slots"
     },
     {
         "name": "trivia",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the trivia command.",
+        "category": "Miscellaneous",
+        "usage": "!trivia"
     },
     {
         "name": "wordle",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the wordle command.",
+        "category": "Miscellaneous",
+        "usage": "!wordle"
     },
     {
         "name": "blackjack",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the blackjack command.",
+        "category": "Miscellaneous",
+        "usage": "!blackjack"
     },
     {
         "name": "coinflip",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the coinflip command.",
+        "category": "Miscellaneous",
+        "usage": "!coinflip"
     },
     {
         "name": "higherlower",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the higherlower command.",
+        "category": "Miscellaneous",
+        "usage": "!higherlower"
     },
     {
         "name": "tictactoe",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the tictactoe command.",
+        "category": "Miscellaneous",
+        "usage": "!tictactoe <member>"
     },
     {
         "name": "hangman",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the hangman command.",
+        "category": "Miscellaneous",
+        "usage": "!hangman"
     },
     {
         "name": "dj",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the dj command.",
+        "category": "Miscellaneous",
+        "usage": "!dj"
     },
     {
         "name": "autoplay",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the autoplay command.",
+        "category": "Miscellaneous",
+        "usage": "!autoplay <toggle>"
     },
     {
         "name": "play",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the play command.",
+        "category": "Miscellaneous",
+        "usage": "!play"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the remove command.",
+        "category": "Miscellaneous",
+        "usage": "!remove <position>"
     },
     {
         "name": "move",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the move command.",
+        "category": "Miscellaneous",
+        "usage": "!move <position> <new_position>"
     },
     {
         "name": "clear",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the clear command.",
+        "category": "Miscellaneous",
+        "usage": "!clear"
     },
     {
         "name": "skip",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the skip command.",
+        "category": "Miscellaneous",
+        "usage": "!skip"
     },
     {
         "name": "pause",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the pause command.",
+        "category": "Miscellaneous",
+        "usage": "!pause"
     },
     {
         "name": "resume",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the resume command.",
+        "category": "Miscellaneous",
+        "usage": "!resume"
     },
     {
         "name": "seek",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the seek command.",
+        "category": "Miscellaneous",
+        "usage": "!seek <position>"
     },
     {
         "name": "volume",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the volume command.",
+        "category": "Miscellaneous",
+        "usage": "!volume <percentage>"
     },
     {
         "name": "repeat",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the repeat command.",
+        "category": "Miscellaneous",
+        "usage": "!repeat <mode>"
     },
     {
         "name": "nowplaying",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the nowplaying command.",
+        "category": "Miscellaneous",
+        "usage": "!nowplaying"
     },
     {
         "name": "stop",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the stop command.",
+        "category": "Miscellaneous",
+        "usage": "!stop"
     },
     {
         "name": "disconnect",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the disconnect command.",
+        "category": "Miscellaneous",
+        "usage": "!disconnect"
     },
     {
         "name": "active",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the active command.",
+        "category": "Miscellaneous",
+        "usage": "!active"
     },
     {
         "name": "login",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the login command.",
+        "category": "Miscellaneous",
+        "usage": "!login"
     },
     {
         "name": "code",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the code command.",
+        "category": "Miscellaneous",
+        "usage": "!code"
     },
     {
         "name": "logout",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the logout command.",
+        "category": "Miscellaneous",
+        "usage": "!logout"
     },
     {
         "name": "nowplaying",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the nowplaying command.",
+        "category": "Miscellaneous",
+        "usage": "!nowplaying"
     },
     {
         "name": "find",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the find command.",
+        "category": "Miscellaneous",
+        "usage": "!find"
     },
     {
         "name": "play",
         "description": "Plays a song in voice chat using Spotify metadata + yt-dlp audio source.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!play"
     },
     {
         "name": "queue",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the queue command.",
+        "category": "Miscellaneous",
+        "usage": "!queue"
     },
     {
         "name": "volume",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the volume command.",
+        "category": "Miscellaneous",
+        "usage": "!volume <percentage>"
     },
     {
         "name": "seek",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the seek command.",
+        "category": "Miscellaneous",
+        "usage": "!seek <position>"
     },
     {
         "name": "device",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the device command.",
+        "category": "Miscellaneous",
+        "usage": "!device"
     },
     {
         "name": "next",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the next command.",
+        "category": "Miscellaneous",
+        "usage": "!next"
     },
     {
         "name": "previous",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the previous command.",
+        "category": "Miscellaneous",
+        "usage": "!previous"
     },
     {
         "name": "pause",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the pause command.",
+        "category": "Miscellaneous",
+        "usage": "!pause"
     },
     {
         "name": "resume",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the resume command.",
+        "category": "Miscellaneous",
+        "usage": "!resume"
     },
     {
         "name": "shuffle",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the shuffle command.",
+        "category": "Miscellaneous",
+        "usage": "!shuffle <state>"
     },
     {
         "name": "repeat",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the repeat command.",
+        "category": "Miscellaneous",
+        "usage": "!repeat <mode>"
     },
     {
         "name": "like",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the like command.",
+        "category": "Miscellaneous",
+        "usage": "!like"
     },
     {
         "name": "unlike",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the unlike command.",
+        "category": "Miscellaneous",
+        "usage": "!unlike"
     },
     {
         "name": "artists",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the artists command.",
+        "category": "Miscellaneous",
+        "usage": "!artists <timeframe>"
     },
     {
         "name": "tracks",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the tracks command.",
+        "category": "Miscellaneous",
+        "usage": "!tracks <timeframe>"
     },
     {
         "name": "vc",
         "description": "Join your voice channel and play either:",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!vc"
     },
     {
         "name": "vcstop",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the vcstop command.",
+        "category": "Miscellaneous",
+        "usage": "!vcstop"
     },
     {
         "name": "now",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the now command.",
+        "category": "Miscellaneous",
+        "usage": "!now"
     },
     {
         "name": "clear",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the clear command.",
+        "category": "Miscellaneous",
+        "usage": "!clear"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the remove command.",
+        "category": "Miscellaneous",
+        "usage": "!remove <position>"
     },
     {
         "name": "join",
         "description": "Joins your voice channel.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!join"
     },
     {
         "name": "leave",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the leave command.",
+        "category": "Miscellaneous",
+        "usage": "!leave"
     },
     {
         "name": "create",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the create command.",
+        "category": "Miscellaneous",
+        "usage": "!create <channel> <name>"
     },
     {
         "name": "send",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the send command.",
+        "category": "Miscellaneous",
+        "usage": "!send <identifier> <message> <style> <embed_title> <embed_description> <embed_color> <embed_footer> <embed_image> <embed_thumbnail> <embed_json> <file> <file2> <file3> <username> <avatar> <thread> <silent>"
     },
     {
         "name": "edit",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the edit command.",
+        "category": "Miscellaneous",
+        "usage": "!edit <message_link> <new_message>"
     },
     {
         "name": "name",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the name command.",
+        "category": "Miscellaneous",
+        "usage": "!name <identifier> <new_name>"
     },
     {
         "name": "avatar",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Displays a user's avatar.",
+        "category": "Miscellaneous",
+        "usage": "!avatar <identifier> <image> <image_url>"
     },
     {
         "name": "deletemsg",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the deletemsg command.",
+        "category": "Miscellaneous",
+        "usage": "!deletemsg <message_link>"
     },
     {
         "name": "delete",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the delete command.",
+        "category": "Miscellaneous",
+        "usage": "!delete <identifier>"
     },
     {
         "name": "list",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the list command.",
+        "category": "Miscellaneous",
+        "usage": "!list"
     },
     {
         "name": "cleanup",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the cleanup command.",
+        "category": "Miscellaneous",
+        "usage": "!cleanup"
     },
     {
         "name": "variables",
-        "description": "No description provided.",
-        "category": "Miscellaneous"
+        "description": "Executes the variables command.",
+        "category": "Miscellaneous",
+        "usage": "!variables"
     },
     {
         "name": "create",
         "description": "Create a new webhook in the specified channel under a short identifier.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!create <channel>"
     },
     {
         "name": "send",
         "description": "Send a message (and any attachments) through a saved webhook.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!send <identifier>"
     },
     {
         "name": "edit",
         "description": "Edit a message previously sent through this system (text, embed code, or JSON).",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!edit <message_link>"
     },
     {
         "name": "name",
         "description": "Change the name of a saved webhook.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!name <identifier>"
     },
     {
         "name": "avatar",
         "description": "Change a webhook's avatar. Attach an image, reply to one, or pass a URL.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!avatar <identifier> <image_url>"
     },
     {
         "name": "deletemsg",
         "description": "Delete a message that was previously sent through this system.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!deletemsg <message_link>"
     },
     {
         "name": "delete",
         "description": "Delete a saved webhook, after confirmation.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!delete <identifier>"
     },
     {
         "name": "list",
         "description": "Open the webhook manager: browse, rename, test and delete.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!list"
     },
     {
         "name": "cleanup",
         "description": "Forget saved webhooks that no longer exist on Discord.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!cleanup"
     },
     {
         "name": "variables",
         "description": "Show the variables you can use in messages and embeds.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!variables"
     },
     {
         "name": "stats",
         "description": "Developer-only: cross-guild webhook usage counts.",
-        "category": "Miscellaneous"
+        "category": "Miscellaneous",
+        "usage": "!stats"
     },
     {
         "name": "setup",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Starts the interactive setup process.",
+        "category": "Moderation",
+        "usage": "!setup"
     },
     {
         "name": "panel",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the panel command.",
+        "category": "Moderation",
+        "usage": "!panel"
     },
     {
         "name": "rules",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the rules command.",
+        "category": "Moderation",
+        "usage": "!rules <channel>"
     },
     {
         "name": "commandrules",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the commandrules command.",
+        "category": "Moderation",
+        "usage": "!commandrules"
     },
     {
         "name": "setlog",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the setlog command.",
+        "category": "Moderation",
+        "usage": "!setlog <channel>"
     },
     {
         "name": "clearlog",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the clearlog command.",
+        "category": "Moderation",
+        "usage": "!clearlog"
     },
     {
         "name": "reset",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the reset command.",
+        "category": "Moderation",
+        "usage": "!reset <channel>"
     },
     {
         "name": "sync",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the sync command.",
+        "category": "Moderation",
+        "usage": "!sync <channel>"
     },
     {
         "name": "add",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the add command.",
+        "category": "Moderation",
+        "usage": "!add <name>"
     },
     {
         "name": "response",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the response command.",
+        "category": "Moderation",
+        "usage": "!response <name>"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the remove command.",
+        "category": "Moderation",
+        "usage": "!remove <name>"
     },
     {
         "name": "view",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the view command.",
+        "category": "Moderation",
+        "usage": "!view <name>"
     },
     {
         "name": "list",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the list command.",
+        "category": "Moderation",
+        "usage": "!list"
     },
     {
         "name": "cooldown",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the cooldown command.",
+        "category": "Moderation",
+        "usage": "!cooldown <name> <seconds>"
     },
     {
         "name": "adminonly",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the adminonly command.",
+        "category": "Moderation",
+        "usage": "!adminonly <name> <value>"
     },
     {
         "name": "add",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the add command.",
+        "category": "Moderation",
+        "usage": "!add <name> <command>"
     },
     {
         "name": "response",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the response command.",
+        "category": "Moderation",
+        "usage": "!response <name> <response>"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the remove command.",
+        "category": "Moderation",
+        "usage": "!remove <name>"
     },
     {
         "name": "view",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the view command.",
+        "category": "Moderation",
+        "usage": "!view <name>"
     },
     {
         "name": "list",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the list command.",
+        "category": "Moderation",
+        "usage": "!list"
     },
     {
         "name": "cooldown",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the cooldown command.",
+        "category": "Moderation",
+        "usage": "!cooldown <name> <seconds>"
     },
     {
         "name": "adminonly",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the adminonly command.",
+        "category": "Moderation",
+        "usage": "!adminonly <name> <enabled>"
     },
     {
         "name": "test",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the test command.",
+        "category": "Moderation",
+        "usage": "!test"
     },
     {
         "name": "strikes",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the strikes command.",
+        "category": "Moderation",
+        "usage": "!strikes <member>"
     },
     {
         "name": "panel",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the panel command.",
+        "category": "Moderation",
+        "usage": "!panel"
     },
     {
         "name": "channel",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the channel command.",
+        "category": "Moderation",
+        "usage": "!channel <channel>"
     },
     {
         "name": "message",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the message command.",
+        "category": "Moderation",
+        "usage": "!message <message>"
     },
     {
         "name": "thankyou",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the thankyou command.",
+        "category": "Moderation",
+        "usage": "!thankyou <message>"
     },
     {
         "name": "pingrole",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the pingrole command.",
+        "category": "Moderation",
+        "usage": "!pingrole <role>"
     },
     {
         "name": "autolock",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the autolock command.",
+        "category": "Moderation",
+        "usage": "!autolock <state>"
     },
     {
         "name": "autoclean",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the autoclean command.",
+        "category": "Moderation",
+        "usage": "!autoclean <state>"
     },
     {
         "name": "interval",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the interval command.",
+        "category": "Moderation",
+        "usage": "!interval <minutes>"
     },
     {
         "name": "pause",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the pause command.",
+        "category": "Moderation",
+        "usage": "!pause"
     },
     {
         "name": "resume",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the resume command.",
+        "category": "Moderation",
+        "usage": "!resume"
     },
     {
         "name": "test",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the test command.",
+        "category": "Moderation",
+        "usage": "!test"
     },
     {
         "name": "view",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the view command.",
+        "category": "Moderation",
+        "usage": "!view"
     },
     {
         "name": "stats",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the stats command.",
+        "category": "Moderation",
+        "usage": "!stats"
     },
     {
         "name": "reset",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the reset command.",
+        "category": "Moderation",
+        "usage": "!reset"
     },
     {
         "name": "channel",
         "description": "Set the channel bump reminders are sent in.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!channel <channel>"
     },
     {
         "name": "message",
         "description": "Set the reminder message. Plain text, or `title: x | description: y | color: #fff`.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!message"
     },
     {
         "name": "thankyou",
         "description": "Set the message sent after someone bumps. Supports `{user}` and the mini-language.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!thankyou"
     },
     {
         "name": "pingrole",
         "description": "Set (or clear) the role mentioned on every reminder.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!pingrole <role>"
     },
     {
         "name": "autolock",
         "description": "Lock the channel between bump windows (`on`/`off`).",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!autolock <state>"
     },
     {
         "name": "autoclean",
         "description": "Delete off-topic messages in the bump channel (`on`/`off`).",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!autoclean <state>"
     },
     {
         "name": "interval",
         "description": "Set the minutes between reminders (30-720). DISBOARD's own cooldown is 120.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!interval <minutes>"
     },
     {
         "name": "pause",
         "description": "Pause reminders without losing the configuration.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!pause"
     },
     {
         "name": "resume",
         "description": "Resume paused reminders.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!resume"
     },
     {
         "name": "test",
         "description": "Send a reminder right now, without affecting the schedule.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!test"
     },
     {
         "name": "view",
         "description": "Show the current configuration.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!view"
     },
     {
         "name": "stats",
         "description": "Show bump stats for this server.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!stats"
     },
     {
         "name": "panel",
         "description": "Open the interactive config panel (same as plain `bumpreminder`).",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!panel"
     },
     {
         "name": "reset",
         "description": "Reset the bump reminder configuration for this server.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!reset"
     },
     {
         "name": "on",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the on command.",
+        "category": "Moderation",
+        "usage": "!on"
     },
     {
         "name": "off",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the off command.",
+        "category": "Moderation",
+        "usage": "!off"
     },
     {
         "name": "jail",
         "description": ",jail @user [duration] [reason]  \u2014 e.g. \",jail @Bob 1h spamming\"",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!jail <member> <duration_or_reason>"
     },
     {
         "name": "sjail",
         "description": ",sjail @user [duration] [reason] \u2014 same as ,jail but skips the",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!sjail <member> <duration_or_reason>"
     },
     {
         "name": "unjail",
         "description": ",unjail @user [reason] \u2014 releases `member` immediately via `apply_unjail`.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!unjail <member>"
     },
     {
         "name": "jailtime",
         "description": ",jailtime @user <adjustment> \u2014 change an active jail's expiry.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!jailtime <member>"
     },
     {
         "name": "add",
         "description": ",jailtemplate add <name> <duration> <reason> \u2014 duration accepts `1h`/`3d`/etc, or `perm` for none.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!add <name> <duration>"
     },
     {
         "name": "remove",
         "description": ",jailtemplate remove <name>",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!remove <name>"
     },
     {
         "name": "jailpanel",
         "description": ",jailpanel [@user] \u2014 opens an interactive jail management panel.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!jailpanel <member>"
     },
     {
         "name": "panel",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the panel command.",
+        "category": "Moderation",
+        "usage": "!panel"
     },
     {
         "name": "channel",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the channel command.",
+        "category": "Moderation",
+        "usage": "!channel <channel>"
     },
     {
         "name": "toggle",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the toggle command.",
+        "category": "Moderation",
+        "usage": "!toggle <log_type> <state>"
     },
     {
         "name": "all",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the all command.",
+        "category": "Moderation",
+        "usage": "!all <state>"
     },
     {
         "name": "route",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the route command.",
+        "category": "Moderation",
+        "usage": "!route <log_type> <channel>"
     },
     {
         "name": "unroute",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the unroute command.",
+        "category": "Moderation",
+        "usage": "!unroute <log_type>"
     },
     {
         "name": "test",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the test command.",
+        "category": "Moderation",
+        "usage": "!test"
     },
     {
         "name": "ignore",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the ignore command.",
+        "category": "Moderation",
+        "usage": "!ignore <channel> <role> <user>"
     },
     {
         "name": "unignore",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the unignore command.",
+        "category": "Moderation",
+        "usage": "!unignore <channel> <role> <user>"
     },
     {
         "name": "setlogs",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the setlogs command.",
+        "category": "Moderation",
+        "usage": "!setlogs <channel>"
     },
     {
         "name": "panel",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the panel command.",
+        "category": "Moderation",
+        "usage": "!panel"
     },
     {
         "name": "channel",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the channel command.",
+        "category": "Moderation",
+        "usage": "!channel <channel>"
     },
     {
         "name": "toggle",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the toggle command.",
+        "category": "Moderation",
+        "usage": "!toggle <log_type> <state>"
     },
     {
         "name": "all",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the all command.",
+        "category": "Moderation",
+        "usage": "!all <state>"
     },
     {
         "name": "modules",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the modules command.",
+        "category": "Moderation",
+        "usage": "!modules"
     },
     {
         "name": "route",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the route command.",
+        "category": "Moderation",
+        "usage": "!route <log_type> <channel>"
     },
     {
         "name": "unroute",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the unroute command.",
+        "category": "Moderation",
+        "usage": "!unroute <log_type>"
     },
     {
         "name": "note",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the note command.",
+        "category": "Moderation",
+        "usage": "!note"
     },
     {
         "name": "style",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the style command.",
+        "category": "Moderation",
+        "usage": "!style <setting_name> <state>"
     },
     {
         "name": "test",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the test command.",
+        "category": "Moderation",
+        "usage": "!test"
     },
     {
         "name": "list",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the list command.",
+        "category": "Moderation",
+        "usage": "!list"
     },
     {
         "name": "add",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the add command.",
+        "category": "Moderation",
+        "usage": "!add <channel>"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the remove command.",
+        "category": "Moderation",
+        "usage": "!remove <channel>"
     },
     {
         "name": "add",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the add command.",
+        "category": "Moderation",
+        "usage": "!add <role>"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the remove command.",
+        "category": "Moderation",
+        "usage": "!remove <role>"
     },
     {
         "name": "add",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the add command.",
+        "category": "Moderation",
+        "usage": "!add <member>"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the remove command.",
+        "category": "Moderation",
+        "usage": "!remove <member>"
     },
     {
         "name": "mute",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Mutes a user so they cannot speak or type.",
+        "category": "Moderation",
+        "usage": "!mute <member> <duration_or_reason>"
     },
     {
         "name": "unmute",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Removes a mute from a user.",
+        "category": "Moderation",
+        "usage": "!unmute <member>"
     },
     {
         "name": "list",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the list command.",
+        "category": "Moderation",
+        "usage": "!list"
     },
     {
         "name": "jail",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the jail command.",
+        "category": "Moderation",
+        "usage": "!jail <message_type>"
     },
     {
         "name": "kick",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Kicks a user from the server.",
+        "category": "Moderation",
+        "usage": "!kick <message_type>"
     },
     {
         "name": "ban",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Bans a user from the server permanently.",
+        "category": "Moderation",
+        "usage": "!ban <message_type>"
     },
     {
         "name": "kick",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Kicks a user from the server.",
+        "category": "Moderation",
+        "usage": "!kick <member>"
     },
     {
         "name": "ban",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Bans a user from the server permanently.",
+        "category": "Moderation",
+        "usage": "!ban <user>"
     },
     {
         "name": "hardban",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the hardban command.",
+        "category": "Moderation",
+        "usage": "!hardban <user_id>"
     },
     {
         "name": "softban",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the softban command.",
+        "category": "Moderation",
+        "usage": "!softban <user>"
     },
     {
         "name": "unban",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the unban command.",
+        "category": "Moderation",
+        "usage": "!unban <user_id>"
     },
     {
         "name": "timeout",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the timeout command.",
+        "category": "Moderation",
+        "usage": "!timeout <member> <duration>"
     },
     {
         "name": "untimeout",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the untimeout command.",
+        "category": "Moderation",
+        "usage": "!untimeout <member>"
     },
     {
         "name": "purge",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Deletes a specified number of messages.",
+        "category": "Moderation",
+        "usage": "!purge <amount>"
     },
     {
         "name": "warn",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Issues a formal warning to a user.",
+        "category": "Moderation",
+        "usage": "!warn <member>"
     },
     {
         "name": "warnings",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the warnings command.",
+        "category": "Moderation",
+        "usage": "!warnings <member>"
     },
     {
         "name": "removewarn",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the removewarn command.",
+        "category": "Moderation",
+        "usage": "!removewarn <warn_id>"
     },
     {
         "name": "clearwarns",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the clearwarns command.",
+        "category": "Moderation",
+        "usage": "!clearwarns <member>"
     },
     {
         "name": "lock",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Locks a channel so regular members cannot type.",
+        "category": "Moderation",
+        "usage": "!lock <channel>"
     },
     {
         "name": "unlock",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Unlocks a channel.",
+        "category": "Moderation",
+        "usage": "!unlock <channel>"
     },
     {
         "name": "lockdown",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the lockdown command.",
+        "category": "Moderation",
+        "usage": "!lockdown"
     },
     {
         "name": "unlockdown",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the unlockdown command.",
+        "category": "Moderation",
+        "usage": "!unlockdown"
     },
     {
         "name": "kick",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Kicks a user from the server.",
+        "category": "Moderation",
+        "usage": "!kick <member> <reason>"
     },
     {
         "name": "ban",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Bans a user from the server permanently.",
+        "category": "Moderation",
+        "usage": "!ban <user> <reason>"
     },
     {
         "name": "hardban",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the hardban command.",
+        "category": "Moderation",
+        "usage": "!hardban <user_id> <reason>"
     },
     {
         "name": "softban",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the softban command.",
+        "category": "Moderation",
+        "usage": "!softban <user> <reason>"
     },
     {
         "name": "unban",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the unban command.",
+        "category": "Moderation",
+        "usage": "!unban <user_id>"
     },
     {
         "name": "timeout",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the timeout command.",
+        "category": "Moderation",
+        "usage": "!timeout <member> <duration> <reason>"
     },
     {
         "name": "untimeout",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the untimeout command.",
+        "category": "Moderation",
+        "usage": "!untimeout <member>"
     },
     {
         "name": "purge",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Deletes a specified number of messages.",
+        "category": "Moderation",
+        "usage": "!purge <amount>"
     },
     {
         "name": "warn",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Issues a formal warning to a user.",
+        "category": "Moderation",
+        "usage": "!warn <member> <reason>"
     },
     {
         "name": "warnings",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the warnings command.",
+        "category": "Moderation",
+        "usage": "!warnings <member>"
     },
     {
         "name": "removewarn",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the removewarn command.",
+        "category": "Moderation",
+        "usage": "!removewarn <warn_id>"
     },
     {
         "name": "clearwarns",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the clearwarns command.",
+        "category": "Moderation",
+        "usage": "!clearwarns <member>"
     },
     {
         "name": "lock",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Locks a channel so regular members cannot type.",
+        "category": "Moderation",
+        "usage": "!lock <reason>"
     },
     {
         "name": "unlock",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Unlocks a channel.",
+        "category": "Moderation",
+        "usage": "!unlock <reason>"
     },
     {
         "name": "lockdown",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the lockdown command.",
+        "category": "Moderation",
+        "usage": "!lockdown <reason>"
     },
     {
         "name": "unlockdown",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the unlockdown command.",
+        "category": "Moderation",
+        "usage": "!unlockdown <reason>"
     },
     {
         "name": "list",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the list command.",
+        "category": "Moderation",
+        "usage": "!list"
     },
     {
         "name": "set",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the set command.",
+        "category": "Moderation",
+        "usage": "!set"
     },
     {
         "name": "members",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the members command.",
+        "category": "Moderation",
+        "usage": "!members"
     },
     {
         "name": "perms",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the perms command.",
+        "category": "Moderation",
+        "usage": "!perms"
     },
     {
         "name": "edit",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the edit command.",
+        "category": "Moderation",
+        "usage": "!edit"
     },
     {
         "name": "giverole",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the giverole command.",
+        "category": "Moderation",
+        "usage": "!giverole <member>"
     },
     {
         "name": "roleremove",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the roleremove command.",
+        "category": "Moderation",
+        "usage": "!roleremove <member>"
     },
     {
         "name": "newrole",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the newrole command.",
+        "category": "Moderation",
+        "usage": "!newrole"
     },
     {
         "name": "roleeditname",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the roleeditname command.",
+        "category": "Moderation",
+        "usage": "!roleeditname"
     },
     {
         "name": "roledel",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the roledel command.",
+        "category": "Moderation",
+        "usage": "!roledel"
     },
     {
         "name": "roleposition",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the roleposition command.",
+        "category": "Moderation",
+        "usage": "!roleposition"
     },
     {
         "name": "dragrole",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the dragrole command.",
+        "category": "Moderation",
+        "usage": "!dragrole"
     },
     {
         "name": "icon",
-        "description": "No description provided.",
-        "category": "Moderation"
+        "description": "Executes the icon command.",
+        "category": "Moderation",
+        "usage": "!icon"
     },
     {
         "name": "setupticket",
         "description": "Interactive ticket system setup wizard.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!setupticket"
     },
     {
         "name": "close",
         "description": "Close the current ticket.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!close"
     },
     {
         "name": "claim",
         "description": "Claim the current ticket.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!claim"
     },
     {
         "name": "unclaim",
         "description": "Unclaim the current ticket.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!unclaim"
     },
     {
         "name": "rename",
         "description": "Rename the current ticket channel.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!rename"
     },
     {
         "name": "tadd",
         "description": "Add a user to the current ticket.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!tadd <member>"
     },
     {
         "name": "tremove",
         "description": "Remove a user from the current ticket.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!tremove <member>"
     },
     {
         "name": "tblacklist",
         "description": "Blacklist a user or role from opening tickets. Mention a user or role.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!tblacklist <target>"
     },
     {
         "name": "tunblacklist",
         "description": "Remove a user or role from the ticket blacklist.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!tunblacklist <target>"
     },
     {
         "name": "tinfo",
         "description": "Show info about the current ticket.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!tinfo"
     },
     {
         "name": "ticketdeletepanel",
         "description": "Delete a ticket panel and its options.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!ticketdeletepanel <panel_id>"
     },
     {
         "name": "panels",
         "description": "List all ticket panels for this server.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!panels"
     },
     {
         "name": "editpanel",
         "description": "Interactive wizard to edit an existing ticket panel, its options, support roles, and settings.",
-        "category": "Moderation"
+        "category": "Moderation",
+        "usage": "!editpanel <panel_id>"
     },
     {
         "name": "add",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the add command.",
+        "category": "Security",
+        "usage": "!add <role>"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the remove command.",
+        "category": "Security",
+        "usage": "!remove <role>"
     },
     {
         "name": "list",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the list command.",
+        "category": "Security",
+        "usage": "!list <role>"
     },
     {
         "name": "reset",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the reset command.",
+        "category": "Security",
+        "usage": "!reset <role>"
     },
     {
         "name": "check",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the check command.",
+        "category": "Security",
+        "usage": "!check <member>"
     },
     {
         "name": "preset",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the preset command.",
+        "category": "Security",
+        "usage": "!preset <role> <preset>"
     },
     {
         "name": "permissions",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the permissions command.",
+        "category": "Security",
+        "usage": "!permissions"
     },
     {
         "name": "simulate",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the simulate command.",
+        "category": "Security",
+        "usage": "!simulate"
     },
     {
         "name": "status",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the status command.",
+        "category": "Security",
+        "usage": "!status"
     },
     {
         "name": "enable",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the enable command.",
+        "category": "Security",
+        "usage": "!enable"
     },
     {
         "name": "disable",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the disable command.",
+        "category": "Security",
+        "usage": "!disable"
     },
     {
         "name": "channel",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the channel command.",
+        "category": "Security",
+        "usage": "!channel <channel>"
     },
     {
         "name": "verifiedrole",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the verifiedrole command.",
+        "category": "Security",
+        "usage": "!verifiedrole <role>"
     },
     {
         "name": "unverifiedrole",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the unverifiedrole command.",
+        "category": "Security",
+        "usage": "!unverifiedrole <role>"
     },
     {
         "name": "bypassrole",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the bypassrole command.",
+        "category": "Security",
+        "usage": "!bypassrole <role>"
     },
     {
         "name": "clearbypassrole",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the clearbypassrole command.",
+        "category": "Security",
+        "usage": "!clearbypassrole"
     },
     {
         "name": "accountage",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the accountage command.",
+        "category": "Security",
+        "usage": "!accountage <days>"
     },
     {
         "name": "autokick",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the autokick command.",
+        "category": "Security",
+        "usage": "!autokick <minutes>"
     },
     {
         "name": "dmonjoin",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the dmonjoin command.",
+        "category": "Security",
+        "usage": "!dmonjoin <state>"
     },
     {
         "name": "logchannel",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the logchannel command.",
+        "category": "Security",
+        "usage": "!logchannel <channel>"
     },
     {
         "name": "clearlogchannel",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the clearlogchannel command.",
+        "category": "Security",
+        "usage": "!clearlogchannel"
     },
     {
         "name": "panel",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the panel command.",
+        "category": "Security",
+        "usage": "!panel"
     },
     {
         "name": "scanpanel",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the scanpanel command.",
+        "category": "Security",
+        "usage": "!scanpanel"
     },
     {
         "name": "resetpanel",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the resetpanel command.",
+        "category": "Security",
+        "usage": "!resetpanel"
     },
     {
         "name": "reset",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the reset command.",
+        "category": "Security",
+        "usage": "!reset"
     },
     {
         "name": "pending",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the pending command.",
+        "category": "Security",
+        "usage": "!pending"
     },
     {
         "name": "refreshall",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the refreshall command.",
+        "category": "Security",
+        "usage": "!refreshall"
     },
     {
         "name": "add",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the add command.",
+        "category": "Security",
+        "usage": "!add <member>"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the remove command.",
+        "category": "Security",
+        "usage": "!remove <member>"
     },
     {
         "name": "add",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the add command.",
+        "category": "Security",
+        "usage": "!add <member>"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the remove command.",
+        "category": "Security",
+        "usage": "!remove <member>"
     },
     {
         "name": "reverify",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the reverify command.",
+        "category": "Security",
+        "usage": "!reverify <member>"
     },
     {
         "name": "verify",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the verify command.",
+        "category": "Security",
+        "usage": "!verify"
     },
     {
         "name": "permissions",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the permissions command.",
+        "category": "Security",
+        "usage": "!permissions"
     },
     {
         "name": "lockverify",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the lockverify command.",
+        "category": "Security",
+        "usage": "!lockverify"
     },
     {
         "name": "unlockverify",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the unlockverify command.",
+        "category": "Security",
+        "usage": "!unlockverify"
     },
     {
         "name": "synctraps",
         "description": "Scans all registered KickTrap channels, finds existing embed message IDs,",
-        "category": "Security"
+        "category": "Security",
+        "usage": "!synctraps"
     },
     {
         "name": "set",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the set command.",
+        "category": "Security",
+        "usage": "!set <channel>"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the remove command.",
+        "category": "Security",
+        "usage": "!remove <channel>"
     },
     {
         "name": "list",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the list command.",
+        "category": "Security",
+        "usage": "!list"
     },
     {
         "name": "resend",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the resend command.",
+        "category": "Security",
+        "usage": "!resend <channel>"
     },
     {
         "name": "logs",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the logs command.",
+        "category": "Security",
+        "usage": "!logs <channel>"
     },
     {
         "name": "scam",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the scam command.",
+        "category": "Security",
+        "usage": "!scam <toggle>"
     },
     {
         "name": "autokick",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the autokick command.",
+        "category": "Security",
+        "usage": "!autokick <toggle>"
     },
     {
         "name": "boostertimeout",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the boostertimeout command.",
+        "category": "Security",
+        "usage": "!boostertimeout <minutes>"
     },
     {
         "name": "quarantine",
         "description": "Opens an interactive setup panel to configure quarantine settings.",
-        "category": "Security"
+        "category": "Security",
+        "usage": "!quarantine"
     },
     {
         "name": "add",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the add command.",
+        "category": "Security",
+        "usage": "!add <domain>"
     },
     {
         "name": "remove",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the remove command.",
+        "category": "Security",
+        "usage": "!remove <domain>"
     },
     {
         "name": "recover",
         "description": "Manually un-quarantines/recovers a member, removes restrictions, and restores their saved roles.",
-        "category": "Security"
+        "category": "Security",
+        "usage": "!recover <member>"
     },
     {
         "name": "flags",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the flags command.",
+        "category": "Security",
+        "usage": "!flags <member>"
     },
     {
         "name": "clearroles",
         "description": "Manually purge saved roles for a user so they join fresh.",
-        "category": "Security"
+        "category": "Security",
+        "usage": "!clearroles <user_id>"
     },
     {
         "name": "add",
         "description": "Add an attached image or replied-to message image to the recurring scam database.",
-        "category": "Security"
+        "category": "Security",
+        "usage": "!add"
     },
     {
         "name": "list",
         "description": "List all registered scam image hashes.",
-        "category": "Security"
+        "category": "Security",
+        "usage": "!list"
     },
     {
         "name": "clear",
         "description": "Clear all scam image hashes for this server.",
-        "category": "Security"
+        "category": "Security",
+        "usage": "!clear"
     },
     {
         "name": "setupkick",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the setupkick command.",
+        "category": "Security",
+        "usage": "!setupkick"
     },
     {
         "name": "removekick",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the removekick command.",
+        "category": "Security",
+        "usage": "!removekick"
     },
     {
         "name": "listkicktraps",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the listkicktraps command.",
+        "category": "Security",
+        "usage": "!listkicktraps"
     },
     {
         "name": "kicktrapresend",
-        "description": "No description provided.",
-        "category": "Security"
+        "description": "Executes the kicktrapresend command.",
+        "category": "Security",
+        "usage": "!kicktrapresend"
     },
     {
         "name": "rlpanel",
         "description": "Spawns an interactive Control Panel to fine tune adjustments in real time.",
-        "category": "Security"
+        "category": "Security",
+        "usage": "!rlpanel"
     },
     {
         "name": "guildinform",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the guildinform command.",
+        "category": "Server",
+        "usage": "!guildinform"
     },
     {
         "name": "guildmessage",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the guildmessage command.",
+        "category": "Server",
+        "usage": "!guildmessage <member>"
     },
     {
         "name": "addbotpanel",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the addbotpanel command.",
+        "category": "Server",
+        "usage": "!addbotpanel"
     },
     {
         "name": "refreshbotpanel",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the refreshbotpanel command.",
+        "category": "Server",
+        "usage": "!refreshbotpanel"
     },
     {
         "name": "welcomechannel",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the welcomechannel command.",
+        "category": "Server",
+        "usage": "!welcomechannel <channel>"
     },
     {
         "name": "goodbyechannel",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the goodbyechannel command.",
+        "category": "Server",
+        "usage": "!goodbyechannel <channel>"
     },
     {
         "name": "welcomemessage",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the welcomemessage command.",
+        "category": "Server",
+        "usage": "!welcomemessage"
     },
     {
         "name": "goodbyemessage",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the goodbyemessage command.",
+        "category": "Server",
+        "usage": "!goodbyemessage"
     },
     {
         "name": "welcometoggle",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the welcometoggle command.",
+        "category": "Server",
+        "usage": "!welcometoggle <state>"
     },
     {
         "name": "goodbyetoggle",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the goodbyetoggle command.",
+        "category": "Server",
+        "usage": "!goodbyetoggle <state>"
     },
     {
         "name": "testwelcome",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the testwelcome command.",
+        "category": "Server",
+        "usage": "!testwelcome <member>"
     },
     {
         "name": "testgoodbye",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the testgoodbye command.",
+        "category": "Server",
+        "usage": "!testgoodbye <member>"
     },
     {
         "name": "setup",
         "description": "Open the setup center panel.",
-        "category": "Server"
+        "category": "Server",
+        "usage": "!setup"
     },
     {
         "name": "setupjail",
         "description": "Create jail channels and role.",
-        "category": "Server"
+        "category": "Server",
+        "usage": "!setupjail"
     },
     {
         "name": "setupmute",
         "description": "Create mute roles and channels.",
-        "category": "Server"
+        "category": "Server",
+        "usage": "!setupmute"
     },
     {
         "name": "setupall",
         "description": "Create jail + mute setup together.",
-        "category": "Server"
+        "category": "Server",
+        "usage": "!setupall"
     },
     {
         "name": "setupstatus",
         "description": "Show current setup status.",
-        "category": "Server"
+        "category": "Server",
+        "usage": "!setupstatus"
     },
     {
         "name": "fixjailperms",
         "description": "Re-apply jail role lockdown to all channels.",
-        "category": "Server"
+        "category": "Server",
+        "usage": "!fixjailperms"
     },
     {
         "name": "jailroles",
         "description": "Toggle or set role removal on jail. Usage: ,jailroles on/off",
-        "category": "Server"
+        "category": "Server",
+        "usage": "!jailroles <state>"
     },
     {
         "name": "setup_updates",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the setup_updates command.",
+        "category": "Server",
+        "usage": "!setup_updates <channel> <role> <footer>"
     },
     {
         "name": "update_config",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the update_config command.",
+        "category": "Server",
+        "usage": "!update_config"
     },
     {
         "name": "update_toggle",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the update_toggle command.",
+        "category": "Server",
+        "usage": "!update_toggle <auto_caps> <markers> <ping_enabled> <use_server_icon> <compact_mode> <title_prefix> <default_color>"
     },
     {
         "name": "update_media_defaults",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the update_media_defaults command.",
+        "category": "Server",
+        "usage": "!update_media_defaults <media_url> <thumbnail_url> <use_server_icon>"
     },
     {
         "name": "save_update_theme",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the save_update_theme command.",
+        "category": "Server",
+        "usage": "!save_update_theme <theme_name> <color_hex> <emoji> <title_prefix> <footer_text>"
     },
     {
         "name": "save_update_template",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the save_update_template command.",
+        "category": "Server",
+        "usage": "!save_update_template <template_name> <theme_name> <title_prefix> <added_label> <improved_label> <fixed_label> <removed_label> <notes_label> <overview_label>"
     },
     {
         "name": "list_update_presets",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the list_update_presets command.",
+        "category": "Server",
+        "usage": "!list_update_presets"
     },
     {
         "name": "post_update",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the post_update command.",
+        "category": "Server",
+        "usage": "!post_update <template_name> <theme_name> <ping_role_override> <attachment_1> <attachment_2> <attachment_3> <attachment_4>"
     },
     {
         "name": "quick_update",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the quick_update command.",
+        "category": "Server",
+        "usage": "!quick_update <title> <overview> <added> <fixed> <improved> <removed> <notes> <template_name> <theme_name> <ping_role_override>"
     },
     {
         "name": "append_update",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the append_update command.",
+        "category": "Server",
+        "usage": "!append_update <title_addition> <added> <fixed> <improved> <removed> <notes> <media_attachment>"
     },
     {
         "name": "update_history",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the update_history command.",
+        "category": "Server",
+        "usage": "!update_history <limit>"
     },
     {
         "name": "edit_last_update",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the edit_last_update command.",
+        "category": "Server",
+        "usage": "!edit_last_update"
     },
     {
         "name": "delete_last_update",
-        "description": "No description provided.",
-        "category": "Server"
+        "description": "Executes the delete_last_update command.",
+        "category": "Server",
+        "usage": "!delete_last_update"
     },
     {
         "name": "snipe",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the snipe command.",
+        "category": "Snipe",
+        "usage": "!snipe <index>"
     },
     {
         "name": "snipepanel",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the snipepanel command.",
+        "category": "Snipe",
+        "usage": "!snipepanel"
     },
     {
         "name": "usersnipe",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the usersnipe command.",
+        "category": "Snipe",
+        "usage": "!usersnipe <member> <index>"
     },
     {
         "name": "guildsnipe",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the guildsnipe command.",
+        "category": "Snipe",
+        "usage": "!guildsnipe <index>"
     },
     {
         "name": "editsnipe",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the editsnipe command.",
+        "category": "Snipe",
+        "usage": "!editsnipe <index>"
     },
     {
         "name": "editsnipepanel",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the editsnipepanel command.",
+        "category": "Snipe",
+        "usage": "!editsnipepanel"
     },
     {
         "name": "reactionsnipe",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the reactionsnipe command.",
+        "category": "Snipe",
+        "usage": "!reactionsnipe <index>"
     },
     {
         "name": "reactionhistory",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the reactionhistory command.",
+        "category": "Snipe",
+        "usage": "!reactionhistory <index>"
     },
     {
         "name": "reactionhistorypanel",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the reactionhistorypanel command.",
+        "category": "Snipe",
+        "usage": "!reactionhistorypanel"
     },
     {
         "name": "ghostsnipe",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the ghostsnipe command.",
+        "category": "Snipe",
+        "usage": "!ghostsnipe <index>"
     },
     {
         "name": "ghostpanel",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the ghostpanel command.",
+        "category": "Snipe",
+        "usage": "!ghostpanel"
     },
     {
         "name": "bulksnipe",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the bulksnipe command.",
+        "category": "Snipe",
+        "usage": "!bulksnipe <index>"
     },
     {
         "name": "snipesearch",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the snipesearch command.",
+        "category": "Snipe",
+        "usage": "!snipesearch"
     },
     {
         "name": "snipelist",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the snipelist command.",
+        "category": "Snipe",
+        "usage": "!snipelist"
     },
     {
         "name": "snipestats",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the snipestats command.",
+        "category": "Snipe",
+        "usage": "!snipestats"
     },
     {
         "name": "clearsnipe",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the clearsnipe command.",
+        "category": "Snipe",
+        "usage": "!clearsnipe"
     },
     {
         "name": "cleardeletedsnipes",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the cleardeletedsnipes command.",
+        "category": "Snipe",
+        "usage": "!cleardeletedsnipes"
     },
     {
         "name": "cleareditsnipes",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the cleareditsnipes command.",
+        "category": "Snipe",
+        "usage": "!cleareditsnipes"
     },
     {
         "name": "clearghostsnipes",
-        "description": "No description provided.",
-        "category": "Snipe"
+        "description": "Executes the clearghostsnipes command.",
+        "category": "Snipe",
+        "usage": "!clearghostsnipes"
     },
     {
         "name": "setupvc",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the setupvc command.",
+        "category": "Voice",
+        "usage": "!setupvc <category>"
     },
     {
         "name": "category",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the category command.",
+        "category": "Voice",
+        "usage": "!category <category>"
     },
     {
         "name": "name",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the name command.",
+        "category": "Voice",
+        "usage": "!name"
     },
     {
         "name": "limit",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the limit command.",
+        "category": "Voice",
+        "usage": "!limit <amount>"
     },
     {
         "name": "trigger",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the trigger command.",
+        "category": "Voice",
+        "usage": "!trigger <channel>"
     },
     {
         "name": "vcrename",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the vcrename command.",
+        "category": "Voice",
+        "usage": "!vcrename"
     },
     {
         "name": "vclimit",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the vclimit command.",
+        "category": "Voice",
+        "usage": "!vclimit <amount>"
     },
     {
         "name": "vcbitrate",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the vcbitrate command.",
+        "category": "Voice",
+        "usage": "!vcbitrate <kbps>"
     },
     {
         "name": "vclock",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the vclock command.",
+        "category": "Voice",
+        "usage": "!vclock"
     },
     {
         "name": "vcunlock",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the vcunlock command.",
+        "category": "Voice",
+        "usage": "!vcunlock"
     },
     {
         "name": "vchide",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the vchide command.",
+        "category": "Voice",
+        "usage": "!vchide"
     },
     {
         "name": "vcunhide",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the vcunhide command.",
+        "category": "Voice",
+        "usage": "!vcunhide"
     },
     {
         "name": "vcpermit",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the vcpermit command.",
+        "category": "Voice",
+        "usage": "!vcpermit <member>"
     },
     {
         "name": "vcdeny",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the vcdeny command.",
+        "category": "Voice",
+        "usage": "!vcdeny <member>"
     },
     {
         "name": "vckick",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the vckick command.",
+        "category": "Voice",
+        "usage": "!vckick <member>"
     },
     {
         "name": "vcmute",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the vcmute command.",
+        "category": "Voice",
+        "usage": "!vcmute <member>"
     },
     {
         "name": "vcunmute",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the vcunmute command.",
+        "category": "Voice",
+        "usage": "!vcunmute <member>"
     },
     {
         "name": "vctransfer",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the vctransfer command.",
+        "category": "Voice",
+        "usage": "!vctransfer <member>"
     },
     {
         "name": "vcclaim",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the vcclaim command.",
+        "category": "Voice",
+        "usage": "!vcclaim"
     },
     {
         "name": "vcinfo",
-        "description": "No description provided.",
-        "category": "Voice"
+        "description": "Executes the vcinfo command.",
+        "category": "Voice",
+        "usage": "!vcinfo"
     }
 ]
