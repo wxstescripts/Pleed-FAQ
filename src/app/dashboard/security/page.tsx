@@ -24,7 +24,7 @@ export default function SecurityPage() {
   useEffect(() => {
     async function fetchSecurity() {
       try {
-        const res = await fetch(`https://yummy-berries-live.loca.lt/api/security/${MOCK_GUILD_ID}`, {
+        const res = await fetch(`https://purple-windows-report.loca.lt/api/security/${MOCK_GUILD_ID}`, {
           headers: { "Bypass-Tunnel-Reminder": "true" }
         });
         if (res.ok) {
@@ -44,7 +44,7 @@ export default function SecurityPage() {
     setSaving(true);
     setSaved(false);
     try {
-      const res = await fetch(`https://yummy-berries-live.loca.lt/api/security/${MOCK_GUILD_ID}`, {
+      const res = await fetch(`https://purple-windows-report.loca.lt/api/security/${MOCK_GUILD_ID}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

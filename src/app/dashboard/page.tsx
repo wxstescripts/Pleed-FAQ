@@ -13,12 +13,12 @@ export default function DashboardOverview() {
     async function fetchData() {
       try {
         // Fetching from the temporary localtunnel API backend
-        const statsRes = await fetch("https://yummy-berries-live.loca.lt/api/stats", {
+        const statsRes = await fetch("https://purple-windows-report.loca.lt/api/stats", {
           headers: { "Bypass-Tunnel-Reminder": "true" }
         });
         const statsData = await statsRes.json();
         
-        const serversRes = await fetch("https://yummy-berries-live.loca.lt/api/servers", {
+        const serversRes = await fetch("https://purple-windows-report.loca.lt/api/servers", {
           headers: { "Bypass-Tunnel-Reminder": "true" }
         });
         const serversData = await serversRes.json();
