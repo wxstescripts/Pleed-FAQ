@@ -42,7 +42,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       <nav className="flex-1 overflow-y-auto py-6 px-4 space-y-1">
         <p className="px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">Menu</p>
-        <Link onClick={() => setMobileMenuOpen(false)} href="/dashboard" className="flex items-center gap-3 px-3 py-2 bg-white/5 text-white rounded-lg transition-colors">
+        <Link onClick={() => setMobileMenuOpen(false)} href="/dashboard" className="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
           <LayoutDashboard className="w-5 h-5 text-indigo-400" />
           Overview
         </Link>
@@ -54,9 +54,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <Users className="w-5 h-5 text-blue-400" />
           Join Gates
         </Link>
-        <Link onClick={() => setMobileMenuOpen(false)} href="/dashboard/commands" className="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+        <Link onClick={() => setMobileMenuOpen(false)} href="/dashboard/automod" className="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
           <Terminal className="w-5 h-5 text-emerald-400" />
-          Custom Commands
+          Auto-Mod
+        </Link>
+        <Link onClick={() => setMobileMenuOpen(false)} href="/dashboard/automations" className="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+          <Bell className="w-5 h-5 text-yellow-400" />
+          Auto-Responders
         </Link>
         <Link onClick={() => setMobileMenuOpen(false)} href="/dashboard/settings" className="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
           <Settings className="w-5 h-5 text-gray-400" />
