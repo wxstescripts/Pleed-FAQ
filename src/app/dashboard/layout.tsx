@@ -2,10 +2,29 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { LayoutDashboard, Shield, Users, Terminal, Settings, LogOut, Search, Bell, Menu, X } from "lucide-react";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center text-white">Loading session...</div>;
+  }
+
+  if (status === "unauthenticated" || !session) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center text-white">
+        <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center font-bold text-white text-3xl mb-8 shadow-[0_0_30px_rgba(79,70,229,0.5)]">P</div>
+        <h1 className="text-3xl font-bold mb-2">Welcome to Pleed</h1>
+        <p className="text-gray-400 mb-8 max-w-md text-center">Login with your Discord account to manage your servers, security, and join gates.</p>
+        <button onClick={() => signIn("discord")} className="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-full font-bold transition-all shadow-lg shadow-indigo-500/20">
+          Login with Discord
+        </button>
+      </div>
+    );
+  }
 
   const SidebarContent = () => (
     <>
@@ -46,7 +65,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </nav>
 
       <div className="p-4 border-t border-white/10">
-        <button className="flex items-center gap-3 px-3 py-2 w-full text-gray-400 hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-colors">
+        <button onClick={() => signOut()} className="flex items-center gap-3 px-3 py-2 w-full text-gray-400 hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-colors">
           <LogOut className="w-5 h-5" />
           Logout
         </button>
@@ -96,11 +115,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </button>
             <div className="flex items-center gap-3 sm:pl-6 sm:border-l border-white/10">
               <div className="text-right hidden sm:block">
-                <p className="text-sm font-medium text-white">Heckz</p>
+                <p className="text-sm font-medium text-white">{session.user?.name || "User"}</p>
                 <p className="text-xs text-gray-500">Admin</p>
               </div>
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-sm sm:text-base">
-                H
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-indigo-600 overflow-hidden flex items-center justify-center font-bold text-sm sm:text-base">
+                {session.user?.image ? (
+                  <img src={session.user.image} alt="Avatar" className="w-full h-full object-cover" />
+                ) : (
+                  (session.user?.name || "U").charAt(0).toUpperCase()
+                )}
               </div>
             </div>
           </div>
