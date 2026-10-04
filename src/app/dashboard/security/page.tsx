@@ -1,11 +1,73 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Shield, AlertTriangle, Save, Power } from "lucide-react";
+import { Shield, AlertTriangle, Save, Power, Loader2, Check } from "lucide-react";
 
 export default function SecurityPage() {
-  const [antiNukeEnabled, setAntiNukeEnabled] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  
+  const [config, setConfig] = useState({
+    enabled: 0,
+    punishment: "ban",
+    ban_threshold: 3,
+    kick_threshold: 5,
+    channel_delete_threshold: 2,
+    role_delete_threshold: 2
+  });
+
+  // For testing/mocking since there's no auth yet
+  const MOCK_GUILD_ID = "1484703029243416757"; 
+
+  useEffect(() => {
+    async function fetchSecurity() {
+      try {
+        const res = await fetch(`https://yummy-berries-live.loca.lt/api/security/${MOCK_GUILD_ID}`, {
+          headers: { "Bypass-Tunnel-Reminder": "true" }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setConfig(data);
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchSecurity();
+  }, []);
+
+  const handleSave = async () => {
+    setSaving(true);
+    setSaved(false);
+    try {
+      const res = await fetch(`https://yummy-berries-live.loca.lt/api/security/${MOCK_GUILD_ID}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Bypass-Tunnel-Reminder": "true"
+        },
+        body: JSON.stringify(config)
+      });
+      if (res.ok) {
+        setSaved(true);
+        setTimeout(() => setSaved(false), 3000);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (loading) {
+    return <div className="flex justify-center py-20"><Loader2 className="w-8 h-8 text-indigo-500 animate-spin" /></div>;
+  }
+
+  const antiNukeEnabled = config.enabled === 1;
 
   return (
     <motion.div 
@@ -19,9 +81,13 @@ export default function SecurityPage() {
           <h1 className="text-3xl font-bold text-white mb-2">Security & Anti-Nuke</h1>
           <p className="text-gray-400">Configure raid protection and lockdown settings for your server.</p>
         </div>
-        <button className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors shadow-lg shadow-indigo-500/20 w-fit">
-          <Save className="w-4 h-4" />
-          Save Changes
+        <button 
+          onClick={handleSave}
+          disabled={saving}
+          className={`flex items-center gap-2 px-5 py-2.5 font-medium rounded-lg transition-colors w-fit shadow-lg ${saved ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-emerald-500/20' : 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-indigo-500/20'}`}
+        >
+          {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : saved ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
+          {saved ? "Saved!" : "Save Changes"}
         </button>
       </div>
 
@@ -39,7 +105,7 @@ export default function SecurityPage() {
           </div>
         </div>
         <button 
-          onClick={() => setAntiNukeEnabled(!antiNukeEnabled)}
+          onClick={() => setConfig({...config, enabled: antiNukeEnabled ? 0 : 1})}
           className={`relative inline-flex h-7 w-14 items-center rounded-full transition-colors focus:outline-none ${antiNukeEnabled ? 'bg-red-500' : 'bg-gray-600'}`}
         >
           <span className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${antiNukeEnabled ? 'translate-x-8' : 'translate-x-1'}`} />
@@ -58,13 +124,9 @@ export default function SecurityPage() {
                 <label className="font-semibold text-white block">Ban Rate Limit</label>
                 <span className="text-xs text-gray-400">Max bans allowed per minute.</span>
               </div>
-              <span className="text-2xl font-bold text-gray-300">3</span>
+              <span className="text-2xl font-bold text-gray-300">{config.ban_threshold}</span>
             </div>
-            <input type="range" min="1" max="20" defaultValue="3" className="w-full accent-indigo-500 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer" />
-            <div className="flex justify-between text-xs text-gray-500 mt-2">
-              <span>Strict (1)</span>
-              <span>Lenient (20)</span>
-            </div>
+            <input type="range" min="1" max="20" value={config.ban_threshold} onChange={(e) => setConfig({...config, ban_threshold: parseInt(e.target.value)})} className="w-full accent-indigo-500 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer" />
           </div>
 
           {/* Card 2 */}
@@ -74,13 +136,9 @@ export default function SecurityPage() {
                 <label className="font-semibold text-white block">Kick Rate Limit</label>
                 <span className="text-xs text-gray-400">Max kicks allowed per minute.</span>
               </div>
-              <span className="text-2xl font-bold text-gray-300">5</span>
+              <span className="text-2xl font-bold text-gray-300">{config.kick_threshold}</span>
             </div>
-            <input type="range" min="1" max="20" defaultValue="5" className="w-full accent-indigo-500 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer" />
-            <div className="flex justify-between text-xs text-gray-500 mt-2">
-              <span>Strict (1)</span>
-              <span>Lenient (20)</span>
-            </div>
+            <input type="range" min="1" max="20" value={config.kick_threshold} onChange={(e) => setConfig({...config, kick_threshold: parseInt(e.target.value)})} className="w-full accent-indigo-500 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer" />
           </div>
 
           {/* Card 3 */}
@@ -90,13 +148,9 @@ export default function SecurityPage() {
                 <label className="font-semibold text-white block">Channel Deletions</label>
                 <span className="text-xs text-gray-400">Max deletions allowed per minute.</span>
               </div>
-              <span className="text-2xl font-bold text-gray-300">2</span>
+              <span className="text-2xl font-bold text-gray-300">{config.channel_delete_threshold}</span>
             </div>
-            <input type="range" min="1" max="10" defaultValue="2" className="w-full accent-indigo-500 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer" />
-            <div className="flex justify-between text-xs text-gray-500 mt-2">
-              <span>Strict (1)</span>
-              <span>Lenient (10)</span>
-            </div>
+            <input type="range" min="1" max="10" value={config.channel_delete_threshold} onChange={(e) => setConfig({...config, channel_delete_threshold: parseInt(e.target.value)})} className="w-full accent-indigo-500 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer" />
           </div>
 
           {/* Card 4 */}
@@ -106,13 +160,9 @@ export default function SecurityPage() {
                 <label className="font-semibold text-white block">Role Deletions</label>
                 <span className="text-xs text-gray-400">Max role deletions per minute.</span>
               </div>
-              <span className="text-2xl font-bold text-gray-300">3</span>
+              <span className="text-2xl font-bold text-gray-300">{config.role_delete_threshold}</span>
             </div>
-            <input type="range" min="1" max="10" defaultValue="3" className="w-full accent-indigo-500 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer" />
-            <div className="flex justify-between text-xs text-gray-500 mt-2">
-              <span>Strict (1)</span>
-              <span>Lenient (10)</span>
-            </div>
+            <input type="range" min="1" max="10" value={config.role_delete_threshold} onChange={(e) => setConfig({...config, role_delete_threshold: parseInt(e.target.value)})} className="w-full accent-indigo-500 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer" />
           </div>
 
         </div>
@@ -128,24 +178,16 @@ export default function SecurityPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">If threshold is triggered, Pleed will:</label>
-            <select className="w-full bg-[#0a0a0a] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none">
+            <select 
+              value={config.punishment}
+              onChange={(e) => setConfig({...config, punishment: e.target.value})}
+              className="w-full bg-[#0a0a0a] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none"
+            >
               <option value="ban">Ban the rogue admin</option>
               <option value="kick">Kick the rogue admin</option>
               <option value="quarantine">Remove all roles (Quarantine)</option>
               <option value="alert">Just send an alert (Log only)</option>
             </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Emergency Lockdown Level:</label>
-            <div className="flex items-center gap-4 bg-[#0a0a0a] border border-white/10 rounded-lg px-4 py-3">
-              <Power className="w-5 h-5 text-red-500" />
-              <select className="bg-transparent text-white w-full focus:outline-none appearance-none">
-                <option value="high">Lock all channels instantly</option>
-                <option value="medium">Lock community channels only</option>
-                <option value="none">Do not lock channels</option>
-              </select>
-            </div>
           </div>
         </div>
       </div>
