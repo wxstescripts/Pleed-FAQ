@@ -9,7 +9,7 @@ export default function Hero() {
     <div className="relative overflow-hidden bg-black text-white min-h-screen flex flex-col justify-center">
       {/* Background Glow Effects */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-30 pointer-events-none">
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 blur-[120px]" />
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 blur-[120px] transform-gpu will-change-transform" />
       </div>
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
