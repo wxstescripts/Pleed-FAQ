@@ -12,11 +12,15 @@ export default function DashboardOverview() {
   useEffect(() => {
     async function fetchData() {
       try {
-        // Fetching from the local Pleed Flask API backend
-        const statsRes = await fetch("http://localhost:5000/api/stats");
+        // Fetching from the temporary localtunnel API backend
+        const statsRes = await fetch("https://solid-walls-relate.loca.lt/api/stats", {
+          headers: { "Bypass-Tunnel-Reminder": "true" }
+        });
         const statsData = await statsRes.json();
         
-        const serversRes = await fetch("http://localhost:5000/api/servers");
+        const serversRes = await fetch("https://solid-walls-relate.loca.lt/api/servers", {
+          headers: { "Bypass-Tunnel-Reminder": "true" }
+        });
         const serversData = await serversRes.json();
 
         setStats(statsData);
