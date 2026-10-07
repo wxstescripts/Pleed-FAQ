@@ -548,23 +548,28 @@
 }
 /* Horizontal scrollers (TabsList, SegmentedControl): fade whichever edge
    has hidden content — set by useScrollOverflow() as data-overflow-start /
-   -end — and keep focus/snap scrolling clear of the fade. */
+   -end — and keep focus/snap scrolling clear of the fade.
+   The outer 10 px of the fade are fully transparent: when an item is scrolled
+   to its snap position (item start − 24 px), the previous label ends ~16 px
+   before it (gap + padding), so its last glyph would otherwise peek out as an
+   orphan sliver at 30–60% alpha. Now only the fade's soft inner part shows. */
 @utility overflow-fade-x {
   --overflow-fade: 1.5rem;
+  --overflow-clear: 0.625rem;
   scroll-padding-inline: var(--overflow-fade);
   &[data-overflow-start] {
-    mask-image: linear-gradient(to right, transparent, black var(--overflow-fade));
+    mask-image: linear-gradient(to right, transparent var(--overflow-clear), black var(--overflow-fade));
   }
   &[data-overflow-end] {
-    mask-image: linear-gradient(to left, transparent, black var(--overflow-fade));
+    mask-image: linear-gradient(to left, transparent var(--overflow-clear), black var(--overflow-fade));
   }
   &[data-overflow-start][data-overflow-end] {
     mask-image: linear-gradient(
       to right,
-      transparent,
+      transparent var(--overflow-clear),
       black var(--overflow-fade),
       black calc(100% - var(--overflow-fade)),
-      transparent
+      transparent calc(100% - var(--overflow-clear))
     );
   }
 }
