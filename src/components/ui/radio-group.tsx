@@ -2,9 +2,10 @@
 
 import { Radio as RadioPrimitive } from "@base-ui/react/radio";
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group";
-import type { ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 
 import { cn, mergeClassName } from "@/lib/utils";
+import { useRevealSelected, useScrollOverflow } from "@/components/ui/use-scroll-overflow";
 
 /**
  * Radio group (arrow-key navigation, one tab stop). Label the group with
@@ -109,8 +110,10 @@ export type SegmentedControlProps = {
  * Single-choice segmented control (radiogroup semantics, arrow keys).
  * The track hugs its segments (`w-fit`, also inside grid and flex-column
  * parents that would otherwise stretch it); `fullWidth` stretches it and
- * shares the width equally. Scrolls horizontally instead of wrapping on
- * narrow screens.
+ * shares the width equally. On a screen too narrow for every segment it
+ * scrolls sideways inside an outer scroller (the track's border is never
+ * clipped), the overflowing edge fades and the selected segment stays in
+ * view.
  */
 export function SegmentedControl({
   options,
@@ -124,38 +127,50 @@ export function SegmentedControl({
   className,
   ...aria
 }: SegmentedControlProps) {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  useScrollOverflow(scrollerRef);
+  useRevealSelected(scrollerRef, '[role="radio"][aria-checked="true"]');
   return (
-    <RadioGroupPrimitive
-      value={value}
-      defaultValue={defaultValue}
-      onValueChange={onValueChange ? (next) => onValueChange(next as string) : undefined}
-      disabled={disabled}
-      name={name}
-      {...aria}
+    <div
+      ref={scrollerRef}
+      data-slot="segmented-scroller"
       className={cn(
-        "inline-flex w-fit max-w-full gap-0.5 self-start justify-self-start overflow-x-auto rounded-lg border border-line bg-inset p-0.5 scrollbar-none",
-        fullWidth && "flex w-full",
+        "overflow-fade-x max-w-full snap-x snap-proximity self-start justify-self-start overflow-x-auto overscroll-x-contain scrollbar-none",
+        fullWidth ? "w-full" : "w-fit",
         className,
       )}
     >
-      {options.map((option) => (
-        <RadioPrimitive.Root
-          key={option.value}
-          value={option.value}
-          className={cn(
-            "relative inline-flex shrink-0 cursor-pointer items-center justify-center gap-1.5 rounded-md px-3 font-medium whitespace-nowrap text-fg-tertiary transition-[background-color,color,box-shadow] duration-150 ease-standard select-none",
-            "hover:text-fg focus-visible:focus-ring-inset",
-            // Selected: raised pill + ring that is 3.1:1 against the inset track (WCAG 1.4.11).
-            "data-checked:bg-surface-4 data-checked:text-fg data-checked:shadow-sm data-checked:inset-shadow-highlight data-checked:inset-ring data-checked:inset-ring-line-hover",
-            "data-disabled:cursor-not-allowed data-disabled:opacity-45 [&_svg]:size-4",
-            size === "md" ? "h-8 type-label pointer-coarse:h-11" : "h-7 type-micro pointer-coarse:h-11",
-            fullWidth && "flex-1",
-          )}
-        >
-          {option.icon}
-          {option.label}
-        </RadioPrimitive.Root>
-      ))}
-    </RadioGroupPrimitive>
+      <RadioGroupPrimitive
+        value={value}
+        defaultValue={defaultValue}
+        onValueChange={onValueChange ? (next) => onValueChange(next as string) : undefined}
+        disabled={disabled}
+        name={name}
+        {...aria}
+        className={cn(
+          "flex w-max gap-0.5 rounded-lg border border-line bg-inset p-0.5",
+          fullWidth && "min-w-full",
+        )}
+      >
+        {options.map((option) => (
+          <RadioPrimitive.Root
+            key={option.value}
+            value={option.value}
+            className={cn(
+              "relative inline-flex shrink-0 cursor-pointer snap-start items-center justify-center gap-1.5 rounded-md px-3 font-medium whitespace-nowrap text-fg-tertiary transition-[background-color,color,box-shadow] duration-150 ease-standard select-none",
+              "hover:text-fg focus-visible:focus-ring-inset",
+              // Selected: raised pill + ring that is 3.1:1 against the inset track (WCAG 1.4.11).
+              "data-checked:bg-surface-4 data-checked:text-fg data-checked:shadow-sm data-checked:inset-shadow-highlight data-checked:inset-ring data-checked:inset-ring-line-hover",
+              "data-disabled:cursor-not-allowed data-disabled:opacity-45 [&_svg]:size-4",
+              size === "md" ? "h-8 type-label pointer-coarse:h-11" : "h-7 type-micro pointer-coarse:h-11",
+              fullWidth && "flex-1",
+            )}
+          >
+            {option.icon}
+            {option.label}
+          </RadioPrimitive.Root>
+        ))}
+      </RadioGroupPrimitive>
+    </div>
   );
 }
