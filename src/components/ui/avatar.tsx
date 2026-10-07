@@ -6,11 +6,11 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 const sizes = {
-  xs: { box: "size-6 text-xs tracking-tight", px: 24 },
-  sm: { box: "size-8 text-xs", px: 32 },
-  md: { box: "size-10 text-sm", px: 40 },
-  lg: { box: "size-12 text-base", px: 48 },
-  xl: { box: "size-16 text-lg", px: 64 },
+  xs: { box: "size-6 type-micro", px: 24 },
+  sm: { box: "size-8 type-micro", px: 32 },
+  md: { box: "size-10 type-label", px: 40 },
+  lg: { box: "size-12 type-body", px: 48 },
+  xl: { box: "size-16 type-h4", px: 64 },
 } as const;
 
 export type AvatarProps = {

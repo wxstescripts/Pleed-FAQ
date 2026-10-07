@@ -11,7 +11,7 @@ export function DsNav({ sections }: { sections: { id: string; label: string }[] 
           <li key={s.id} className="shrink-0">
             <a
               href={`#${s.id}`}
-              className="flex h-9 items-center rounded-md px-3 text-sm whitespace-nowrap text-fg-tertiary transition-colors duration-150 hover:bg-hover hover:text-fg active:bg-pressed focus-visible:focus-ring max-lg:border max-lg:border-line pointer-coarse:h-11 lg:h-8 lg:px-2.5"
+              className="flex h-9 items-center rounded-md px-3 type-small whitespace-nowrap text-fg-tertiary transition-colors duration-150 hover:bg-hover hover:text-fg active:bg-pressed focus-visible:focus-ring max-lg:border max-lg:border-line pointer-coarse:h-11 lg:h-8 lg:px-2.5"
             >
               {s.label}
             </a>

@@ -153,6 +153,15 @@
   --shadow-md: 0 4px 12px -2px oklch(0 0 0 / 0.45), 0 2px 4px -2px oklch(0 0 0 / 0.35);
   --shadow-lg: 0 12px 32px -8px oklch(0 0 0 / 0.6), 0 4px 10px -4px oklch(0 0 0 / 0.4);
   --shadow-xl: 0 24px 64px -16px oklch(0 0 0 / 0.7), 0 8px 20px -8px oklch(0 0 0 / 0.45);
+  /* Tailwind's shadows outside this scale don't exist (shadow, shadow-2xs,
+     shadow-2xl, shadow-inner, inset-shadow-2xs/xs/sm). */
+  --shadow: initial;
+  --shadow-2xs: initial;
+  --shadow-2xl: initial;
+  --shadow-inner: initial;
+  --inset-shadow-2xs: initial;
+  --inset-shadow-xs: initial;
+  --inset-shadow-sm: initial;
   /* Restrained brand glow — primary CTA hover and the hero frame only. */
   --shadow-glow: 0 0 0 1px oklch(0.635 0.205 283 / 0.45), 0 8px 28px -8px oklch(0.55 0.225 283 / 0.6);
   --shadow-glow-lg: 0 0 0 1px oklch(0.635 0.205 283 / 0.3), 0 30px 80px -24px oklch(0.55 0.225 283 / 0.45);

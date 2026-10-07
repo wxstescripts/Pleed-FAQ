@@ -247,7 +247,7 @@ export default async function DesignSystemPage() {
                         ["bg-pressed", "bg-pressed · 10%"],
                       ] as const
                     ).map(([cls, label]) => (
-                      <div key={label} className={`rounded-md px-2.5 py-2 text-sm text-fg-secondary ${cls}`}>
+                      <div key={label} className={`rounded-md px-2.5 py-2 type-small text-fg-secondary ${cls}`}>
                         {label}
                       </div>
                     ))}
@@ -299,14 +299,14 @@ export default async function DesignSystemPage() {
               <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                 {semantic.map((s) => (
                   <div key={s.name} className="flex flex-col gap-2 rounded-xl border border-line bg-surface-1 p-4">
-                    <p className={`font-mono text-sm font-medium ${s.fg}`}>{s.name}-fg</p>
-                    <div className={`rounded-md border px-3 py-2 text-sm ${s.subtle} ${s.fg}`}>{s.name}-subtle + border</div>
-                    <div className={`rounded-md px-3 py-2 text-sm font-medium ${s.strong}`}>{s.name}-strong</div>
+                    <p className={`type-code-sm font-medium ${s.fg}`}>{s.name}-fg</p>
+                    <div className={`rounded-md border px-3 py-2 type-small ${s.subtle} ${s.fg}`}>{s.name}-subtle + border</div>
+                    <div className={`rounded-md px-3 py-2 type-label ${s.strong}`}>{s.name}-strong</div>
                   </div>
                 ))}
               </div>
               <div className="flex flex-wrap items-center gap-3">
-                <div className="flex items-center gap-2 rounded-lg bg-discord px-3 py-2 text-sm font-medium text-discord-fg">
+                <div className="flex items-center gap-2 rounded-lg bg-discord px-3 py-2 type-label text-discord-fg">
                   <DiscordIcon className="size-4" /> discord #5865F2
                 </div>
                 <p className="type-caption text-fg-tertiary">Blurple is reserved for Discord-specific actions (invite, log in).</p>
@@ -371,7 +371,7 @@ export default async function DesignSystemPage() {
                 ].map(([token, value, use]) => (
                   <div key={token} className="rounded-lg border border-line bg-surface-1 p-4">
                     <p className="type-code-xs text-brand-fg">{token}</p>
-                    <p className="mt-1 text-sm font-medium text-fg">{value}</p>
+                    <p className="mt-1 type-label text-fg">{value}</p>
                     <p className="type-caption text-fg-tertiary">{use}</p>
                   </div>
                 ))}
@@ -586,7 +586,7 @@ export default async function DesignSystemPage() {
               </Pill>
               <Pill>Static pill</Pill>
             </div>
-            <div className="flex flex-wrap items-center gap-6 text-sm text-fg-secondary">
+            <div className="flex flex-wrap items-center gap-6 type-small text-fg-secondary">
               <span className="inline-flex items-center gap-2">
                 <StatusDot tone="success" pulse /> Operational (pulse)
               </span>
@@ -630,7 +630,7 @@ export default async function DesignSystemPage() {
                   <CardTitle>Interactive card</CardTitle>
                   <CardDescription>Whole card is a link — hover, press, focus.</CardDescription>
                 </CardHeader>
-                <CardContent className="flex items-center gap-1.5 text-sm font-medium text-brand-fg">
+                <CardContent className="flex items-center gap-1.5 type-label text-brand-fg">
                   Browse commands <ArrowRight className="size-4" />
                 </CardContent>
               </Card>

@@ -745,7 +745,7 @@ export function CodeDemos() {
         </div>
         <div className="flex items-center gap-3 rounded-lg border border-line bg-surface-1 p-3">
           <Terminal aria-hidden="true" className="size-4 text-fg-tertiary" />
-          <code className="flex-1 truncate font-mono text-sm text-fg">!ban @user [reason]</code>
+          <code className="flex-1 truncate type-code-sm text-fg">!ban @user [reason]</code>
           <CopyButton value="!ban @user [reason]" label="Copy usage" />
         </div>
         <div className="flex items-center gap-2 type-caption text-fg-tertiary">

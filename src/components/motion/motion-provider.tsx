@@ -9,6 +9,10 @@ const loadFeatures = () => import("./features").then((mod) => mod.default);
  * client components so only the lazily loaded `domAnimation` features ship.
  * `reducedMotion="user"` makes every framer animation honour
  * prefers-reduced-motion (transforms are skipped, opacity still fades).
+ *
+ * ESLint already rejects `import { motion } from "framer-motion"`. Once the
+ * pre-redesign pages (dashboard, commands, landing, navbar) stop using
+ * motion.*, switch this to <LazyMotion strict …> so a stray motion.* throws.
  */
 export function MotionProvider({ children }: { children: React.ReactNode }) {
   return (
