@@ -3,6 +3,7 @@ import { ChevronRight } from "lucide-react";
 import { Fragment } from "react";
 
 import { cn } from "@/lib/utils";
+import { BreadcrumbsMenu } from "@/components/ui/breadcrumbs-menu";
 
 export type BreadcrumbItem = { label: string; href?: string };
 
@@ -12,10 +13,13 @@ function Chevron() {
 
 /**
  * Breadcrumb trail. The last item is the current page (aria-current, not a
- * link). On phones, trails longer than 3 collapse their middle items to "…".
+ * link). On phones, trails longer than 3 keep the first and the last two
+ * crumbs; the middle ones move into a "…" menu button ("Show full path"), so
+ * every crumb stays reachable by touch, keyboard and screen reader.
  */
 export function Breadcrumbs({ items, className }: { items: BreadcrumbItem[]; className?: string }) {
   const collapse = items.length > 3;
+  const hidden = collapse ? items.slice(1, items.length - 2) : [];
   return (
     <nav aria-label="Breadcrumb" className={cn("min-w-0", className)}>
       <ol className="flex min-w-0 flex-wrap items-center gap-x-1.5 gap-y-1 type-small text-fg-tertiary">
@@ -25,8 +29,9 @@ export function Breadcrumbs({ items, className }: { items: BreadcrumbItem[]; cla
           return (
             <Fragment key={`${item.label}-${index}`}>
               {collapse && index === 1 ? (
-                <li aria-hidden="true" className="flex items-center gap-1.5 sm:hidden">
-                  <Chevron />…
+                <li className="flex items-center gap-1.5 sm:hidden">
+                  <Chevron />
+                  <BreadcrumbsMenu items={hidden} />
                 </li>
               ) : null}
               <li className={cn("flex min-w-0 items-center gap-1.5", hiddenOnPhone && "max-sm:hidden")}>
