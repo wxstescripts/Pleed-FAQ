@@ -1,9 +1,12 @@
 "use client";
 
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox";
+import { CheckboxGroup as CheckboxGroupPrimitive } from "@base-ui/react/checkbox-group";
 import { Check, Minus } from "lucide-react";
+import type { ReactNode } from "react";
 
 import { cn, mergeClassName } from "@/lib/utils";
+import { OptionText, optionClasses } from "@/components/ui/radio-group";
 
 /**
  * Checkbox (supports `indeterminate`). The visible box is 18 px; on touch
@@ -46,5 +49,47 @@ export function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) 
         />
       </span>
     </CheckboxPrimitive.Root>
+  );
+}
+
+export type CheckboxOptionProps = Omit<CheckboxPrimitive.Root.Props, "children"> & {
+  label: ReactNode;
+  description?: ReactNode;
+  /** Card style: the whole row is a bordered, clickable tile. */
+  card?: boolean;
+};
+
+/**
+ * Checkbox + label (+ description) — the row pattern for every checkbox
+ * list (notification toggles, ignored channels, permissions). The entire
+ * row is clickable; on touch each row is ≥ 44 px so the 44 px hit areas of
+ * neighbouring boxes never overlap. Mirrors <RadioOption>.
+ *
+ *   <CheckboxGroup aria-labelledby="notify-label" value={events} onValueChange={setEvents}>
+ *     <CheckboxOption value="join" label="Member joins" description="…" />
+ *   </CheckboxGroup>
+ */
+export function CheckboxOption({ label, description, card = false, className, ...props }: CheckboxOptionProps) {
+  return (
+    <label data-option-card={card ? "" : undefined} className={cn(optionClasses(card), className as string)}>
+      <Checkbox className="mt-px" {...props} />
+      <OptionText label={label} description={description} />
+    </label>
+  );
+}
+
+/**
+ * Group of <CheckboxOption>s (role="group"). Name it with `aria-labelledby`
+ * pointing at a visible heading, or wrap it in <Fieldset> + <FieldsetLegend>.
+ * Controlled with `value` (ticked option values) / `onValueChange`, or let
+ * each option manage `checked` itself. `allValues` enables a parent
+ * checkbox (Base UI CheckboxGroup).
+ */
+export function CheckboxGroup({ className, ...props }: CheckboxGroupPrimitive.Props) {
+  return (
+    <CheckboxGroupPrimitive
+      className={mergeClassName("grid gap-3 pointer-coarse:gap-0 pointer-coarse:has-data-option-card:gap-3", className)}
+      {...props}
+    />
   );
 }

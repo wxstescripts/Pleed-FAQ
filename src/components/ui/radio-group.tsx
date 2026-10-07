@@ -9,9 +9,16 @@ import { cn, mergeClassName } from "@/lib/utils";
 /**
  * Radio group (arrow-key navigation, one tab stop). Label the group with
  * aria-label / aria-labelledby, or wrap it in <Fieldset> + <FieldsetLegend>.
+ * On touch screens plain option rows are ≥ 44 px tall and sit edge to edge,
+ * so neighbouring 44 px hit areas never overlap (card options keep the gap).
  */
 export function RadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {
-  return <RadioGroupPrimitive className={mergeClassName("grid gap-3", className)} {...props} />;
+  return (
+    <RadioGroupPrimitive
+      className={mergeClassName("grid gap-3 pointer-coarse:gap-0 pointer-coarse:has-data-option-card:gap-3", className)}
+      {...props}
+    />
+  );
 }
 
 /** The bare radio dot. Prefer <RadioOption> which includes the label. */
@@ -44,24 +51,38 @@ export type RadioOptionProps = Omit<RadioPrimitive.Root.Props, "children"> & {
   card?: boolean;
 };
 
+/**
+ * Shared row/card look for RadioOption and CheckboxOption. Rows: the whole
+ * label is the target; on touch it is ≥ 44 px tall with the control's 44 px
+ * hit area inside it. Cards: bordered tiles that tint when selected.
+ */
+export function optionClasses(card: boolean) {
+  return cn(
+    "group/option flex cursor-pointer items-start gap-3 has-data-disabled:cursor-not-allowed",
+    card
+      ? "rounded-lg border border-line bg-surface-1 p-4 transition-colors duration-150 hover:border-line-hover hover:bg-surface-2 has-data-checked:border-brand-border has-data-checked:bg-brand-subtle has-data-disabled:hover:border-line has-data-disabled:hover:bg-surface-1"
+      : "pointer-coarse:min-h-11 pointer-coarse:py-3",
+  );
+}
+
+/** Label + optional description text of an option row. */
+export function OptionText({ label, description }: { label: ReactNode; description?: ReactNode }) {
+  return (
+    <span className="flex min-w-0 flex-col gap-0.5">
+      <span className="type-label text-fg group-has-data-disabled/option:text-fg-disabled">{label}</span>
+      {description ? (
+        <span className="type-caption text-fg-tertiary group-has-data-disabled/option:text-fg-disabled">{description}</span>
+      ) : null}
+    </span>
+  );
+}
+
 /** Radio + label (+ description). The entire row is clickable. */
 export function RadioOption({ label, description, card = false, className, ...props }: RadioOptionProps) {
   return (
-    <label
-      className={cn(
-        "group/option flex cursor-pointer items-start gap-3 has-data-disabled:cursor-not-allowed",
-        card &&
-          "rounded-lg border border-line bg-surface-1 p-4 transition-colors duration-150 hover:border-line-hover hover:bg-surface-2 has-data-checked:border-brand-border has-data-checked:bg-brand-subtle",
-        className as string,
-      )}
-    >
-      <Radio className="mt-0.5" {...props} />
-      <span className="flex min-w-0 flex-col gap-0.5">
-        <span className="type-label text-fg group-has-data-disabled/option:text-fg-disabled">
-          {label}
-        </span>
-        {description ? <span className="type-caption text-fg-tertiary">{description}</span> : null}
-      </span>
+    <label data-option-card={card ? "" : undefined} className={cn(optionClasses(card), className as string)}>
+      <Radio className="mt-px" {...props} />
+      <OptionText label={label} description={description} />
     </label>
   );
 }
@@ -86,7 +107,10 @@ export type SegmentedControlProps = {
 
 /**
  * Single-choice segmented control (radiogroup semantics, arrow keys).
- * Scrolls horizontally instead of wrapping on narrow screens.
+ * The track hugs its segments (`w-fit`, also inside grid and flex-column
+ * parents that would otherwise stretch it); `fullWidth` stretches it and
+ * shares the width equally. Scrolls horizontally instead of wrapping on
+ * narrow screens.
  */
 export function SegmentedControl({
   options,
@@ -109,7 +133,7 @@ export function SegmentedControl({
       name={name}
       {...aria}
       className={cn(
-        "inline-flex max-w-full gap-0.5 overflow-x-auto rounded-lg border border-line bg-inset p-0.5 scrollbar-none",
+        "inline-flex w-fit max-w-full gap-0.5 self-start justify-self-start overflow-x-auto rounded-lg border border-line bg-inset p-0.5 scrollbar-none",
         fullWidth && "flex w-full",
         className,
       )}
@@ -124,7 +148,7 @@ export function SegmentedControl({
             // Selected: raised pill + ring that is 3.1:1 against the inset track (WCAG 1.4.11).
             "data-checked:bg-surface-4 data-checked:text-fg data-checked:shadow-sm data-checked:inset-shadow-highlight data-checked:inset-ring data-checked:inset-ring-line-hover",
             "data-disabled:cursor-not-allowed data-disabled:opacity-45 [&_svg]:size-4",
-            size === "md" ? "h-8 text-sm pointer-coarse:h-11" : "h-7 text-xs pointer-coarse:h-11",
+            size === "md" ? "h-8 type-label pointer-coarse:h-11" : "h-7 type-micro pointer-coarse:h-11",
             fullWidth && "flex-1",
           )}
         >
