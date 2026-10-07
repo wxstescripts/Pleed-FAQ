@@ -81,14 +81,14 @@ export function SettingsSection({
 
 type SettingRowBase = {
   description?: ReactNode;
-  /** The control. Switches/inputs/NumberFields inside are labelled by `label` automatically. */
+  /** The control. Switches, inputs, selects, NumberFields and sliders inside are labelled by `label` automatically. */
   control?: ReactNode;
   /**
    * - "auto" (default): compact controls (Switch, Checkbox, or anything
    *   marked `data-compact-control`) stay beside the label at EVERY width;
    *   any other control sits beside it from 640 px and below it on phones.
    * - "inline": always beside the label (compact custom controls).
-   * - "stacked": always below (sliders, textareas, lists, previews).
+   * - "stacked": always below (textareas, checkbox lists, previews).
    */
   layout?: "auto" | "inline" | "stacked";
   /** Error message for the control. */
@@ -106,9 +106,10 @@ export type SettingRowProps = SettingRowBase &
         /** Not rendered with `hideLabel` — the control carries its own visible label. */
         label?: ReactNode;
         /**
-         * The control renders its own visible label (Slider `label`, Select
-         * `label`). The row then stacks: control, description, children, error.
-         * The description is still rendered and linked to the control.
+         * The control renders its own visible label (a custom control). The
+         * row then stacks: control, description, children, error; the
+         * description is still rendered and linked to the control. Not needed
+         * for Slider or Select — give the ROW the label and pass them bare.
          */
         hideLabel: true;
       }
@@ -116,21 +117,26 @@ export type SettingRowProps = SettingRowBase &
 
 /*
  * One width per control kind, so every settings page lines up (DESIGN.md §3):
- * - beside the label (≥ 640 px): text, ID and select controls fill the
- *   16rem `w-setting-control` column; NumberField (`data-number-field`) is
- *   10rem; switches, checkboxes (`data-compact-control`) and buttons keep
- *   their own width.
+ * - beside the label (≥ 640 px), all ending at the row's right edge: text,
+ *   ID and select controls fill the 16rem `w-setting-control` column;
+ *   sliders (`data-slider`) 20rem; NumberField (`data-number-field`) 10rem;
+ *   switches, checkboxes (`data-compact-control`) and buttons keep their
+ *   own width.
  * - stacked (phones, `layout="stacked"`, `hideLabel`): full width up to
- *   28rem (`max-w-md`); compact controls and buttons keep their own width.
+ *   28rem (`max-w-md`); sliders the full row width (their value readout
+ *   shares the right edge with the controls above); compact controls and
+ *   buttons keep their own width.
  * Builders pass no width classes to controls inside a SettingRow.
  */
 const controlWidths = {
   inline: cn(
     "sm:w-setting-control",
+    "sm:has-[[data-slider]]:w-80",
     "sm:has-[[data-number-field]]:w-40",
     "has-[[data-compact-control]]:w-auto sm:has-[[data-compact-control]]:w-auto sm:has-[>[data-slot=button]]:w-auto",
   ),
-  stacked: "w-full max-w-md has-[>[data-slot=button]]:w-auto has-[>[data-compact-control]]:w-auto",
+  stacked:
+    "w-full max-w-md has-[[data-slider]]:max-w-none has-[>[data-slot=button]]:w-auto has-[>[data-compact-control]]:w-auto",
 } as const;
 
 // Literal class strings (Tailwind only generates classes it can read in the source).
@@ -148,8 +154,8 @@ const rowLayouts = {
 /**
  * One setting: label + description beside (or above) the control. Uses Base
  * UI Field, so label/description/error are wired to the control with ids.
- * For Slider and Select give the control its own `label` and pass
- * `hideLabel` — the row then stacks automatically.
+ * Every control goes in bare (no label, no width classes): the row label
+ * names it, and the row sizes it so the column of controls lines up.
  */
 export function SettingRow({
   label,
@@ -202,7 +208,7 @@ export function SettingRow({
       className={cn("group/row flex px-5 py-4 md:px-6 md:py-5", rowLayouts[layout], className)}
     >
       <div className="flex min-w-0 flex-1 flex-col gap-1">
-        <FieldPrimitive.Label className="w-fit type-label text-fg data-disabled:text-fg-secondary">{label}</FieldPrimitive.Label>
+        <FieldPrimitive.Label className="w-fit type-label text-fg data-disabled:text-fg-disabled">{label}</FieldPrimitive.Label>
         {descriptionNode}
         {children}
       </div>

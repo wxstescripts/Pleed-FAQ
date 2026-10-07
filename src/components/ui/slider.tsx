@@ -25,7 +25,12 @@ export type SliderProps = Omit<SliderPrimitive.Root.Props, "children"> & {
 /**
  * Labelled single-value slider: visible value, min/max, 44 px touch track,
  * full keyboard support (arrows, Shift+arrows / PgUp/PgDn = largeStep,
- * Home/End). Inside <Field> it also picks up FieldDescription.
+ * Home/End).
+ *
+ * In a SettingRow pass NO `label`: the row label names it (Base UI Field),
+ * the row description describes it, and the value readout sits above the
+ * track in the 20rem control column (full width on phones). Standalone
+ * (forms, filters), give it its own `label` / `description`.
  */
 export function Slider({
   className,
@@ -44,6 +49,7 @@ export function Slider({
   const descriptionId = useId();
   return (
     <SliderPrimitive.Root
+      data-slider=""
       min={min}
       max={max}
       thumbAlignment="edge"
@@ -92,7 +98,10 @@ export function Slider({
         </SliderPrimitive.Track>
       </SliderPrimitive.Control>
       {showRange ? (
-        <div aria-hidden="true" className="col-span-2 -mt-1 flex justify-between type-caption text-fg-tertiary tabular-nums">
+        <div
+          aria-hidden="true"
+          className="col-span-2 -mt-1 flex justify-between type-caption text-fg-tertiary tabular-nums group-data-disabled/slider:text-fg-disabled"
+        >
           <span>{format(min)}</span>
           <span>{format(max)}</span>
         </div>

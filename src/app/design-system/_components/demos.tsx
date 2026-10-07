@@ -658,15 +658,16 @@ export function SettingsDemo() {
             description="What happens to someone who crosses a threshold."
             control={<Select items={PUNISHMENTS} value={draft.punishment} onValueChange={(v) => set("punishment", v)} />}
           />
+          {/* Sliders go in bare: the row label names them, the row gives them the 20rem control column. */}
           <SettingRow
             label="Ban threshold"
-            hideLabel
-            control={<Slider label="Ban threshold" value={draft.ban} onValueChange={(v) => set("ban", v as number)} min={1} max={20} unit="per minute" />}
+            description="Bans by one member within a minute before Pleed steps in."
+            control={<Slider value={draft.ban} onValueChange={(v) => set("ban", v as number)} min={1} max={20} unit="per minute" />}
           />
           <SettingRow
             label="Kick threshold"
-            hideLabel
-            control={<Slider label="Kick threshold" value={draft.kick} onValueChange={(v) => set("kick", v as number)} min={1} max={20} unit="per minute" />}
+            description="Kicks by one member within a minute before Pleed steps in."
+            control={<Slider value={draft.kick} onValueChange={(v) => set("kick", v as number)} min={1} max={20} unit="per minute" />}
           />
         </SettingsSection>
 
