@@ -12,6 +12,15 @@ const title = "Status";
 const description =
   "Live status of Pleed’s website and dashboard API, plus Discord’s own platform status — so you can tell whether a problem is on Pleed’s side or Discord’s.";
 
+// Setting openGraph/twitter here REPLACES the root objects — including the
+// share card from src/app/opengraph-image.png / twitter-image.png — so the
+// card is restated explicitly (same files, same alt text).
+const shareCard = {
+  width: 1200,
+  height: 630,
+  alt: "Pleed logo beside the tagline “Security, moderation and automation for Discord servers”, with the features anti-nuke, join gates, auto-mod and automations",
+};
+
 export const metadata: Metadata = {
   title,
   description,
@@ -19,14 +28,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
+    locale: "en_US",
     url: "/status",
     title: `${title} · ${SITE_NAME}`,
     description,
+    images: [{ url: "/opengraph-image.png", type: "image/png", ...shareCard }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${title} · ${SITE_NAME}`,
     description,
+    images: [{ url: "/twitter-image.png", ...shareCard }],
   },
 };
 
