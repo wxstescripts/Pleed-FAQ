@@ -18,7 +18,11 @@ export type SettingsSectionProps = {
    * Stays in the title row at every width and stays enabled when `disabled`.
    */
   action?: ReactNode;
-  /** Disables every control in the body (native fieldset) — e.g. while the module is off or saving. */
+  /**
+   * Disables every control in the body (native fieldset) — while the module
+   * is off. Not while saving: that would drop keyboard focus (the SaveBar
+   * already blocks a second save).
+   */
   disabled?: boolean;
   /** Message shown at the top of the body while disabled ("Turn on Anti-nuke to edit thresholds"). */
   disabledHint?: ReactNode;
@@ -55,15 +59,44 @@ export function SettingsSection({
         className,
       )}
     >
-      <div className="flex items-start gap-4 p-5 md:p-6">
-        {icon ? <IconTile icon={icon} tone={tone === "danger" ? "danger" : "brand"} className="max-sm:hidden" /> : null}
-        <div className="flex min-w-0 flex-1 flex-col gap-1">
-          <Heading id={titleId} className="type-h4 text-fg">
-            {title}
-          </Heading>
-          {description ? <p className="max-w-2xl type-small text-fg-secondary">{description}</p> : null}
-        </div>
-        {action ? <div className="flex shrink-0 items-center gap-3">{action}</div> : null}
+      {/*
+        Header grid. Phones: title | action on the first row (the action top-aligned with the
+        title's first line), the description on its own row across the FULL card width — not
+        squeezed into the title's column beside an empty one under the action. From 640 px:
+        icon (spanning both rows) | title over description | action.
+      */}
+      <div
+        className={cn(
+          "grid items-start gap-x-4 gap-y-1 p-5 md:p-6",
+          action ? "grid-cols-[minmax(0,1fr)_auto]" : "grid-cols-[minmax(0,1fr)]",
+          icon && (action ? "sm:grid-cols-[auto_minmax(0,1fr)_auto]" : "sm:grid-cols-[auto_minmax(0,1fr)]"),
+        )}
+      >
+        {icon ? (
+          <IconTile
+            icon={icon}
+            tone={tone === "danger" ? "danger" : "brand"}
+            className="max-sm:hidden sm:col-start-1 sm:row-span-2 sm:row-start-1"
+          />
+        ) : null}
+        <Heading id={titleId} className={cn("col-start-1 row-start-1 min-w-0 type-h4 text-fg", icon && "sm:col-start-2")}>
+          {title}
+        </Heading>
+        {description ? (
+          <p
+            className={cn(
+              "col-span-full row-start-2 max-w-2xl type-small text-fg-secondary sm:col-span-1",
+              icon ? "sm:col-start-2" : "sm:col-start-1",
+            )}
+          >
+            {description}
+          </p>
+        ) : null}
+        {action ? (
+          <div className={cn("col-start-2 row-start-1 flex items-center gap-3 self-start", icon && "sm:col-start-3")}>
+            {action}
+          </div>
+        ) : null}
       </div>
       {children ? (
         <FieldsetPrimitive.Root disabled={disabled} className="m-0 min-w-0 border-t border-line p-0">
