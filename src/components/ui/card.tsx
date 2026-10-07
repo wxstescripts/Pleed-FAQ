@@ -27,7 +27,13 @@ export const cardVariants = cva("relative flex flex-col rounded-xl border text-f
       lg: "p-6 md:p-8",
     },
     interactive: {
-      true: "cursor-pointer transition-[background-color,border-color,box-shadow,transform] duration-200 ease-standard hover:border-line-hover hover:bg-surface-2 active:translate-y-px focus-visible:focus-ring",
+      // The hover fill is a white-alpha overlay (::after, behind the content, over the
+      // card's own background), so it shows on EVERY variant — raised cards included —
+      // instead of an opaque surface step that vanishes on surface-2.
+      true: [
+        "isolate cursor-pointer transition-[border-color,box-shadow,transform] duration-200 ease-standard hover:border-line-hover active:translate-y-px focus-visible:focus-ring",
+        "after:pointer-events-none after:absolute after:-inset-px after:-z-raised after:rounded-xl after:bg-hover after:opacity-0 after:transition-opacity after:duration-200 after:ease-standard hover:after:opacity-100 active:after:bg-pressed active:after:opacity-100",
+      ],
       false: "",
     },
   },

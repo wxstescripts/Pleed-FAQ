@@ -33,7 +33,7 @@ import { Separator } from "@/components/ui/separator";
 import { Skeleton, SkeletonText, LoadingRegion } from "@/components/ui/skeleton";
 import { Spinner } from "@/components/ui/spinner";
 import { StatCard } from "@/components/ui/stat-card";
-import { EmptyState, ErrorState } from "@/components/ui/states";
+import { EmptyState } from "@/components/ui/states";
 import { TextLink } from "@/components/ui/text-link";
 import { Reveal, Stagger } from "@/components/motion/reveal";
 import { DISCORD_GUIDELINES_URL, getCommandFacts, INVITE_URL, SITE_STATS, SUPPORT_URL } from "@/lib/site";
@@ -42,6 +42,7 @@ import { DsBlock, DsNav, DsSection, Swatch } from "./_components/ds-layout";
 import {
   CodeDemos,
   FormDemos,
+  InlineErrorDemo,
   NavigationDemos,
   OverlayDemos,
   ListDemos,
@@ -698,8 +699,9 @@ export default async function DesignSystemPage() {
                 <FeatureCard
                   icon={MessageSquareReply}
                   title="Auto-responders"
-                  description="Answer common questions automatically with a trigger and a reply."
+                  description="Answer common questions automatically with a trigger and a reply. Raised + linked: the hover overlay shows on surface-2 too."
                   variant="raised"
+                  href="/design-system#cards"
                 />
               </div>
             </DsBlock>
@@ -761,7 +763,7 @@ export default async function DesignSystemPage() {
               />
               <StateDemos />
             </div>
-            <ErrorState variant="inline" title="Couldn't save join gate settings" description="Your changes are still here — nothing was lost." />
+            <InlineErrorDemo />
           </DsSection>
 
           <DsSection id="data" title="Data display" description="Stat cards (with honest placeholders), responsive table → cards, page header.">

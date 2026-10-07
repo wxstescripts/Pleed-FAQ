@@ -81,20 +81,27 @@ export function ErrorState({
   className,
 }: ErrorStateProps) {
   if (variant === "inline") {
+    // Icon beside the text at every width; on phones the retry button wraps onto its own
+    // line, indented to the text (icon 20 px + gap 12 px = pl-8).
     return (
       <div
         role="alert"
         className={cn(
-          "flex flex-col gap-3 rounded-lg border border-danger-border bg-danger-subtle p-4 sm:flex-row sm:items-center",
+          "flex flex-wrap items-start gap-3 rounded-lg border border-danger-border bg-danger-subtle p-4 sm:flex-nowrap",
           className,
         )}
       >
         <CircleAlert aria-hidden="true" className="size-5 shrink-0 text-danger-fg" />
-        <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+        <div className="flex min-w-0 flex-1 basis-0 flex-col gap-0.5">
           <p className="type-label text-fg">{title}</p>
           {description ? <p className="type-small text-fg-secondary">{description}</p> : null}
         </div>
-        {onRetry ? <RetryButton onRetry={onRetry} retrying={retrying} /> : null}
+        {onRetry || actions ? (
+          <div className="flex flex-wrap items-center gap-2 max-sm:basis-full max-sm:pl-8 sm:shrink-0 sm:self-center">
+            {onRetry ? <RetryButton onRetry={onRetry} retrying={retrying} /> : null}
+            {actions}
+          </div>
+        ) : null}
       </div>
     );
   }

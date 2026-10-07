@@ -550,6 +550,23 @@ export function StateDemos() {
   );
 }
 
+/** The save-failure banner: retry wraps under the text on phones; "Retrying…" keeps keyboard focus. */
+export function InlineErrorDemo() {
+  const [retrying, setRetrying] = useState(false);
+  return (
+    <ErrorState
+      variant="inline"
+      title="Couldn't save join gate settings"
+      description="Your changes are still here — nothing was lost."
+      retrying={retrying}
+      onRetry={() => {
+        setRetrying(true);
+        setTimeout(() => setRetrying(false), 1500);
+      }}
+    />
+  );
+}
+
 /* ------------------------------------------------------------------ */
 
 type Responder = { id: string; trigger: string; payload: string; match: string };

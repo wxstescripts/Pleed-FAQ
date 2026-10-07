@@ -8,7 +8,7 @@ export type ResponsiveColumn<Row> = {
   cell: (row: Row) => ReactNode;
   /** Shown as the card title on phones (exactly one column should set it). */
   primary?: boolean;
-  /** Actions column: shrink-wrapped and right-aligned in the table, card footer on phones. */
+  /** Actions column: shrink-wrapped and right-aligned in the table; on phones see `cardActions`. */
   actions?: boolean;
   /** Hide in the phone card layout. */
   hideOnMobile?: boolean;
@@ -30,6 +30,13 @@ export type ResponsiveListProps<Row> = {
   showCaption?: boolean;
   /** Rendered instead of the list when `rows` is empty. */
   empty?: ReactNode;
+  /**
+   * Where the actions go on the phone cards. "header" (default): beside the
+   * card title, right-aligned — for icon actions (≤ 2 IconButtons, a Switch),
+   * so a card doesn't grow a whole footer row for one trash icon. "footer":
+   * a bordered row under the details — for text buttons.
+   */
+  cardActions?: "header" | "footer";
   className?: string;
 };
 
@@ -51,6 +58,7 @@ export function ResponsiveList<Row>({
   caption,
   showCaption = false,
   empty,
+  cardActions = "header",
   className,
 }: ResponsiveListProps<Row>) {
   if (rows.length === 0 && empty) return <>{empty}</>;
@@ -69,7 +77,7 @@ export function ResponsiveList<Row>({
         tabIndex={0}
         className="relative hidden overflow-x-auto rounded-xl border border-line bg-surface-1 focus-visible:focus-ring md:block"
       >
-        <table className="w-full border-collapse text-left text-sm">
+        <table className="w-full border-collapse text-left type-small">
           <caption className={cn(showCaption ? "px-5 pt-4 pb-2 text-left type-small text-fg-secondary" : "sr-only")}>
             {caption}
           </caption>
@@ -123,18 +131,30 @@ export function ResponsiveList<Row>({
       <ul aria-label={caption} className="flex flex-col gap-3 md:hidden">
         {rows.map((row) => (
           <li key={getRowKey(row)} className="min-w-0 rounded-xl border border-line bg-surface-1 p-4 inset-shadow-highlight">
-            <div className="min-w-0 text-sm font-medium wrap-anywhere text-fg">{primary.cell(row)}</div>
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0 flex-1 type-label wrap-anywhere text-fg">{primary.cell(row)}</div>
+              {cardActions === "header" && actions.length > 0 ? (
+                // Icon buttons (32 px, 44 px on touch) centred on the title's first line, not adding height.
+                <div className="-my-1.5 -mr-1.5 flex shrink-0 items-center gap-1 pointer-coarse:-my-3 pointer-coarse:-mr-3">
+                  {actions.map((col) => (
+                    <div key={col.key} className="flex">
+                      {col.cell(row)}
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+            </div>
             {details.length > 0 ? (
               <dl className="mt-3 grid gap-2.5">
                 {details.map((col) => (
                   <div key={col.key} className="grid min-w-0 grid-cols-[minmax(0,7rem)_minmax(0,1fr)] gap-3">
                     <dt className="type-caption text-fg-tertiary">{col.header}</dt>
-                    <dd className="min-w-0 text-sm wrap-anywhere text-fg-secondary">{col.cell(row)}</dd>
+                    <dd className="min-w-0 type-small wrap-anywhere text-fg-secondary">{col.cell(row)}</dd>
                   </div>
                 ))}
               </dl>
             ) : null}
-            {actions.length > 0 ? (
+            {cardActions === "footer" && actions.length > 0 ? (
               <div className="mt-3 flex flex-wrap items-center justify-end gap-2 border-t border-line-subtle pt-3">
                 {actions.map((col) => (
                   <div key={col.key}>{col.cell(row)}</div>
