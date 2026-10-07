@@ -7,13 +7,19 @@ import Footer from "@/components/site/footer";
  * mount once and persist across client-side navigations.
  *
  * Contract for pages inside this group:
- * - Do NOT render <main>, <Navbar/> or <Footer/> — start with <section>/<div>.
+ * - Do NOT render <main>, <Navbar/> or <Footer/> — start with <Section>.
  * - Render exactly one <h1>.
- * - The header is sticky/fixed and `--spacing-header` (4rem) tall; offset
- *   the first section accordingly (e.g. `pt-header` + your own spacing).
+ * - The header is `position: sticky; top: 0`, IN FLOW and `h-header` (4rem)
+ *   tall. Pages add NO offset: the first <Section> uses its normal
+ *   py-section. Only a hero whose background should run up behind the
+ *   header uses <Section behindHeader> (DESIGN.md §2).
+ * - Anchor offsets are global (html scroll-padding-top); never add
+ *   scroll-mt-* / scroll-margin.
  *
  * Contract for src/components/site/** (site-chrome agent): keep default
- * exports `Navbar` (site/navbar.tsx) and `Footer` (site/footer.tsx).
+ * exports `Navbar` (site/navbar.tsx) and `Footer` (site/footer.tsx); the
+ * <header> is `sticky top-0 z-header h-header` (transparent at the top is
+ * fine, then bg-canvas/80 + backdrop-blur + border-b once scrolled).
  */
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (

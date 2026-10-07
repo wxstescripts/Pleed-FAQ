@@ -12,20 +12,40 @@ export type SectionProps = Omit<ComponentPropsWithoutRef<"section">, "title"> & 
   description?: ReactNode;
   /** Heading element for the title (default h2). Keep heading order logical. */
   titleAs?: HeadingLevel;
+  /**
+   * "start" (default) for content sections and any header with `actions`;
+   * "center" for single-message sections (CTA band, short intro above a
+   * symmetric grid). Never centre more than ~3 lines of text.
+   */
   align?: "start" | "center";
-  /** Buttons/links rendered beside (desktop) or under (phones) the header. */
+  /** Buttons/links rendered beside (≥lg) or under the header. */
   actions?: ReactNode;
-  /** Vertical rhythm: default 64→128 px, compact 48→80 px, none. */
+  /**
+   * Vertical rhythm: default 64→128 px, compact 48→80 px, none.
+   * Adjacent default/compact sections automatically share ONE gap (the
+   * second section's top padding) — never add your own margins between them.
+   */
   spacing?: "default" | "compact" | "none";
   container?: "content" | "wide" | "narrow" | false;
-  /** Visual surface behind the whole section. */
+  /** Visual surface behind the whole section (raised keeps its padding on both sides). */
   tone?: "default" | "raised";
+  /**
+   * First section only (landing hero): pull the section up behind the
+   * sticky site header so its decorative background (bg-spotlight, bg-grid)
+   * starts at the very top of the page. Adds the header height to the top
+   * padding, so content still starts below the header. The only sanctioned
+   * header offset — never hand-roll `pt-header` / `-mt-header`.
+   */
+  behindHeader?: boolean;
   headerClassName?: string;
 };
 
 /**
  * Page section with an optional eyebrow/title/description header.
- * Pass an `id` to make it linkable; the title then labels the region.
+ * Pass an `id` to make it linkable: the title then labels the region and
+ * anchor links land on the title (not on the empty top padding).
+ * Wrap the section's CONTENT in <Reveal>, never the Section itself (the
+ * adjacent-section rhythm relies on sections being siblings).
  */
 export function Section({
   eyebrow,
@@ -37,6 +57,7 @@ export function Section({
   spacing = "default",
   container = "content",
   tone = "default",
+  behindHeader = false,
   className,
   headerClassName,
   children,
@@ -45,6 +66,7 @@ export function Section({
 }: SectionProps) {
   const titleId = id && title ? `${id}-title` : undefined;
   const hasHeader = Boolean(eyebrow || title || description || actions);
+  const hasContent = children !== undefined && children !== null && children !== false;
 
   const inner = (
     <>
@@ -57,7 +79,8 @@ export function Section({
           titleAs={titleAs}
           align={align}
           actions={actions}
-          className={headerClassName}
+          // Header → content gap (40 → 56 px) only when content follows.
+          className={cn(hasContent && "mb-10 md:mb-14", headerClassName)}
         />
       ) : null}
       {children}
@@ -68,10 +91,20 @@ export function Section({
     <section
       id={id}
       aria-labelledby={titleId}
+      // Read by globals.css: adjacent-section rhythm + anchor scroll-margin.
+      data-section={tone === "raised" ? "raised" : spacing}
       className={cn(
-        "relative scroll-mt-header",
-        spacing === "default" && "py-section",
-        spacing === "compact" && "py-section-sm",
+        "relative",
+        spacing === "default" && "py-section [--section-pt:var(--spacing-section)]",
+        spacing === "compact" && "py-section-sm [--section-pt:var(--spacing-section-sm)]",
+        behindHeader && "-mt-header",
+        behindHeader &&
+          spacing === "default" &&
+          "pt-[calc(var(--spacing-header)+var(--spacing-section))] [--section-pt:calc(var(--spacing-header)+var(--spacing-section))]",
+        behindHeader &&
+          spacing === "compact" &&
+          "pt-[calc(var(--spacing-header)+var(--spacing-section-sm))] [--section-pt:calc(var(--spacing-header)+var(--spacing-section-sm))]",
+        behindHeader && spacing === "none" && "pt-header [--section-pt:var(--spacing-header)]",
         tone === "raised" && "border-y border-line-subtle bg-surface-1",
         className,
       )}
@@ -90,6 +123,7 @@ export type SectionHeaderProps = {
   titleAs?: HeadingLevel;
   align?: "start" | "center";
   actions?: ReactNode;
+  /** No outer margin by default — add `mb-10 md:mb-14` when content follows (Section does). */
   className?: string;
 };
 
@@ -107,7 +141,7 @@ export function SectionHeader({
   return (
     <div
       className={cn(
-        "mb-10 flex flex-col gap-6 md:mb-14",
+        "flex flex-col gap-6",
         centered ? "items-center text-center" : "lg:flex-row lg:items-end lg:justify-between",
         className,
       )}

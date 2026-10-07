@@ -8,11 +8,16 @@ export type ResponsiveColumn<Row> = {
   cell: (row: Row) => ReactNode;
   /** Shown as the card title on phones (exactly one column should set it). */
   primary?: boolean;
-  /** Actions column: right-aligned in the table, footer of the card on phones. */
+  /** Actions column: shrink-wrapped and right-aligned in the table, card footer on phones. */
   actions?: boolean;
   /** Hide in the phone card layout. */
   hideOnMobile?: boolean;
-  /** Table cell/header classes (alignment, width, `text-right`, `tabular-nums`). */
+  /**
+   * Preferred table column width (any CSS length, e.g. "12rem", "30%").
+   * Optional — columns share the space by content otherwise.
+   */
+  width?: string;
+  /** Table cell/header classes (alignment, `text-right`, `tabular-nums`). */
   className?: string;
 };
 
@@ -20,7 +25,7 @@ export type ResponsiveListProps<Row> = {
   rows: Row[];
   columns: ResponsiveColumn<Row>[];
   getRowKey: (row: Row) => string;
-  /** Accessible table caption (visually hidden unless `showCaption`). */
+  /** Accessible table caption (visually hidden unless `showCaption`). Also names the scroll region. */
   caption: string;
   showCaption?: boolean;
   /** Rendered instead of the list when `rows` is empty. */
@@ -29,10 +34,15 @@ export type ResponsiveListProps<Row> = {
 };
 
 /**
- * Data list that is a real <table> on ≥md and stacked cards on phones —
- * no horizontal scrolling. Long values wrap (`break-words`) instead of
- * pushing buttons out of the card. Use from client components when cells
- * contain handlers.
+ * Data list that is a real <table> on ≥md and stacked cards on phones.
+ *
+ * Long values (URLs, regexes, IDs) never push the action buttons out:
+ * every cell uses `overflow-wrap: anywhere`, which — unlike `break-words` —
+ * also lowers the column's min-content width, so the auto table layout
+ * shrinks to the container. The actions column is shrink-wrapped
+ * (`w-px whitespace-nowrap`). As a last-resort safety net the table sits in
+ * a keyboard-scrollable region instead of an `overflow-hidden` box that
+ * would clip it. Use from client components when cells contain handlers.
  */
 export function ResponsiveList<Row>({
   rows,
@@ -48,15 +58,28 @@ export function ResponsiveList<Row>({
   const primary = columns.find((c) => c.primary) ?? columns[0];
   const actions = columns.filter((c) => c.actions);
   const details = columns.filter((c) => c !== primary && !c.actions && !c.hideOnMobile);
+  const hasWidths = columns.some((c) => c.width);
 
   return (
     <div className={cn("min-w-0", className)}>
       {/* ≥ md: table */}
-      <div className="hidden overflow-hidden rounded-xl border border-line bg-surface-1 md:block">
+      <div
+        role="region"
+        aria-label={caption}
+        tabIndex={0}
+        className="hidden overflow-x-auto rounded-xl border border-line bg-surface-1 focus-visible:focus-ring md:block"
+      >
         <table className="w-full border-collapse text-left text-sm">
           <caption className={cn(showCaption ? "px-5 pt-4 pb-2 text-left type-small text-fg-secondary" : "sr-only")}>
             {caption}
           </caption>
+          {hasWidths ? (
+            <colgroup>
+              {columns.map((col) => (
+                <col key={col.key} style={col.width ? { width: col.width } : undefined} />
+              ))}
+            </colgroup>
+          ) : null}
           <thead>
             <tr className="border-b border-line bg-surface-2/50">
               {columns.map((col) => (
@@ -65,7 +88,7 @@ export function ResponsiveList<Row>({
                   scope="col"
                   className={cn(
                     "h-10 px-5 type-caption font-medium whitespace-nowrap text-fg-tertiary",
-                    col.actions && "text-right",
+                    col.actions && "w-px text-right",
                     col.className,
                   )}
                 >
@@ -76,14 +99,14 @@ export function ResponsiveList<Row>({
           </thead>
           <tbody className="divide-y divide-line-subtle">
             {rows.map((row) => (
-              <tr key={getRowKey(row)} className="transition-colors duration-150 hover:bg-surface-2/60">
+              <tr key={getRowKey(row)} className="transition-colors duration-150 hover:bg-hover">
                 {columns.map((col) => (
                   <td
                     key={col.key}
                     className={cn(
-                      "px-5 py-3.5 align-middle break-words text-fg-secondary",
+                      "px-5 py-3.5 align-middle text-fg-secondary",
+                      col.actions ? "w-px text-right whitespace-nowrap" : "wrap-anywhere",
                       col.primary && "font-medium text-fg",
-                      col.actions && "w-px text-right whitespace-nowrap",
                       col.className,
                     )}
                   >
@@ -100,13 +123,13 @@ export function ResponsiveList<Row>({
       <ul aria-label={caption} className="flex flex-col gap-3 md:hidden">
         {rows.map((row) => (
           <li key={getRowKey(row)} className="min-w-0 rounded-xl border border-line bg-surface-1 p-4 inset-shadow-highlight">
-            <div className="min-w-0 text-sm font-medium break-words text-fg">{primary.cell(row)}</div>
+            <div className="min-w-0 text-sm font-medium wrap-anywhere text-fg">{primary.cell(row)}</div>
             {details.length > 0 ? (
               <dl className="mt-3 grid gap-2.5">
                 {details.map((col) => (
                   <div key={col.key} className="grid min-w-0 grid-cols-[minmax(0,7rem)_minmax(0,1fr)] gap-3">
                     <dt className="type-caption text-fg-tertiary">{col.header}</dt>
-                    <dd className="min-w-0 text-sm break-words text-fg-secondary">{col.cell(row)}</dd>
+                    <dd className="min-w-0 text-sm wrap-anywhere text-fg-secondary">{col.cell(row)}</dd>
                   </div>
                 ))}
               </dl>

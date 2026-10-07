@@ -25,9 +25,14 @@ export type SaveBarProps = {
 
 /**
  * Discord-style "unsaved changes" bar. Place it as the LAST child of the
- * page content: it is position:sticky to the bottom of the viewport, so it
- * lines up with the content column (sidebar or not) and never covers the
- * last field. Hidden bars are inert (not focusable). Ctrl/⌘+S saves.
+ * page content column, AFTER (not inside) the `gap-*` stack of sections: it
+ * is position:sticky to the bottom of the viewport, so it lines up with the
+ * content column (sidebar or not).
+ *
+ * Space: while visible the bar is in flow, so it reserves its own height and
+ * never covers the last field. While hidden it collapses to 0 px (the bar is
+ * taken out of flow, slides down and fades) — no empty band at the end of
+ * the page. Hidden bars are inert (not focusable). Ctrl/⌘+S saves.
  */
 export function SaveBar({
   dirty,
@@ -74,7 +79,9 @@ export function SaveBar({
     <div
       data-savebar={visible ? "visible" : "hidden"}
       className={cn(
-        "pointer-events-none sticky bottom-0 z-savebar mt-8 pb-[max(1rem,env(safe-area-inset-bottom))]",
+        "pointer-events-none sticky bottom-0 z-savebar",
+        // Visible: in flow, reserves its height (+ breathing room). Hidden: 0 px tall.
+        visible ? "pt-6 pb-[max(1rem,env(safe-area-inset-bottom))]" : "h-0",
         className,
       )}
     >
@@ -86,10 +93,15 @@ export function SaveBar({
           "pointer-events-auto mx-auto flex w-full max-w-3xl flex-col gap-3 rounded-xl border bg-surface-3/95 p-3 shadow-xl inset-shadow-highlight backdrop-blur-md sm:flex-row sm:items-center sm:gap-4 sm:pl-5",
           "transition-[translate,opacity] duration-300 ease-out-expo",
           error ? "border-danger-border" : "border-line-hover",
-          visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-[calc(100%+2rem)] opacity-0",
+          visible
+            ? "relative translate-y-0 opacity-100"
+            : // Out of flow at the same spot (bottom of the 0 px wrapper = bottom of the viewport when
+              // stuck). The exit drop stays smaller than the 1rem offset, so a hidden bar never adds
+              // scrollable overflow below the page.
+              "pointer-events-none absolute inset-x-0 bottom-[max(1rem,env(safe-area-inset-bottom))] translate-y-2 opacity-0",
         )}
       >
-        <p aria-live="polite" className="flex min-w-0 flex-1 items-center gap-2 text-sm font-medium text-fg">
+        <p aria-live="polite" className="flex min-w-0 flex-1 items-center gap-2 type-label text-fg">
           {error ? (
             <>
               <CircleAlert aria-hidden="true" className="size-4 shrink-0 text-danger-fg" />
