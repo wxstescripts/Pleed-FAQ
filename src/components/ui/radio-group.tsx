@@ -19,15 +19,20 @@ export function Radio({ className, ...props }: RadioPrimitive.Root.Props) {
   return (
     <RadioPrimitive.Root
       className={mergeClassName(
-        "relative inline-flex size-[1.125rem] shrink-0 items-center justify-center rounded-full border border-line-control bg-inset touch-target transition-[background-color,border-color] duration-150 ease-standard hover:border-fg-tertiary focus-visible:focus-ring data-checked:border-brand data-checked:bg-brand data-disabled:cursor-not-allowed data-disabled:opacity-45",
+        "group/radio relative inline-flex size-[1.125rem] shrink-0 items-center justify-center rounded-full outline-none data-disabled:cursor-not-allowed pointer-coarse:-m-[0.8125rem] pointer-coarse:size-11",
         className,
       )}
       {...props}
     >
-      <RadioPrimitive.Indicator
-        keepMounted
-        className="size-2 rounded-full bg-white transition-[opacity,scale] duration-150 ease-standard data-unchecked:scale-50 data-unchecked:opacity-0"
-      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none flex size-[1.125rem] items-center justify-center rounded-full border border-line-control bg-inset transition-[background-color,border-color] duration-150 ease-standard group-hover/radio:border-fg-tertiary group-focus-visible/radio:outline-2 group-focus-visible/radio:outline-offset-2 group-focus-visible/radio:outline-focus group-data-checked/radio:border-brand group-data-checked/radio:bg-brand group-data-disabled/radio:opacity-45"
+      >
+        <RadioPrimitive.Indicator
+          keepMounted
+          className="size-2 rounded-full bg-white transition-[opacity,scale] duration-150 ease-standard data-unchecked:scale-50 data-unchecked:opacity-0"
+        />
+      </span>
     </RadioPrimitive.Root>
   );
 }
@@ -117,7 +122,7 @@ export function SegmentedControl({
             "relative inline-flex shrink-0 cursor-pointer items-center justify-center gap-1.5 rounded-md px-3 font-medium whitespace-nowrap text-fg-tertiary transition-[background-color,color,box-shadow] duration-150 ease-standard select-none",
             "hover:text-fg focus-visible:focus-ring-inset data-checked:bg-surface-3 data-checked:text-fg data-checked:shadow-sm data-checked:inset-shadow-highlight",
             "data-disabled:cursor-not-allowed data-disabled:opacity-45 [&_svg]:size-4",
-            size === "md" ? "h-8 text-sm pointer-coarse:h-10" : "h-7 text-xs pointer-coarse:h-9",
+            size === "md" ? "h-8 text-sm pointer-coarse:h-11" : "h-7 text-xs pointer-coarse:h-11",
             fullWidth && "flex-1",
           )}
         >

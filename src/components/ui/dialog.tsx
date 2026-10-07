@@ -85,7 +85,7 @@ export function DialogCloseButton({ label = "Close", className }: { label?: stri
     <DialogPrimitive.Close
       aria-label={label}
       className={cn(
-        "relative -mt-1 -mr-1.5 inline-flex size-9 shrink-0 items-center justify-center rounded-lg text-fg-tertiary transition-colors duration-150 touch-target hover:bg-surface-3 hover:text-fg focus-visible:focus-ring",
+        "relative -mt-1 -mr-1.5 inline-flex size-9 shrink-0 items-center justify-center rounded-lg text-fg-tertiary transition-colors duration-150 pointer-coarse:size-11 hover:bg-surface-3 hover:text-fg focus-visible:focus-ring",
         className,
       )}
     >

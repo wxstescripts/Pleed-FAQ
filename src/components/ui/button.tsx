@@ -37,13 +37,13 @@ export const buttonVariants = cva(
           "bg-transparent text-fg-tertiary hover:bg-danger-subtle hover:text-danger active:bg-danger-subtle",
         discord:
           "bg-discord text-white inset-shadow-highlight-strong hover:bg-discord-hover active:bg-discord-active",
-        link: "h-auto! px-0! text-brand-fg underline-offset-4 decoration-brand-fg/40 hover:underline hover:text-brand-100 active:translate-y-0",
+        link: "h-auto! px-0! pointer-coarse:min-h-11 text-brand-fg underline-offset-4 decoration-brand-fg/40 hover:underline hover:text-brand-100 active:translate-y-0",
       },
       size: {
-        sm: "h-8 gap-1.5 rounded-md px-3 text-sm touch-target [&_svg:not([class*='size-'])]:size-4",
+        sm: "h-8 gap-1.5 rounded-md px-3 text-sm pointer-coarse:h-11 [&_svg:not([class*='size-'])]:size-4",
         md: "h-10 rounded-lg px-4 text-sm pointer-coarse:h-11 [&_svg:not([class*='size-'])]:size-4",
         lg: "h-12 rounded-xl px-6 text-base [&_svg:not([class*='size-'])]:size-5",
-        "icon-sm": "size-8 rounded-md touch-target [&_svg:not([class*='size-'])]:size-4",
+        "icon-sm": "size-8 rounded-md pointer-coarse:size-11 [&_svg:not([class*='size-'])]:size-4",
         icon: "size-10 rounded-lg pointer-coarse:size-11 [&_svg:not([class*='size-'])]:size-[1.125rem]",
         "icon-lg": "size-12 rounded-xl [&_svg:not([class*='size-'])]:size-5",
       },

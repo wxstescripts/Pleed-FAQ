@@ -96,7 +96,7 @@ export function Pill({ children, leading, href, className }: PillProps) {
     "group/pill relative inline-flex h-8 max-w-full items-center gap-2 rounded-full border border-line-strong bg-surface-2/80 pr-3 pl-1.5 text-sm text-fg-secondary inset-shadow-highlight backdrop-blur",
     !leading && "pl-3",
     href &&
-      "touch-target transition-colors duration-150 ease-standard hover:border-line-hover hover:bg-surface-3 hover:text-fg focus-visible:focus-ring",
+      "pointer-coarse:h-11 transition-colors duration-150 ease-standard hover:border-line-hover hover:bg-surface-3 hover:text-fg focus-visible:focus-ring",
     className,
   );
   const content = (

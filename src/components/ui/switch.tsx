@@ -10,7 +10,9 @@ export type SwitchProps = SwitchPrimitive.Root.Props & {
 
 /**
  * On/off switch (role="switch", aria-checked, Space/Enter). Renders a native
- * <button>, never shrinks, and has a 44 px hit area on touch screens.
+ * <button> that never shrinks. On touch screens the button itself grows to
+ * 48×44 (negative margins keep the layout identical) while the visible track
+ * stays 40×24.
  *
  * Label it with one of:
  * - <SettingRow label=… control={<Switch/>}/> (recommended in settings),
@@ -18,6 +20,7 @@ export type SwitchProps = SwitchPrimitive.Root.Props & {
  * - aria-label="…" when no visible label exists.
  */
 export function Switch({ className, size = "md", ...props }: SwitchProps) {
+  const md = size === "md";
   return (
     <SwitchPrimitive.Root
       nativeButton
@@ -25,24 +28,35 @@ export function Switch({ className, size = "md", ...props }: SwitchProps) {
       data-size={size}
       className={mergeClassName(
         cn(
-          "group/switch relative inline-flex shrink-0 items-center rounded-full border p-0.5 touch-target",
-          "border-line-hover bg-surface-4 transition-[background-color,border-color,box-shadow] duration-200 ease-standard",
-          "hover:border-fg-disabled data-checked:border-transparent data-checked:bg-brand data-checked:hover:bg-brand-hover",
-          "focus-visible:focus-ring",
-          "data-disabled:cursor-not-allowed data-disabled:opacity-45",
-          size === "md" ? "h-6 w-10" : "h-5 w-8",
+          "group/switch relative inline-flex shrink-0 items-center justify-center rounded-full outline-none",
+          "data-disabled:cursor-not-allowed",
+          md
+            ? "h-6 w-10 pointer-coarse:-mx-1 pointer-coarse:-my-2.5 pointer-coarse:h-11 pointer-coarse:w-12"
+            : "h-5 w-8 pointer-coarse:-mx-1.5 pointer-coarse:-my-3 pointer-coarse:h-11 pointer-coarse:w-11",
         ),
         className,
       )}
       {...props}
     >
-      <SwitchPrimitive.Thumb
+      <span
+        aria-hidden="true"
         className={cn(
-          "pointer-events-none block rounded-full bg-fg-secondary shadow-sm transition-[translate,background-color] duration-200 ease-standard",
-          "data-checked:bg-white",
-          size === "md" ? "size-[1.125rem] data-checked:translate-x-4" : "size-3.5 data-checked:translate-x-3",
+          "pointer-events-none flex shrink-0 items-center rounded-full border border-line-hover bg-surface-4 p-0.5",
+          "transition-[background-color,border-color,opacity] duration-200 ease-standard",
+          "group-hover/switch:border-fg-disabled group-data-checked/switch:border-transparent group-data-checked/switch:bg-brand group-data-checked/switch:group-hover/switch:bg-brand-hover",
+          "group-focus-visible/switch:outline-2 group-focus-visible/switch:outline-offset-2 group-focus-visible/switch:outline-focus",
+          "group-data-disabled/switch:opacity-45",
+          md ? "h-6 w-10" : "h-5 w-8",
         )}
-      />
+      >
+        <SwitchPrimitive.Thumb
+          className={cn(
+            "pointer-events-none block rounded-full bg-fg-secondary shadow-sm transition-[translate,background-color] duration-200 ease-standard",
+            "data-checked:bg-white",
+            md ? "size-[1.125rem] data-checked:translate-x-4" : "size-3.5 data-checked:translate-x-3",
+          )}
+        />
+      </span>
     </SwitchPrimitive.Root>
   );
 }

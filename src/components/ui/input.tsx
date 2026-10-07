@@ -104,7 +104,7 @@ export type NumberFieldProps = NumberFieldPrimitive.Root.Props & {
 };
 
 const stepperClasses =
-  "relative flex w-10 shrink-0 items-center justify-center text-fg-secondary transition-colors duration-150 touch-target hover:bg-surface-3 hover:text-fg active:bg-surface-4 focus-visible:focus-ring-inset disabled:pointer-events-none disabled:text-fg-disabled data-disabled:pointer-events-none data-disabled:text-fg-disabled [&_svg]:size-4";
+  "relative flex w-10 shrink-0 items-center justify-center text-fg-secondary transition-colors duration-150 pointer-coarse:w-11 hover:bg-surface-3 hover:text-fg active:bg-surface-4 focus-visible:focus-ring-inset disabled:pointer-events-none disabled:text-fg-disabled data-disabled:pointer-events-none data-disabled:text-fg-disabled [&_svg]:size-4";
 
 /**
  * Numeric input with − / + steppers, keyboard (↑/↓, PgUp/PgDn), min/max
@@ -120,7 +120,7 @@ export function NumberField({
 }: NumberFieldProps) {
   return (
     <NumberFieldPrimitive.Root className={mergeClassName("w-full max-w-60 min-w-0", className)} {...props}>
-      <NumberFieldPrimitive.Group className="flex h-10 w-full min-w-0 overflow-hidden rounded-lg border border-line-strong bg-inset shadow-xs transition-[border-color,box-shadow] duration-150 hover:border-line-hover has-[input:focus-visible]:border-brand-400 has-[input:focus-visible]:ring-3 has-[input:focus-visible]:ring-brand-500/30 has-[[aria-invalid=true]]:border-danger data-disabled:border-line data-disabled:bg-surface-1 pointer-coarse:h-11">
+      <NumberFieldPrimitive.Group className="flex h-10 w-full min-w-0 overflow-hidden rounded-lg border border-line-strong bg-inset shadow-xs transition-[border-color,box-shadow] duration-150 hover:border-line-hover has-[input:focus-visible]:border-brand-400 has-[input:focus-visible]:ring-3 has-[input:focus-visible]:ring-brand-500/30 has-[[aria-invalid=true]]:border-danger data-disabled:border-line data-disabled:bg-surface-1 pointer-coarse:h-11.5">
         <NumberFieldPrimitive.Decrement aria-label={decrementLabel} className={cn(stepperClasses, "border-r border-line")}>
           <Minus aria-hidden="true" />
         </NumberFieldPrimitive.Decrement>

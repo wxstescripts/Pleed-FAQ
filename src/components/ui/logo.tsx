@@ -99,7 +99,7 @@ export function Logo({ size = "md", markOnly = false, href, className, title = "
     <Link
       href={href}
       aria-label={markOnly ? `${title} home` : undefined}
-      className={cn(classes, "-m-1.5 rounded-lg p-1.5 focus-visible:focus-ring")}
+      className={cn(classes, "-m-1.5 rounded-lg p-1.5 focus-visible:focus-ring pointer-coarse:min-h-11 pointer-coarse:min-w-11")}
     >
       {content}
     </Link>

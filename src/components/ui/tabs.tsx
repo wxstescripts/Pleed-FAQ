@@ -27,7 +27,7 @@ export function TabsList({
         cn(
           "group/tabs-list relative flex max-w-full items-center overflow-x-auto scrollbar-none",
           variant === "pill" && "w-fit gap-0.5 rounded-lg border border-line bg-inset p-0.5",
-          variant === "line" && "w-full gap-1 border-b border-line",
+          variant === "line" && "w-full gap-1 border-b border-line [contain:inline-size]",
         ),
         className,
       )}
@@ -54,8 +54,8 @@ export function TabsTab({ className, ...props }: TabsPrimitive.Tab.Props) {
         cn(
           "relative z-10 inline-flex shrink-0 items-center justify-center gap-1.5 font-medium whitespace-nowrap text-fg-tertiary transition-colors duration-150 ease-standard select-none",
           "hover:text-fg data-active:text-fg focus-visible:focus-ring-inset data-disabled:cursor-not-allowed data-disabled:opacity-45 [&_svg]:size-4",
-          "group-data-[variant=pill]/tabs-list:h-8 group-data-[variant=pill]/tabs-list:rounded-md group-data-[variant=pill]/tabs-list:px-3 group-data-[variant=pill]/tabs-list:text-sm pointer-coarse:group-data-[variant=pill]/tabs-list:h-10",
-          "group-data-[variant=line]/tabs-list:h-11 group-data-[variant=line]/tabs-list:rounded-t-md group-data-[variant=line]/tabs-list:px-3 group-data-[variant=line]/tabs-list:text-sm",
+          "group-data-[variant=pill]/tabs-list:h-8 group-data-[variant=pill]/tabs-list:rounded-md group-data-[variant=pill]/tabs-list:px-3 group-data-[variant=pill]/tabs-list:text-sm pointer-coarse:group-data-[variant=pill]/tabs-list:h-11",
+          "group-data-[variant=line]/tabs-list:h-11 group-data-[variant=line]/tabs-list:min-w-11 group-data-[variant=line]/tabs-list:rounded-t-md group-data-[variant=line]/tabs-list:px-3 group-data-[variant=line]/tabs-list:text-sm",
         ),
         className,
       )}

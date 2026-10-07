@@ -50,8 +50,8 @@ export function CopyButton({ value, label = "Copy to clipboard", className, size
       onClick={() => copy(value)}
       aria-label={label}
       className={cn(
-        "relative inline-flex shrink-0 items-center justify-center rounded-md text-fg-tertiary transition-colors duration-150 touch-target hover:bg-surface-3 hover:text-fg focus-visible:focus-ring",
-        size === "sm" ? "size-8" : "size-10",
+        "relative inline-flex shrink-0 items-center justify-center rounded-md text-fg-tertiary transition-colors duration-150 hover:bg-surface-3 hover:text-fg focus-visible:focus-ring",
+        size === "sm" ? "size-8 pointer-coarse:size-11" : "size-10 pointer-coarse:size-11",
         className,
       )}
     >
@@ -126,7 +126,7 @@ export function CommandChip({ command, className, size = "md" }: CommandChipProp
       type="button"
       onClick={() => copy(command)}
       className={cn(
-        "group/chip relative inline-flex max-w-full items-center gap-2 rounded-md border border-line-strong bg-inset font-mono text-fg transition-[border-color,background-color] duration-150 touch-target hover:border-brand-border hover:bg-brand-subtle focus-visible:focus-ring",
+        "group/chip relative inline-flex max-w-full items-center gap-2 rounded-md border border-line-strong bg-inset font-mono text-fg transition-[border-color,background-color] duration-150 pointer-coarse:h-11 hover:border-brand-border hover:bg-brand-subtle focus-visible:focus-ring",
         size === "md" ? "h-8 pr-2 pl-2.5 text-[0.8125rem]" : "h-6 pr-1.5 pl-2 text-xs",
         className,
       )}

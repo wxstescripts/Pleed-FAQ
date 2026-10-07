@@ -104,7 +104,13 @@ export function DropdownMenuCheckboxItem({ className, children, ...props }: Menu
   );
 }
 
-export function DropdownMenuLabel({ className, ...props }: MenuPrimitive.GroupLabel.Props) {
+/** Non-interactive heading inside the menu (e.g. "Signed in as …"). */
+export function DropdownMenuLabel({ className, ...props }: React.ComponentProps<"div">) {
+  return <div className={cn("px-2.5 pt-2 pb-1.5 type-caption text-fg-tertiary", className)} {...props} />;
+}
+
+/** Label for a <DropdownMenuGroup> (must be inside the group; names it for AT). */
+export function DropdownMenuGroupLabel({ className, ...props }: MenuPrimitive.GroupLabel.Props) {
   return (
     <MenuPrimitive.GroupLabel
       className={mergeClassName("px-2.5 pt-2 pb-1.5 type-caption text-fg-tertiary", className)}

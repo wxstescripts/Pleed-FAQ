@@ -88,12 +88,12 @@ function ToastList() {
           <ToastPrimitive.Title className="text-sm leading-snug font-medium text-fg" />
           <ToastPrimitive.Description className="text-sm leading-snug text-fg-secondary" />
           {t.actionProps ? (
-            <ToastPrimitive.Action className="mt-2.5 inline-flex h-8 w-fit items-center rounded-md border border-line-strong bg-surface-3 px-3 text-sm font-medium text-fg transition-colors duration-150 touch-target hover:bg-surface-4 focus-visible:focus-ring" />
+            <ToastPrimitive.Action className="mt-2.5 inline-flex h-8 w-fit items-center rounded-md border border-line-strong bg-surface-3 px-3 text-sm font-medium text-fg transition-colors duration-150 pointer-coarse:h-11 hover:bg-surface-4 focus-visible:focus-ring" />
           ) : null}
         </div>
         <ToastPrimitive.Close
           aria-label="Dismiss notification"
-          className="relative -mt-1 inline-flex size-8 shrink-0 items-center justify-center rounded-md text-fg-tertiary transition-colors duration-150 touch-target hover:bg-surface-3 hover:text-fg focus-visible:focus-ring"
+          className="relative -mt-1 inline-flex size-8 shrink-0 items-center justify-center rounded-md text-fg-tertiary transition-colors duration-150 pointer-coarse:size-11 hover:bg-surface-3 hover:text-fg focus-visible:focus-ring"
         >
           <X aria-hidden="true" className="size-4" />
         </ToastPrimitive.Close>

@@ -38,7 +38,7 @@ export function Breadcrumbs({ items, className }: { items: BreadcrumbItem[]; cla
                 ) : (
                   <Link
                     href={item.href}
-                    className="relative truncate rounded-xs transition-colors duration-150 touch-target hover:text-fg focus-visible:focus-ring"
+                    className="inline-flex max-w-full items-center truncate rounded-xs transition-colors duration-150 hover:text-fg focus-visible:focus-ring pointer-coarse:min-h-11"
                   >
                     {item.label}
                   </Link>

@@ -434,6 +434,8 @@
   ::before,
   ::after {
     border-color: var(--color-line);
+    /* Focus outlines are always brand — never fade in from currentColor. */
+    outline-color: var(--color-focus);
   }
 
   html {
@@ -544,7 +546,12 @@
   }
 }
 :root:has([data-savebar="visible"]) .pl-toast-viewport {
-  bottom: calc(6.5rem + env(safe-area-inset-bottom));
+  bottom: calc(8.5rem + env(safe-area-inset-bottom)); /* save bar stacks on phones */
+}
+@media (min-width: 640px) {
+  :root:has([data-savebar="visible"]) .pl-toast-viewport {
+    bottom: calc(6.5rem + env(safe-area-inset-bottom));
+  }
 }
 .pl-toast {
   --gap: 0.75rem;
