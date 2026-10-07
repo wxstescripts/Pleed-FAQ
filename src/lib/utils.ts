@@ -8,7 +8,7 @@ import { createCn } from "cn/config";
 export const cn = createCn({
   extend: {
     theme: {
-      spacing: ["gutter", "section", "section-sm", "header", "page", "sidebar", "sidebar-rail"],
+      spacing: ["gutter", "section", "section-sm", "header", "page", "sidebar", "sidebar-rail", "setting-control"],
       container: ["measure", "narrow", "content", "wide"],
       shadow: ["glow", "glow-lg", "thumb", "thumb-hover", "thumb-active"],
       "inset-shadow": ["highlight", "highlight-strong", "mark"],
@@ -28,9 +28,11 @@ export const cn = createCn({
             "small",
             "caption",
             "label",
+            "micro",
             "eyebrow",
             "code",
             "code-sm",
+            "code-xs",
             "metric",
             "metric-lg",
             "wordmark",
@@ -58,6 +60,17 @@ export const cn = createCn({
     },
   },
 });
+
+/**
+ * Links that leave the site: absolute http(s) and protocol-relative URLs.
+ * Every kit link (Button, TextLink, NavItem, Card, Pill, DropdownMenuLinkItem)
+ * opens these in a new tab with rel="noopener noreferrer", a ↗ affordance and
+ * an sr-only "(opens in a new tab)". Everything else (paths, #hashes,
+ * mailto:, tel:) stays in the tab — internal paths through next/link.
+ */
+export function isExternalHref(href: string): boolean {
+  return /^(https?:)?\/\//i.test(href);
+}
 
 /**
  * Merge base classes with a Base UI `className`, which may be a string or a

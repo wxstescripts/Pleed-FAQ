@@ -15,8 +15,9 @@
  *   brand-300 text 8.3–9.7:1 · ring 7.4:1 · white on primary 5.3:1
  * Non-text (WCAG 1.4.11, ≥3:1 against the surface the control sits on):
  *   line-control 3.3–3.75:1 (inputs, selects, number fields, checkbox, radio
- *   on inset…surface-2) · track 3.3:1 (slider rail) · selected pill ring
- *   3.1:1 against its inset track · focus ring 7.4:1.
+ *   on inset…surface-2) · slider: white thumb 18.7:1, brand-400 fill 3.3:1
+ *   against the rail · selected pill ring 3.1:1 against its inset track ·
+ *   focus ring 7.4:1.
  */
 
 @custom-variant dark (&:is(.dark *));
@@ -61,7 +62,10 @@
   --color-pressed: oklch(1 0 0 / 0.1);
 
   /* Control parts. */
-  --color-track: oklch(1 0 0 / 0.36); /* slider rail, 3.3:1 on every surface */
+  /* Slider rail: 2.2:1 on surface-1, and the brand-400 filled range is
+     3.3:1 against it (value readable by lightness). The white thumb (18.7:1)
+     is the part that carries the ≥3:1 control requirement. */
+  --color-track: oklch(1 0 0 / 0.24);
   --color-thumb: oklch(1 0 0); /* slider + switch thumbs */
 
   /* Text. */
@@ -199,6 +203,9 @@
   --spacing-page: clamp(1.5rem, 1rem + 1.5vw, 2.5rem); /* 24 → 40 px: py-page */
   --spacing-sidebar: 15rem; /* 240 px expanded sidebar: w-sidebar */
   --spacing-sidebar-rail: 4rem; /* 64 px icon rail: w-sidebar-rail */
+  /* Inline SettingRow control column (text, ID, select): w-setting-control.
+     SettingRow applies it — NumberField 10rem, switches/checkboxes/buttons auto. */
+  --spacing-setting-control: 16rem; /* 256 px */
 
   --animate-shimmer: shimmer 1.6s linear infinite;
   --animate-spin-slow: spin 1.4s linear infinite;
@@ -379,6 +386,15 @@
   letter-spacing: -0.003em;
   font-weight: 500;
 }
+/* Micro labels — NOT for sentences (those are type-caption or larger):
+   badge text, counters, small segmented options. 12 px, medium. */
+@utility type-micro {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  line-height: 1.3;
+  letter-spacing: 0.005em;
+  font-weight: 500;
+}
 @utility type-eyebrow {
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -399,6 +415,14 @@
   font-size: 0.8125rem;
   line-height: 1.6;
   letter-spacing: -0.01em;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+/* Keys and small command chips (12 px mono, single tokens only). */
+@utility type-code-xs {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: -0.005em;
   font-feature-settings: "liga" 0, "calt" 0;
 }
 /* Big numbers: StatCard values, status uptime, dashboard counters. */
@@ -567,6 +591,10 @@
     color: var(--color-fg);
     font-size: 1rem;
     line-height: 1.6;
+    /* A word longer than its line (a URL, an ID) breaks instead of
+       overflowing. break-word never splits words that fit, and never lowers
+       a table column's min-content width. */
+    overflow-wrap: break-word;
   }
 
   h1,
@@ -620,32 +648,36 @@
   }
 }
 
+/* SaveBar (src/components/ui/save-bar.tsx). While visible it publishes its
+   real footprint (bar height + bottom offset, any wrap) as --savebar-h on
+   <html>. Keyboard focus is then kept clear of it (WCAG 2.2 SC 2.4.11):
+   scrollIntoView / focus scrolling stop above the bar. */
+:root:has([data-savebar="visible"]) {
+  scroll-padding-bottom: calc(var(--savebar-h, 0px) + 1.5rem);
+}
+
 /* Toasts (src/components/ui/toast.tsx) — stacked, swipeable, bottom-right
-   (bottom-centre on phones); lifted above the SaveBar when it is visible. */
+   (bottom-centre on phones). Lifted above a visible SaveBar with `translate`
+   only (no layout property animates, so no layout shift): the lift is the
+   bar's footprint + a 12 px gap − the viewport's own bottom offset. */
 .pl-toast-viewport {
+  --toast-bottom: calc(1rem + env(safe-area-inset-bottom));
   position: fixed;
   z-index: var(--z-index-toast);
   right: var(--spacing-gutter);
-  bottom: calc(1rem + env(safe-area-inset-bottom));
+  bottom: var(--toast-bottom);
   left: var(--spacing-gutter);
   margin-inline: auto;
   width: auto;
   max-width: 24rem;
-  transition: bottom 300ms var(--ease-out-expo);
+  translate: 0 calc(-1 * max(0px, var(--savebar-h, 0px) + 0.75rem - var(--toast-bottom)));
+  transition: translate 300ms var(--ease-out-expo);
 }
 @media (min-width: 640px) {
   .pl-toast-viewport {
+    --toast-bottom: 1.5rem;
     left: auto;
-    bottom: 1.5rem;
     width: 24rem;
-  }
-}
-:root:has([data-savebar="visible"]) .pl-toast-viewport {
-  bottom: calc(8.5rem + env(safe-area-inset-bottom)); /* save bar stacks on phones */
-}
-@media (min-width: 640px) {
-  :root:has([data-savebar="visible"]) .pl-toast-viewport {
-    bottom: calc(6.5rem + env(safe-area-inset-bottom));
   }
 }
 .pl-toast {
@@ -898,6 +930,9 @@
     color: var(--color-fg);
     font-family: var(--font-mono);
     font-size: 0.85em;
+    /* A wrapped code span gets its border and padding on every line. */
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
   /* Raw <pre> wraps like text (it may break after a hyphen). For commands
      use <CodeBlock>, which keeps short tokens such as `--do` whole. */
@@ -928,6 +963,44 @@
     border-bottom: 1px solid var(--color-line);
     padding: 0.6em 0.75em;
     vertical-align: top;
+  }
+  /* Words stay whole: break-word (unlike `anywhere`) does NOT lower a
+     column's min-content width, so the auto table layout can't crush a short
+     first column into "identif / y". Links (usually URLs) may break anywhere;
+     anything else too wide scrolls inside <ProseTable> (.prose-table). */
+  .prose :where(th, td):not(:where(.not-prose, .not-prose *)) {
+    overflow-wrap: break-word;
+  }
+  .prose :where(td a):not(:where(.not-prose, .not-prose *)) {
     overflow-wrap: anywhere;
+  }
+  /* <ProseTable>: keyboard-scrollable region around a prose table — the
+     safety net for wide command/permission tables on phones. */
+  .prose :where(.prose-table):not(:where(.not-prose, .not-prose *)) {
+    margin-block: 1.1em;
+    max-width: 100%;
+    overflow-x: auto;
+    /* The table's width must never become the region's min-content width —
+       otherwise a grid/flex ancestor grows and the PAGE scrolls instead. */
+    contain: inline-size;
+    /* Containing block for absolutely positioned descendants (sr-only
+       "(opens in a new tab)" hints), so they are clipped by this scroller
+       instead of widening the page. */
+    position: relative;
+    border-radius: var(--radius-xs);
+    scrollbar-width: thin;
+  }
+  .prose :where(.prose-table > table):not(:where(.not-prose, .not-prose *)) {
+    margin-block: 0;
+  }
+  /* The last column is the description ("What it does"). It never gets
+     squeezed below a readable 12rem — if the row can't fit, the region
+     scrolls instead of stacking one word per line. */
+  .prose :where(.prose-table :is(th, td):last-child):not(:where(.not-prose, .not-prose *)) {
+    min-width: 12rem;
+  }
+  .prose :where(.prose-table):not(:where(.not-prose, .not-prose *)):focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
   }
 }
