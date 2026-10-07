@@ -3,6 +3,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 import { NextAuthProvider } from "@/components/NextAuthProvider";
+import { MotionProvider } from "@/components/motion/motion-provider";
+import { Toaster } from "@/components/ui/toast";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { fontVariables } from "@/lib/fonts";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -55,7 +58,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" dir="ltr" className={cn("dark", fontVariables)}>
       <body className="min-h-dvh bg-canvas font-sans text-fg antialiased">
-        <NextAuthProvider>{children}</NextAuthProvider>
+        <NextAuthProvider>
+          <MotionProvider>
+            <TooltipProvider>
+              {children}
+              <Toaster />
+            </TooltipProvider>
+          </MotionProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );

@@ -11,6 +11,7 @@
  *
  * Contrast (WCAG 2.2, measured on every surface from inset to surface-3):
  *   fg 14.7–18.4:1 · fg-secondary 9.5–11.8:1 · fg-tertiary 6.3–7.9:1
+ *   fg-disabled 4.6–5.3:1 (inset…surface-2)
  *   brand-300 text 8.3–9.7:1 · ring 7.4:1 · white on primary 5.3:1
  */
 
@@ -40,7 +41,7 @@
   --color-fg: oklch(0.97 0.004 280);
   --color-fg-secondary: oklch(0.83 0.01 280);
   --color-fg-tertiary: oklch(0.715 0.013 280);
-  --color-fg-disabled: oklch(0.53 0.01 280);
+  --color-fg-disabled: oklch(0.61 0.01 280); /* 4.6–5.3:1 on inset…surface-2 */
   --color-fg-on-brand: oklch(1 0 0);
 
   /* Brand — violet → indigo (hue 283). 600 is the solid primary. */
