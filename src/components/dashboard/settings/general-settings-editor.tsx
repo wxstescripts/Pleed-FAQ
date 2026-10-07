@@ -9,7 +9,6 @@ import { SUPPORT_URL } from "@/lib/site";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Callout } from "@/components/ui/callout";
-import { CommandChip } from "@/components/ui/code-block";
 import { SaveBar } from "@/components/ui/save-bar";
 import { SettingRow, SettingsSection } from "@/components/ui/settings-section";
 import { IdInput, isSnowflake, snowflakeHelp } from "@/components/ui/snowflake-input";
@@ -29,6 +28,7 @@ import {
 import { PrefixInput } from "./prefix-input";
 import { PrefixPreview } from "./prefix-preview";
 import { GeneralSettingsSkeleton } from "./settings-skeleton";
+import { WelcomeCommands } from "./welcome-commands";
 
 /** DESIGN.md "Save feedback": the same words on every settings page. */
 const SAVE_ERROR = "Couldn't reach Pleed. Your changes are still here.";
@@ -228,27 +228,9 @@ function GeneralSettingsForm({ saved, onSaved }: FormProps) {
             description={snowflakeHelp("channel")}
             control={<IdInput ref={channelRef} kind="channel" value={channel} onValueChange={setChannel} />}
           />
-          <div className="flex flex-col gap-4 px-5 py-4 md:px-6 md:py-5">
-            <div className="flex flex-col gap-1">
-              <h3 className="type-label text-fg">Welcome message</h3>
-              <p className="type-caption text-fg-tertiary">
-                The message itself is set in Discord. Copy a command and send it in your server.
-              </p>
-            </div>
-            <ul className="flex flex-col gap-3">
-              {[
-                { command: `${currentPrefix}messages welcomemessage <text>`, what: "Set the welcome message text" },
-                { command: `${currentPrefix}messages welcometoggle <state>`, what: "Turn welcome messages on or off" },
-                { command: `${currentPrefix}messages testwelcome`, what: "Preview the welcome message" },
-              ].map(({ command, what }) => (
-                <li key={what} className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-                  <CommandChip command={command} />
-                  <span className="type-caption text-fg-tertiary">{what}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
         </SettingsSection>
+
+        <WelcomeCommands prefix={currentPrefix} />
       </div>
       <SaveBar
         dirty={dirty}

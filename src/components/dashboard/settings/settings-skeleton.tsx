@@ -83,17 +83,20 @@ export function GeneralSettingsSkeleton() {
       </SectionSkeleton>
       <SectionSkeleton titleWidth="w-40">
         <RowSkeleton descriptionLines={2} />
-        <BlockSkeleton>
-          <div className="flex flex-col gap-2">
-            <Skeleton className="h-4 w-36" />
-            <Skeleton className="h-3 w-64 max-w-full" />
+      </SectionSkeleton>
+      <SectionSkeleton titleWidth="w-44">
+        {["w-64", "w-72", "w-52"].map((width) => (
+          <div
+            key={width}
+            className="flex flex-col gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 md:px-6 md:py-5"
+          >
+            <div className="flex min-w-0 flex-1 flex-col gap-2">
+              <Skeleton className="h-4 w-28" />
+              <Skeleton className="h-3 w-48 max-w-full" />
+            </div>
+            <Skeleton className={cn("h-8 max-w-full rounded-md pointer-coarse:h-11", width)} />
           </div>
-          <div className="flex flex-col gap-3">
-            {["w-72", "w-64", "w-52"].map((width) => (
-              <Skeleton key={width} className={cn("h-8 max-w-full rounded-md pointer-coarse:h-11", width)} />
-            ))}
-          </div>
-        </BlockSkeleton>
+        ))}
       </SectionSkeleton>
     </LoadingRegion>
   );

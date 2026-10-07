@@ -9,18 +9,33 @@ const title = "General settings";
 const description =
   "Set Pleed's command prefix and the channel where it welcomes new members, from the Pleed dashboard.";
 
+// Setting openGraph/twitter replaces the root objects — including the share card
+// from src/app/opengraph-image.png / twitter-image.png — so the card is restated
+// (same files, same alt text as src/app/opengraph-image.alt.txt).
+const shareCard = {
+  width: 1200,
+  height: 630,
+  alt: "Pleed logo beside the tagline “Security, moderation and automation for Discord servers”, with the features anti-nuke, join gates, auto-mod and automations",
+};
+
 export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: "/dashboard/settings" },
-  // Setting openGraph replaces the root layout's object, so the shared fields are repeated here.
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
     locale: "en_US",
+    url: "/dashboard/settings",
     title: `${title} · ${SITE_NAME}`,
     description,
-    url: "/dashboard/settings",
+    images: [{ url: "/opengraph-image.png", type: "image/png", ...shareCard }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${title} · ${SITE_NAME}`,
+    description,
+    images: [{ url: "/twitter-image.png", ...shareCard }],
   },
 };
 
