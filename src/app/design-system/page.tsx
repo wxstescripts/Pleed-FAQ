@@ -898,6 +898,11 @@ export default async function DesignSystemPage() {
             title="Settings & save bar"
             description="Change anything — the sticky save bar appears (Ctrl/⌘+S saves), keyboard focus never hides under it, and following a link to another page asks first. The module switch disables its fieldset."
           >
+            <p className="type-small text-fg-secondary">
+              On a page shorter than the screen the bar rests at the bottom of the viewport — see the{" "}
+              <TextLink href="/design-system/short-page">short dashboard page</TextLink>, which also guards a
+              programmatic “Switch server” with <code className="type-code">useLeaveGuard()</code>.
+            </p>
             <SettingsDemo />
           </DsSection>
         </main>

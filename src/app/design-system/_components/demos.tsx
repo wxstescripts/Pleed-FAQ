@@ -263,7 +263,7 @@ export function NavigationDemos() {
           </TabsPanel>
         </Tabs>
       </DsBlock>
-      <DsBlock title="Tabs — line (scrolls on phones)">
+      <DsBlock title="Tabs — line (scrolls; the overflowing edge fades)">
         <Tabs defaultValue="Moderation">
           <TabsList variant="line" aria-label="Command categories">
             {["All", "Antinuke", "Automation", "Economy", "Information", "Moderation", "Security", "Voice"].map((c) => (
@@ -275,6 +275,19 @@ export function NavigationDemos() {
           <TabsPanel value="Moderation" className="type-small text-fg-secondary">
             Moderation commands…
           </TabsPanel>
+        </Tabs>
+      </DsBlock>
+      <DsBlock title="Tabs — pill wrap (filters: every option stays visible)" className="xl:col-span-2">
+        <Tabs defaultValue="all">
+          <TabsList wrap aria-label="Filter commands by category">
+            {["All", "Antinuke", "Automation", "Config", "Economy", "Fun", "Information", "Moderation", "Security", "Tickets", "Utility", "Voice"].map(
+              (c) => (
+                <TabsTab key={c} value={c.toLowerCase()}>
+                  {c}
+                </TabsTab>
+              ),
+            )}
+          </TabsList>
         </Tabs>
       </DsBlock>
       <DsBlock title="Accordion / FAQ">
@@ -667,7 +680,7 @@ export function SettingsDemo() {
               <Switch checked={draft.enabled} onCheckedChange={(v) => set("enabled", v)} aria-label="Enable anti-nuke" />
             </div>
           }
-          disabled={!draft.enabled || saving}
+          disabled={!draft.enabled}
           disabledHint={!draft.enabled ? "Turn on anti-nuke to edit its thresholds." : undefined}
         >
           <SettingRow
