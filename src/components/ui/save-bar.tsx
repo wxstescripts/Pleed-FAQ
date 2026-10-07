@@ -2,7 +2,7 @@
 
 import { CircleAlert } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -33,18 +33,24 @@ export type SaveBarProps = {
 
 /**
  * Discord-style "unsaved changes" bar. Place it as the LAST child of the
- * page content column, AFTER (not inside) the `gap-*` stack of sections: it
- * is position:sticky to the bottom of the viewport, so it lines up with the
+ * page Container, AFTER (not inside) the `gap-*` stack of sections: it is
+ * position:sticky to the bottom of the viewport, so it lines up with the
  * content column (sidebar or not).
  *
+ * Page contract (DESIGN.md §3): the page Container is
+ * `flex flex-1 flex-col py-page` inside a page column that is at least as
+ * tall as the viewport, so on a short page the bar rests at the bottom of
+ * the screen (mt-auto) instead of floating under the content.
+ *
  * Space: while visible the bar is in flow, so it reserves its own height and
- * never covers the last field. While hidden it collapses to 0 px (the bar is
+ * never covers the last field. While hidden it takes no space (the bar is
  * taken out of flow, slides down and fades) — no empty band at the end of
  * the page. Hidden bars are inert (not focusable). Ctrl/⌘+S saves.
  *
  * While visible it also keeps keyboard focus from hiding under it (WCAG 2.2
  * SC 2.4.11), lifts the toast stack above itself, and guards navigation
- * (`warnOnLeave`).
+ * (`warnOnLeave`, plus `useLeaveGuard()` for programmatic navigation). When
+ * it hides, keyboard focus that was on Save/Reset returns to the last field.
  */
 export function SaveBar({
   dirty,
@@ -180,9 +186,15 @@ export function SaveBar({
       ref={wrapperRef}
       data-savebar={visible ? "visible" : "hidden"}
       className={cn(
-        "pointer-events-none sticky bottom-0 z-savebar",
-        // Visible: in flow, reserves its height (+ breathing room). Hidden: 0 px tall.
-        visible ? "pt-6 pb-[max(1rem,env(safe-area-inset-bottom))]" : "h-0",
+        // mt-auto: on a page shorter than the viewport the bar rests at the bottom of the
+        // screen, not under the content (needs the flex page column — DESIGN.md §3 SaveBar).
+        // -mb-page: it absorbs the page Container's bottom padding (py-page), so it rests 16 px
+        // above the viewport bottom — exactly where it sits while stuck — instead of rising
+        // by the padding at the end of a long page.
+        "pointer-events-none sticky bottom-0 z-savebar mt-auto -mb-page",
+        // Visible: in flow, reserves its height (+ breathing room). Hidden: takes no space
+        // (its height cancels the negative margin).
+        visible ? "pt-6 pb-[max(1rem,env(safe-area-inset-bottom))]" : "h-page",
         className,
       )}
     >
@@ -278,7 +290,11 @@ function restoreFocus(el: HTMLElement | null) {
   main.focus({ preventScroll: true });
 }
 
-type PendingLeave = { kind: "link"; href: string } | { kind: "history"; key: string };
+type PendingLeave =
+  | { kind: "link"; href: string }
+  | { kind: "history"; key: string }
+  /** A `confirmLeave()` call (useLeaveGuard): resolves true on Discard, false on Keep editing. */
+  | { kind: "confirm"; resolve: (leave: boolean) => void };
 
 /*
  * Minimal Navigation API types (not in TypeScript's DOM lib yet). Back and
@@ -297,6 +313,41 @@ type NavigationLike = EventTarget & {
 
 function getNavigation(): NavigationLike | undefined {
   return (window as Window & { navigation?: NavigationLike }).navigation;
+}
+
+/*
+ * Guards that currently hold unsaved changes (normally the page's one
+ * SaveBar). `confirmLeave()` asks the most recent one.
+ */
+type ActiveGuard = { ask: () => Promise<boolean> };
+const activeGuards = new Set<ActiveGuard>();
+
+/**
+ * Resolves true when it is fine to leave: immediately when nothing is
+ * unsaved, otherwise after the user picks "Discard changes" in the same
+ * dialog the in-app links get (false for "Keep editing" / Escape). Changes
+ * are reset (`onDiscard`) before it resolves, and the browser's own
+ * "Leave site?" prompt is skipped for the navigation that follows.
+ */
+export function confirmLeave(): Promise<boolean> {
+  const guard = Array.from(activeGuards).at(-1);
+  return guard ? guard.ask() : Promise.resolve(true);
+}
+
+/**
+ * For navigation the guard can't see — `router.push()` in a server
+ * switcher, a redirect after a delete, `signOut()` from the account menu.
+ * Wrap it instead of adding your own confirm:
+ *
+ *   const { confirmLeave } = useLeaveGuard();
+ *   <DropdownMenuItem onClick={async () => { if (await confirmLeave()) signOut(); }}>Sign out</DropdownMenuItem>
+ *   onValueChange={async (id) => { if (await confirmLeave()) router.push(`/dashboard?guild=${id}`); }}
+ *
+ * Works anywhere under the page (sidebar, header, menus); with nothing
+ * unsaved it resolves true at once.
+ */
+export function useLeaveGuard() {
+  return { confirmLeave };
 }
 
 export type UnsavedChangesGuardProps = {
@@ -318,6 +369,8 @@ export type UnsavedChangesGuardProps = {
  * - Back/Forward within the app: the step is cancelled before anything
  *   changes and the same dialog opens; "Discard changes" then goes there
  *   (needs the Navigation API; browsers without it just go back).
+ * - Programmatic navigation (router.push, signOut): wrap it in
+ *   `confirmLeave()` from `useLeaveGuard()` — same dialog.
  * - Reload, closing the tab, other sites: the browser's native prompt.
  * Same-page #anchors, new-tab and modified clicks (Ctrl/⌘/Shift/middle)
  * are never blocked.
@@ -330,11 +383,29 @@ export function UnsavedChangesGuard({
 }: UnsavedChangesGuardProps) {
   const router = useRouter();
   const [pendingLeave, setPendingLeave] = useState<PendingLeave | null>(null);
+  // Mirrors the state for event handlers and promise settling (no side effects in updaters).
+  const pendingRef = useRef<PendingLeave | null>(null);
   const bypass = useRef(false);
+
+  const setPending = useCallback((next: PendingLeave | null) => {
+    const previous = pendingRef.current;
+    // A confirmLeave() that is replaced or dismissed resolves "stay".
+    if (previous?.kind === "confirm" && previous !== next) previous.resolve(false);
+    pendingRef.current = next;
+    setPendingLeave(next);
+  }, []);
+
+  // Pending confirmLeave() calls resolve "stay" if the guard goes away.
+  useEffect(() => () => setPending(null), [setPending]);
 
   useEffect(() => {
     if (!when) return;
     bypass.current = false;
+
+    const guard: ActiveGuard = {
+      ask: () => new Promise<boolean>((resolve) => setPending({ kind: "confirm", resolve })),
+    };
+    activeGuards.add(guard);
 
     const onBeforeUnload = (event: BeforeUnloadEvent) => {
       if (!bypass.current) event.preventDefault();
@@ -353,7 +424,7 @@ export function UnsavedChangesGuard({
       if (url.origin !== window.location.origin) return; // leaving the app: beforeunload asks
       if (url.pathname === window.location.pathname && url.search === window.location.search) return; // #anchor on this page
       event.preventDefault();
-      setPendingLeave({ kind: "link", href: url.pathname + url.search + url.hash });
+      setPending({ kind: "link", href: url.pathname + url.search + url.hash });
     };
 
     // Back/Forward to another page of the app: cancel the traversal before
@@ -365,25 +436,31 @@ export function UnsavedChangesGuard({
       const url = new URL(nav.destination.url);
       if (url.pathname === window.location.pathname && url.search === window.location.search) return; // #anchor on this page
       nav.preventDefault();
-      setPendingLeave({ kind: "history", key: nav.destination.key });
+      setPending({ kind: "history", key: nav.destination.key });
     };
 
     window.addEventListener("beforeunload", onBeforeUnload);
     document.addEventListener("click", onClick, true);
     navigation?.addEventListener("navigate", onNavigate);
     return () => {
+      activeGuards.delete(guard);
       window.removeEventListener("beforeunload", onBeforeUnload);
       document.removeEventListener("click", onClick, true);
       navigation?.removeEventListener("navigate", onNavigate);
     };
-  }, [when]);
+  }, [when, setPending]);
 
   const discard = () => {
-    const leave = pendingLeave;
+    const leave = pendingRef.current;
+    pendingRef.current = null;
     setPendingLeave(null);
     if (!leave) return;
     bypass.current = true;
     onDiscard?.();
+    if (leave.kind === "confirm") {
+      leave.resolve(true);
+      return;
+    }
     if (leave.kind === "link") {
       router.push(leave.href);
       return;
@@ -395,7 +472,7 @@ export function UnsavedChangesGuard({
   };
 
   return (
-    <AlertDialog open={pendingLeave !== null} onOpenChange={(open) => (open ? undefined : setPendingLeave(null))}>
+    <AlertDialog open={pendingLeave !== null} onOpenChange={(open) => (open ? undefined : setPending(null))}>
       <AlertDialogContent
         title={title}
         description={description}
