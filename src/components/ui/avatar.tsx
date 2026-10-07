@@ -6,7 +6,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 const sizes = {
-  xs: { box: "size-6 text-[0.625rem]", px: 24 },
+  xs: { box: "size-6 text-xs tracking-tight", px: 24 },
   sm: { box: "size-8 text-xs", px: 32 },
   md: { box: "size-10 text-sm", px: 40 },
   lg: { box: "size-12 text-base", px: 48 },

@@ -44,7 +44,7 @@ export function StatCard({
       </div>
       {loading ? (
         <div aria-hidden="true" className="flex flex-col gap-2">
-          <Skeleton className={size === "lg" ? "h-10 w-28" : "h-8 w-20"} />
+          <Skeleton className={size === "lg" ? "h-12 w-28" : "h-8 w-20"} />
           {hint !== undefined ? <Skeleton className="h-3.5 w-32" /> : null}
         </div>
       ) : (
@@ -52,8 +52,8 @@ export function StatCard({
           <div className="flex flex-wrap items-center gap-2.5">
             <p
               className={cn(
-                "font-display leading-none font-semibold tracking-[-0.02em] text-fg tabular-nums",
-                size === "lg" ? "text-4xl" : "text-3xl",
+                size === "lg" ? "type-metric-lg" : "type-metric",
+                "text-fg",
                 (value === null || placeholder) && "text-fg-tertiary",
               )}
             >

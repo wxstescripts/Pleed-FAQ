@@ -50,7 +50,7 @@ export function CopyButton({ value, label = "Copy to clipboard", className, size
       onClick={() => copy(value)}
       aria-label={label}
       className={cn(
-        "relative inline-flex shrink-0 items-center justify-center rounded-md text-fg-tertiary transition-colors duration-150 hover:bg-surface-3 hover:text-fg focus-visible:focus-ring",
+        "relative inline-flex shrink-0 items-center justify-center rounded-md text-fg-tertiary transition-colors duration-150 hover:bg-hover hover:text-fg active:bg-pressed focus-visible:focus-ring",
         size === "sm" ? "size-8 pointer-coarse:size-11" : "size-10 pointer-coarse:size-11",
         className,
       )}
@@ -78,28 +78,60 @@ export type CodeBlockProps = {
   className?: string;
 };
 
-/** Monospace block with optional title and copy button. Long lines wrap (no horizontal scroll on phones). */
+/** Tokens up to this many characters never break internally when a line wraps. */
+const UNBREAKABLE_TOKEN = 24;
+
+/**
+ * Wraps each short whitespace-separated token in a nowrap span, so a wrapped
+ * line breaks BETWEEN tokens ("--threshold 3 --do ban" never becomes "--" /
+ * "do"). Longer tokens (URLs, IDs) may still break anywhere so nothing
+ * overflows. Copying still yields the original text.
+ */
+function CodeLine({ line }: { line: string }) {
+  if (!line) return " ";
+  return line.split(/(\s+)/).map((part, index) =>
+    part && part.length <= UNBREAKABLE_TOKEN && !/\s/.test(part) ? (
+      <span key={index} className="whitespace-nowrap">
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+}
+
+/**
+ * Monospace block with optional title and copy button. Long lines wrap
+ * between tokens (no horizontal scroll on phones). Safe inside <Prose>.
+ */
 export function CodeBlock({ code, title, prompt, copyable = true, copyLabel = "Copy code", className }: CodeBlockProps) {
   return (
-    <div className={cn("group/code relative min-w-0 overflow-hidden rounded-lg border border-line bg-inset", className)}>
+    <div className={cn("not-prose group/code relative min-w-0 overflow-hidden rounded-lg border border-line bg-inset", className)}>
       {title ? (
         <div className="flex h-10 items-center justify-between gap-3 border-b border-line-subtle pr-1 pl-4">
           <span className="truncate type-eyebrow text-fg-tertiary">{title}</span>
           {copyable ? <CopyButton value={code} label={copyLabel} /> : null}
         </div>
       ) : null}
-      <pre className="px-4 py-3.5 font-mono text-[0.8125rem] leading-relaxed whitespace-pre-wrap text-fg [overflow-wrap:anywhere]">
+      <pre className={cn("px-4 py-3.5 type-code-sm whitespace-pre-wrap text-fg wrap-anywhere", copyable && !title && "pr-12")}>
         <code>
-          {code.split("\n").map((line, i) => (
-            <span key={i} className="block">
-              {prompt ? (
-                <span aria-hidden="true" className="mr-2 text-fg-disabled select-none">
+          {code.split("\n").map((line, i) =>
+            prompt ? (
+              // Hanging indent: wrapped continuation lines align with the command, not the prompt.
+              <span key={i} className="flex">
+                <span aria-hidden="true" className="mr-2 shrink-0 text-fg-disabled select-none">
                   {prompt}
                 </span>
-              ) : null}
-              {line || " "}
-            </span>
-          ))}
+                <span className="min-w-0">
+                  <CodeLine line={line} />
+                </span>
+              </span>
+            ) : (
+              <span key={i} className="block">
+                <CodeLine line={line} />
+              </span>
+            ),
+          )}
         </code>
       </pre>
       {copyable && !title ? <CopyButton value={code} label={copyLabel} className="absolute top-2 right-2 bg-inset" /> : null}
@@ -127,7 +159,7 @@ export function CommandChip({ command, className, size = "md" }: CommandChipProp
       onClick={() => copy(command)}
       className={cn(
         "group/chip relative inline-flex max-w-full items-center gap-2 rounded-md border border-line-strong bg-inset font-mono text-fg transition-[border-color,background-color] duration-150 pointer-coarse:h-11 hover:border-brand-border hover:bg-brand-subtle focus-visible:focus-ring",
-        size === "md" ? "h-8 pr-2 pl-2.5 text-[0.8125rem]" : "h-6 pr-1.5 pl-2 text-xs",
+        size === "md" ? "h-8 pr-2 pl-2.5 type-code-sm" : "h-6 pr-1.5 pl-2 text-xs",
         className,
       )}
     >

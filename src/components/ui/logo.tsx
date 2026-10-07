@@ -10,11 +10,12 @@ export const LOGO_P_PATH = "M11.25 23.5V8.75h5.5a4.6 4.6 0 0 1 0 9.2h-5.5";
 /** Brand gradient stops for the mark (violet → indigo, 135°). */
 export const LOGO_GRADIENT = { from: "#9a46f0", to: "#4550ea" } as const;
 
+/** Tile sizes; the radius stays ~30% of the edge using the radius scale. */
 const markSizes = {
-  xs: "size-5 rounded-[0.3rem]",
+  xs: "size-5 rounded-sm",
   sm: "size-6 rounded-md",
   md: "size-8 rounded-lg",
-  lg: "size-10 rounded-[0.8rem]",
+  lg: "size-10 rounded-xl",
   xl: "size-14 rounded-2xl",
 } as const;
 
@@ -45,17 +46,17 @@ export function LogoMark({
       aria-label={title}
       aria-hidden={title ? undefined : true}
       className={cn(
-        "relative inline-flex shrink-0 items-center justify-center overflow-hidden bg-linear-135 from-brand-violet to-brand-indigo shadow-[inset_0_1px_0_0_oklch(1_0_0/0.28),inset_0_0_0_1px_oklch(1_0_0/0.1)]",
+        "relative inline-flex shrink-0 items-center justify-center overflow-hidden bg-linear-135 from-brand-violet to-brand-indigo inset-shadow-mark",
         markSizes[size],
         className,
       )}
     >
       {/* soft top light */}
-      <span className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-linear-to-b from-white/18 to-transparent" />
-      <svg viewBox="0 0 32 32" fill="none" className="relative size-full">
+      <span className="pointer-events-none absolute inset-0 bg-sheen" />
+      <svg viewBox="0 0 32 32" fill="none" className="relative size-full text-fg-on-brand">
         <path
           d={LOGO_P_PATH}
-          stroke="white"
+          stroke="currentColor"
           strokeWidth="3.4"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -83,10 +84,8 @@ export function Logo({ size = "md", markOnly = false, href, className, title = "
       <LogoMark size={size} title={markOnly ? title : undefined} />
       {markOnly ? null : (
         <span
-          className={cn(
-            "font-display leading-none font-[650] tracking-[-0.02em] text-fg [font-stretch:108%]",
-            wordSizes[size],
-          )}
+          // Size first: cn drops a leading-* that comes before a text-* size.
+          className={cn(wordSizes[size], "type-wordmark leading-none text-fg")}
         >
           Pleed
         </span>
