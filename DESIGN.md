@@ -26,7 +26,7 @@ Use tokens through Tailwind utilities. **No hex values, no `bg-[#…]`, no `text
 | Hairlines | `border-line-subtle` (6%) · `border-line` (9%, default) · `border-line-strong` (15%, buttons/raised) · `border-line-hover` (24%) | white-alpha, decorative separation |
 | Control boundary | `border-line-control` (40%) · `hover:border-line-control-hover` (55%) | **every form control** (Input, Textarea, NumberField, Select, NativeSelect, Checkbox, Radio, Switch off): 3.3–3.75:1 on inset…surface-2 (WCAG 1.4.11). The kit applies it — use it for any custom control. |
 | Interaction overlays | `hover:bg-hover` (6%) · `bg-selected` (9%) · `active:bg-pressed` (10%) | white alpha, so a hover is visible on **any** surface. Use for transparent things (ghost buttons, rows, nav items, menu items). Never hover with an opaque surface step — it vanishes on that same surface. |
-| Control parts | `bg-track` (slider rail, 3.3:1) · `bg-thumb` (white thumbs) · `shadow-thumb(-hover/-active)` | |
+| Control parts | `bg-track` (slider rail) · `bg-thumb` (white thumbs) · `shadow-thumb(-hover/-active)` | Slider: the white thumb (18.7:1) carries the 3:1 control boundary; the `brand-400` filled range is 3.3:1 against the rail (2.2:1 on surface-1), so the value reads by lightness, not hue alone |
 | Text | `text-fg` · `text-fg-secondary` · `text-fg-tertiary` · `text-fg-disabled` | contrast on inset…surface-3: 14.7–18.4 · 9.5–11.8 · 6.3–7.9 · 4.6–5.3 (inset…surface-2) |
 | Brand | `bg-brand` (solid primary, `text-fg-on-brand` 5.3:1) · `hover:bg-brand-hover` · `text-brand-fg` (brand text/icons on dark, 8–10:1) · `bg-brand-subtle` + `border-brand-border` (tints) · scale `brand-50…950` | violet→indigo, hue 283 |
 | Mark gradient | `from-brand-violet to-brand-indigo` | Logo and `GradientText` only |
@@ -57,21 +57,23 @@ Type styles set family, fluid size, line-height, tracking and weight in one clas
 | `type-body` | 16 / 1.65 | body copy |
 | `type-small` | 14 / 1.55 | secondary UI copy, descriptions |
 | `type-label` | 14 / 1.375, Geist 500 | control labels, nav items, toast titles, list item titles |
-| `type-caption` | 13 / 1.45 | helper text, meta, timestamps (minimum readable size — never smaller for sentences) |
+| `type-caption` | 13 / 1.45 | helper text, meta, timestamps, tooltips (minimum readable size — never smaller for sentences) |
+| `type-micro` | 12 / 1.3, Geist 500 | **labels only, never sentences:** badge text, counters, small segmented options |
 | `type-eyebrow` | 12 mono uppercase | labels above titles, table headers in mono contexts |
 | `type-code` | 0.875em mono | inline code inside text |
-| `type-code-sm` | 13 mono / 1.6 | code blocks, command chips, monospace table cells |
+| `type-code-sm` | 13 mono / 1.6 | code blocks, command chips, monospace table cells, technical error details |
+| `type-code-xs` | 12 mono / 1.4 | `Kbd` keys, small command chips, token names |
 | `type-metric` | 28 → 32, Mona Sans, tabular | StatCard values, dashboard counters |
 | `type-metric-lg` | 36 → 48, Mona Sans, tabular | hero/landing stat numbers, status uptime |
 | `type-wordmark` | (size from `text-*`) | the Logo only |
 
-Override weight/colour after the type class (`type-h3 font-medium text-fg-secondary`) — `cn()` knows these classes. Don't combine a type class with another `font-sans`/`font-mono`/`text-*` size; pick the right type class instead. Use `tabular-nums` for changing numbers. `h1–h3` default to the display family and `text-wrap: balance`; paragraphs get `text-wrap: pretty`.
+Override weight/colour after the type class (`type-h3 font-medium text-fg-secondary`) — `cn()` knows these classes. Raw `text-xs` is not part of the scale (the kit uses none): a sentence is `type-caption` or larger, a 12 px label is `type-micro` / `type-code-xs`. Don't combine a type class with another `font-sans`/`font-mono`/`text-*` size; pick the right type class instead. Use `tabular-nums` for changing numbers. `h1–h3` default to the display family and `text-wrap: balance`; paragraphs get `text-wrap: pretty`.
 
 **At ≥1920 px the root font grows to 17 px, at ≥2400 px to 19 px**, so every rem-based size, spacing and container scales up — 2560 looks designed, not miniature. Media queries are unaffected.
 
 ### Spacing & layout
 
-- Spacing uses Tailwind's 4 px scale (`p-4`, `gap-6`…) plus fluid tokens: `px-gutter` (16 → 40 px page gutter), `py-section` (64 → 128 px), `py-section-sm` (48 → 80 px), `h-header` (64 px), dashboard `py-page` (24 → 40 px), `w-sidebar` (240 px), `w-sidebar-rail` (64 px).
+- Spacing uses Tailwind's 4 px scale (`p-4`, `gap-6`…) plus fluid tokens: `px-gutter` (16 → 40 px page gutter), `py-section` (64 → 128 px), `py-section-sm` (48 → 80 px), `h-header` (64 px), dashboard `py-page` (24 → 40 px), `w-sidebar` (240 px), `w-sidebar-rail` (64 px), `w-setting-control` (256 px — the inline SettingRow control column; SettingRow applies it).
 - Containers: `container-content` (1216 px, marketing), `container-wide` (1440 px, dashboard content / wide grids), `container-narrow` (768 px, legal/forms), `max-w-measure` (68ch prose). Each includes the fluid gutter and centring — use `<Container size=…>` or the utility, never `container mx-auto px-4 sm:px-6 lg:px-8`. Never nest containers.
 - Grids that contain scrollers (Tabs, SegmentedControl, code) need `grid-cols-1` / `minmax(0,1fr)` tracks or `min-w-0` items so they can't widen the page.
 - **Anchors:** the only offset is `html { scroll-padding-top: header + 16px }`. Never add `scroll-mt-*` / `scroll-margin` (they add up). `<Section id>` lands its content 32 px under the header by itself.
@@ -151,10 +153,11 @@ Import from `@/components/ui/<file>`. Client components are marked; everything e
 | `PageHeader` | `page-header` | `title` (renders the page's single `<h1>`), `description`, `meta` (badge), `actions`, `breadcrumbs`, `eyebrow` |
 | `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` | `card` | `variant: default \| raised \| inset \| outline \| brand`, `padding: none \| sm \| md \| lg`, `href` (whole card is a link → interactive), `interactive`; `CardTitle as="h2"\|"h3"\|"h4"\|"p"` |
 | `FeatureCard` | `card` | `icon` (lucide), `title`, `description`, `titleAs`, `href`, `variant: default \| raised \| outline`, `children` (extra content). **The** feature-card pattern — don't rebuild it from `Card` + `IconTile` |
-| `Prose` | `prose` | wraps long-form HTML (legal, docs); 68ch measure. Components inside it (`CodeBlock`, cards) are excluded via `not-prose` |
+| `Prose` | `prose` | wraps long-form HTML (legal, docs); 68ch measure. Components inside it (`CodeBlock`, cards) are excluded via `not-prose`. Table cells keep words whole (`break-word`, never `anywhere`); links in cells may break |
+| `ProseTable` | `prose` | `label` (names the region), `caption`, children = `<thead>`/`<tbody>`. **Every table in docs/legal content**: a labelled, keyboard-scrollable region, so a row that can't fit a phone scrolls inside it instead of widening the page; the last (description) column keeps ≥ 12rem |
 | `Separator` | `separator` | `orientation`, `label` ("or"), `decorative` |
 | `GradientText` | `gradient-text` | one short phrase per page, never body copy |
-| `TextLink` | `text-link` | `href`, `external` (auto for http), `tone: brand \| subtle`, `underline: always (default) \| hover` — `hover` only for standalone link lists (footer columns), never inside sentences |
+| `TextLink` | `text-link` | `href`, `external` (auto for http), `tone: brand \| subtle`, `underline: always (default) \| hover` — `hover` only for standalone link lists (footer columns), never inside sentences. A plain inline `<a>`: a long link ("Discord Community Guidelines and Terms of Service") wraps inside its sentence; the ↗ is glued to the last word so it never starts a line |
 | `Breadcrumbs` | `breadcrumbs` | `items: {label, href?}[]` (last = current page) |
 
 **Section alignment:** `align="start"` (default) for content sections and any header with `actions`; `align="center"` for single-message sections (CTA band, a short intro above a symmetric grid). Never centre more than ~3 lines of text. Wrap a section's **content** in `Reveal`, never the `<Section>` itself (adjacent-section rhythm needs sibling sections).
@@ -199,13 +202,14 @@ Control heights line up: **sm 32 · md 40 px on mouse, every size 44 px on touch
 | `NumberField` | `input` | `min`, `max`, `step`, `unit` (visual — include the unit in the label too), `size: sm \| md`, `value`/`onValueChange` |
 | `IdInput` (+ `isSnowflake`, `parseSnowflake`, `snowflakeHelp`) | `snowflake-input` | **Every Discord channel/role/user ID field.** `kind: channel \| role \| user`, `value` (string, `""` = none), `onValueChange`, `required`. `#`/`@` adornment, numeric keyboard, pasted `<#…>` / `<@&…>` / `<@…>` mentions and channel links become the bare ID, 17–20 digit error after the first blur. Label/description come from `FormField`/`SettingRow` (`description={snowflakeHelp("role")}`); re-check with `isSnowflake()` before saving. IDs are strings — they exceed `Number.MAX_SAFE_INTEGER` |
 | `SearchField` | `search-field` | **Every search box** (commands, docs). `value`, `onValueChange`, `label` (aria-label), `placeholder`, `resultCount` (announced politely, debounced), `formatResultCount`, `shortcut` ("/" default, `false` off), `size`. Clear button, Escape clears, Kbd hint on mouse devices. Wrap in `<search>` when it's the page's main search |
-| `Select` | `select` | `items: {value,label,description?,disabled?}[]`, `label` (visible) or `aria-label`, `value`/`onValueChange`, `placeholder`, `size` |
+| `Select` | `select` | `items: {value,label,description?,disabled?}[]`, `label` (visible) or `aria-label` (inside a SettingRow/Field neither — the row label names it), `value`/`onValueChange`, `placeholder`, `size`. Fills its container (`w-full`); in a filter row give it a width (`className="w-36"`) |
 | `NativeSelect` | `select` | styled `<select>` with chevron; label via `Field` |
 | `Switch` | `switch` | `checked`/`onCheckedChange`, `size: sm \| md`, needs a label (SettingRow, FieldLabel or `aria-label`) |
 | `Slider` | `slider` | `label` (or `aria-label`), `value`/`onValueChange`, `min`, `max`, `step`, `unit`, `description`, `showValue`, `showRange`, `formatValue` |
-| `Checkbox` | `checkbox` | `checked`, `indeterminate`, `onCheckedChange`; wrap in `<label>` with text |
-| `RadioGroup`, `RadioOption`, `Radio` | `radio-group` | `RadioOption label description card` |
-| `SegmentedControl` | `radio-group` | `options: {value,label,icon?}[]`, `aria-label`, `value`/`onValueChange`, `size`, `fullWidth` |
+| `Checkbox` | `checkbox` | `checked`, `indeterminate`, `onCheckedChange` — the bare box (SettingRow controls, table rows). Any checkbox with a text label is a `CheckboxOption` |
+| `CheckboxOption`, `CheckboxGroup` | `checkbox` | **Every checkbox list** (notification toggles, ignored channels). `CheckboxOption label description card value disabled indeterminate` — the whole row is clickable and the disabled text is styled; on touch each row is ≥ 44 px, so the boxes' 44 px hit areas never overlap. `CheckboxGroup` (`role="group"`): `aria-labelledby` a visible heading (inside a SettingRow it is labelled by the row), `value`/`onValueChange` (string[]), `allValues` for a parent checkbox. Never hand-roll `<label className="flex gap-3">` rows |
+| `RadioGroup`, `RadioOption`, `Radio` | `radio-group` | `RadioOption label description card` (same rows, cards and touch sizing as `CheckboxOption`) |
+| `SegmentedControl` | `radio-group` | `options: {value,label,icon?}[]`, `aria-label`, `value`/`onValueChange`, `size`, `fullWidth`. The track hugs its segments (`w-fit`), also inside grid and flex-column parents; `fullWidth` stretches it and shares the width |
 
 Validation: show errors under the field (`FormField error`), never only in a toast. Discord IDs: `IdInput`.
 
@@ -216,20 +220,20 @@ Validation: show errors under the field (`FormField error`), never only in a toa
 | `Tabs`, `TabsList`, `TabsTab`, `TabsPanel` | `tabs` | `TabsList variant: pill \| line` (+ required `aria-label`), sliding indicator, scrolls on phones |
 | `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionPanel` | `accordion` | closed panels stay findable (`hidden="until-found"`); `AccordionTrigger headingLevel={2\|3\|4}` |
 | `FaqList` | `accordion` | `items: {question, answer, id?}[]`, `headingLevel` |
-| `DropdownMenu`, `DropdownMenuTrigger`, `DropdownMenuContent`, `DropdownMenuItem` (`destructive`), `DropdownMenuLinkItem`, `DropdownMenuCheckboxItem`, `DropdownMenuLabel`, `DropdownMenuGroup` + `DropdownMenuGroupLabel`, `DropdownMenuSeparator` | `dropdown-menu` | `DropdownMenuContent side align sideOffset`; `menuItemClasses` for custom items |
-| `Tooltip`, `TooltipProvider` | `tooltip` | `content`, `side`, `align`; supplementary only (touch users can't hover). Provider is already in the root layout |
+| `DropdownMenu`, `DropdownMenuTrigger`, `DropdownMenuContent`, `DropdownMenuItem` (`destructive`), `DropdownMenuLinkItem`, `DropdownMenuCheckboxItem`, `DropdownMenuLabel`, `DropdownMenuGroup` + `DropdownMenuGroupLabel`, `DropdownMenuSeparator` | `dropdown-menu` | `DropdownMenuContent side align sideOffset`; `menuItemClasses` for custom items. `DropdownMenuLinkItem href`: internal paths use next/link (client navigation, prefetch, app state kept), http(s) URLs open a new tab with ↗ and an sr-only hint — use it for "Dashboard", "Settings", "Support server" in the account menu |
+| `Tooltip`, `TooltipProvider` | `tooltip` | `content`, `side`, `align`; supplementary only (touch users can't hover). Text is `type-caption`. Provider is already in the root layout |
 
 ### Overlays & feedback (client unless noted)
 
 | Component | File | Key props |
 |---|---|---|
-| `Dialog`, `DialogTrigger`, `DialogContent`, `DialogClose`, `DialogCloseButton` | `dialog` | `DialogContent title description footer size hideClose` — bottom sheet on phones, centred ≥ sm |
+| `Dialog`, `DialogTrigger`, `DialogContent`, `DialogClose`, `DialogCloseButton` | `dialog` | `DialogContent title description footer size hideClose initialFocus` — bottom sheet on phones, centred ≥ sm. Keyboard focus starts on the first field (the × is last in the tab order, shown top-right); on touch the dialog itself is focused, so no keyboard pops up. `initialFocus={ref}` picks another element |
 | `AlertDialog`, `AlertDialogTrigger`, `AlertDialogContent`, `AlertDialogClose` | `dialog` | confirmations for destructive actions; `footer` required |
 | `Sheet`, `SheetTrigger`, `SheetContent`, `SheetClose`, `SheetNavItem` | `sheet` | `SheetContent side: right \| left \| bottom \| top`, `title` (+ `hideTitle`), `headerStart` (logo), `footer` (CTA). Focus trap, Escape, scroll lock, inert page — use for the mobile site menu and dashboard drawer |
-| `toast` + `Toaster` | `toast` | `toast.success/error/warning/info/loading(title, {description, action:{label,onClick}, timeout})`, `toast.promise(p, {loading, success, error})`, `toast.dismiss(id)`. `Toaster` is already mounted in the root layout |
+| `toast` + `Toaster` | `toast` | `toast.success/error/warning/info/loading(title, {description, action:{label,onClick}, timeout})`, `toast.promise(p, {loading, success, error})`, `toast.dismiss(id)`. `Toaster` is already mounted in the root layout. While a SaveBar is visible the stack is lifted above it (transform only, no layout shift); a toast requested in the update that hides the bar ("Settings saved") waits until the stack has settled — just call `toast.success` after saving |
 | `Spinner` (server) | `spinner` | `size: xs \| sm \| md \| lg`, `label` (omit when decorative) |
 | `Skeleton`, `SkeletonText`, `LoadingRegion` (server) | `skeleton` | match the final layout's size; wrap in `LoadingRegion label` for one SR announcement |
-| `EmptyState`, `ErrorState` (server-safe) | `states` | `EmptyState icon title description actions headingAs variant`; `ErrorState title description detail onRetry retrying actions variant: card \| plain \| inline` |
+| `EmptyState`, `ErrorState` (server-safe) | `states` | `EmptyState icon title description actions headingAs variant`; `ErrorState title description detail onRetry retrying actions variant: card \| plain \| inline` (`detail` = the technical line, e.g. `GET /api/… → 502`; it wraps on phones) |
 | `Badge`, `Pill`, `PlaceholderBadge`, `StatusDot` (server) | `badge` | `Badge tone size dot`; `Pill leading href`; `StatusDot tone pulse` (pulse stops under reduced motion) |
 | `Kbd`, `KbdGroup` (server) | `kbd` | |
 | `Avatar` | `avatar` | `src`, `name` (initials fallback, null-safe), `decorative`, `size`, `shape`; uses next/image (Discord CDN needs `remotePatterns`, configured in `next.config.ts`) |
@@ -241,8 +245,9 @@ Validation: show errors under the field (`FormField error`), never only in a toa
 | `StatCard` (server) | `stat-card` | `label`, `value` (`null` → "—"), `hint`, `icon`, `placeholder` (shows **Placeholder** tag), `loading`, `size: md \| lg` (type-metric / type-metric-lg) |
 | `ResponsiveList` | `responsive-list` | `rows`, `columns: {key, header, cell(row), primary?, actions?, hideOnMobile?, width?, className?}[]`, `getRowKey`, `caption`, `empty` — `<table>` ≥ md, cards on phones. Long values (URLs, regexes) wrap anywhere, the actions column is shrink-wrapped, and the table sits in a labelled keyboard-scrollable region as a last resort. No `max-w-*` crutches needed |
 | `SettingsSection` | `settings-section` | `title`, `description`, `icon`, `action` (compact: master `Switch aria-label`, optionally with a status `Badge` — stays in the title row on phones), `disabled` (real fieldset disable), `disabledHint`, `tone: default \| danger`, `headingAs` |
-| `SettingRow` | `settings-section` | `label`, `description`, `control`, `layout`, `error`, `children`, `hideLabel` |
-| `SaveBar` | `save-bar` | `dirty`, `saving`, `onSave`, `onReset`, `error`, `message`, `saveLabel`, `warnOnLeave`. Place it as the **last child of the page content, after (not inside) the `gap-*` stack**. Sticky; 0 px tall while hidden, reserves its own height while visible (no `overflow-hidden` on ancestors). Ctrl/⌘+S saves; toasts move above it |
+| `SettingRow` | `settings-section` | `label`, `description`, `control`, `layout`, `error`, `children`, `hideLabel`. Sizes its control — pass **no width classes** to controls inside it (table below) |
+| `SaveBar` | `save-bar` | `dirty`, `saving`, `onSave`, `onReset`, `error`, `message`, `saveLabel`, `warnOnLeave` (default true). Place it as the **last child of the page content, after (not inside) the `gap-*` stack — nothing may follow it in the page flow** (no footer under dashboard content): when it hides, its reserved space closes. Sticky; 0 px tall while hidden, reserves its own height while visible (no `overflow-hidden` on ancestors). Ctrl/⌘+S saves. Automatic, nothing to wire: keyboard focus never lands under the bar (WCAG 2.4.11 — it publishes `--savebar-h` for `scroll-padding-bottom`), toasts lift above it, and **unsaved changes are guarded**: an in-app link (sidebar, header, drawer — next/link or plain `<a>`) or Back/Forward to another page opens "Discard unsaved changes?" (Keep editing / Discard changes → `onReset`, then continues); reload and closing the tab use the browser prompt. Same-page `#anchors` and new-tab clicks pass through |
+| `UnsavedChangesGuard` | `save-bar` | `when`, `onDiscard`, `title`, `description` — the same guard for an edit form without a SaveBar (SaveBar already renders it) |
 | `CodeBlock`, `CommandChip`, `CopyButton` | `code-block` | `CodeBlock code title prompt copyable`; wraps between tokens (`--do` never splits), hanging indent after the prompt, safe inside `Prose`. `CommandChip command size` (copies on click); `CopyButton value label` |
 
 **SettingRow layout:**
@@ -250,7 +255,16 @@ Validation: show errors under the field (`FormField error`), never only in a toa
 - `layout="auto"` (default) — compact controls (`Switch`, `Checkbox`, or anything marked `data-compact-control`) stay **beside** the label at every width, top-aligned on phones like Discord/iOS; any other control (Input, IdInput, NumberField, Select, buttons) sits beside it from 640 px and **below** it on phones.
 - `layout="inline"` — always beside (custom compact controls, e.g. a Badge + Switch group).
 - `layout="stacked"` — always below (textareas, lists, previews).
-- `hideLabel` — the control renders its own visible label (`Slider label`, `Select label`); the row stacks control → description → children → error, and the description stays linked via `aria-describedby`.
+- `hideLabel` — the control renders its own visible label (`Slider label`); the row stacks control → description → children → error, and the description stays linked via `aria-describedby`. A `Select` doesn't need it: in a normal row the row label names it.
+
+**SettingRow control widths** (applied by SettingRow, so every settings page lines up):
+
+| Control | Beside the label (≥ 640 px) | Stacked (phones, `layout="stacked"`, `hideLabel`) |
+|---|---|---|
+| `Input`, `IdInput`, `Select`, `NativeSelect` | 256 px (`w-setting-control`) | full width, max 448 px (`max-w-md`) |
+| `NumberField` | 160 px | full width, max 240 px |
+| `Switch`, `Checkbox`, `Button` | own width | own width |
+| `Slider`, `CheckboxGroup`, `Textarea` | — (use `hideLabel` / `layout="stacked"`) | full width, max 448 px |
 
 **Dashboard page recipe**
 
@@ -264,6 +278,7 @@ Validation: show errors under the field (`FormField error`), never only in a toa
       <div className="flex flex-col gap-6">
         <SettingsSection title="Thresholds" action={<Switch aria-label="Enable anti-nuke" …/>} disabled={!enabled}>
           <SettingRow label="Ban threshold" hideLabel description="…" control={<Slider label="Ban threshold" unit="per minute" …/>} />
+          <SettingRow label="Punishment" description="…" control={<Select items={PUNISHMENTS} …/>} />   {/* 256 px — no width classes */}
           <SettingRow label="Log channel" description={snowflakeHelp("channel")} control={<IdInput kind="channel" …/>} />
           <SettingRow label="DM on join" description="…" control={<Switch …/>} />
         </SettingsSection>
@@ -274,7 +289,7 @@ Validation: show errors under the field (`FormField error`), never only in a toa
 </Container>
 ```
 
-Save feedback: `toast.success("Changes saved")`; failures: keep the SaveBar visible with `error` and `toast.error(…, {action: {label: "Retry", onClick: save}})`.
+Save feedback: `toast.success("Changes saved")`; failures: keep the SaveBar visible with `error` and `toast.error(…, {action: {label: "Retry", onClick: save}})`. The leave-page guard comes with the SaveBar — don't add your own `beforeunload` or route-change confirms.
 
 **Marketing page recipe**
 
@@ -305,6 +320,10 @@ Metadata: the root layout sets `title.template` (`%s · Pleed`), `metadataBase`,
 
 `SITE_NAME`, `SITE_TAGLINE`, `SITE_DESCRIPTION`, `SITE_URL` (from `NEXT_PUBLIC_SITE_URL` — **placeholder**, no production domain exists yet), `INVITE_URL` (exact OAuth URL — use for every "Add to Discord"), `SUPPORT_URL` (discord.gg/AfCCQt2VHP), `DISCORD_TERMS_URL`, `DISCORD_GUIDELINES_URL`, `DEFAULT_PREFIX` (`!`), `NAV_LINKS`, `FOOTER_GROUPS`, `SOCIAL_LINKS` (Discord only — there are no other real accounts), `COPYRIGHT_HOLDER` ("Pleed Development").
 
+Links: `isExternalHref(href)` from `@/lib/utils` is the one rule for "opens in a new tab" (http(s) and protocol-relative URLs); every kit link component uses it.
+
+Session (NextAuth): the `SessionProvider` is mounted **only under `/dashboard`** (root layout → `SessionScope`, a lazily loaded chunk), so marketing pages ship no next-auth client and make no `/api/auth/session` request. `useSession` / `usePleedSession` work in `src/app/dashboard/**` only — never add another `SessionProvider`, and never call `useSession` on marketing pages. "Log in" / "Add to Discord" call `signIn("discord")` from `next-auth/react`, which needs no provider. If the marketing header must know whether someone is signed in, read the session server-side or call `getSession()` lazily in a tiny client island.
+
 Honest numbers: `await getCommandFacts()` (server) → `{ uniqueCommands: 403, categories: 11, publicEntries: 586, categoryNames, uniqueCommandsLabel: "400+" }`, derived from `src/data/commands.json` after hiding owner-only Core commands (`isPublicCommand`, `PUBLIC_CORE_COMMANDS`). Never type these numbers by hand. `SITE_STATS` (servers, users, uptime) are `null` — render them as `StatCard placeholder` / `PlaceholderBadge` with a `// PLACEHOLDER: replace with real data` comment. Never invent counts, uptime or testimonials.
 
 ---
@@ -327,6 +346,7 @@ Honest numbers: `await getCommandFacts()` (server) → `{ uniqueCommands: 403, c
 - Disabled sections use `SettingsSection disabled` / `Fieldset disabled` (real disabling), not `opacity-50 pointer-events-none`.
 - Text contrast: `fg-tertiary` is the lowest tier for readable text; `fg-disabled` only for disabled labels/values. Never put text on `brand-500` (use `bg-brand` = brand-600) or on semantic `-fg` colours.
 - Links inside sentences are underlined (`TextLink` does it in both tones); colour alone never marks a link.
+- Plain `#fragment` links (skip link, tables of contents, `<a href="#faq">`) are fine: the root layout's `FragmentHistory` keeps Back/Forward working across them after client-side navigations.
 - External links: `TextLink`/`Button href`/`NavItem` add `target=_blank rel="noopener noreferrer"`, the ↗ affordance and an sr-only "(opens in a new tab)".
 - Overlays: use `Dialog`/`AlertDialog`/`Sheet` (focus trap, Escape, scroll lock, inert page, focus return). Never hand-roll a drawer with `translate-x-full` (it stays in the tab order).
 - Live updates: result counts and async status in `aria-live="polite"` (`SearchField resultCount` does it); errors `role="alert"` (`ErrorState` does this).
@@ -361,4 +381,5 @@ See `src/lib/dev/README.md` (owned by the data agent): mock Discord session and 
 
 - `/design-system` is the visual reference — check your page against it at 390, 820, 1440 and 2560.
 - Run `npx eslint <your files>` — the "Pleed tokens only" rule must pass.
+- Scroll regions (`overflow-x-auto` wrappers) must be `relative`: an absolutely positioned sr-only hint inside them otherwise escapes the clip and widens the page (`ProseTable` and `ResponsiveList` do this).
 - `shoot.mjs` lists Base UI's visually hidden native inputs (`aria-hidden`, `tabindex=-1`, 1×1 px — used for form submission by Switch/Checkbox/Radio/Select/NumberField/Slider, plus the Slider thumb's clipped 16×16 `input type=range`) as "small touch targets" and sr-only text / `sr-only` labels as "clipped". Those are expected; the visible controls are ≥ 44 px on touch.
