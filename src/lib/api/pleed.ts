@@ -5,6 +5,9 @@
  * client existed (same URL, method, headers and JSON body — see README.md) and
  * throws an `ApiError` on network failure, non-2xx status or an unexpected
  * response shape, so pages can render real error states.
+ *
+ * In development only, requests are answered by the dev mocks in
+ * `src/lib/mock` (see `src/lib/dev/README.md`). Production builds never load them.
  */
 import { LOCALHOSTRUN_API_BASE, LOCALTUNNEL_API_BASE, MOCK_GUILD_ID } from "./config";
 import { ApiError, isAbortError } from "./errors";
@@ -62,6 +65,13 @@ async function sendToApi(req: PleedRequest, expectBody: boolean, signal?: AbortS
 }
 
 async function dispatch(req: PleedRequest, expectBody: boolean, options?: RequestOptions): Promise<unknown> {
+  // Dev-only mock layer. The exact NODE_ENV comparison lets the bundler drop
+  // this branch (and the mock chunk) from production builds.
+  if (process.env.NODE_ENV === "development" && process.env.NEXT_PUBLIC_PLEED_MOCK !== "0") {
+    const { handleMockRequest } = await import("@/lib/mock/handler");
+    const mocked = await handleMockRequest(req, options?.signal);
+    if (mocked.handled) return mocked.data;
+  }
   return sendToApi(req, expectBody, options?.signal);
 }
 
