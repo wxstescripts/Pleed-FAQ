@@ -147,6 +147,11 @@
   --ease-in-out-quad: cubic-bezier(0.45, 0, 0.55, 1);
   --ease-exit: cubic-bezier(0.4, 0, 1, 1);
 
+  /* Breakpoints (Tailwind defaults sm 640 · md 768 · lg 1024 · xl 1280 ·
+     2xl 1536) plus 3xl for wide ≥1920 screens. Media queries use the
+     browser's 16px rem, so the ultra-wide root scaling doesn't shift them. */
+  --breakpoint-3xl: 120rem;
+
   /* Layout. */
   --container-measure: 68ch; /* prose line length */
   --container-narrow: 48rem; /* 768  — legal, forms, centred copy */
