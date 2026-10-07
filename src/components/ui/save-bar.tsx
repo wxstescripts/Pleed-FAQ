@@ -50,7 +50,8 @@ export type SaveBarProps = {
  * While visible it also keeps keyboard focus from hiding under it (WCAG 2.2
  * SC 2.4.11), lifts the toast stack above itself, and guards navigation
  * (`warnOnLeave`, plus `useLeaveGuard()` for programmatic navigation). When
- * it hides, keyboard focus that was on Save/Reset returns to the last field.
+ * it hides, keyboard focus that was on Save/Reset returns to the last edited
+ * control (never to a destructive button).
  */
 export function SaveBar({
   dirty,
@@ -106,18 +107,55 @@ export function SaveBar({
     };
   }, [visible]);
 
-  // The last element focused outside the bar (and outside dialogs/toasts):
-  // where focus returns when the bar hides.
-  const lastOutside = useRef<HTMLElement | null>(null);
+  // Where keyboard focus returns when the bar hides:
+  // - lastEdited: the control the user last CHANGED (typed in, toggled,
+  //   picked, slid) — not merely tabbed past. A Danger-zone button between
+  //   the fields and the bar must never inherit focus after a save.
+  // - lastFocused: the last element focused outside the bar (and outside
+  //   dialogs/toasts), the fallback when nothing was edited by keyboard or
+  //   pointer that we could see — never a destructive button.
+  const lastEdited = useRef<HTMLElement | null>(null);
+  const lastFocused = useRef<HTMLElement | null>(null);
   useEffect(() => {
-    const onFocusIn = (event: FocusEvent) => {
+    const outsideBar = (target: EventTarget | null): target is Element => {
       const wrapper = wrapperRef.current;
+      return Boolean(wrapper) && target instanceof Element && !wrapper!.contains(target);
+    };
+    const onFocusIn = (event: FocusEvent) => {
       const target = event.target;
-      if (!wrapper || !(target instanceof HTMLElement) || wrapper.contains(target)) return;
-      if (!isInFixedLayer(target)) lastOutside.current = target;
+      if (outsideBar(target) && target instanceof HTMLElement && !isInFixedLayer(target)) lastFocused.current = target;
+    };
+    // `input` / `change`: text fields, number fields, range inputs, native selects, and the
+    // hidden inputs Base UI updates for Select, Checkbox, Radio and Switch.
+    const onValue = (event: Event) => {
+      if (!outsideBar(event.target)) return;
+      const control = editedControl(event.target);
+      if (control && !isInFixedLayer(control)) lastEdited.current = control;
+    };
+    // Toggles, pickers and sliders that change value on a click or a key (Space, Enter,
+    // arrows…). Plain buttons are not controls, so a Danger-zone button is never recorded.
+    const onActivate = (event: Event) => {
+      if (!outsideBar(event.target)) return;
+      if (event instanceof KeyboardEvent && !EDIT_KEYS.has(event.key)) return;
+      // A Slider's track or a NumberField's −/+ buttons edit the composite's own input.
+      const composite = event.target.closest(COMPOSITE_CONTROLS);
+      const control =
+        event.target.closest<HTMLElement>(EDIT_CONTROLS) ??
+        (composite ? Array.from(composite.querySelectorAll<HTMLElement>(EDIT_CONTROLS)).find(isEditable) : null);
+      if (control && isEditable(control) && !isInFixedLayer(control)) lastEdited.current = control;
     };
     document.addEventListener("focusin", onFocusIn);
-    return () => document.removeEventListener("focusin", onFocusIn);
+    document.addEventListener("input", onValue, true);
+    document.addEventListener("change", onValue, true);
+    document.addEventListener("click", onActivate, true);
+    document.addEventListener("keydown", onActivate, true);
+    return () => {
+      document.removeEventListener("focusin", onFocusIn);
+      document.removeEventListener("input", onValue, true);
+      document.removeEventListener("change", onValue, true);
+      document.removeEventListener("click", onActivate, true);
+      document.removeEventListener("keydown", onActivate, true);
+    };
   }, []);
 
   // Visible → hidden (a successful save, or Reset):
@@ -125,8 +163,9 @@ export function SaveBar({
   //   the same update waits for it;
   // - the bar turns inert, which would drop keyboard focus to <body> if it
   //   was on Save/Reset (or on a field a page disabled while saving). Focus
-  //   goes back to where the user was editing instead (no scroll), or to
-  //   #main as a fallback, so the next Tab continues from there.
+  //   goes back to the last edited control instead (no scroll) — else the
+  //   last focused element unless it is destructive, else #main — so the
+  //   next Tab continues from there and Enter never fires a destructive action.
   const wasVisible = useRef(visible);
   useLayoutEffect(() => {
     if (wasVisible.current && !visible) {
@@ -134,7 +173,10 @@ export function SaveBar({
       const active = document.activeElement;
       const inBar = Boolean(wrapperRef.current?.contains(active));
       const lost = !active || active === document.body; // blurred by `disabled` / `inert`
-      if (inBar || lost) restoreFocus(lastOutside.current);
+      if (inBar || lost) {
+        const fallback = lastFocused.current && !isDestructive(lastFocused.current) ? lastFocused.current : null;
+        restoreFocus(isFocusable(lastEdited.current) ? lastEdited.current : fallback);
+      }
     }
     wasVisible.current = visible;
   }, [visible]);
@@ -231,13 +273,8 @@ export function SaveBar({
             <Kbd>Ctrl</Kbd>
             <Kbd>S</Kbd>
           </span>
-          {/* aria-disabled, not `disabled`: a focused Reset keeps focus while a save runs. */}
-          <Button
-            variant="ghost"
-            onClick={saving ? undefined : onReset}
-            aria-disabled={saving || undefined}
-            className="max-sm:flex-1"
-          >
+          {/* aria-disabled, not `disabled`: a focused Reset keeps focus (but is inert) while a save runs. */}
+          <Button variant="ghost" onClick={onReset} aria-disabled={saving || undefined} className="max-sm:flex-1">
             {resetLabel}
           </Button>
           <Button variant="primary" onClick={onSave} loading={saving} className="max-sm:flex-1">
@@ -255,9 +292,59 @@ const FOCUS_RING = 6;
 /** Where a nudged element comes to rest: this many px above the bar. */
 const FOCUS_GAP = 16;
 
+/** Controls whose value changes on a click or a key press (Base UI renders these roles). */
+const ROLE_CONTROLS = "[role=switch],[role=checkbox],[role=radio],[role=slider],[role=combobox],[role=spinbutton]";
+/** Every control a settings page edits, for resolving `input`/`change` targets. */
+const EDIT_CONTROLS = `${ROLE_CONTROLS},input,textarea,select,[contenteditable=true]`;
+/** Kit controls whose pointer parts (Slider track, NumberField −/+) edit an inner input. */
+const COMPOSITE_CONTROLS = "[data-slider],[data-number-field]";
+/** Keys that change a focused control's value (Tab and modifiers only move focus). */
+const EDIT_KEYS = new Set([" ", "Enter", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Home", "End", "PageUp", "PageDown"]);
+
+/**
+ * A control focus can return to: not Base UI's hidden form inputs (aria-hidden,
+ * tabindex -1), not a destructive button. Role controls with a roving
+ * tabindex of -1 (an unselected radio) still count — they take focus.
+ */
+function isEditable(el: HTMLElement): boolean {
+  if (el.getAttribute("aria-hidden") === "true" || el.closest("[aria-hidden=true]")) return false;
+  const native = el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement || el instanceof HTMLSelectElement;
+  if (native && (el.tabIndex < 0 || (el instanceof HTMLInputElement && el.type === "hidden"))) return false;
+  return !isDestructive(el);
+}
+
+/**
+ * The control an `input`/`change` event edited: the target itself when it is
+ * a real control; for Base UI's hidden form inputs (Select, Checkbox, Switch,
+ * Radio) the visible control of the same SettingRow, group or field.
+ */
+function editedControl(target: Element): HTMLElement | null {
+  const direct = target.closest<HTMLElement>(EDIT_CONTROLS);
+  if (direct && isEditable(direct)) return direct;
+  const scope = target.closest("[role=radiogroup], [role=group], [data-setting-row], fieldset") ?? target.parentElement;
+  const candidates = scope ? Array.from(scope.querySelectorAll<HTMLElement>(EDIT_CONTROLS)).filter(isEditable) : [];
+  // Prefer the control the user is working with (it has focus), then a radio group's
+  // selected option, then the scope's first control.
+  const active = document.activeElement;
+  if (active instanceof HTMLElement && candidates.includes(active)) return active;
+  if (scope?.getAttribute("role") === "radiogroup") {
+    const checked = candidates.find((el) => el.getAttribute("aria-checked") === "true");
+    if (checked) return checked;
+  }
+  return candidates[0] ?? null;
+}
+
+/** Destructive buttons (`Button variant="destructive" | "destructive-ghost"`) never receive returned focus. */
+function isDestructive(el: Element): boolean {
+  return Boolean(el.closest('[data-variant^="destructive"]'));
+}
+
 /** True when the element sits in a fixed layer (dialog, sheet, popover, toast) that never scrolls under the bar. */
-function isInFixedLayer(el: HTMLElement): boolean {
-  for (let node: HTMLElement | null = el; node && node !== document.body; node = node.parentElement) {
+function isInFixedLayer(el: Element): boolean {
+  // An <input> itself doesn't count: Base UI's visually hidden inputs (the Slider thumb's
+  // range input) are `position: fixed` inside a transformed thumb, i.e. part of the page.
+  const start = el instanceof HTMLInputElement ? el.parentElement : el;
+  for (let node: Element | null = start; node && node !== document.body; node = node.parentElement) {
     if (getComputedStyle(node).position === "fixed") return true;
   }
   return false;
