@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
+import { ScrollRegion } from "@/components/ui/scroll-region";
 
 export type ResponsiveColumn<Row> = {
   key: string;
@@ -70,11 +71,9 @@ export function ResponsiveList<Row>({
 
   return (
     <div className={cn("min-w-0", className)}>
-      {/* ≥ md: table */}
-      <div
-        role="region"
-        aria-label={caption}
-        tabIndex={0}
+      {/* ≥ md: table (a keyboard-scrollable region only while it actually scrolls) */}
+      <ScrollRegion
+        label={caption}
         className="relative hidden overflow-x-auto rounded-xl border border-line bg-surface-1 focus-visible:focus-ring md:block"
       >
         <table className="w-full border-collapse text-left type-small">
@@ -125,7 +124,7 @@ export function ResponsiveList<Row>({
             ))}
           </tbody>
         </table>
-      </div>
+      </ScrollRegion>
 
       {/* < md: cards */}
       <ul aria-label={caption} className="flex flex-col gap-3 md:hidden">

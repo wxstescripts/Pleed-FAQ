@@ -1,6 +1,7 @@
 import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
+import { ScrollRegion } from "@/components/ui/scroll-region";
 
 /**
  * Long-form typography (legal pages, docs articles). Styles plain HTML
@@ -38,11 +39,14 @@ export type ProseTableProps = {
 /**
  * Every table in docs/legal content. Wide enough (≥ 36rem of its own
  * width): a normal table — words stay whole, the last (description) column
- * keeps ≥ 12rem, anything still too wide scrolls inside the labelled,
- * keyboard-scrollable region. Narrower (phones, a card on a tablet): each
- * row becomes a block — the first cell as its title, every other cell
- * labelled with its column header — so no column is ever off-screen.
- * Explicit table roles keep the table semantics while the rows are blocks.
+ * keeps ≥ 12rem, anything still too wide scrolls inside the box, which is a
+ * labelled, keyboard-scrollable region only while it scrolls (ScrollRegion —
+ * no dead tab stop when the table fits). Narrower (phones, a card on a
+ * tablet): each row becomes a block — the first cell as its title, every
+ * other cell labelled with its column header (beside the value from 22rem,
+ * above it below) — so no column is ever off-screen.
+ * Explicit table roles keep the table semantics while the rows are blocks;
+ * the table is named by its caption, or by `label`.
  *
  *   <ProseTable
  *     label="Permissions by command"
@@ -52,8 +56,8 @@ export type ProseTableProps = {
  */
 export function ProseTable({ label, caption, columns, rows, className }: ProseTableProps) {
   return (
-    <div role="region" aria-label={label} tabIndex={0} className={cn("prose-table", className)}>
-      <table role="table">
+    <ScrollRegion label={label} className={cn("prose-table", className)}>
+      <table role="table" aria-label={caption ? undefined : label}>
         {caption ? <caption className="pb-2 text-left type-caption text-fg-tertiary">{caption}</caption> : null}
         <thead role="rowgroup">
           <tr role="row">
@@ -77,6 +81,6 @@ export function ProseTable({ label, caption, columns, rows, className }: ProseTa
           ))}
         </tbody>
       </table>
-    </div>
+    </ScrollRegion>
   );
 }
