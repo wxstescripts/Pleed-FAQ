@@ -40,8 +40,10 @@ const SAVE_ERROR = "Couldn't reach Pleed. Your changes are still here.";
  */
 export function GeneralSettingsEditor() {
   const query = usePleedQuery(getSettings);
-  // Keeps the ErrorState (and the focus on its button) on screen while "Try again" runs.
+  // Keeps the ErrorState (and the focus on its button, and its detail line) on screen while "Try again" runs.
   const [retrying, setRetrying] = useState(false);
+  const [lastDetail, setLastDetail] = useState<string | undefined>(undefined);
+  const detail = query.error ? describeError(query.error) : lastDetail;
 
   if (query.data) {
     return <GeneralSettingsForm saved={query.data} onSaved={(settings) => query.setData(settings)} />;
@@ -51,11 +53,12 @@ export function GeneralSettingsEditor() {
       <ErrorState
         headingAs="h2"
         title="Couldn't load general settings"
-        description="Pleed's API didn't answer, so your prefix and welcome channel aren't shown — and nothing can be saved over them. Try again in a moment."
-        detail={query.error ? describeError(query.error) : undefined}
+        description="Pleed's API didn't answer, so there's nothing to edit yet. Your saved settings are untouched — try again in a moment."
+        detail={detail}
         retrying={query.status === "loading"}
         onRetry={() => {
           setRetrying(true);
+          setLastDetail(detail);
           query.reload();
         }}
         actions={
@@ -70,11 +73,11 @@ export function GeneralSettingsEditor() {
   return <GeneralSettingsSkeleton />;
 }
 
-/** "GET /api/settings/… → HTTP 503": the technical line under a load error. */
+/** "GET /api/settings/… → HTTP 503": the technical line under a load error (guild ID elided so it fits a phone). */
 function describeError(error: ApiError): string {
   let path = "";
   try {
-    path = error.url ? new URL(error.url).pathname : "";
+    path = error.url ? new URL(error.url).pathname.replace(/\/\d{5,}$/, "/…") : "";
   } catch {
     path = "";
   }
@@ -173,13 +176,14 @@ function GeneralSettingsForm({ saved, onSaved }: FormProps) {
             label="Prefix"
             description={
               <>
-                Up to {PREFIX_MAX_LENGTH} characters, no spaces. Pleed&rsquo;s default is <InlineCode>!</InlineCode>
+                Up to {PREFIX_MAX_LENGTH} characters, no spaces. Pleed&rsquo;s default is&nbsp;<InlineCode>!</InlineCode>
               </>
             }
             control={
               <PrefixInput
                 inputRef={prefixRef}
                 value={prefix}
+                maxLength={PREFIX_MAX_LENGTH}
                 onValueChange={setPrefix}
                 onBlur={() => setPrefixTouched(true)}
                 error={showPrefixIssue ? prefixIssue : null}
@@ -194,15 +198,15 @@ function GeneralSettingsForm({ saved, onSaved }: FormProps) {
               </p>
             </div>
             <PrefixPreview prefix={previewPrefix} />
+            {/* One note at a time: an awkward prefix matters more than the reminder to tell members. */}
             {picker ? (
-              <Callout tone="warning" title={`Discord opens its ${picker.picker} after ${picker.char}`}>
+              <Callout tone="warning" title={`Typing ${picker.char} opens Discord's ${picker.picker}`}>
                 <p>
-                  Members may pick a suggestion instead of sending <InlineCode>{prefix}help</InlineCode>. A symbol such as{" "}
+                  Members may send a suggestion instead of <InlineCode>{prefix}help</InlineCode>. A symbol such as{" "}
                   <InlineCode>!</InlineCode>, <InlineCode>?</InlineCode> or <InlineCode>.</InlineCode> is easier to type.
                 </p>
               </Callout>
-            ) : null}
-            {prefixChanged ? (
+            ) : prefixChanged ? (
               <Callout tone="info">
                 <p>
                   Once you save, Pleed answers <InlineCode>{prefix}help</InlineCode> instead of{" "}

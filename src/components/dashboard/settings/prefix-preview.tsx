@@ -9,7 +9,7 @@ import { DiscordMessage, DiscordPreview, PLEED_AUTHOR } from "@/components/ui/di
 export function PrefixPreview({ prefix }: { prefix: string }) {
   return (
     <DiscordPreview channel="general">
-      <DiscordMessage author={{ name: "Nova", accent: "info" }} timestamp="Today at 12:04">
+      <DiscordMessage author={{ name: "Nova Reyes", accent: "info" }} timestamp="Today at 12:04">
         <p>
           <mark className="rounded-xs bg-brand-subtle px-0.5 font-medium text-brand-fg">{prefix}</mark>help
         </p>

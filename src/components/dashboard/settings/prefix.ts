@@ -27,10 +27,10 @@ export function isObviousPrefixProblem(value: string): boolean {
  * being sent. A valid prefix — just an awkward one.
  */
 const PICKERS: Record<string, string> = {
-  "/": "slash-command menu",
+  "/": "command menu",
   ":": "emoji suggestions",
-  "@": "member list",
-  "#": "channel list",
+  "@": "member suggestions",
+  "#": "channel suggestions",
 };
 
 export function prefixPicker(value: string): { char: string; picker: string } | null {

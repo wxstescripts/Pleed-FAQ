@@ -74,7 +74,7 @@ export function GeneralSettingsSkeleton() {
                 <Skeleton className="size-10 shrink-0 rounded-full" />
                 <div className="flex flex-1 flex-col gap-2 pt-1">
                   <Skeleton className="h-3.5 w-48" />
-                  <Skeleton className="mt-1 h-20 w-full max-w-md rounded-md" />
+                  <Skeleton className="mt-1 h-24 w-full max-w-md rounded-md" />
                 </div>
               </div>
             </div>
