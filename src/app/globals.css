@@ -13,6 +13,10 @@
  *   fg 14.7–18.4:1 · fg-secondary 9.5–11.8:1 · fg-tertiary 6.3–7.9:1
  *   fg-disabled 4.6–5.3:1 (inset…surface-2)
  *   brand-300 text 8.3–9.7:1 · ring 7.4:1 · white on primary 5.3:1
+ * Non-text (WCAG 1.4.11, ≥3:1 against the surface the control sits on):
+ *   line-control 3.3–3.75:1 (inputs, selects, number fields, checkbox, radio
+ *   on inset…surface-2) · track 3.3:1 (slider rail) · selected pill ring
+ *   3.1:1 against its inset track · focus ring 7.4:1.
  */
 
 @custom-variant dark (&:is(.dark *));
@@ -20,6 +24,14 @@
 /* ------------------------------------------------------------------ */
 /* 1. Theme tokens (emitted as CSS variables + Tailwind utilities)     */
 /* ------------------------------------------------------------------ */
+/*
+ * ENFORCEMENT — Tailwind's default palette (gray-*, indigo-*, white,
+ * black…) is still compiled only because the pre-redesign pages use it.
+ * Once no file matches the ESLint "pleed/raw-style" rule any more, add
+ *     --color-*: initial;
+ * as the FIRST line of the @theme block below so raw palette classes stop
+ * existing. Every Pleed colour is re-declared below, so nothing else breaks.
+ */
 @theme static {
   /* Surfaces — faint cool (hue 280) tint, ascending elevation. */
   --color-inset: oklch(0.135 0.006 280); /* wells, code, inputs   #08080b */
@@ -35,7 +47,22 @@
   --color-line: oklch(1 0 0 / 0.09);
   --color-line-strong: oklch(1 0 0 / 0.15);
   --color-line-hover: oklch(1 0 0 / 0.24);
-  --color-line-control: oklch(1 0 0 / 0.4); /* ≥3:1 boundary: checkbox, radio */
+  /* ≥3:1 boundary for every form control: Input, Textarea, NumberField,
+     Select, NativeSelect, Checkbox, Radio (3.3–3.75:1 on inset…surface-2). */
+  --color-line-control: oklch(1 0 0 / 0.4);
+  --color-line-control-hover: oklch(1 0 0 / 0.55);
+
+  /* Interaction overlays (white alpha, so they read on ANY surface — never
+     use an opaque surface step for hover, it vanishes on that surface).
+     Delta vs the surface underneath: hover 1.12–1.19 · selected 1.20–1.31 ·
+     pressed 1.24–1.36. */
+  --color-hover: oklch(1 0 0 / 0.06);
+  --color-selected: oklch(1 0 0 / 0.09);
+  --color-pressed: oklch(1 0 0 / 0.1);
+
+  /* Control parts. */
+  --color-track: oklch(1 0 0 / 0.36); /* slider rail, 3.3:1 on every surface */
+  --color-thumb: oklch(1 0 0); /* slider + switch thumbs */
 
   /* Text. */
   --color-fg: oklch(0.97 0.004 280);
@@ -101,6 +128,7 @@
   --color-discord: #5865f2;
   --color-discord-hover: #4752c4;
   --color-discord-active: #3c45a5;
+  --color-discord-fg: oklch(1 0 0);
 
   /* Focus ring. */
   --color-focus: oklch(0.72 0.165 283);
@@ -124,9 +152,15 @@
   /* Restrained brand glow — primary CTA hover and the hero frame only. */
   --shadow-glow: 0 0 0 1px oklch(0.635 0.205 283 / 0.45), 0 8px 28px -8px oklch(0.55 0.225 283 / 0.6);
   --shadow-glow-lg: 0 0 0 1px oklch(0.635 0.205 283 / 0.3), 0 30px 80px -24px oklch(0.55 0.225 283 / 0.45);
+  /* Slider thumb: resting drop shadow, hover halo, dragging halo. */
+  --shadow-thumb: 0 1px 3px 0 oklch(0 0 0 / 0.45);
+  --shadow-thumb-hover: 0 0 0 6px oklch(0.635 0.205 283 / 0.18), 0 1px 3px 0 oklch(0 0 0 / 0.45);
+  --shadow-thumb-active: 0 0 0 8px oklch(0.635 0.205 283 / 0.24), 0 1px 3px 0 oklch(0 0 0 / 0.45);
   /* Top-edge light catch for raised surfaces and solid buttons. */
   --inset-shadow-highlight: inset 0 1px 0 0 oklch(1 0 0 / 0.06);
   --inset-shadow-highlight-strong: inset 0 1px 0 0 oklch(1 0 0 / 0.18);
+  /* Logo mark: bright top edge + hairline rim on the gradient tile. */
+  --inset-shadow-mark: inset 0 1px 0 0 oklch(1 0 0 / 0.28), inset 0 0 0 1px oklch(1 0 0 / 0.1);
 
   /* Z-index scale → z-base, z-raised, z-sticky, z-header, z-overlay … */
   --z-index-base: 0;
@@ -160,7 +194,11 @@
   --spacing-gutter: clamp(1rem, 0.4rem + 2.6vw, 2.5rem); /* 16 → 40 px */
   --spacing-section: clamp(4rem, 2.8rem + 5.2vw, 8rem); /* 64 → 128 px */
   --spacing-section-sm: clamp(3rem, 2.4rem + 2.6vw, 5rem); /* 48 → 80 px */
-  --spacing-header: 4rem; /* sticky header height */
+  --spacing-header: 4rem; /* sticky (in-flow) site header height */
+  /* Dashboard shell. */
+  --spacing-page: clamp(1.5rem, 1rem + 1.5vw, 2.5rem); /* 24 → 40 px: py-page */
+  --spacing-sidebar: 15rem; /* 240 px expanded sidebar: w-sidebar */
+  --spacing-sidebar-rail: 4rem; /* 64 px icon rail: w-sidebar-rail */
 
   --animate-shimmer: shimmer 1.6s linear infinite;
   --animate-spin-slow: spin 1.4s linear infinite;
@@ -225,11 +263,11 @@
   --secondary-foreground: var(--color-fg);
   --muted: var(--color-surface-2);
   --muted-foreground: var(--color-fg-tertiary);
-  --accent: var(--color-surface-3);
+  --accent: var(--color-selected);
   --accent-foreground: var(--color-fg);
   --destructive: var(--color-danger);
   --border: var(--color-line);
-  --input: var(--color-line-strong);
+  --input: var(--color-line-control);
   --ring: var(--color-focus);
   --chart-1: var(--color-brand-400);
   --chart-2: var(--color-info);
@@ -240,16 +278,18 @@
   --sidebar-foreground: var(--color-fg-secondary);
   --sidebar-primary: var(--color-brand);
   --sidebar-primary-foreground: var(--color-fg-on-brand);
-  --sidebar-accent: var(--color-surface-3);
+  --sidebar-accent: var(--color-selected);
   --sidebar-accent-foreground: var(--color-fg);
   --sidebar-border: var(--color-line);
   --sidebar-ring: var(--color-focus);
 
-  /* Motion durations for custom CSS (Tailwind: duration-150/200/300/500). */
+  /* Motion durations for custom CSS (Tailwind: duration-150/200/300/500).
+     Reveals (Reveal/Stagger, framer fadeRise) are 600 ms — handled for you. */
   --duration-fast: 150ms;
   --duration-base: 200ms;
   --duration-slow: 300ms;
   --duration-slower: 500ms;
+  --duration-reveal: 600ms;
 }
 
 /* ------------------------------------------------------------------ */
@@ -330,6 +370,15 @@
   letter-spacing: 0.003em;
   font-weight: 400;
 }
+/* Control labels: FieldLabel, SettingRow, Select/Slider labels, radio and
+   checkbox labels, nav items, menu items, toast titles. */
+@utility type-label {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.375;
+  letter-spacing: -0.003em;
+  font-weight: 500;
+}
 @utility type-eyebrow {
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -343,6 +392,40 @@
   font-size: 0.875em;
   letter-spacing: -0.01em;
   font-feature-settings: "liga" 0, "calt" 0;
+}
+/* Code blocks, command chips, monospace table cells (13 px). */
+@utility type-code-sm {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+/* Big numbers: StatCard values, status uptime, dashboard counters. */
+@utility type-metric {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.6rem + 0.6vw, 2rem); /* 28 → 32 */
+  line-height: 1;
+  letter-spacing: -0.025em;
+  font-weight: 620;
+  font-stretch: 108%;
+  font-variant-numeric: tabular-nums;
+}
+@utility type-metric-lg {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 1.9rem + 1.4vw, 3rem); /* 36 → 48 */
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-weight: 640;
+  font-stretch: 110%;
+  font-variant-numeric: tabular-nums;
+}
+/* The "Pleed" wordmark (Logo only). Size comes from text-* on the Logo. */
+@utility type-wordmark {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  font-weight: 650;
+  font-stretch: 108%;
 }
 
 /* ------------------------------------------------------------------ */
@@ -409,6 +492,10 @@
     transparent 100%
   );
 }
+/* Soft top light on brand tiles (logo mark, solid hero chips). */
+@utility bg-sheen {
+  background-image: linear-gradient(to bottom, oklch(1 0 0 / 0.18), transparent 50%);
+}
 @utility mask-fade-b {
   mask-image: linear-gradient(to bottom, black 55%, transparent);
 }
@@ -454,6 +541,9 @@
     text-rendering: optimizeLegibility;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
+    /* THE ONE anchor offset: targets land 16 px under the sticky header.
+       Never add scroll-margin-top / scroll-mt-* on top of this (they add
+       up). <Section> compensates for its own padding (see below). */
     scroll-padding-top: calc(var(--spacing-header) + 1rem);
     scrollbar-color: var(--color-surface-4) transparent;
     hanging-punctuation: first last;
@@ -585,7 +675,7 @@
     scale(var(--scale));
   transition:
     transform 500ms var(--ease-out-expo),
-    opacity 400ms var(--ease-out-expo),
+    opacity 300ms var(--ease-out-expo),
     height 150ms var(--ease-standard);
 }
 .pl-toast::after {
@@ -625,7 +715,7 @@
 }
 .pl-toast-content {
   overflow: hidden;
-  transition: opacity 250ms var(--ease-out-expo);
+  transition: opacity 200ms var(--ease-out-expo);
 }
 .pl-toast-content[data-behind] {
   opacity: 0;
@@ -634,7 +724,26 @@
   opacity: 1;
 }
 
-/* <Reveal>/<Stagger> states (set by JS only for below-the-fold content). */
+/* <Section> rhythm (src/components/ui/section.tsx). In the utilities layer
+   so it can override the section's own py-section utility. */
+@layer utilities {
+  /* Anchor links land on the section's CONTENT (eyebrow/title), 16 px under
+     the html scroll-padding, instead of on its empty top padding. */
+  [data-section] {
+    scroll-margin-top: calc(1rem - var(--section-pt, 0px));
+  }
+  /* Two padded plain sections in a row share ONE gap (the second one's top
+     padding: 64 → 128 px) instead of stacking two paddings (128 → 256 px).
+     Raised sections keep both paddings — they have their own background. */
+  :is([data-section="default"], [data-section="compact"]):has(
+      + :is([data-section="default"], [data-section="compact"])
+    ) {
+    padding-bottom: 0;
+  }
+}
+
+/* <Reveal>/<Stagger> states (set by JS only for below-the-fold content).
+   600 ms everywhere — same as framer `duration.reveal`. */
 [data-reveal="hidden"] {
   opacity: 0;
   transform: translate3d(0, var(--reveal-y, 12px), 0);
@@ -643,8 +752,8 @@
   opacity: 1;
   transform: none;
   transition:
-    opacity 700ms var(--ease-out-expo) var(--reveal-delay, 0ms),
-    transform 700ms var(--ease-out-expo) var(--reveal-delay, 0ms);
+    opacity var(--duration-reveal) var(--ease-out-expo) var(--reveal-delay, 0ms),
+    transform var(--duration-reveal) var(--ease-out-expo) var(--reveal-delay, 0ms);
 }
 @media print {
   [data-reveal] {
@@ -667,6 +776,10 @@
 
 /* ------------------------------------------------------------------ */
 /* 5. Prose — long-form legal/docs content (`<Prose>` or .prose)       */
+/*    Components dropped inside prose (CodeBlock, Card, Callout…) carry */
+/*    `not-prose` so these element styles never leak into them.       */
+/*    Headings get NO scroll-margin: html scroll-padding-top already  */
+/*    lands anchors 16 px under the header.                            */
 /* ------------------------------------------------------------------ */
 @layer components {
   .prose {
@@ -681,10 +794,13 @@
   .prose > :last-child {
     margin-bottom: 0;
   }
-  .prose :where(p, ul, ol, blockquote, pre, table, figure) {
+  .prose > :where(.not-prose) {
+    margin-block: 1.5em;
+  }
+  .prose :where(p, ul, ol, blockquote, pre, table, figure):not(:where(.not-prose, .not-prose *)) {
     margin-block: 1.1em;
   }
-  .prose :where(h2) {
+  .prose :where(h2):not(:where(.not-prose, .not-prose *)) {
     margin-top: 2.4em;
     margin-bottom: 0.7em;
     color: var(--color-fg);
@@ -694,9 +810,8 @@
     letter-spacing: -0.02em;
     font-weight: 620;
     font-stretch: 106%;
-    scroll-margin-top: calc(var(--spacing-header) + 1.5rem);
   }
-  .prose :where(h3) {
+  .prose :where(h3):not(:where(.not-prose, .not-prose *)) {
     margin-top: 1.9em;
     margin-bottom: 0.5em;
     color: var(--color-fg);
@@ -705,22 +820,21 @@
     line-height: 1.4;
     letter-spacing: -0.012em;
     font-weight: 600;
-    scroll-margin-top: calc(var(--spacing-header) + 1.5rem);
   }
-  .prose :where(h4) {
+  .prose :where(h4):not(:where(.not-prose, .not-prose *)) {
     margin-top: 1.6em;
     margin-bottom: 0.4em;
     color: var(--color-fg);
     font-weight: 600;
   }
-  .prose :where(h2 + *, h3 + *, h4 + *) {
+  .prose :where(h2 + *, h3 + *, h4 + *):not(:where(.not-prose, .not-prose *)) {
     margin-top: 0;
   }
-  .prose :where(strong, b) {
+  .prose :where(strong, b):not(:where(.not-prose, .not-prose *)) {
     color: var(--color-fg);
     font-weight: 600;
   }
-  .prose :where(a) {
+  .prose :where(a):not(:where(.not-prose, .not-prose *)) {
     color: var(--color-brand-fg);
     text-decoration: underline;
     text-decoration-color: oklch(0.8 0.12 283 / 0.4);
@@ -728,20 +842,20 @@
     text-decoration-thickness: 1px;
     transition: text-decoration-color 150ms var(--ease-standard), color 150ms var(--ease-standard);
   }
-  .prose :where(a):hover {
+  .prose :where(a):not(:where(.not-prose, .not-prose *)):hover {
     color: var(--color-brand-100);
     text-decoration-color: currentColor;
   }
-  .prose :where(ul, ol) {
+  .prose :where(ul, ol):not(:where(.not-prose, .not-prose *)) {
     padding-left: 1.4em;
   }
-  .prose :where(ul) {
+  .prose :where(ul):not(:where(.not-prose, .not-prose *)) {
     list-style: none;
   }
-  .prose :where(ul > li) {
+  .prose :where(ul > li):not(:where(.not-prose, .not-prose *)) {
     position: relative;
   }
-  .prose :where(ul > li)::before {
+  .prose :where(ul > li):not(:where(.not-prose, .not-prose *))::before {
     content: "";
     position: absolute;
     left: -1em;
@@ -751,32 +865,32 @@
     border-radius: 999px;
     background: var(--color-brand-400);
   }
-  .prose :where(ol) {
+  .prose :where(ol):not(:where(.not-prose, .not-prose *)) {
     list-style: decimal;
   }
-  .prose :where(ol > li)::marker {
+  .prose :where(ol > li):not(:where(.not-prose, .not-prose *))::marker {
     color: var(--color-fg-tertiary);
     font-variant-numeric: tabular-nums;
   }
-  .prose :where(li) {
+  .prose :where(li):not(:where(.not-prose, .not-prose *)) {
     margin-block: 0.4em;
     padding-left: 0.2em;
   }
-  .prose :where(li > ul, li > ol) {
+  .prose :where(li > ul, li > ol):not(:where(.not-prose, .not-prose *)) {
     margin-block: 0.4em;
   }
-  .prose :where(blockquote) {
+  .prose :where(blockquote):not(:where(.not-prose, .not-prose *)) {
     border-left: 2px solid var(--color-brand-border);
     padding-left: 1em;
     color: var(--color-fg-secondary);
     font-style: normal;
   }
-  .prose :where(hr) {
+  .prose :where(hr):not(:where(.not-prose, .not-prose *)) {
     margin-block: 2.5em;
     border: 0;
     border-top: 1px solid var(--color-line);
   }
-  .prose :where(code):not(:where(pre code)) {
+  .prose :where(code):not(:where(pre code, .not-prose, .not-prose *)) {
     border: 1px solid var(--color-line);
     border-radius: var(--radius-sm);
     background: var(--color-surface-2);
@@ -785,9 +899,9 @@
     font-family: var(--font-mono);
     font-size: 0.85em;
   }
-  .prose :where(pre) {
-    /* Wrap instead of scrolling: no hidden overflow on phones and no
-       unfocusable scroll regions (axe scrollable-region-focusable). */
+  /* Raw <pre> wraps like text (it may break after a hyphen). For commands
+     use <CodeBlock>, which keeps short tokens such as `--do` whole. */
+  .prose :where(pre):not(:where(.not-prose, .not-prose *)) {
     white-space: pre-wrap;
     overflow-wrap: anywhere;
     border: 1px solid var(--color-line);
@@ -798,21 +912,22 @@
     font-size: 0.875em;
     line-height: 1.7;
   }
-  .prose :where(table) {
+  .prose :where(table):not(:where(.not-prose, .not-prose *)) {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.9375em;
   }
-  .prose :where(th) {
+  .prose :where(th):not(:where(.not-prose, .not-prose *)) {
     border-bottom: 1px solid var(--color-line-strong);
     padding: 0.6em 0.75em;
     color: var(--color-fg);
     font-weight: 600;
     text-align: left;
   }
-  .prose :where(td) {
+  .prose :where(td):not(:where(.not-prose, .not-prose *)) {
     border-bottom: 1px solid var(--color-line);
     padding: 0.6em 0.75em;
     vertical-align: top;
+    overflow-wrap: anywhere;
   }
 }
