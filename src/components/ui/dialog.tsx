@@ -12,6 +12,10 @@ import { cn, mergeClassName } from "@/lib/utils";
  * returns to the trigger. Phones get a bottom-sheet presentation; ≥sm a
  * centred card.
  *
+ * Initial focus: the first field/button in the body (the × is last in the
+ * tab order); on touch the dialog itself, so no keyboard pops up. Override
+ * with `initialFocus={ref}` on DialogContent.
+ *
  *   <Dialog>
  *     <DialogTrigger render={<Button variant="secondary" />}>Open</DialogTrigger>
  *     <DialogContent title="Title" description="Optional">…</DialogContent>
@@ -59,14 +63,11 @@ export function DialogContent({
     <DialogPrimitive.Portal>
       <DialogPrimitive.Backdrop className={backdropClasses} />
       <DialogPrimitive.Popup className={mergeClassName(cn(popupClasses, dialogSizes[size]), className)} {...props}>
-        <div className="flex items-start justify-between gap-4 px-5 pt-5 sm:px-6 sm:pt-6">
-          <div className="flex min-w-0 flex-col gap-1.5">
-            <DialogPrimitive.Title className="type-h4 text-fg">{title}</DialogPrimitive.Title>
-            {description ? (
-              <DialogPrimitive.Description className="type-small text-fg-secondary">{description}</DialogPrimitive.Description>
-            ) : null}
-          </div>
-          {hideClose ? null : <DialogCloseButton />}
+        <div className={cn("flex min-w-0 flex-col gap-1.5 px-5 pt-5 sm:px-6 sm:pt-6", !hideClose && "pr-16 sm:pr-18")}>
+          <DialogPrimitive.Title className="type-h4 text-fg">{title}</DialogPrimitive.Title>
+          {description ? (
+            <DialogPrimitive.Description className="type-small text-fg-secondary">{description}</DialogPrimitive.Description>
+          ) : null}
         </div>
         {children ? <div className="min-h-0 flex-1 overflow-y-auto px-5 py-5 sm:px-6">{children}</div> : <div className="h-5" />}
         {footer ? (
@@ -74,6 +75,11 @@ export function DialogContent({
             {footer}
           </div>
         ) : null}
+        {/*
+          Last in the DOM (shown top-right), so keyboard users land on the first
+          field, not on ×. Escape and the backdrop close the dialog too.
+        */}
+        {hideClose ? null : <DialogCloseButton className="absolute top-4 right-3.5 m-0 sm:top-5 sm:right-4.5" />}
       </DialogPrimitive.Popup>
     </DialogPrimitive.Portal>
   );

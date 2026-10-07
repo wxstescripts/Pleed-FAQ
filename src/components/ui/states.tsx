@@ -113,7 +113,7 @@ export function ErrorState({
         <Heading className="type-h4 text-fg">{title}</Heading>
         {description ? <p className="type-small text-fg-secondary">{description}</p> : null}
         {detail ? (
-          <p className="mx-auto mt-1 max-w-full truncate rounded-md bg-inset px-2 py-1 font-mono text-xs text-fg-tertiary">
+          <p className="mx-auto mt-1 max-w-full rounded-md bg-inset px-2 py-1 type-code-sm wrap-anywhere text-fg-tertiary">
             {detail}
           </p>
         ) : null}

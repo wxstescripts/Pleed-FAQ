@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { ArrowRight, CircleDashed } from "lucide-react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn, isExternalHref } from "@/lib/utils";
 
 export const badgeVariants = cva(
   "inline-flex shrink-0 items-center gap-1.5 border font-medium whitespace-nowrap [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5",
@@ -19,9 +19,9 @@ export const badgeVariants = cva(
         outline: "border-line-strong bg-transparent text-fg-secondary",
       },
       size: {
-        sm: "h-5 rounded-sm px-1.5 text-xs",
-        md: "h-6 rounded-md px-2 text-xs",
-        lg: "h-7 rounded-md px-2.5 text-sm",
+        sm: "h-5 rounded-sm px-1.5 type-micro",
+        md: "h-6 rounded-md px-2 type-micro",
+        lg: "h-7 rounded-md px-2.5 type-label",
       },
     },
     defaultVariants: { tone: "neutral", size: "md" },
@@ -112,10 +112,11 @@ export function Pill({ children, leading, href, className }: PillProps) {
     </>
   );
   if (!href) return <span className={classes}>{content}</span>;
-  if (/^https?:\/\//.test(href)) {
+  if (isExternalHref(href)) {
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
         {content}
+        <span className="sr-only"> (opens in a new tab)</span>
       </a>
     );
   }

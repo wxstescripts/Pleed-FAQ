@@ -33,7 +33,7 @@ export function Tooltip({ content, children, side = "top", align = "center", del
         <TooltipPrimitive.Positioner side={side} align={align} sideOffset={8} className="z-tooltip">
           <TooltipPrimitive.Popup
             className={cn(
-              "max-w-64 origin-(--transform-origin) rounded-md border border-line-strong bg-surface-3 px-2.5 py-1.5 text-xs leading-snug text-fg shadow-md transition-[scale,opacity] duration-150 ease-standard data-ending-style:scale-95 data-ending-style:opacity-0 data-instant:duration-0 data-starting-style:scale-95 data-starting-style:opacity-0",
+              "max-w-64 origin-(--transform-origin) rounded-md border border-line-strong bg-surface-3 px-2.5 py-1.5 type-caption text-fg shadow-md transition-[scale,opacity] duration-150 ease-standard data-ending-style:scale-95 data-ending-style:opacity-0 data-instant:duration-0 data-starting-style:scale-95 data-starting-style:opacity-0",
               className,
             )}
           >

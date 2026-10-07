@@ -159,7 +159,7 @@ export function CommandChip({ command, className, size = "md" }: CommandChipProp
       onClick={() => copy(command)}
       className={cn(
         "group/chip relative inline-flex max-w-full items-center gap-2 rounded-md border border-line-strong bg-inset font-mono text-fg transition-[border-color,background-color] duration-150 pointer-coarse:h-11 hover:border-brand-border hover:bg-brand-subtle focus-visible:focus-ring",
-        size === "md" ? "h-8 pr-2 pl-2.5 type-code-sm" : "h-6 pr-1.5 pl-2 text-xs",
+        size === "md" ? "h-8 pr-2 pl-2.5 type-code-sm" : "h-6 pr-1.5 pl-2 type-code-xs",
         className,
       )}
     >
