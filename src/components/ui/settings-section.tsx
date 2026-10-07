@@ -114,6 +114,25 @@ export type SettingRowProps = SettingRowBase &
       }
   );
 
+/*
+ * One width per control kind, so every settings page lines up (DESIGN.md §3):
+ * - beside the label (≥ 640 px): text, ID and select controls fill the
+ *   16rem `w-setting-control` column; NumberField (`data-number-field`) is
+ *   10rem; switches, checkboxes (`data-compact-control`) and buttons keep
+ *   their own width.
+ * - stacked (phones, `layout="stacked"`, `hideLabel`): full width up to
+ *   28rem (`max-w-md`); compact controls and buttons keep their own width.
+ * Builders pass no width classes to controls inside a SettingRow.
+ */
+const controlWidths = {
+  inline: cn(
+    "sm:w-setting-control",
+    "sm:has-[[data-number-field]]:w-40",
+    "has-[[data-compact-control]]:w-auto sm:has-[[data-compact-control]]:w-auto sm:has-[>[data-slot=button]]:w-auto",
+  ),
+  stacked: "w-full max-w-md has-[>[data-slot=button]]:w-auto has-[>[data-compact-control]]:w-auto",
+} as const;
+
 // Literal class strings (Tailwind only generates classes it can read in the source).
 const rowLayouts = {
   inline: "flex-row flex-wrap items-start justify-between gap-x-4 gap-y-2 sm:items-center sm:gap-x-6",
@@ -163,7 +182,7 @@ export function SettingRow({
         className={cn("group/row flex flex-col gap-2 px-5 py-4 md:px-6 md:py-5", className)}
       >
         {control ? (
-          <div data-slot="setting-control" className="flex w-full min-w-0 items-center">
+          <div data-slot="setting-control" className={cn("flex min-w-0 items-center", controlWidths.stacked)}>
             {control}
           </div>
         ) : null}
@@ -192,7 +211,7 @@ export function SettingRow({
           data-slot="setting-control"
           className={cn(
             "flex min-w-0 items-center",
-            stacked ? "w-full" : "shrink-0 sm:justify-end",
+            stacked ? controlWidths.stacked : cn("shrink-0 sm:justify-end", controlWidths.inline),
             layout === "auto" && "max-sm:w-full max-sm:has-[[data-compact-control]]:w-auto",
           )}
         >

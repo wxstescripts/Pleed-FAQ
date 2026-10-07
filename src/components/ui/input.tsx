@@ -125,7 +125,7 @@ export function NumberField({
   const sm = size === "sm";
   const stepper = cn(stepperClasses, sm ? "w-8" : "w-10");
   return (
-    <NumberFieldPrimitive.Root className={mergeClassName("w-full max-w-60 min-w-0", className)} {...props}>
+    <NumberFieldPrimitive.Root data-number-field="" className={mergeClassName("w-full max-w-60 min-w-0", className)} {...props}>
       {/*
         Same outer size as Input/Select/Button (40/32 px, 44 px on touch). The
         boundary is an overlay (::after) instead of a real border, so the

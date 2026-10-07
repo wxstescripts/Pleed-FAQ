@@ -63,7 +63,7 @@ export function Select({
       disabled={disabled}
       name={name}
     >
-      <div className={cn("flex min-w-0 flex-col gap-2", className)}>
+      <div className={cn("flex w-full min-w-0 flex-col gap-2", className)}>
         {label ? (
           <SelectPrimitive.Label className="w-fit cursor-default type-label text-fg data-disabled:text-fg-disabled">
             {label}
