@@ -1,140 +1,81 @@
-"use client";
+import type { Metadata } from "next";
 
-import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Search, Terminal, Filter } from "lucide-react";
-import commandsData from "@/data/commands.json";
+import { Button } from "@/components/ui/button";
+import { DiscordIcon } from "@/components/ui/discord-icon";
+import { Section } from "@/components/ui/section";
+import { getCommandCatalog } from "@/components/commands/catalog";
+import { CommandExplorer } from "@/components/commands/command-explorer";
+import { DEFAULT_PREFIX, getCommandFacts, INVITE_URL, SITE_NAME } from "@/lib/site";
 
-export default function CommandsPage() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+export async function generateMetadata(): Promise<Metadata> {
+  const facts = await getCommandFacts();
+  const title = "Commands";
+  const description = `Search all ${facts.uniqueCommands} ${SITE_NAME} commands across ${facts.categories} modules — anti-nuke, moderation, automation, economy and more — and copy the exact syntax.`;
+  return {
+    title,
+    description,
+    alternates: { canonical: "/commands" },
+    openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      locale: "en_US",
+      url: "/commands",
+      title: `${title} · ${SITE_NAME}`,
+      description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} · ${SITE_NAME}`,
+      description,
+    },
+  };
+}
 
-  // Get unique categories and sort them
-  const categories = useMemo(() => {
-    const cats = Array.from(new Set(commandsData.map((cmd) => cmd.category)));
-    return ["All", ...cats.sort()];
-  }, []);
-
-  // Filter commands based on search and category
-  const filteredCommands = useMemo(() => {
-    return commandsData.filter((cmd) => {
-      const matchesSearch = cmd.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                            cmd.description.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesCategory = selectedCategory === "All" || cmd.category === selectedCategory;
-      return matchesSearch && matchesCategory;
-    });
-  }, [searchQuery, selectedCategory]);
+/**
+ * /commands — the public command library. A Server Component: the catalog
+ * (owner-only commands hidden, duplicates merged) is built here and only that
+ * compact list reaches the client explorer, which server-renders with the
+ * URL's ?q= and ?category= and hydrates for live filtering.
+ *
+ * Reading searchParams renders the page per request, so a shared link like
+ * /commands?q=ban arrives already filtered (no flash, no layout shift).
+ */
+export default async function CommandsPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  await searchParams;
+  const facts = await getCommandFacts();
+  const catalog = getCommandCatalog();
 
   return (
-    <div className="flex flex-col selection:bg-indigo-500/30">
-      <div className="flex-grow pt-32 pb-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight"
-            >
-              Command <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Library</span>
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ delay: 0.1 }}
-              className="text-gray-400 text-lg md:text-xl"
-            >
-              Explore all {commandsData.length} commands available in Pleed. Use the search bar or filter by category to find exactly what you need.
-            </motion.p>
-          </div>
-
-          {/* Controls: Search & Filter */}
-          <div className="max-w-5xl mx-auto mb-12 space-y-6">
-            {/* Search Bar */}
-            <div className="relative group">
-              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <Search className="h-5 w-5 text-gray-500 group-focus-within:text-indigo-400 transition-colors" />
-              </div>
-              <input
-                type="text"
-                placeholder="Search commands..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:bg-white/10 transition-all text-lg shadow-xl shadow-black/20"
-              />
-            </div>
-
-            {/* Categories */}
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              <Filter className="w-4 h-4 text-gray-500 mr-2" />
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                    selectedCategory === category
-                      ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/25"
-                      : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Commands Grid */}
-          <div className="max-w-6xl mx-auto">
-            {filteredCommands.length === 0 ? (
-              <div className="text-center py-20 text-gray-500">
-                <Terminal className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                <p className="text-xl">No commands found matching "{searchQuery}"</p>
-              </div>
-            ) : (
-              <motion.div 
-                layout 
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-              >
-                <AnimatePresence>
-                  {filteredCommands.map((cmd, idx) => (
-                    <motion.div
-                      layout
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
-                      key={`${cmd.name}-${idx}`}
-                      className="bg-white/5 border border-white/10 hover:border-indigo-500/30 rounded-xl p-5 hover:bg-white/10 transition-colors group flex flex-col h-full"
-                    >
-                      <div className="flex items-start justify-between mb-3">
-                        <h3 className="font-bold text-white text-lg flex items-center gap-2">
-                          <span className="text-indigo-400 font-mono select-none">!</span>
-                          {cmd.name}
-                        </h3>
-                        <span className="text-[10px] uppercase tracking-wider font-semibold px-2 py-1 bg-white/5 text-gray-400 rounded-md">
-                          {cmd.category}
-                        </span>
-                      </div>
-                      <p className="text-sm text-gray-400 leading-relaxed mb-4 flex-grow">
-                        {cmd.description}
-                      </p>
-                      
-                      {cmd.usage && (
-                        <div className="bg-black/50 border border-white/5 rounded-md p-3 mt-auto">
-                          <p className="text-xs text-gray-500 mb-1 font-semibold uppercase tracking-wider">Usage Steps</p>
-                          <code className="text-xs text-indigo-300 font-mono">{cmd.usage}</code>
-                        </div>
-                      )}
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </motion.div>
-            )}
-          </div>
-
-        </div>
-      </div>
-    </div>
+    <Section
+      titleAs="h1"
+      eyebrow="Command library"
+      title="Every command, ready to copy"
+      description={
+        <>
+          Search all {facts.uniqueCommands} commands across {facts.categories} modules and copy the exact syntax.
+          Pleed listens for the <code className="type-code text-fg">{DEFAULT_PREFIX}</code> prefix by default — change it
+          any time with <code className="type-code text-fg">{DEFAULT_PREFIX}prefix</code>.
+        </>
+      }
+      actions={
+        <>
+          <Button variant="discord" href={INVITE_URL}>
+            <DiscordIcon className="size-4" />
+            Add to Discord
+          </Button>
+          <Button variant="secondary" href="/docs/getting-started">
+            Getting started
+          </Button>
+        </>
+      }
+      spacing="compact"
+      headerClassName="mb-8 md:mb-10"
+    >
+      <CommandExplorer catalog={catalog} />
+    </Section>
   );
 }
