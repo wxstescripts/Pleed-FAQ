@@ -32,17 +32,67 @@ export type ToastOptions = {
   id?: string;
 };
 
+/*
+ * Choreography with the SaveBar. While a SaveBar is visible the toast stack
+ * is lifted above it (CSS translate driven by --savebar-h, see globals.css).
+ * A successful save hides the bar in the SAME update that usually calls
+ * toast.success(), so the stack slides back down (300 ms) exactly while the
+ * new toast slides up — a visible bounce. Toasts requested while a bar is on
+ * screen therefore wait for React to commit and, if the bar just hid, for
+ * the stack to settle. The delay is ≤ 1 frame + 300 ms and only ever applies
+ * around a SaveBar.
+ */
+const SETTLE_MS = 300;
+let holdUntil = 0;
+let seq = 0;
+const pending = new Map<string, { frame?: number; timer?: number }>();
+
+/** Called by SaveBar when it hides. Toasts added in the next 300 ms appear once the stack has settled. */
+export function holdToastsWhileSaveBarExits() {
+  holdUntil = performance.now() + SETTLE_MS;
+}
+
 function add(type: ToastType | undefined, title: ReactNode, options: ToastOptions = {}) {
-  const { description, timeout, action, id } = options;
-  return manager.add({
-    id,
-    type,
-    title,
-    description,
-    priority: type === "error" ? "high" : "low",
-    timeout: timeout ?? (type === "error" ? 8000 : type === "loading" ? 0 : 5000),
-    actionProps: action ? { children: action.label, onClick: action.onClick } : undefined,
+  const { description, timeout, action } = options;
+  const id = options.id ?? `pl-toast-${++seq}`;
+  const show = () => {
+    pending.delete(id);
+    manager.add({
+      id,
+      type,
+      title,
+      description,
+      priority: type === "error" ? "high" : "low",
+      timeout: timeout ?? (type === "error" ? 8000 : type === "loading" ? 0 : 5000),
+      actionProps: action ? { children: action.label, onClick: action.onClick } : undefined,
+    });
+  };
+  if (typeof document === "undefined" || !document.querySelector('[data-savebar="visible"]')) {
+    show();
+    return id;
+  }
+  // Two frames: the update that may hide the bar has committed by then (its
+  // layout effect calls holdToastsWhileSaveBarExits), then wait out the slide.
+  const entry: { frame?: number; timer?: number } = {};
+  pending.set(id, entry);
+  entry.frame = requestAnimationFrame(() => {
+    entry.frame = requestAnimationFrame(() => {
+      entry.frame = undefined;
+      const wait = holdUntil - performance.now();
+      if (wait <= 0) show();
+      else entry.timer = window.setTimeout(show, wait);
+    });
   });
+  return id;
+}
+
+function cancelPending(id?: string) {
+  for (const [key, entry] of pending) {
+    if (id !== undefined && key !== id) continue;
+    if (entry.frame !== undefined) cancelAnimationFrame(entry.frame);
+    if (entry.timer !== undefined) clearTimeout(entry.timer);
+    pending.delete(key);
+  }
 }
 
 export const toast = Object.assign((title: ReactNode, options?: ToastOptions) => add(undefined, title, options), {
@@ -51,7 +101,10 @@ export const toast = Object.assign((title: ReactNode, options?: ToastOptions) =>
   warning: (title: ReactNode, options?: ToastOptions) => add("warning", title, options),
   info: (title: ReactNode, options?: ToastOptions) => add("info", title, options),
   loading: (title: ReactNode, options?: ToastOptions) => add("loading", title, options),
-  dismiss: (id?: string) => manager.close(id),
+  dismiss: (id?: string) => {
+    cancelPending(id);
+    manager.close(id);
+  },
   update: manager.update,
   promise: <T,>(
     promise: Promise<T>,
@@ -87,7 +140,7 @@ function ToastList() {
         {t.type && t.type in icons ? <span className="mt-px flex shrink-0">{icons[t.type as ToastType]}</span> : null}
         <div className="flex min-w-0 flex-1 flex-col gap-0.5">
           <ToastPrimitive.Title className="type-label text-fg" />
-          <ToastPrimitive.Description className="text-sm leading-snug text-fg-secondary" />
+          <ToastPrimitive.Description className="type-small text-fg-secondary" />
           {t.actionProps ? (
             <ToastPrimitive.Action className={cn(buttonVariants({ variant: "secondary", size: "sm" }), "mt-2.5 w-fit")} />
           ) : null}
