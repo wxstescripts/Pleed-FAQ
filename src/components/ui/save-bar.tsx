@@ -17,9 +17,17 @@ export type SaveBarProps = {
   onSave: () => void;
   onReset: () => void;
   message?: string;
-  /** Error from the last save attempt — shown in the bar (also toast it). */
+  /**
+   * Why the last save failed ("Couldn't reach Pleed — your changes are still
+   * here."). THE save-failure feedback: the bar turns red, announces it and its
+   * Save button becomes "Try again". Don't also toast it (a second
+   * announcement and a second Retry) or show an ErrorState. Clear it on the
+   * next save attempt.
+   */
   error?: string | null;
   saveLabel?: string;
+  /** Save button label while `error` is set. */
+  retryLabel?: string;
   resetLabel?: string;
   /**
    * Guard unsaved changes (default true): leaving through an in-app link
@@ -52,6 +60,9 @@ export type SaveBarProps = {
  * (`warnOnLeave`, plus `useLeaveGuard()` for programmatic navigation). When
  * it hides, keyboard focus that was on Save/Reset returns to the last edited
  * control (never to a destructive button).
+ *
+ * Feedback: success → `toast.success("Changes saved")` after the save (the
+ * toast waits for the bar to leave); failure → `error` (in the bar only).
  */
 export function SaveBar({
   dirty,
@@ -61,6 +72,7 @@ export function SaveBar({
   message = "You have unsaved changes",
   error,
   saveLabel = "Save changes",
+  retryLabel = "Try again",
   resetLabel = "Reset",
   warnOnLeave = true,
   className,
@@ -278,7 +290,7 @@ export function SaveBar({
             {resetLabel}
           </Button>
           <Button variant="primary" onClick={onSave} loading={saving} className="max-sm:flex-1">
-            {saveLabel}
+            {error ? retryLabel : saveLabel}
           </Button>
         </div>
       </div>

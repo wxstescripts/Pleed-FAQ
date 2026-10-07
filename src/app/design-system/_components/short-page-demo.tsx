@@ -29,7 +29,7 @@ export function ShortPageDemo() {
     setTimeout(() => {
       setSaving(false);
       setSaved(draft);
-      toast.success("Settings saved");
+      toast.success("Changes saved");
     }, 900);
   };
 

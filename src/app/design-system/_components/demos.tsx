@@ -505,14 +505,15 @@ export function OverlayDemos() {
 
       <DsBlock title="Toasts">
         <div className="flex flex-wrap items-center gap-3">
-          <Button variant="secondary" size="sm" onClick={() => toast.success("Settings saved", { description: "Anti-nuke thresholds updated." })}>
+          <Button variant="secondary" size="sm" onClick={() => toast.success("Changes saved", { description: "Anti-nuke thresholds updated." })}>
             Success
           </Button>
           <Button
             variant="secondary"
             size="sm"
             onClick={() =>
-              toast.error("Couldn't save settings", {
+              // Toast errors are for actions that leave nothing on screen; a failed settings save is the SaveBar's `error`.
+              toast.error("Couldn't delete the responder", {
                 description: "The Pleed API didn't respond.",
                 action: { label: "Retry", onClick: () => toast.info("Retrying…") },
               })
@@ -652,21 +653,39 @@ export function SettingsDemo() {
   const [saved, setSaved] = useState<SecurityConfig>(INITIAL);
   const [draft, setDraft] = useState<SecurityConfig>(INITIAL);
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [failNext, setFailNext] = useState(false);
   const dirty = useMemo(() => JSON.stringify(saved) !== JSON.stringify(draft), [saved, draft]);
   const set = <K extends keyof SecurityConfig>(key: K, value: SecurityConfig[K]) => setDraft((d) => ({ ...d, [key]: value }));
 
+  // Save feedback (DESIGN.md §3): success → one toast; failure → the SaveBar's `error` only.
   const save = () => {
     setSaving(true);
+    setError(null);
     setTimeout(() => {
       setSaving(false);
+      if (failNext) {
+        setFailNext(false);
+        setError("Couldn't reach Pleed. Your changes are still here.");
+        return;
+      }
       setSaved(draft);
-      toast.success("Settings saved");
+      toast.success("Changes saved");
     }, 900);
+  };
+  const reset = () => {
+    setDraft(saved);
+    setError(null);
   };
 
   return (
     // The `settings` measure, exactly as on a dashboard settings page (<Container size="settings">).
     <div className="w-full max-w-settings">
+      {/* Demo control, not a setting: makes the next save fail so the error state can be reviewed. */}
+      <label className="mb-4 flex w-fit items-center gap-3 type-small text-fg-secondary">
+        <Switch size="sm" checked={failNext} onCheckedChange={setFailNext} />
+        Fail the next save (shows the SaveBar error)
+      </label>
       {/* Sections stack with gap-6; the SaveBar sits AFTER the stack (0 px when hidden). */}
       <div className="flex flex-col gap-6">
         <SettingsSection
@@ -750,7 +769,7 @@ export function SettingsDemo() {
           />
         </SettingsSection>
       </div>
-      <SaveBar dirty={dirty} saving={saving} onSave={save} onReset={() => setDraft(saved)} />
+      <SaveBar dirty={dirty} saving={saving} error={error} onSave={save} onReset={reset} />
     </div>
   );
 }

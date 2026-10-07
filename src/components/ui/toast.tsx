@@ -12,9 +12,13 @@ import { Spinner } from "@/components/ui/spinner";
  * Global toast manager — call from anywhere (event handlers, async code):
  *
  *   import { toast } from "@/components/ui/toast";
- *   toast.success("Settings saved");
- *   toast.error("Couldn't save", { description: "The API didn't respond.", action: { label: "Retry", onClick: save } });
- *   toast.promise(saveConfig(), { loading: "Saving…", success: "Saved", error: "Save failed" });
+ *   toast.success("Changes saved");                 // after a SaveBar save
+ *   toast.error("Couldn't delete the responder", { description: "The API didn't respond.", action: { label: "Retry", onClick: remove } });
+ *   toast.promise(syncCommands(), { loading: "Syncing…", success: "Commands synced", error: "Sync failed" });
+ *
+ * A failed SETTINGS save is not a toast: pass `error` to the SaveBar (it is
+ * already on screen, announces it and turns Save into "Try again"). Toasts
+ * are for actions that leave nothing on screen (delete, copy, sync, invite).
  *
  * <Toaster/> is rendered once in the root layout. Toasts are announced to
  * screen readers (errors assertively), pause on hover/focus, can be swiped
