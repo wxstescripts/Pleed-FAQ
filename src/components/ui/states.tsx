@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Callout } from "@/components/ui/callout";
 import { IconTile } from "@/components/ui/icon-tile";
 
 type HeadingTag = "h2" | "h3" | "h4";
@@ -61,6 +62,12 @@ export type ErrorStateProps = {
   /** Extra actions (e.g. link to the support server). */
   actions?: ReactNode;
   headingAs?: HeadingTag;
+  /**
+   * "card" / "plain": a page or section failed to load. "inline": a danger
+   * Callout (role="alert") for a failure inside a region — a list or card
+   * that didn't load, an action that failed. A failed settings SAVE is the
+   * SaveBar's `error`, not an ErrorState.
+   */
   variant?: "card" | "plain" | "inline";
   className?: string;
 };
@@ -81,28 +88,30 @@ export function ErrorState({
   className,
 }: ErrorStateProps) {
   if (variant === "inline") {
-    // Icon beside the text at every width; on phones the retry button wraps onto its own
-    // line, indented to the text (icon 20 px + gap 12 px = pl-8).
+    // A danger Callout with role="alert": icon beside the text at every width; when the
+    // banner is narrow (phones) the retry button wraps onto its own line, indented to the text.
     return (
-      <div
+      <Callout
+        tone="danger"
         role="alert"
-        className={cn(
-          "flex flex-wrap items-start gap-3 rounded-lg border border-danger-border bg-danger-subtle p-4 sm:flex-nowrap",
-          className,
-        )}
+        title={title}
+        className={className}
+        actions={
+          onRetry || actions ? (
+            <>
+              {onRetry ? <RetryButton onRetry={onRetry} retrying={retrying} /> : null}
+              {actions}
+            </>
+          ) : undefined
+        }
       >
-        <CircleAlert aria-hidden="true" className="size-5 shrink-0 text-danger-fg" />
-        <div className="flex min-w-0 flex-1 basis-0 flex-col gap-0.5">
-          <p className="type-label text-fg">{title}</p>
-          {description ? <p className="type-small text-fg-secondary">{description}</p> : null}
-        </div>
-        {onRetry || actions ? (
-          <div className="flex flex-wrap items-center gap-2 max-sm:basis-full max-sm:pl-8 sm:shrink-0 sm:self-center">
-            {onRetry ? <RetryButton onRetry={onRetry} retrying={retrying} /> : null}
-            {actions}
-          </div>
+        {description || detail ? (
+          <>
+            {description ? <p>{description}</p> : null}
+            {detail ? <p className="type-code-sm wrap-anywhere text-fg-tertiary">{detail}</p> : null}
+          </>
         ) : null}
-      </div>
+      </Callout>
     );
   }
 
