@@ -48,18 +48,24 @@ function CodeLine({ line }: { line: string }) {
  * to the client twice.
  */
 export function CodeBlock({ code, title, prompt, copyable = true, copyLabel = "Copy code", className }: CodeBlockProps) {
+  // No overflow-hidden: nothing paints outside the rounded box (the bar and <pre> have no
+  // background of their own), and the copy button's focus ring must never be clipped.
+  // On touch the copy button grows to 44 px, so the title bar grows to 48 px and an untitled
+  // block reserves 8 + 44 + 8 px for it (right padding and minimum height).
   return (
-    <div
-      data-code-block=""
-      className={cn("not-prose group/code relative min-w-0 overflow-hidden rounded-lg border border-line bg-inset", className)}
-    >
+    <div data-code-block="" className={cn("not-prose group/code relative min-w-0 rounded-lg border border-line bg-inset", className)}>
       {title ? (
-        <div className="flex h-10 items-center justify-between gap-3 border-b border-line-subtle pr-1 pl-4">
+        <div className="flex h-10 items-center justify-between gap-3 border-b border-line-subtle pr-1 pl-4 pointer-coarse:h-12 pointer-coarse:pr-0.5">
           <span className="truncate type-eyebrow text-fg-tertiary">{title}</span>
           {copyable ? <CopyButton label={copyLabel} /> : null}
         </div>
       ) : null}
-      <pre className={cn("px-4 py-3.5 type-code-sm whitespace-pre-wrap text-fg wrap-anywhere", copyable && !title && "pr-12")}>
+      <pre
+        className={cn(
+          "px-4 py-3.5 type-code-sm whitespace-pre-wrap text-fg wrap-anywhere",
+          copyable && !title && "pr-12 pointer-coarse:min-h-15 pointer-coarse:pr-15",
+        )}
+      >
         <code>
           {code.split("\n").map((line, i) =>
             prompt ? (
