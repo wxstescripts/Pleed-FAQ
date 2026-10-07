@@ -128,14 +128,15 @@ export function ErrorState({
   );
 }
 
-function RetryButton({ onRetry, retrying }: { onRetry: () => void; retrying?: boolean }) {
+/** "Try again". While retrying it ignores clicks but keeps keyboard focus (aria-disabled, not `disabled`). */
+function RetryButton({ onRetry, retrying, className }: { onRetry: () => void; retrying?: boolean; className?: string }) {
   return (
     <Button
       variant="secondary"
-      onClick={onRetry}
-      disabled={retrying}
+      onClick={retrying ? undefined : onRetry}
+      aria-disabled={retrying || undefined}
       aria-busy={retrying || undefined}
-      className={cn(retrying && "disabled:opacity-100")}
+      className={cn(retrying && "aria-disabled:opacity-100", className)}
     >
       <RotateCcw aria-hidden="true" className={cn("size-4", retrying && "animate-spin motion-reduce:animate-none")} />
       {retrying ? "Retrying…" : "Try again"}

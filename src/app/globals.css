@@ -650,11 +650,10 @@
 
 /* SaveBar (src/components/ui/save-bar.tsx). While visible it publishes its
    real footprint (bar height + bottom offset, any wrap) as --savebar-h on
-   <html>. Keyboard focus is then kept clear of it (WCAG 2.2 SC 2.4.11):
-   scrollIntoView / focus scrolling stop above the bar. */
-:root:has([data-savebar="visible"]) {
-  scroll-padding-bottom: calc(var(--savebar-h, 0px) + 1.5rem);
-}
+   <html> — used by the toast lift below. Keeping keyboard focus clear of
+   the bar (WCAG 2.2 SC 2.4.11) is done in the SaveBar's focus handler, NOT
+   with scroll-padding-bottom: that would also scroll the page whenever the
+   bar's own buttons take focus (they sit inside the padding zone). */
 
 /* Toasts (src/components/ui/toast.tsx) — stacked, swipeable, bottom-right
    (bottom-centre on phones). Lifted above a visible SaveBar with `translate`

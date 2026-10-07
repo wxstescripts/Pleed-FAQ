@@ -80,8 +80,7 @@ export function SaveBar({
   }, [visible, saving]);
 
   // Publish the bar's footprint (height + bottom offset, including a wrapped
-  // message) as --savebar-h on <html>. globals.css turns it into
-  // scroll-padding-bottom (focus never lands under the bar) and the toast
+  // message) as --savebar-h on <html>. globals.css turns it into the toast
   // stack's lift (translate only). Removed the moment the bar hides.
   useLayoutEffect(() => {
     const bar = barRef.current;
@@ -101,11 +100,36 @@ export function SaveBar({
     };
   }, [visible]);
 
-  // Visible → hidden (usually a successful save): the toast stack slides down
-  // for 300 ms; a "Saved" toast requested in the same update waits for it.
+  // The last element focused outside the bar (and outside dialogs/toasts):
+  // where focus returns when the bar hides.
+  const lastOutside = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    const onFocusIn = (event: FocusEvent) => {
+      const wrapper = wrapperRef.current;
+      const target = event.target;
+      if (!wrapper || !(target instanceof HTMLElement) || wrapper.contains(target)) return;
+      if (!isInFixedLayer(target)) lastOutside.current = target;
+    };
+    document.addEventListener("focusin", onFocusIn);
+    return () => document.removeEventListener("focusin", onFocusIn);
+  }, []);
+
+  // Visible → hidden (a successful save, or Reset):
+  // - the toast stack slides down for 300 ms; a "Saved" toast requested in
+  //   the same update waits for it;
+  // - the bar turns inert, which would drop keyboard focus to <body> if it
+  //   was on Save/Reset (or on a field a page disabled while saving). Focus
+  //   goes back to where the user was editing instead (no scroll), or to
+  //   #main as a fallback, so the next Tab continues from there.
   const wasVisible = useRef(visible);
   useLayoutEffect(() => {
-    if (wasVisible.current && !visible) holdToastsWhileSaveBarExits();
+    if (wasVisible.current && !visible) {
+      holdToastsWhileSaveBarExits();
+      const active = document.activeElement;
+      const inBar = Boolean(wrapperRef.current?.contains(active));
+      const lost = !active || active === document.body; // blurred by `disabled` / `inert`
+      if (inBar || lost) restoreFocus(lastOutside.current);
+    }
     wasVisible.current = visible;
   }, [visible]);
 
@@ -113,6 +137,8 @@ export function SaveBar({
   // viewport" but under the sticky bar isn't scrolled by the browser, so
   // nudge it above the bar — on focus, and when the bar appears over the
   // control that is already focused (e.g. a switch you just toggled).
+  // Only elements OUTSIDE the bar are nudged: focusing Reset/Save never
+  // scrolls the page (they are always fully visible).
   useEffect(() => {
     if (!visible) return;
     const reveal = (el: Element | null) => {
@@ -124,9 +150,16 @@ export function SaveBar({
       const bottomOffset = parseFloat(getComputedStyle(wrapper).paddingBottom) || 0;
       const barTop = wrapper.getBoundingClientRect().bottom - bottomOffset - bar.offsetHeight;
       const target = el.getBoundingClientRect();
-      // 6 px = the focus ring (2 px outline + 2 px offset) plus a hair.
-      if (target.bottom + 6 > barTop && target.top < window.innerHeight) {
-        el.scrollIntoView({ block: "nearest" }); // honours scroll-padding-bottom
+      // Hidden = the focus ring (2 px outline + 2 px offset, plus a hair) reaches the bar.
+      if (target.bottom + FOCUS_RING > barTop && target.top < window.innerHeight) {
+        const scroller = getScrollParent(wrapper);
+        // Rest the element FOCUS_GAP above the bar, but never push its top under the sticky header.
+        const topLimit = parseFloat(getComputedStyle(scroller).scrollPaddingTop) || 0;
+        const delta = Math.min(target.bottom + FOCUS_GAP - barTop, Math.max(0, target.top - topLimit));
+        if (delta > 0) {
+          if (scroller === document.scrollingElement) window.scrollBy({ top: delta, behavior: "instant" });
+          else scroller.scrollBy({ top: delta, behavior: "instant" });
+        }
       }
     };
     let frame = requestAnimationFrame(() => reveal(document.activeElement));
@@ -185,7 +218,13 @@ export function SaveBar({
             <Kbd>Ctrl</Kbd>
             <Kbd>S</Kbd>
           </span>
-          <Button variant="ghost" onClick={onReset} disabled={saving} className="max-sm:flex-1">
+          {/* aria-disabled, not `disabled`: a focused Reset keeps focus while a save runs. */}
+          <Button
+            variant="ghost"
+            onClick={saving ? undefined : onReset}
+            aria-disabled={saving || undefined}
+            className="max-sm:flex-1"
+          >
             {resetLabel}
           </Button>
           <Button variant="primary" onClick={onSave} loading={saving} className="max-sm:flex-1">
@@ -198,12 +237,45 @@ export function SaveBar({
   );
 }
 
+/** px below a focused element that count as "its focus ring" (2 px outline + 2 px offset + a hair). */
+const FOCUS_RING = 6;
+/** Where a nudged element comes to rest: this many px above the bar. */
+const FOCUS_GAP = 16;
+
 /** True when the element sits in a fixed layer (dialog, sheet, popover, toast) that never scrolls under the bar. */
 function isInFixedLayer(el: HTMLElement): boolean {
   for (let node: HTMLElement | null = el; node && node !== document.body; node = node.parentElement) {
     if (getComputedStyle(node).position === "fixed") return true;
   }
   return false;
+}
+
+/** The element whose scrolling moves the page under the sticky bar (usually the document). */
+function getScrollParent(el: HTMLElement): HTMLElement {
+  for (let node = el.parentElement; node && node !== document.body; node = node.parentElement) {
+    const { overflowY } = getComputedStyle(node);
+    if (/(auto|scroll|overlay)/.test(overflowY) && node.scrollHeight > node.clientHeight) return node;
+  }
+  return (document.scrollingElement as HTMLElement | null) ?? document.documentElement;
+}
+
+/** Can this element take focus again (still in the page, not disabled, inert or hidden)? */
+function isFocusable(el: HTMLElement | null): el is HTMLElement {
+  if (!el || !el.isConnected || el.closest("[inert]")) return false;
+  if ((el as HTMLButtonElement).disabled || el.closest("fieldset:disabled")) return false;
+  return el.getClientRects().length > 0;
+}
+
+/** Puts keyboard focus back on `el` (no scrolling), else on the page's #main landmark. */
+function restoreFocus(el: HTMLElement | null) {
+  if (isFocusable(el)) {
+    el.focus({ preventScroll: true });
+    return;
+  }
+  const main = document.getElementById("main");
+  if (!main) return;
+  if (!main.hasAttribute("tabindex")) main.setAttribute("tabindex", "-1");
+  main.focus({ preventScroll: true });
 }
 
 type PendingLeave = { kind: "link"; href: string } | { kind: "history"; key: string };

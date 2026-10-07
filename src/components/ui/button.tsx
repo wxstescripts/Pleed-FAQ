@@ -11,7 +11,9 @@ import { Spinner } from "@/components/ui/spinner";
  *   rel="noopener noreferrer"> for http(s) URLs, with an sr-only hint).
  * - Heights: sm 32 · md 40 · lg 48 px on mouse; md/lg grow to 44/48 on touch
  *   screens and sm/icon-sm get an invisible 44 px hit area.
- * - `loading` keeps the width stable, shows a spinner and sets aria-busy.
+ * - `loading` keeps the width stable, shows a spinner, sets aria-busy and
+ *   ignores activation — but keeps keyboard focus (aria-disabled, never the
+ *   native `disabled`, which would blur the button).
  */
 export const buttonVariants = cva(
   [
@@ -66,7 +68,7 @@ type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 type SharedProps = ButtonVariantProps & {
   className?: string;
   children?: ReactNode;
-  /** Shows a spinner, disables the control and sets aria-busy. */
+  /** Shows a spinner and sets aria-busy; clicks are ignored but the button keeps focus. */
   loading?: boolean;
 };
 
@@ -150,15 +152,19 @@ export function Button(props: ButtonProps) {
     );
   }
 
-  const { className, variant, size, fullWidth, loading, children, type = "button", disabled, ...rest } = props;
+  const { className, variant, size, fullWidth, loading, children, type = "button", onClick, ...rest } = props;
   return (
     <button
-      type={type}
-      data-slot="button"
-      disabled={disabled || loading}
-      aria-busy={loading || undefined}
-      className={cn(buttonVariants({ variant, size, fullWidth }), loading && "disabled:opacity-100", className)}
       {...rest}
+      // While loading the button stays focusable (aria-disabled, not the native `disabled`
+      // attribute, which would blur it and drop a keyboard user's focus to <body>): clicks,
+      // Enter and Space do nothing, and a submit button can't submit its form again.
+      type={loading && type === "submit" ? "button" : type}
+      data-slot="button"
+      aria-disabled={loading ? true : rest["aria-disabled"]}
+      aria-busy={loading || undefined}
+      onClick={loading ? undefined : onClick}
+      className={cn(buttonVariants({ variant, size, fullWidth }), loading && "aria-disabled:opacity-100", className)}
     >
       <ButtonInner loading={loading}>{children}</ButtonInner>
     </button>
