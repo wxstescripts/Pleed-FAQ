@@ -1,0 +1,4 @@
+.docs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.docs-home-card{display:block;padding:28px;border-radius:22px;text-decoration:none;color:#EAD8E8;background:rgba(44,26,48,.7);border:1px solid rgba(194,166,195,.2);transition:.25s}
+.docs-home-card:hover{transform:translateY(-6px);border-color:#C2A6C3}
+#docsSearch{width:100%;padding:16px;border-radius:14px;margin-bottom:24px}

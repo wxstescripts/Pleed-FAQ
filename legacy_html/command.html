@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pleed Command</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="background-glow"></div>
+
+  <section class="hero">
+    <h1 id="name">Loading...</h1>
+    <p id="description"></p>
+  </section>
+
+  <section>
+    <div class="command-card">
+      <h3>Usage</h3>
+      <code id="usage"></code>
+
+      <h3>Permissions</h3>
+      <p id="permissions"></p>
+
+      <h3>Category</h3>
+      <p id="category"></p>
+    </div>
+  </section>
+
+  <script>
+    const API = "https://pleed-api.onrender.com/commands/";
+
+    const params = new URLSearchParams(window.location.search);
+    let command = params.get("command");
+
+    // Fallback for old links like ?ban
+    if (!command) {
+      command = window.location.search.substring(1);
+    }
+
+    async function load() {
+      if (!command) {
+        document.getElementById("name").textContent = "Error";
+        document.getElementById("description").textContent = "No command specified.";
+        return;
+      }
+
+      try {
+        const response = await fetch(API + encodeURIComponent(command));
+
+        if (!response.ok) {
+          throw new Error("Command not found");
+        }
+
+        const data = await response.json();
+
+        if (data.error) {
+          document.getElementById("name").textContent = "Error";
+          document.getElementById("description").textContent = data.error;
+          return;
+        }
+
+        const prefix = data.type === "prefix" ? "!" : "/";
+        document.getElementById("name").textContent = prefix + data.name;
+        document.getElementById("description").textContent = data.description || "No description provided.";
+        document.getElementById("usage").textContent = data.usage || "N/A";
+        document.getElementById("permissions").textContent =
+          Array.isArray(data.permissions) && data.permissions.length > 0
+            ? data.permissions.join(", ")
+            : "Everyone";
+        document.getElementById("category").textContent = data.category || "General";
+      } catch (error) {
+        document.getElementById("name").textContent = "Error";
+        document.getElementById("description").textContent = "Failed to load command details.";
+        console.error("Failed to load command:", error);
+      }
+    }
+
+    load();
+  </script>
+
+</body>
+
+</html>

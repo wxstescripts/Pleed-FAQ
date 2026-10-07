@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pleed Docs | Voice</title>
+<meta name="description" content="VoiceMaster temp voice channels and voice controls.">
+<link rel="icon" href="../assets/favicon.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="docs.css">
+
+</head>
+<body>
+<div class="background-glow"></div>
+<nav>
+<div class="brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="nav-links">
+<a href="../index.html">Home</a>
+<a href="../commands.html">Commands</a>
+<a href="../servers.html">Servers</a>
+<a href="index.html">Docs</a>
+<a href="../status.html">Status</a>
+</div>
+<a class="nav-button" href="https://discord.com/oauth2/authorize?client_id=1484703029243416757">Invite</a>
+</nav>
+
+<div class="docs-shell">
+<div class="docs-menu-bar">
+<button class="docs-menu-btn" id="docs-menu-toggle" aria-label="Open docs menu">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+</button>
+<span class="docs-crumb-group">Server</span>
+<span class="docs-crumb-sep">&#8250;</span>
+<span class="docs-crumb-page">Voice</span>
+</div>
+
+<div class="docs-overlay" id="docs-overlay"></div>
+
+<aside class="docs-sidebar" id="docs-sidebar">
+<div class="docs-drawer-head">
+<span>Documentation</span>
+<button class="docs-drawer-close" id="docs-drawer-close" aria-label="Close menu">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+</button>
+</div>
+<div class="docs-search">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+<input id="docs-search-input" type="text" placeholder="Search docs...">
+<kbd>/</kbd>
+</div>
+<div class="docs-group">
+<h4>Overview</h4>
+<a href="index.html" class="navlink" data-label="overview"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"></circle></svg><span>Overview</span></a><a href="getting-started.html" class="navlink" data-label="getting started"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="7,4 19,12 7,20" fill="currentColor" stroke="none"></polygon></svg><span>Getting Started</span></a>
+</div>
+<div class="docs-group">
+<h4>Moderation &amp; Security</h4>
+<a href="moderation.html" class="navlink" data-label="moderation"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 5-3.2 8.5-7 10-3.8-1.5-7-5-7-10V6l7-3z"></path></svg><span>Moderation</span></a><a href="security.html" class="navlink" data-label="security &amp; antinuke"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span>Security &amp; AntiNuke</span></a><a href="tickets.html" class="navlink" data-label="tickets"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M3 12h.01M21 12h.01" stroke-linecap="round"></path><line x1="8" y1="6" x2="8" y2="18" stroke-dasharray="2 2.4"></line></svg><span>Tickets</span></a>
+</div>
+<div class="docs-group">
+<h4>Economy</h4>
+<a href="economy.html" class="navlink" data-label="economy &amp; leveling"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"></line><path d="M17 6.2H9.7a3 3 0 0 0 0 6h4.6a3 3 0 0 1 0 6H6"></path></svg><span>Economy &amp; Leveling</span></a>
+</div>
+<div class="docs-group">
+<h4>Automation</h4>
+<a href="automation.html" class="navlink" data-label="automation"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"></path></svg><span>Automation</span></a>
+</div>
+<div class="docs-group">
+<h4>Server</h4>
+<a href="server-setup.html" class="navlink" data-label="server setup"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6.5a3.5 3.5 0 0 0-4.9 4.9L3 18l3 3 6.6-6.6a3.5 3.5 0 0 0 4.9-4.9l-2.3 2.3-2-2z"></path></svg><span>Server Setup</span></a><a href="voice.html" class="navlink active" data-label="voice"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"></rect><path d="M5.5 10.5a6.5 6.5 0 0 0 13 0"></path><line x1="12" y1="17" x2="12" y2="21.5"></line></svg><span>Voice</span></a>
+</div>
+<div class="docs-group">
+<h4>Miscellaneous</h4>
+<a href="utility.html" class="navlink" data-label="information &amp; utility"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><line x1="12" y1="10.5" x2="12" y2="16" stroke-linecap="round"></line><circle cx="12" cy="7.6" r="0.9" fill="currentColor" stroke="none"></circle></svg><span>Information &amp; Utility</span></a><a href="fun.html" class="navlink" data-label="fun &amp; miscellaneous"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M8 14.2s1.6 2 4 2 4-2 4-2" stroke-linecap="round"></path><circle cx="9" cy="9.3" r="0.9" fill="currentColor" stroke="none"></circle><circle cx="15" cy="9.3" r="0.9" fill="currentColor" stroke="none"></circle></svg><span>Fun &amp; Miscellaneous</span></a>
+</div>
+</aside>
+
+<main class="docs-main">
+
+<div class="docs-eyebrow">Voice</div>
+<h1>Voice</h1>
+<p class="docs-lede">VoiceMaster gives every member their own temporary, fully-controlled voice
+channel that's created on the fly and cleaned up automatically when it's empty.</p>
+
+<h2 id="setting-it-up-staff">Setting it up (staff)</h2>
+<ol>
+<li><code>!setupvc [category]</code> &mdash; creates the trigger channel members join to spawn their own voice channel, optionally inside a specific category.</li>
+<li><code>!voicemaster category &lt;category&gt;</code> &mdash; choose where new temp channels get created.</li>
+<li><code>!voicemaster name &lt;template&gt;</code> &mdash; set the default name template for new channels.</li>
+<li><code>!voicemaster limit &lt;amount&gt;</code> &mdash; set the default member cap for new channels.</li>
+<li><code>!voicemaster trigger &lt;channel&gt;</code> &mdash; manually point at an existing channel as the trigger, instead of creating a new one.</li>
+</ol>
+
+<h2 id="managing-your-own-channel-members">Managing your own channel (members)</h2>
+<p>Once you join the trigger channel and get your own voice channel, it's yours to control with the
+<code>vc</code>-prefixed commands:</p>
+<div class="cmd-grid"><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vcrename &lt;name&gt;</code></div><p>Rename your channel.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vclimit &lt;amount&gt;</code></div><p>Set the member limit.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vcbitrate &lt;kbps&gt;</code></div><p>Set the channel bitrate.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vclock</code> / <code class="cmd-usage">!vcunlock</code></div><p>Lock or unlock your channel to new joiners.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vchide</code> / <code class="cmd-usage">!vcunhide</code></div><p>Hide or unhide your channel from the channel list.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vcpermit &lt;member&gt;</code></div><p>Let a specific member into a locked channel.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vcdeny &lt;member&gt;</code></div><p>Deny a specific member.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vckick &lt;member&gt;</code></div><p>Kick a member out of your channel.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vcmute &lt;member&gt;</code> / <code class="cmd-usage">!vcunmute &lt;member&gt;</code></div><p>Server mute/unmute a member in your channel.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vctransfer &lt;member&gt;</code></div><p>Hand channel ownership to someone else.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vcclaim</code></div><p>Claim an abandoned temp channel if the owner left.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!vcinfo</code></div><p>View info about the current temp voice channel.</p></div></div>
+<div class="toc-inline"><a href="#voicemaster-temp-channels">VoiceMaster (Temp Channels) <span class="section-count">(21)</span></a></div><details class="cmd-group" open>
+<summary><span class="cmd-group-title">VoiceMaster (Temp Channels)</span><span class="cmd-group-right"><span class="section-count">21 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="voicemaster-temp-channels" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!setupvc [category]</code><span class="badge prefix">prefix</span></div>
+<p>Setup the VoiceMaster trigger channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcbitrate &lt;kbps&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the bitrate for your private voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcclaim</code><span class="badge prefix">prefix</span></div>
+<p>Claim an abandoned temp voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcdeny &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Deny a user from your voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vchide</code><span class="badge prefix">prefix</span></div>
+<p>Hide your private voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcinfo</code><span class="badge prefix">prefix</span></div>
+<p>Show info about your current temp voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vckick &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Kick a member from your voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vclimit &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the user limit for your private voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vclock</code><span class="badge prefix">prefix</span></div>
+<p>Lock your private voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcmute &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Server mute a member in your voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcpermit &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Permit a user to join your locked voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcrename &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Rename your private voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vctransfer &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Transfer your voice channel ownership.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcunhide</code><span class="badge prefix">prefix</span></div>
+<p>Unhide your private voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcunlock</code><span class="badge prefix">prefix</span></div>
+<p>Unlock your private voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!vcunmute &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Server unmute a member in your voice channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!voicemaster</code><span class="badge prefix">prefix</span></div>
+<p>Configure VoiceMaster.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!voicemaster category &lt;category&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the category for created channels.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!voicemaster limit &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the default user limit for created channels.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!voicemaster name &lt;template&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the default channel name template.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!voicemaster trigger &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the trigger channel manually.</p>
+
+</div></div>
+</div>
+</details>
+<div class="docs-pager"><a href="server-setup.html" class="prev">
+<span class="docs-pager-label">&#8249; Previous</span>
+<span class="docs-pager-title">Server Setup</span>
+</a><a href="utility.html" class="next">
+<span class="docs-pager-label">Next &#8250;</span>
+<span class="docs-pager-title">Information &amp; Utility</span>
+</a></div>
+</main>
+
+<aside class="docs-toc">
+<div class="toc-title">On this page</div>
+<ul>
+<li class="lvl2"><a href="#setting-it-up-staff">Setting it up (staff)</a></li><li class="lvl2"><a href="#managing-your-own-channel-members">Managing your own channel (members)</a></li>
+</ul>
+</aside>
+</div>
+
+<footer>
+<div class="footer-brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="footer-links">
+<a href="../privacy.html">Privacy</a>
+<a href="../terms.html">Terms</a>
+<a href="https://discord.gg/AfCCQt2VHP">Support</a>
+</div>
+<p>© 2026 Pleed Development</p>
+</footer>
+
+<script>
+(function(){
+  var input = document.getElementById('docs-search-input');
+  if(input){
+    input.addEventListener('input', function(){
+      var q = input.value.trim().toLowerCase();
+      document.querySelectorAll('.docs-group .navlink').forEach(function(a){
+        var match = !q || a.dataset.label.indexOf(q) !== -1;
+        a.classList.toggle('hidden', !match);
+      });
+      document.querySelectorAll('.docs-group').forEach(function(g){
+        var anyVisible = g.querySelectorAll('.navlink:not(.hidden)').length > 0;
+        g.style.display = anyVisible ? '' : 'none';
+      });
+    });
+  }
+
+  var sidebar = document.getElementById('docs-sidebar');
+  var overlay = document.getElementById('docs-overlay');
+  var toggle = document.getElementById('docs-menu-toggle');
+  var closeBtn = document.getElementById('docs-drawer-close');
+
+  function openSidebar(){
+    sidebar.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSidebar(){
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if(toggle){
+    toggle.addEventListener('click', function(){
+      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    });
+  }
+  if(overlay){
+    overlay.addEventListener('click', closeSidebar);
+  }
+  if(closeBtn){
+    closeBtn.addEventListener('click', closeSidebar);
+  }
+  document.querySelectorAll('.docs-group .navlink').forEach(function(a){
+    a.addEventListener('click', closeSidebar);
+  });
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 860) closeSidebar();
+  });
+})();
+
+function copyCodeBlock(btn){
+  var block = btn.closest('.code-block');
+  var code = block.querySelector('code');
+  var text = code.textContent;
+  navigator.clipboard.writeText(text).then(function(){
+    var label = btn.querySelector('span');
+    var original = label.textContent;
+    label.textContent = 'Copied!';
+    setTimeout(function(){ label.textContent = original; }, 1500);
+  });
+}
+</script>
+
+</body>
+</html>

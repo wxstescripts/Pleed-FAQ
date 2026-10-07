@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pleed Docs | Economy &amp; Leveling</title>
+<meta name="description" content="Wallets, businesses, stocks, gambling games, XP and levels.">
+<link rel="icon" href="../assets/favicon.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="docs.css">
+
+</head>
+<body>
+<div class="background-glow"></div>
+<nav>
+<div class="brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="nav-links">
+<a href="../index.html">Home</a>
+<a href="../commands.html">Commands</a>
+<a href="../servers.html">Servers</a>
+<a href="index.html">Docs</a>
+<a href="../status.html">Status</a>
+</div>
+<a class="nav-button" href="https://discord.com/oauth2/authorize?client_id=1484703029243416757">Invite</a>
+</nav>
+
+<div class="docs-shell">
+<div class="docs-menu-bar">
+<button class="docs-menu-btn" id="docs-menu-toggle" aria-label="Open docs menu">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+</button>
+<span class="docs-crumb-group">Economy</span>
+<span class="docs-crumb-sep">&#8250;</span>
+<span class="docs-crumb-page">Economy &amp; Leveling</span>
+</div>
+
+<div class="docs-overlay" id="docs-overlay"></div>
+
+<aside class="docs-sidebar" id="docs-sidebar">
+<div class="docs-drawer-head">
+<span>Documentation</span>
+<button class="docs-drawer-close" id="docs-drawer-close" aria-label="Close menu">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+</button>
+</div>
+<div class="docs-search">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+<input id="docs-search-input" type="text" placeholder="Search docs...">
+<kbd>/</kbd>
+</div>
+<div class="docs-group">
+<h4>Overview</h4>
+<a href="index.html" class="navlink" data-label="overview"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"></circle></svg><span>Overview</span></a><a href="getting-started.html" class="navlink" data-label="getting started"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="7,4 19,12 7,20" fill="currentColor" stroke="none"></polygon></svg><span>Getting Started</span></a>
+</div>
+<div class="docs-group">
+<h4>Moderation &amp; Security</h4>
+<a href="moderation.html" class="navlink" data-label="moderation"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 5-3.2 8.5-7 10-3.8-1.5-7-5-7-10V6l7-3z"></path></svg><span>Moderation</span></a><a href="security.html" class="navlink" data-label="security &amp; antinuke"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span>Security &amp; AntiNuke</span></a><a href="tickets.html" class="navlink" data-label="tickets"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M3 12h.01M21 12h.01" stroke-linecap="round"></path><line x1="8" y1="6" x2="8" y2="18" stroke-dasharray="2 2.4"></line></svg><span>Tickets</span></a>
+</div>
+<div class="docs-group">
+<h4>Economy</h4>
+<a href="economy.html" class="navlink active" data-label="economy &amp; leveling"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"></line><path d="M17 6.2H9.7a3 3 0 0 0 0 6h4.6a3 3 0 0 1 0 6H6"></path></svg><span>Economy &amp; Leveling</span></a>
+</div>
+<div class="docs-group">
+<h4>Automation</h4>
+<a href="automation.html" class="navlink" data-label="automation"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"></path></svg><span>Automation</span></a>
+</div>
+<div class="docs-group">
+<h4>Server</h4>
+<a href="server-setup.html" class="navlink" data-label="server setup"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6.5a3.5 3.5 0 0 0-4.9 4.9L3 18l3 3 6.6-6.6a3.5 3.5 0 0 0 4.9-4.9l-2.3 2.3-2-2z"></path></svg><span>Server Setup</span></a><a href="voice.html" class="navlink" data-label="voice"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"></rect><path d="M5.5 10.5a6.5 6.5 0 0 0 13 0"></path><line x1="12" y1="17" x2="12" y2="21.5"></line></svg><span>Voice</span></a>
+</div>
+<div class="docs-group">
+<h4>Miscellaneous</h4>
+<a href="utility.html" class="navlink" data-label="information &amp; utility"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><line x1="12" y1="10.5" x2="12" y2="16" stroke-linecap="round"></line><circle cx="12" cy="7.6" r="0.9" fill="currentColor" stroke="none"></circle></svg><span>Information &amp; Utility</span></a><a href="fun.html" class="navlink" data-label="fun &amp; miscellaneous"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M8 14.2s1.6 2 4 2 4-2 4-2" stroke-linecap="round"></path><circle cx="9" cy="9.3" r="0.9" fill="currentColor" stroke="none"></circle><circle cx="15" cy="9.3" r="0.9" fill="currentColor" stroke="none"></circle></svg><span>Fun &amp; Miscellaneous</span></a>
+</div>
+</aside>
+
+<main class="docs-main">
+
+<div class="docs-eyebrow">Economy &amp; Leveling</div>
+<h1>Economy &amp; Leveling</h1>
+<p class="docs-lede">A full virtual economy — wallets, a bank, businesses, a stock market, a shop,
+casino-style games, and a separate XP/leveling system with role rewards.</p>
+
+<h2 id="the-basics">The basics</h2>
+<div class="cmd-grid"><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!balance [member]</code></div><p>Check a wallet balance.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!work</code></div><p>Work a job to earn money (has a cooldown).</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!daily</code></div><p>Claim your daily reward.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!deposit &lt;amount&gt;</code> / <code class="cmd-usage">!withdraw &lt;amount&gt;</code></div><p>Move money between wallet and bank — banked money is safe from <code>!rob</code>.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!pay &lt;member&gt; &lt;amount&gt;</code></div><p>Send money to another member.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!richest</code></div><p>Server economy leaderboard.</p></div></div>
+
+<h3 id="wallet-games">Games &amp; risk</h3>
+<p>Casino-style ways to grow (or lose) your balance: <code>!coinflip</code>, <code>!slots</code>,
+<code>!blackjack</code>, <code>!gamble</code>, <code>!risk</code>, and <code>!rob &lt;member&gt;</code>
+to try stealing from someone else's wallet (banked money is protected).</p>
+
+<h3 id="businesses">Businesses &amp; the stock market</h3>
+<p>Buy a business with <code>!buybusiness &lt;business_type&gt;</code>, then grow it with
+<code>!hire</code> and <code>!businessefficiency</code>, collect its income with <code>!collect</code>
+(or <code>!collectall</code> for every business you own), and optionally protect it with
+<code>!insurebusiness</code> — or sabotage a rival's with <code>!sabotage &lt;target&gt; &lt;business_id&gt;</code>.
+Separately, <code>!buyshares &lt;symbol&gt; &lt;shares&gt;</code> and <code>!sellshares</code> let you
+trade on the built-in stock market; check prices with <code>!stocks</code> and your holdings with
+<code>!portfolio</code>.</p>
+
+<h3 id="poker">Poker</h3>
+<p>A multiplayer Texas Hold'em table: <code>!pokercreate &lt;buy_in&gt; [max_players]</code> starts a
+table, others join in, and the host can end it early with <code>!pokercancel</code>.</p>
+
+<h2 id="leveling-amp-xp">Leveling &amp; XP</h2>
+<p>A separate activity-based system: members earn XP for chatting and level up, with optional role
+rewards at chosen levels.</p>
+<ul>
+<li><code>!rank [member]</code> and <code>!leaderboard</code> &mdash; check XP progress and the server ranking.</li>
+<li><code>!levelreward &lt;level&gt; &lt;role&gt;</code> &mdash; grant a role automatically at a given level (<code>!levelrewards</code> to list them all, <code>!levelrewardremove</code> to remove one).</li>
+<li><code>!levelchannels add/remove/list</code> &mdash; restrict which channels actually grant XP.</li>
+<li><code>!setxpcooldown &lt;seconds&gt;</code> &mdash; how often a member can earn XP from talking (recommended 30–90s).</li>
+<li><code>!leveltoggle</code> / <code>!xptoggle</code> &mdash; turn level-up announcements or XP gain off entirely.</li>
+</ul>
+
+<h2 id="giveaways">Giveaways</h2>
+<p>Run giveaways with role-based bonus entries and message-count requirements:
+<code>!create &lt;prize&gt; &lt;duration&gt; &lt;winners&gt; [channel] [messages_required] [roles_bonus_entries]</code>.
+Use <code>!reroll &lt;message_id&gt; &lt;winners&gt;</code> if a winner doesn't claim their prize, or
+<code>!end</code> / <code>!delete</code> to finish or cancel one early.</p>
+<div class="toc-inline"><a href="#wallet-games">Wallet & Games <span class="section-count">(42)</span></a>
+<a href="#giveaways">Giveaways <span class="section-count">(6)</span></a>
+<a href="#leveling-xp">Leveling / XP <span class="section-count">(31)</span></a>
+<a href="#poker">Poker <span class="section-count">(2)</span></a></div><details class="cmd-group" open>
+<summary><span class="cmd-group-title">Wallet &amp; Games</span><span class="cmd-group-right"><span class="section-count">42 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="wallet-games" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!addmoney &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Add money to a user's wallet.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!autobank &lt;business_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Toggle whether a business auto-banks collected income.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!balance [member]</code><span class="badge prefix">prefix</span></div>
+<p>View your balance or another user's balance.</p>
+<div class="cmd-aliases">aka bal, money</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bank [member]</code><span class="badge prefix">prefix</span></div>
+<p>View your bank balance.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!blackjack &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Play blackjack.</p>
+<div class="cmd-aliases">aka bj</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!business &lt;business_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>View one business by ID.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!businessefficiency &lt;business_id&gt; [amount]</code><span class="badge prefix">prefix</span></div>
+<p>Upgrade business efficiency. Example: businessefficiency 4 3 / businessefficiency 4 max</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!businesses</code><span class="badge prefix">prefix</span></div>
+<p>View available businesses to buy.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!businesslb</code><span class="badge prefix">prefix</span></div>
+<p>Show the business leaderboard.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!buy &lt;item_id&gt; [amount]</code><span class="badge prefix">prefix</span></div>
+<p>Buy an item from the shop.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!buybusiness &lt;business_type&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Buy a business.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!buyshares &lt;symbol&gt; &lt;shares&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Buy shares from the stock market.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!coinflip &lt;choice&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Flip a coin.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!collect &lt;business_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Collect income from one business.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!collectall</code><span class="badge prefix">prefix</span></div>
+<p>Collect income from all your businesses.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!daily</code><span class="badge prefix">prefix</span></div>
+<p>Claim your daily reward.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!deposit &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Deposit money into your bank.</p>
+<div class="cmd-aliases">aka dep</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!gamble &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Gamble your money.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!hire &lt;business_id&gt; [amount]</code><span class="badge prefix">prefix</span></div>
+<p>Hire workers for a business. Example: hire 4 3 / hire 4 max</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!insurebusiness &lt;business_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Buy insurance for a business.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!inventory [member]</code><span class="badge prefix">prefix</span></div>
+<p>View your inventory.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!item &lt;item_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>View one item from the shop.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!mybusinesses [member]</code><span class="badge prefix">prefix</span></div>
+<p>List your businesses.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!pay &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Pay another user.</p>
+<div class="cmd-aliases">aka give</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!portfolio [member]</code><span class="badge prefix">prefix</span></div>
+<p>View your stock portfolio.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!removemoney &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove money from a user's wallet.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!resetmoney &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Reset a user's wallet and bank.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!richest</code><span class="badge prefix">prefix</span></div>
+<p>Show the economy leaderboard.</p>
+<div class="cmd-aliases">aka ecolb, moneylb</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!risk &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>High risk, high reward.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!rob &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Attempt to rob another user.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!sabotage &lt;target&gt; &lt;business_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Attempt to sabotage another user's business.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!sellbusiness &lt;business_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Sell one of your businesses.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!sellitem &lt;item_id&gt; [amount]</code><span class="badge prefix">prefix</span></div>
+<p>Sell an item from your inventory.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!sellshares &lt;symbol&gt; &lt;shares&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Sell shares from the stock market.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!setmoney &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set a user's wallet balance.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!shop</code><span class="badge prefix">prefix</span></div>
+<p>View the item shop.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!slots &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Play the slot machine.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!stocks</code><span class="badge prefix">prefix</span></div>
+<p>View the stock market.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!switchbusiness &lt;business_id&gt; &lt;business_type&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Switch one business to another type.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!upgradebusiness &lt;business_id&gt; [amount]</code><span class="badge prefix">prefix</span></div>
+<p>Upgrade a business. Example: upgradebusiness 4 3 / upgradebusiness 4 max</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!withdraw &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Withdraw money from your bank.</p>
+<div class="cmd-aliases">aka with</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!work</code><span class="badge prefix">prefix</span></div>
+<p>Work to earn money.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Giveaways</span><span class="cmd-group-right"><span class="section-count">6 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="giveaways" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!create &lt;prize&gt; &lt;duration&gt; &lt;winners&gt; [channel] [messages_required] [roles_bonus_entries]</code><span class="badge prefix">prefix</span></div>
+<p>Create a giveaway.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!delete &lt;message_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Delete a giveaway.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!end &lt;message_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>End a giveaway.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!giveaways</code><span class="badge prefix">prefix</span></div>
+<p>List all ongoing giveaways.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!host &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Give perms to a role.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!reroll &lt;message_id&gt; &lt;winners&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Reroll the winner(s) of a giveaway.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Leveling / XP</span><span class="cmd-group-right"><span class="section-count">31 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="leveling-xp" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!addxp &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Add XP to a user.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!channel add &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!channel remove &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!leaderboard</code><span class="badge prefix">prefix</span></div>
+<p>View the server leveling leaderboard.</p>
+<div class="cmd-aliases">aka lb</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelchannels</code><span class="badge prefix">prefix</span></div>
+<p>Manage which channels give XP.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelchannels add &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Allow a channel to give XP.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelchannels list</code><span class="badge prefix">prefix</span></div>
+<p>List all channels that can give XP.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelchannels remove &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove a channel from XP-allowed channels.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelchannels reset</code><span class="badge prefix">prefix</span></div>
+<p>Reset XP channels so all channels can give XP again.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelconfig</code><span class="badge prefix">prefix</span></div>
+<p>View the server leveling configuration.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelignore</code><span class="badge prefix">prefix</span></div>
+<p>Manage leveling ignore lists.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelignore channel</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelignore list</code><span class="badge prefix">prefix</span></div>
+<p>List ignored channels and roles for leveling.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelignore role</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelreward &lt;level&gt; &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set a role reward for a specific level.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelrewardremove &lt;level&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove a level reward.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelrewardreset</code><span class="badge prefix">prefix</span></div>
+<p>Remove all level rewards.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!levelrewards</code><span class="badge prefix">prefix</span></div>
+<p>List all level reward roles.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!leveltoggle &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Enable or disable level-up messages.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!rank [member]</code><span class="badge prefix">prefix</span></div>
+<p>View your rank or another user's rank.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!removexp &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove XP from a user.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!resetlevelchannel</code><span class="badge prefix">prefix</span></div>
+<p>Reset the level-up channel back to the current channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!resetxp &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Reset a user's XP.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!role add &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!role remove &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!setlevel &lt;member&gt; &lt;level&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set a user's level directly.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!setlevelchannel &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the channel where level-up messages are sent.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!setxp &lt;member&gt; &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set a user's XP directly.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!setxpcooldown &lt;seconds&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the XP cooldown in seconds. Recommended: 30-90.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!xpinfo &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Show raw XP stats for a member.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!xptoggle &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Enable or disable XP gain completely.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Poker</span><span class="cmd-group-right"><span class="section-count">2 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="poker" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!pokercancel</code><span class="badge prefix">prefix</span></div>
+<p>Cancel the current poker game (host only).</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!pokercreate &lt;buy_in&gt; [max_players]</code><span class="badge prefix">prefix</span></div>
+<p>Create a Texas Hold'em poker game. Usage: pokercreate &lt;buy-in&gt; &lt;max_players 2-4&gt;</p>
+
+</div></div>
+</div>
+</details>
+<div class="docs-pager"><a href="tickets.html" class="prev">
+<span class="docs-pager-label">&#8249; Previous</span>
+<span class="docs-pager-title">Tickets</span>
+</a><a href="automation.html" class="next">
+<span class="docs-pager-label">Next &#8250;</span>
+<span class="docs-pager-title">Automation</span>
+</a></div>
+</main>
+
+<aside class="docs-toc">
+<div class="toc-title">On this page</div>
+<ul>
+<li class="lvl2"><a href="#the-basics">The basics</a></li><li class="lvl3"><a href="#wallet-games">Games &amp;amp; risk</a></li><li class="lvl3"><a href="#businesses">Businesses &amp;amp; the stock market</a></li><li class="lvl3"><a href="#poker">Poker</a></li><li class="lvl2"><a href="#leveling-amp-xp">Leveling &amp;amp; XP</a></li><li class="lvl2"><a href="#giveaways">Giveaways</a></li>
+</ul>
+</aside>
+</div>
+
+<footer>
+<div class="footer-brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="footer-links">
+<a href="../privacy.html">Privacy</a>
+<a href="../terms.html">Terms</a>
+<a href="https://discord.gg/AfCCQt2VHP">Support</a>
+</div>
+<p>© 2026 Pleed Development</p>
+</footer>
+
+<script>
+(function(){
+  var input = document.getElementById('docs-search-input');
+  if(input){
+    input.addEventListener('input', function(){
+      var q = input.value.trim().toLowerCase();
+      document.querySelectorAll('.docs-group .navlink').forEach(function(a){
+        var match = !q || a.dataset.label.indexOf(q) !== -1;
+        a.classList.toggle('hidden', !match);
+      });
+      document.querySelectorAll('.docs-group').forEach(function(g){
+        var anyVisible = g.querySelectorAll('.navlink:not(.hidden)').length > 0;
+        g.style.display = anyVisible ? '' : 'none';
+      });
+    });
+  }
+
+  var sidebar = document.getElementById('docs-sidebar');
+  var overlay = document.getElementById('docs-overlay');
+  var toggle = document.getElementById('docs-menu-toggle');
+  var closeBtn = document.getElementById('docs-drawer-close');
+
+  function openSidebar(){
+    sidebar.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSidebar(){
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if(toggle){
+    toggle.addEventListener('click', function(){
+      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    });
+  }
+  if(overlay){
+    overlay.addEventListener('click', closeSidebar);
+  }
+  if(closeBtn){
+    closeBtn.addEventListener('click', closeSidebar);
+  }
+  document.querySelectorAll('.docs-group .navlink').forEach(function(a){
+    a.addEventListener('click', closeSidebar);
+  });
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 860) closeSidebar();
+  });
+})();
+
+function copyCodeBlock(btn){
+  var block = btn.closest('.code-block');
+  var code = block.querySelector('code');
+  var text = code.textContent;
+  navigator.clipboard.writeText(text).then(function(){
+    var label = btn.querySelector('span');
+    var original = label.textContent;
+    label.textContent = 'Copied!';
+    setTimeout(function(){ label.textContent = original; }, 1500);
+  });
+}
+</script>
+
+</body>
+</html>

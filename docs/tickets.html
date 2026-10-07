@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pleed Docs | Tickets</title>
+<meta name="description" content="Support ticket panels, claiming, and blacklists.">
+<link rel="icon" href="../assets/favicon.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="docs.css">
+
+</head>
+<body>
+<div class="background-glow"></div>
+<nav>
+<div class="brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="nav-links">
+<a href="../index.html">Home</a>
+<a href="../commands.html">Commands</a>
+<a href="../servers.html">Servers</a>
+<a href="index.html">Docs</a>
+<a href="../status.html">Status</a>
+</div>
+<a class="nav-button" href="https://discord.com/oauth2/authorize?client_id=1484703029243416757">Invite</a>
+</nav>
+
+<div class="docs-shell">
+<div class="docs-menu-bar">
+<button class="docs-menu-btn" id="docs-menu-toggle" aria-label="Open docs menu">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+</button>
+<span class="docs-crumb-group">Moderation &amp; Security</span>
+<span class="docs-crumb-sep">&#8250;</span>
+<span class="docs-crumb-page">Tickets</span>
+</div>
+
+<div class="docs-overlay" id="docs-overlay"></div>
+
+<aside class="docs-sidebar" id="docs-sidebar">
+<div class="docs-drawer-head">
+<span>Documentation</span>
+<button class="docs-drawer-close" id="docs-drawer-close" aria-label="Close menu">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+</button>
+</div>
+<div class="docs-search">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+<input id="docs-search-input" type="text" placeholder="Search docs...">
+<kbd>/</kbd>
+</div>
+<div class="docs-group">
+<h4>Overview</h4>
+<a href="index.html" class="navlink" data-label="overview"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"></circle></svg><span>Overview</span></a><a href="getting-started.html" class="navlink" data-label="getting started"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="7,4 19,12 7,20" fill="currentColor" stroke="none"></polygon></svg><span>Getting Started</span></a>
+</div>
+<div class="docs-group">
+<h4>Moderation &amp; Security</h4>
+<a href="moderation.html" class="navlink" data-label="moderation"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 5-3.2 8.5-7 10-3.8-1.5-7-5-7-10V6l7-3z"></path></svg><span>Moderation</span></a><a href="security.html" class="navlink" data-label="security &amp; antinuke"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span>Security &amp; AntiNuke</span></a><a href="tickets.html" class="navlink active" data-label="tickets"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M3 12h.01M21 12h.01" stroke-linecap="round"></path><line x1="8" y1="6" x2="8" y2="18" stroke-dasharray="2 2.4"></line></svg><span>Tickets</span></a>
+</div>
+<div class="docs-group">
+<h4>Economy</h4>
+<a href="economy.html" class="navlink" data-label="economy &amp; leveling"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"></line><path d="M17 6.2H9.7a3 3 0 0 0 0 6h4.6a3 3 0 0 1 0 6H6"></path></svg><span>Economy &amp; Leveling</span></a>
+</div>
+<div class="docs-group">
+<h4>Automation</h4>
+<a href="automation.html" class="navlink" data-label="automation"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"></path></svg><span>Automation</span></a>
+</div>
+<div class="docs-group">
+<h4>Server</h4>
+<a href="server-setup.html" class="navlink" data-label="server setup"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6.5a3.5 3.5 0 0 0-4.9 4.9L3 18l3 3 6.6-6.6a3.5 3.5 0 0 0 4.9-4.9l-2.3 2.3-2-2z"></path></svg><span>Server Setup</span></a><a href="voice.html" class="navlink" data-label="voice"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"></rect><path d="M5.5 10.5a6.5 6.5 0 0 0 13 0"></path><line x1="12" y1="17" x2="12" y2="21.5"></line></svg><span>Voice</span></a>
+</div>
+<div class="docs-group">
+<h4>Miscellaneous</h4>
+<a href="utility.html" class="navlink" data-label="information &amp; utility"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><line x1="12" y1="10.5" x2="12" y2="16" stroke-linecap="round"></line><circle cx="12" cy="7.6" r="0.9" fill="currentColor" stroke="none"></circle></svg><span>Information &amp; Utility</span></a><a href="fun.html" class="navlink" data-label="fun &amp; miscellaneous"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M8 14.2s1.6 2 4 2 4-2 4-2" stroke-linecap="round"></path><circle cx="9" cy="9.3" r="0.9" fill="currentColor" stroke="none"></circle><circle cx="15" cy="9.3" r="0.9" fill="currentColor" stroke="none"></circle></svg><span>Fun &amp; Miscellaneous</span></a>
+</div>
+</aside>
+
+<main class="docs-main">
+
+<div class="docs-eyebrow">Tickets</div>
+<h1>Tickets</h1>
+<p class="docs-lede">A full support-ticket system: panels members click to open a ticket, staff
+claiming, blacklists, and transcripts-friendly channel naming.</p>
+
+<h2 id="setting-up-your-first-panel">Setting up your first panel</h2>
+<ol>
+<li>Run <code>!setupticket</code> and follow the interactive wizard — it will ask for a channel to post the panel in and the categories/options members can choose from.</li>
+<li>Use <code>!panels</code> any time to see every panel configured in the server, and <code>!editpanel &lt;panel_id&gt;</code> to change options after the fact.</li>
+<li>Remove a panel entirely with <code>!ticketdeletepanel &lt;panel_id&gt;</code>.</li>
+</ol>
+
+<h2 id="working-a-ticket">Working a ticket</h2>
+<p>Once a member opens a ticket, staff typically:</p>
+<ul>
+<li><code>!claim</code> &mdash; take ownership of the ticket so other staff know it's being handled (<code>!unclaim</code> to release it).</li>
+<li><code>!tadd &lt;member&gt;</code> / <code>!tremove &lt;member&gt;</code> &mdash; add or remove a participant from the ticket channel.</li>
+<li><code>!rename &lt;new_name&gt;</code> &mdash; rename the ticket channel.</li>
+<li><code>!tinfo</code> &mdash; show ticket metadata (opener, claim status, age).</li>
+<li><code>!close [reason]</code> &mdash; close out the ticket.</li>
+</ul>
+
+<h2 id="keeping-tickets-under-control">Keeping tickets under control</h2>
+<p>Block repeat troublemakers from opening new tickets with <code>!tblacklist &lt;target&gt;</code>
+(accepts a user or a role) and lift it later with <code>!tunblacklist &lt;target&gt;</code>.</p>
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!claim</code><span class="badge prefix">prefix</span></div>
+<p>Claim the current ticket.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!close [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Close the current ticket.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!editpanel &lt;panel_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Interactive wizard to edit an existing ticket panel, its options, support roles, and settings.</p>
+<div class="cmd-aliases">aka editpanels</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!panels</code><span class="badge prefix">prefix</span></div>
+<p>List all ticket panels for this server.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!rename &lt;new_name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Rename the current ticket channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!setupticket</code><span class="badge prefix">prefix</span></div>
+<p>Interactive ticket system setup wizard.</p>
+<div class="cmd-aliases">aka ticketsetup</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!tadd &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Add a user to the current ticket.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!tblacklist &lt;target&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Blacklist a user or role from opening tickets. Mention a user or role.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ticketdeletepanel &lt;panel_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Delete a ticket panel and its options.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!tinfo</code><span class="badge prefix">prefix</span></div>
+<p>Show info about the current ticket.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!tremove &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove a user from the current ticket.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!tunblacklist &lt;target&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove a user or role from the ticket blacklist.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!unclaim</code><span class="badge prefix">prefix</span></div>
+<p>Unclaim the current ticket.</p>
+
+</div></div>
+<div class="docs-pager"><a href="security.html" class="prev">
+<span class="docs-pager-label">&#8249; Previous</span>
+<span class="docs-pager-title">Security &amp; AntiNuke</span>
+</a><a href="economy.html" class="next">
+<span class="docs-pager-label">Next &#8250;</span>
+<span class="docs-pager-title">Economy &amp; Leveling</span>
+</a></div>
+</main>
+
+<aside class="docs-toc">
+<div class="toc-title">On this page</div>
+<ul>
+<li class="lvl2"><a href="#setting-up-your-first-panel">Setting up your first panel</a></li><li class="lvl2"><a href="#working-a-ticket">Working a ticket</a></li><li class="lvl2"><a href="#keeping-tickets-under-control">Keeping tickets under control</a></li>
+</ul>
+</aside>
+</div>
+
+<footer>
+<div class="footer-brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="footer-links">
+<a href="../privacy.html">Privacy</a>
+<a href="../terms.html">Terms</a>
+<a href="https://discord.gg/AfCCQt2VHP">Support</a>
+</div>
+<p>© 2026 Pleed Development</p>
+</footer>
+
+<script>
+(function(){
+  var input = document.getElementById('docs-search-input');
+  if(input){
+    input.addEventListener('input', function(){
+      var q = input.value.trim().toLowerCase();
+      document.querySelectorAll('.docs-group .navlink').forEach(function(a){
+        var match = !q || a.dataset.label.indexOf(q) !== -1;
+        a.classList.toggle('hidden', !match);
+      });
+      document.querySelectorAll('.docs-group').forEach(function(g){
+        var anyVisible = g.querySelectorAll('.navlink:not(.hidden)').length > 0;
+        g.style.display = anyVisible ? '' : 'none';
+      });
+    });
+  }
+
+  var sidebar = document.getElementById('docs-sidebar');
+  var overlay = document.getElementById('docs-overlay');
+  var toggle = document.getElementById('docs-menu-toggle');
+  var closeBtn = document.getElementById('docs-drawer-close');
+
+  function openSidebar(){
+    sidebar.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSidebar(){
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if(toggle){
+    toggle.addEventListener('click', function(){
+      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    });
+  }
+  if(overlay){
+    overlay.addEventListener('click', closeSidebar);
+  }
+  if(closeBtn){
+    closeBtn.addEventListener('click', closeSidebar);
+  }
+  document.querySelectorAll('.docs-group .navlink').forEach(function(a){
+    a.addEventListener('click', closeSidebar);
+  });
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 860) closeSidebar();
+  });
+})();
+
+function copyCodeBlock(btn){
+  var block = btn.closest('.code-block');
+  var code = block.querySelector('code');
+  var text = code.textContent;
+  navigator.clipboard.writeText(text).then(function(){
+    var label = btn.querySelector('span');
+    var original = label.textContent;
+    label.textContent = 'Copied!';
+    setTimeout(function(){ label.textContent = original; }, 1500);
+  });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pleed Docs | Fun &amp; Miscellaneous</title>
+<meta name="description" content="Games, music, Spotify, webhooks, server customization.">
+<link rel="icon" href="../assets/favicon.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="docs.css">
+
+</head>
+<body>
+<div class="background-glow"></div>
+<nav>
+<div class="brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="nav-links">
+<a href="../index.html">Home</a>
+<a href="../commands.html">Commands</a>
+<a href="../servers.html">Servers</a>
+<a href="index.html">Docs</a>
+<a href="../status.html">Status</a>
+</div>
+<a class="nav-button" href="https://discord.com/oauth2/authorize?client_id=1484703029243416757">Invite</a>
+</nav>
+
+<div class="docs-shell">
+<div class="docs-menu-bar">
+<button class="docs-menu-btn" id="docs-menu-toggle" aria-label="Open docs menu">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+</button>
+<span class="docs-crumb-group">Miscellaneous</span>
+<span class="docs-crumb-sep">&#8250;</span>
+<span class="docs-crumb-page">Fun &amp; Miscellaneous</span>
+</div>
+
+<div class="docs-overlay" id="docs-overlay"></div>
+
+<aside class="docs-sidebar" id="docs-sidebar">
+<div class="docs-drawer-head">
+<span>Documentation</span>
+<button class="docs-drawer-close" id="docs-drawer-close" aria-label="Close menu">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+</button>
+</div>
+<div class="docs-search">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+<input id="docs-search-input" type="text" placeholder="Search docs...">
+<kbd>/</kbd>
+</div>
+<div class="docs-group">
+<h4>Overview</h4>
+<a href="index.html" class="navlink" data-label="overview"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"></circle></svg><span>Overview</span></a><a href="getting-started.html" class="navlink" data-label="getting started"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="7,4 19,12 7,20" fill="currentColor" stroke="none"></polygon></svg><span>Getting Started</span></a>
+</div>
+<div class="docs-group">
+<h4>Moderation &amp; Security</h4>
+<a href="moderation.html" class="navlink" data-label="moderation"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 5-3.2 8.5-7 10-3.8-1.5-7-5-7-10V6l7-3z"></path></svg><span>Moderation</span></a><a href="security.html" class="navlink" data-label="security &amp; antinuke"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span>Security &amp; AntiNuke</span></a><a href="tickets.html" class="navlink" data-label="tickets"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M3 12h.01M21 12h.01" stroke-linecap="round"></path><line x1="8" y1="6" x2="8" y2="18" stroke-dasharray="2 2.4"></line></svg><span>Tickets</span></a>
+</div>
+<div class="docs-group">
+<h4>Economy</h4>
+<a href="economy.html" class="navlink" data-label="economy &amp; leveling"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"></line><path d="M17 6.2H9.7a3 3 0 0 0 0 6h4.6a3 3 0 0 1 0 6H6"></path></svg><span>Economy &amp; Leveling</span></a>
+</div>
+<div class="docs-group">
+<h4>Automation</h4>
+<a href="automation.html" class="navlink" data-label="automation"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"></path></svg><span>Automation</span></a>
+</div>
+<div class="docs-group">
+<h4>Server</h4>
+<a href="server-setup.html" class="navlink" data-label="server setup"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6.5a3.5 3.5 0 0 0-4.9 4.9L3 18l3 3 6.6-6.6a3.5 3.5 0 0 0 4.9-4.9l-2.3 2.3-2-2z"></path></svg><span>Server Setup</span></a><a href="voice.html" class="navlink" data-label="voice"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"></rect><path d="M5.5 10.5a6.5 6.5 0 0 0 13 0"></path><line x1="12" y1="17" x2="12" y2="21.5"></line></svg><span>Voice</span></a>
+</div>
+<div class="docs-group">
+<h4>Miscellaneous</h4>
+<a href="utility.html" class="navlink" data-label="information &amp; utility"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><line x1="12" y1="10.5" x2="12" y2="16" stroke-linecap="round"></line><circle cx="12" cy="7.6" r="0.9" fill="currentColor" stroke="none"></circle></svg><span>Information &amp; Utility</span></a><a href="fun.html" class="navlink active" data-label="fun &amp; miscellaneous"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M8 14.2s1.6 2 4 2 4-2 4-2" stroke-linecap="round"></path><circle cx="9" cy="9.3" r="0.9" fill="currentColor" stroke="none"></circle><circle cx="15" cy="9.3" r="0.9" fill="currentColor" stroke="none"></circle></svg><span>Fun &amp; Miscellaneous</span></a>
+</div>
+</aside>
+
+<main class="docs-main">
+
+<div class="docs-eyebrow">Fun &amp; Miscellaneous</div>
+<h1>Fun &amp; Miscellaneous</h1>
+<p class="docs-lede">Games, music playback, Spotify integration, server counters, webhook relays,
+and bot appearance customization.</p>
+
+<h3 id="games">Games (slash commands)</h3>
+<p>A full arcade of slash-command games, solo or with a friend: <code>/8ball</code>, <code>/coinflip</code>,
+<code>/slots</code>, <code>/blackjack</code> (with split &amp; double down), <code>/higherlower</code>,
+<code>/hangman</code>, <code>/wordle</code>, <code>/trivia</code>, <code>/rps [member]</code>,
+<code>/tictactoe &lt;member&gt;</code>, <code>/connectfour &lt;member&gt;</code>,
+<code>/poker &lt;member&gt;</code> (multi-stage Texas Hold'em with community cards), <code>/uno</code>
+(multiplayer queue with House Rules), and <code>/pool</code> (open lobby for multiple players).</p>
+
+<h3 id="music">Music</h3>
+<p>Standard voice-channel music playback: <code>!play &lt;query&gt;</code> to queue a track,
+<code>!skip</code>, <code>!pause</code>/<code>!resume</code>, <code>!stop</code>,
+<code>!queue [page]</code> (with <code>clear</code>, <code>move</code>, and <code>remove</code>
+subcommands), <code>!volume &lt;percentage&gt;</code>, <code>!seek &lt;position&gt;</code>,
+<code>!repeat &lt;mode&gt;</code>, and <code>!nowplaying</code>. Save your preferred setup with
+<code>!preset [name]</code>, and adjust server-wide playback rules (like DJ role or autoplay) under
+<code>!settings</code>.</p>
+
+<h3 id="spotify">Spotify</h3>
+<p>Deeper Spotify integration for members who link an account: <code>!spotify login</code> to connect,
+<code>!spotify play &lt;query&gt;</code> or <code>!spotify vc &lt;query&gt;</code> to play a track (or
+your current Spotify track) straight into voice chat, plus <code>now</code>/<code>nowplaying</code>,
+<code>like</code>/<code>unlike</code>, <code>queue</code>, <code>artists</code>/<code>tracks [timeframe]</code>
+for listening stats, and <code>!spotify code &lt;code_or_url&gt;</code> to render a scannable Spotify code.</p>
+
+<h3 id="server-counters">Server counters</h3>
+<p>Auto-updating voice or text channels that display a live stat (member count, boosts, etc.):
+<code>!counter add &lt;option&gt; [channel_type] [flags]</code> to create one, <code>!counter options</code>
+to see what stats are available, <code>!counter refresh</code> to force an update, and
+<code>!counter remove &lt;channel&gt;</code> to delete one.</p>
+
+<h3 id="webhooks">Webhooks</h3>
+<p>Send and manage messages through saved webhook identifiers instead of the raw webhook UI — handy
+for relaying content into a channel under a custom name/avatar: <code>!webhook create &lt;channel&gt; &lt;name&gt;</code>,
+<code>!webhook send &lt;identifier&gt; &lt;payload&gt;</code>, plus <code>edit</code>, <code>deletemsg</code>,
+<code>avatar</code>, <code>name</code>, <code>list</code>, and <code>delete</code>. The slash version
+(<code>/send</code>) exposes the same thing as individual embed fields (title, description, color,
+footer, image, thumbnail) instead of one raw payload.</p>
+
+<h3 id="bot-customization">Bot customization</h3>
+<p>Give Pleed a server-specific identity: <code>!customize avatar [image_url]</code>,
+<code>!customize banner [image_url]</code>, and <code>!customize bio &lt;text&gt;</code> change how
+the bot appears in your server specifically, without affecting other servers. Check current settings
+with <code>!customize view</code> and roll any of them back with <code>!customize reset &lt;option&gt;</code>.</p>
+<div class="toc-inline"><a href="#server-counters">Server Counters <span class="section-count">(5)</span></a>
+<a href="#bot-customization">Bot Customization <span class="section-count">(7)</span></a>
+<a href="#games">Games <span class="section-count">(14)</span></a>
+<a href="#music">Music <span class="section-count">(19)</span></a>
+<a href="#spotify">Spotify <span class="section-count">(28)</span></a>
+<a href="#webhooks-slash">Webhooks (Slash) <span class="section-count">(9)</span></a>
+<a href="#webhooks">Webhooks <span class="section-count">(11)</span></a></div><details class="cmd-group" open>
+<summary><span class="cmd-group-title">Server Counters</span><span class="cmd-group-right"><span class="section-count">5 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="server-counters" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!counter</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka counters</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!counter add &lt;option&gt; [channel_type] [flags]</code><span class="badge prefix">prefix</span></div>
+<p>Add a counter. Example: ,counter add members voice --name Members: {count}</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!counter options</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!counter refresh</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka update</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!counter remove &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka delete, del</div>
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Bot Customization</span><span class="cmd-group-right"><span class="section-count">7 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="bot-customization" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!customize</code><span class="badge prefix">prefix</span></div>
+<p>Customize Pleed's server appearance.</p>
+<div class="cmd-aliases">aka customise, customization</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!customize avatar [image_url]</code><span class="badge prefix">prefix</span></div>
+<p>Set the server-custom bot avatar image.</p>
+<div class="cmd-aliases">aka pfp, icon</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!customize banner [image_url]</code><span class="badge prefix">prefix</span></div>
+<p>Set the server-custom bot banner image.</p>
+<div class="cmd-aliases">aka background</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!customize bio &lt;text&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the server-custom bot bio.</p>
+<div class="cmd-aliases">aka about, description</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!customize help</code><span class="badge prefix">prefix</span></div>
+<p>Show command usage.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!customize reset &lt;option&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Reset avatar, banner, bio, or all.</p>
+<div class="cmd-aliases">aka clear, remove</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!customize view</code><span class="badge prefix">prefix</span></div>
+<p>View current customization settings.</p>
+<div class="cmd-aliases">aka show, preview</div>
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Games</span><span class="cmd-group-right"><span class="section-count">14 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="games" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/8ball</code><span class="badge slash">slash</span></div>
+<p>Ask the magic 8-ball any question via a form.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/blackjack</code><span class="badge slash">slash</span></div>
+<p>Play blackjack with split &amp; double down.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/coinflip</code><span class="badge slash">slash</span></div>
+<p>Flip a coin for luck.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/connectfour &lt;member&gt;</code><span class="badge slash">slash</span></div>
+<p>Play Connect Four with a friend.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/hangman</code><span class="badge slash">slash</span></div>
+<p>Play a solo game of Hangman.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/higherlower</code><span class="badge slash">slash</span></div>
+<p>Guess if the next number will be higher or lower.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/poker &lt;member&gt;</code><span class="badge slash">slash</span></div>
+<p>Play a multi-stage Texas Hold'em poker match with community cards.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/pool</code><span class="badge slash">slash</span></div>
+<p>Host an open pool lobby for multiple players.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/rps [member]</code><span class="badge slash">slash</span></div>
+<p>Play Rock Paper Scissors solo or PvP.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/slots</code><span class="badge slash">slash</span></div>
+<p>Spin the casino slots.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/tictactoe &lt;member&gt;</code><span class="badge slash">slash</span></div>
+<p>Play a classic 2-player Tic-Tac-Toe match.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/trivia</code><span class="badge slash">slash</span></div>
+<p>Answer a trivia question.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/uno</code><span class="badge slash">slash</span></div>
+<p>Host a multiplayer UNO match queue with House Rules.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/wordle</code><span class="badge slash">slash</span></div>
+<p>Play Discord Wordle.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Music</span><span class="cmd-group-right"><span class="section-count">19 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="music" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!disconnect</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka dc, leave</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!nowplaying</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka np, current</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!pause</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!play &lt;query&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka p</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!preset [name]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!preset active</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!queue [page]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka q</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!queue clear</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!queue move &lt;position&gt; &lt;new_position&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka mv</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!queue remove &lt;position&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka delete, rm</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!repeat &lt;mode&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka loop</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!resume</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka unpause</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!seek &lt;position&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!settings</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!settings autoplay &lt;toggle&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka auto</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!settings dj [role]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!skip</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka sk</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!stop</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!volume &lt;percentage&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka vol</div>
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Spotify</span><span class="cmd-group-right"><span class="section-count">28 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="spotify" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify [query]</code><span class="badge prefix">prefix</span></div>
+<p>Main Spotify command. Shortcuts: ,spot &lt;song name&gt; -&gt; plays in voice ,spotify &lt;song name&gt; -&gt; plays in voice ,spot &lt;song + artist&gt; -&gt; plays in voice</p>
+<div class="cmd-aliases">aka spot</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify artists [timeframe]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka topartists</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify clear</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify code &lt;code_or_url&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka submit</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify device [device_query]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka devices</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify find &lt;query&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka searchsource</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify join</code><span class="badge prefix">prefix</span></div>
+<p>Joins your voice channel.</p>
+<div class="cmd-aliases">aka connectvc, vconnect</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify leave</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka disconnectvc, vcleave, vcdc</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify like</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka save</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify login</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka connect</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify logout</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka disconnect</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify next</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka skip</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify now</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka musicnp, vcnp</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify nowplaying</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka np, current</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify pause</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify play &lt;query&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Plays a song in voice chat using Spotify metadata + yt-dlp audio source.</p>
+<div class="cmd-aliases">aka p</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify previous</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka prev, back</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify queue [query]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka add, q</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify remove &lt;position&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka rm</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify repeat [mode]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify resume</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka unpause</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify seek &lt;position&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify shuffle [state]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify tracks [timeframe]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka toptracks</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify unlike</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka unsave</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify vc [query]</code><span class="badge prefix">prefix</span></div>
+<p>Join your voice channel and play either: - your current Spotify track - a searched Spotify track if a query is provided</p>
+<div class="cmd-aliases">aka voice, replicate, sync</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify vcstop</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka stopvc, stop</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!spotify volume &lt;percentage&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka vol</div>
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Webhooks (Slash)</span><span class="cmd-group-right"><span class="section-count">9 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="webhooks-slash" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/avatar &lt;identifier&gt; [image_url]</code><span class="badge slash">slash</span></div>
+<p>Change the avatar/image of a saved webhook</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/create &lt;channel&gt; &lt;name&gt;</code><span class="badge slash">slash</span></div>
+<p>Create a new relay webhook in a specified channel</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/delete &lt;identifier&gt;</code><span class="badge slash">slash</span></div>
+<p>Delete a saved webhook</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/deletemsg &lt;message_link&gt;</code><span class="badge slash">slash</span></div>
+<p>Delete a message previously sent through this system</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/edit &lt;message_link&gt; &lt;new_message&gt;</code><span class="badge slash">slash</span></div>
+<p>Edit the content inside a webhook message embed</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/list</code><span class="badge slash">slash</span></div>
+<p>List every saved webhook in this server</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/name &lt;identifier&gt; &lt;new_name&gt;</code><span class="badge slash">slash</span></div>
+<p>Change the name of a saved webhook</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/send &lt;identifier&gt; [message] [embed_title] [embed_description] [embed_color] [embed_footer] [embed_image] [embed_thumbnail] [embed_json] [username] [avatar] [thread] [silent]</code><span class="badge slash">slash</span></div>
+<p>Send a message through a saved webhook</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">/variables</code><span class="badge slash">slash</span></div>
+<p>Show variables you can use in messages/embeds</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Webhooks</span><span class="cmd-group-right"><span class="section-count">11 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="webhooks" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!webhook</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka webhooks, wh</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!webhook avatar &lt;identifier&gt; [image_url]</code><span class="badge prefix">prefix</span></div>
+<p>Change the avatar/image of a saved webhook.</p>
+<div class="cmd-aliases">aka image, editavatar, editimage</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!webhook create &lt;channel&gt; &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Create a new webhook in the specified channel under a short identifier.</p>
+<div class="cmd-aliases">aka add, new</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!webhook delete &lt;identifier&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Delete a saved webhook, after confirmation.</p>
+<div class="cmd-aliases">aka remove, del</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!webhook deletemsg &lt;message_link&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Delete a message that was previously sent through this system.</p>
+<div class="cmd-aliases">aka delmsg</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!webhook edit &lt;message_link&gt; &lt;new_message&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Edit the embed content of a message previously sent through this system.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!webhook list</code><span class="badge prefix">prefix</span></div>
+<p>List every saved webhook in this server, paginated.</p>
+<div class="cmd-aliases">aka show, all</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!webhook name &lt;identifier&gt; &lt;new_name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Change the name of a saved webhook.</p>
+<div class="cmd-aliases">aka editname, rename</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!webhook send &lt;identifier&gt; &lt;payload&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Send a message through a saved webhook.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!webhook stats</code><span class="badge prefix">prefix</span></div>
+<p>Developer-only: cross-guild webhook usage counts.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!webhook variables</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka vars</div>
+</div></div>
+</div>
+</details>
+<div class="docs-pager"><a href="utility.html" class="prev">
+<span class="docs-pager-label">&#8249; Previous</span>
+<span class="docs-pager-title">Information &amp; Utility</span>
+</a></div>
+</main>
+
+<aside class="docs-toc">
+<div class="toc-title">On this page</div>
+<ul>
+<li class="lvl3"><a href="#games">Games (slash commands)</a></li><li class="lvl3"><a href="#music">Music</a></li><li class="lvl3"><a href="#spotify">Spotify</a></li><li class="lvl3"><a href="#server-counters">Server counters</a></li><li class="lvl3"><a href="#webhooks">Webhooks</a></li><li class="lvl3"><a href="#bot-customization">Bot customization</a></li>
+</ul>
+</aside>
+</div>
+
+<footer>
+<div class="footer-brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="footer-links">
+<a href="../privacy.html">Privacy</a>
+<a href="../terms.html">Terms</a>
+<a href="https://discord.gg/AfCCQt2VHP">Support</a>
+</div>
+<p>© 2026 Pleed Development</p>
+</footer>
+
+<script>
+(function(){
+  var input = document.getElementById('docs-search-input');
+  if(input){
+    input.addEventListener('input', function(){
+      var q = input.value.trim().toLowerCase();
+      document.querySelectorAll('.docs-group .navlink').forEach(function(a){
+        var match = !q || a.dataset.label.indexOf(q) !== -1;
+        a.classList.toggle('hidden', !match);
+      });
+      document.querySelectorAll('.docs-group').forEach(function(g){
+        var anyVisible = g.querySelectorAll('.navlink:not(.hidden)').length > 0;
+        g.style.display = anyVisible ? '' : 'none';
+      });
+    });
+  }
+
+  var sidebar = document.getElementById('docs-sidebar');
+  var overlay = document.getElementById('docs-overlay');
+  var toggle = document.getElementById('docs-menu-toggle');
+  var closeBtn = document.getElementById('docs-drawer-close');
+
+  function openSidebar(){
+    sidebar.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSidebar(){
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if(toggle){
+    toggle.addEventListener('click', function(){
+      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    });
+  }
+  if(overlay){
+    overlay.addEventListener('click', closeSidebar);
+  }
+  if(closeBtn){
+    closeBtn.addEventListener('click', closeSidebar);
+  }
+  document.querySelectorAll('.docs-group .navlink').forEach(function(a){
+    a.addEventListener('click', closeSidebar);
+  });
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 860) closeSidebar();
+  });
+})();
+
+function copyCodeBlock(btn){
+  var block = btn.closest('.code-block');
+  var code = block.querySelector('code');
+  var text = code.textContent;
+  navigator.clipboard.writeText(text).then(function(){
+    var label = btn.querySelector('span');
+    var original = label.textContent;
+    label.textContent = 'Copied!';
+    setTimeout(function(){ label.textContent = original; }, 1500);
+  });
+}
+</script>
+
+</body>
+</html>

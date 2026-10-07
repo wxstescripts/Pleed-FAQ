@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pleed Docs | Information &amp; Utility</title>
+<meta name="description" content="Lookups, snipe, highlights, image tools, server info.">
+<link rel="icon" href="../assets/favicon.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="docs.css">
+
+</head>
+<body>
+<div class="background-glow"></div>
+<nav>
+<div class="brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="nav-links">
+<a href="../index.html">Home</a>
+<a href="../commands.html">Commands</a>
+<a href="../servers.html">Servers</a>
+<a href="index.html">Docs</a>
+<a href="../status.html">Status</a>
+</div>
+<a class="nav-button" href="https://discord.com/oauth2/authorize?client_id=1484703029243416757">Invite</a>
+</nav>
+
+<div class="docs-shell">
+<div class="docs-menu-bar">
+<button class="docs-menu-btn" id="docs-menu-toggle" aria-label="Open docs menu">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+</button>
+<span class="docs-crumb-group">Miscellaneous</span>
+<span class="docs-crumb-sep">&#8250;</span>
+<span class="docs-crumb-page">Information &amp; Utility</span>
+</div>
+
+<div class="docs-overlay" id="docs-overlay"></div>
+
+<aside class="docs-sidebar" id="docs-sidebar">
+<div class="docs-drawer-head">
+<span>Documentation</span>
+<button class="docs-drawer-close" id="docs-drawer-close" aria-label="Close menu">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+</button>
+</div>
+<div class="docs-search">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+<input id="docs-search-input" type="text" placeholder="Search docs...">
+<kbd>/</kbd>
+</div>
+<div class="docs-group">
+<h4>Overview</h4>
+<a href="index.html" class="navlink" data-label="overview"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"></circle></svg><span>Overview</span></a><a href="getting-started.html" class="navlink" data-label="getting started"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="7,4 19,12 7,20" fill="currentColor" stroke="none"></polygon></svg><span>Getting Started</span></a>
+</div>
+<div class="docs-group">
+<h4>Moderation &amp; Security</h4>
+<a href="moderation.html" class="navlink" data-label="moderation"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 5-3.2 8.5-7 10-3.8-1.5-7-5-7-10V6l7-3z"></path></svg><span>Moderation</span></a><a href="security.html" class="navlink" data-label="security &amp; antinuke"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span>Security &amp; AntiNuke</span></a><a href="tickets.html" class="navlink" data-label="tickets"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M3 12h.01M21 12h.01" stroke-linecap="round"></path><line x1="8" y1="6" x2="8" y2="18" stroke-dasharray="2 2.4"></line></svg><span>Tickets</span></a>
+</div>
+<div class="docs-group">
+<h4>Economy</h4>
+<a href="economy.html" class="navlink" data-label="economy &amp; leveling"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"></line><path d="M17 6.2H9.7a3 3 0 0 0 0 6h4.6a3 3 0 0 1 0 6H6"></path></svg><span>Economy &amp; Leveling</span></a>
+</div>
+<div class="docs-group">
+<h4>Automation</h4>
+<a href="automation.html" class="navlink" data-label="automation"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"></path></svg><span>Automation</span></a>
+</div>
+<div class="docs-group">
+<h4>Server</h4>
+<a href="server-setup.html" class="navlink" data-label="server setup"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6.5a3.5 3.5 0 0 0-4.9 4.9L3 18l3 3 6.6-6.6a3.5 3.5 0 0 0 4.9-4.9l-2.3 2.3-2-2z"></path></svg><span>Server Setup</span></a><a href="voice.html" class="navlink" data-label="voice"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"></rect><path d="M5.5 10.5a6.5 6.5 0 0 0 13 0"></path><line x1="12" y1="17" x2="12" y2="21.5"></line></svg><span>Voice</span></a>
+</div>
+<div class="docs-group">
+<h4>Miscellaneous</h4>
+<a href="utility.html" class="navlink active" data-label="information &amp; utility"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><line x1="12" y1="10.5" x2="12" y2="16" stroke-linecap="round"></line><circle cx="12" cy="7.6" r="0.9" fill="currentColor" stroke="none"></circle></svg><span>Information &amp; Utility</span></a><a href="fun.html" class="navlink" data-label="fun &amp; miscellaneous"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M8 14.2s1.6 2 4 2 4-2 4-2" stroke-linecap="round"></path><circle cx="9" cy="9.3" r="0.9" fill="currentColor" stroke="none"></circle><circle cx="15" cy="9.3" r="0.9" fill="currentColor" stroke="none"></circle></svg><span>Fun &amp; Miscellaneous</span></a>
+</div>
+</aside>
+
+<main class="docs-main">
+
+<div class="docs-eyebrow">Information &amp; Utility</div>
+<h1>Information &amp; Utility</h1>
+<p class="docs-lede">Lookups, profile tools, snipe (recover deleted/edited messages), highlights,
+image utilities, and general server/member info — 102 commands for everyday use.</p>
+
+<h2 id="everyday-info-commands">Everyday info commands</h2>
+<div class="cmd-grid"><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!userinfo [member]</code></div><p>Full info about a member.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!serverinfo [guild_id]</code></div><p>Full info about a server.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!avatar [user]</code> / <code class="cmd-usage">!banner [user]</code></div><p>Grab a member's avatar or profile banner.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!afk [reason]</code></div><p>Set an AFK status shown when you're mentioned.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!ping</code></div><p>Check bot latency.</p></div></div>
+
+<h3 id="snipe">Snipe (recover deleted content)</h3>
+<p>Snipe lets you look back at deleted messages, edits, and ghost pings in a channel:</p>
+<ul>
+<li><code>!snipe [index]</code> &mdash; the last deleted message in this channel (or the Nth back).</li>
+<li><code>!editsnipe [index]</code> &mdash; the last edited message.</li>
+<li><code>!ghostsnipe [index]</code> &mdash; pings that were deleted quickly ("ghost pings").</li>
+<li><code>!guildsnipe [index]</code> &mdash; deleted messages anywhere in the server, not just the current channel.</li>
+<li><code>!usersnipe &lt;member&gt; [index]</code> &mdash; filter sniped messages down to one member.</li>
+<li><code>!bulksnipe [index]</code> &mdash; recover a bulk-delete event.</li>
+<li><code>!snipesearch &lt;query&gt;</code> &mdash; search sniped content by keyword.</li>
+<li>Paginated browsing panels: <code>!snipepanel</code>, <code>!editsnipepanel</code>, <code>!ghostpanel</code>, <code>!reactionhistorypanel</code>.</li>
+<li>Cleanup: <code>!clearsnipe</code>, <code>!cleardeletedsnipes</code>, <code>!cleareditsnipes</code>, <code>!clearghostsnipes</code>.</li>
+</ul>
+
+<h3 id="highlights">Highlights</h3>
+<p>Get notified (via DM) when a keyword you care about is mentioned, even if you weren't tagged:
+<code>!highlight add &lt;keyword&gt;</code>, view them with <code>!highlight list</code>, and use
+<code>!highlight ignore [target]</code> to mute notifications from a specific member, channel, or role.</p>
+
+<h3 id="social-lookups">Social &amp; game lookups</h3>
+<p>Pull public profile info from other platforms without leaving Discord: <code>!roblox &lt;username&gt;</code>
+(plus <code>fromdiscord</code>/<code>todiscord</code> account linking and <code>outfits</code>),
+<code>!minecraft &lt;username&gt;</code>, <code>!steam &lt;steam_id&gt;</code>,
+<code>!github &lt;username&gt;</code>, <code>!osu &lt;username&gt; [game]</code>,
+<code>!valorant &lt;user&gt;</code>, <code>!xbox &lt;gamertag&gt;</code>,
+<code>!snapchat &lt;username&gt;</code>, <code>!telegram &lt;username&gt;</code>, and
+<code>!cashapp &lt;username&gt;</code>.</p>
+
+<h3 id="image-tools">Image tools</h3>
+<p>Quick image manipulation straight in chat: <code>!invert [url]</code>, <code>!rotate &lt;degree&gt; [url]</code>,
+<code>!compress &lt;ratio&gt; [url]</code>, <code>!hex [target]</code> (grab a dominant color),
+and <code>!screenshot &lt;url&gt;</code> to capture a website.</p>
+
+<h3 id="emoji-stickers">Emoji &amp; stickers</h3>
+<p>Server emote/sticker management: <code>!emoji add &lt;emoji&gt; [name]</code>,
+<code>!emoji addmany &lt;emotes&gt;</code>, <code>!emoji rename</code>, <code>!emoji removeduplicates</code>,
+and the equivalent <code>!sticker add/remove/rename/cleanup</code> set for stickers.</p>
+<div class="toc-inline"><a href="#birthdays">Birthdays <span class="section-count">(10)</span></a>
+<a href="#emoji-stickers">Emoji & Stickers <span class="section-count">(15)</span></a>
+<a href="#general-info">General Info <span class="section-count">(29)</span></a>
+<a href="#highlights">Highlights <span class="section-count">(7)</span></a>
+<a href="#image-tools">Image Tools <span class="section-count">(5)</span></a>
+<a href="#profiles-lookups">Profiles / Lookups <span class="section-count">(17)</span></a>
+<a href="#snipe">Snipe <span class="section-count">(19)</span></a></div><details class="cmd-group" open>
+<summary><span class="cmd-group-title">Birthdays</span><span class="cmd-group-right"><span class="section-count">10 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="birthdays" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!birthday [member]</code><span class="badge prefix">prefix</span></div>
+<p>View your birthday or somebody elses.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!birthday celebrate &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Limit birthday celebration to members in certain roles.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!birthday channel [channel]</code><span class="badge prefix">prefix</span></div>
+<p>Set the birthday channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!birthday config</code><span class="badge prefix">prefix</span></div>
+<p>Set the birthday role.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!birthday list</code><span class="badge prefix">prefix</span></div>
+<p>View a list of every member's birthday.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!birthday lock</code><span class="badge prefix">prefix</span></div>
+<p>Lock the birthday system.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!birthday role &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the birthday role.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!birthday set &lt;date&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set your birthday.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!birthday unlock</code><span class="badge prefix">prefix</span></div>
+<p>Unlock the birthday system.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!celebrate list</code><span class="badge prefix">prefix</span></div>
+<p>List celebrated roles.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Emoji &amp; Stickers</span><span class="cmd-group-right"><span class="section-count">15 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="emoji-stickers" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!emoji [emoji]</code><span class="badge prefix">prefix</span></div>
+<p>Returns a large emoji or server emote</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!emoji add &lt;emoji&gt; [characters]</code><span class="badge prefix">prefix</span></div>
+<p>Downloads emote and adds to server</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!emoji addmany &lt;emotes&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Bulk add emotes to the current server</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!emoji information &lt;message_link&gt;</code><span class="badge prefix">prefix</span></div>
+<p>View the most recent emote used</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!emoji remove &lt;emoji&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Removes emote from server</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!emoji removeduplicates</code><span class="badge prefix">prefix</span></div>
+<p>Remove duplicates of emotes</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!emoji removemany &lt;emotes&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Bulk remove emotes from the current server</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!emoji rename &lt;emoji&gt; &lt;new_name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Renames emote to the new name provided</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!emoji stats</code><span class="badge prefix">prefix</span></div>
+<p>Show top ten most used emotes</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!sticker</code><span class="badge prefix">prefix</span></div>
+<p>Modfy or add stickers to your server!</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!sticker add &lt;url&gt; &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Downloads sticker and adds to server</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!sticker cleanup</code><span class="badge prefix">prefix</span></div>
+<p>Cleans server sticker names</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!sticker remove &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Removes sticker from server</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!sticker rename &lt;new_name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Rename the attached sticker to given new name</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!sticker tag</code><span class="badge prefix">prefix</span></div>
+<p>Add server vanity to stickers</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">General Info</span><span class="cmd-group-right"><span class="section-count">29 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="general-info" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!afk [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Set your AFK status.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!avatar [user]</code><span class="badge prefix">prefix</span></div>
+<p>Get avatar of a member or yourself.</p>
+<div class="cmd-aliases">aka av</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!banner [user]</code><span class="badge prefix">prefix</span></div>
+<p>Get the banner of a member or yourself.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!boosters</code><span class="badge prefix">prefix</span></div>
+<p>View all recent server boosters.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!boosters lost</code><span class="badge prefix">prefix</span></div>
+<p>View list of most recent lost boosters.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bots</code><span class="badge prefix">prefix</span></div>
+<p>View all bots in the server.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!channelinfo [channel]</code><span class="badge prefix">prefix</span></div>
+<p>View information about a channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!donate</code><span class="badge prefix">prefix</span></div>
+<p>Donate to the bot's hosting expenses.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!emotes</code><span class="badge prefix">prefix</span></div>
+<p>View all emotes in the server.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!firstmessage</code><span class="badge prefix">prefix</span></div>
+<p>Jump to the first message in the current channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!guildbanner &lt;guild_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Returns banner icon.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!guildicon &lt;guild_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Returns guild icon.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!hide [channel]</code><span class="badge prefix">prefix</span></div>
+<p>Hide a channel from @everyone.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!inviteinfo &lt;code&gt;</code><span class="badge prefix">prefix</span></div>
+<p>View basic invite code information.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!membercount</code><span class="badge prefix">prefix</span></div>
+<p>View server member count.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ping</code><span class="badge prefix">prefix</span></div>
+<p>Check the bot latency.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!seen &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Seen when a member was last seen in the server.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!serveravatar [user]</code><span class="badge prefix">prefix</span></div>
+<p>Get the server avatar of a member or yourself.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!serverbanner [user]</code><span class="badge prefix">prefix</span></div>
+<p>Get the server banner of a member or yourself.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!servericon</code><span class="badge prefix">prefix</span></div>
+<p>Show the server icon.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!serverinfo [guild_id]</code><span class="badge prefix">prefix</span></div>
+<p>View information about a server.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!splash &lt;guild_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Returns splash background.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!status</code><span class="badge prefix">prefix</span></div>
+<p>Get a link to the status page.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!timezone [member]</code><span class="badge prefix">prefix</span></div>
+<p>View your current time or somebody elses.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!timezone list</code><span class="badge prefix">prefix</span></div>
+<p>View a list of every member's timezone.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!timezone set &lt;location&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set your timezone.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!unhide [channel]</code><span class="badge prefix">prefix</span></div>
+<p>Unhide a channel for @everyone.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!userinfo [member]</code><span class="badge prefix">prefix</span></div>
+<p>View information about a member or yourself.</p>
+<div class="cmd-aliases">aka ui</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!weather &lt;city&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Gets simple weather from OpenWeatherMap.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Highlights</span><span class="cmd-group-right"><span class="section-count">7 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="highlights" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!highlight</code><span class="badge prefix">prefix</span></div>
+<p>Set notifications for when a keyword is said.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!highlight add &lt;keyword&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Add a highlighted keyword.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!highlight ignore [target]</code><span class="badge prefix">prefix</span></div>
+<p>Ignore notifications from members or a channel or a role.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!highlight list</code><span class="badge prefix">prefix</span></div>
+<p>List all keywords set in a server.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!highlight remove &lt;keyword&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove a highlighted keyword.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!highlight reset</code><span class="badge prefix">prefix</span></div>
+<p>Reset your highlighted keywords in the current server.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ignore list</code><span class="badge prefix">prefix</span></div>
+<p>List all ignored members, channel &amp; roles.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Image Tools</span><span class="cmd-group-right"><span class="section-count">5 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="image-tools" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!compress &lt;ratio&gt; [url]</code><span class="badge prefix">prefix</span></div>
+<p>Compress image to lower quality.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!hex [target]</code><span class="badge prefix">prefix</span></div>
+<p>Grab the most dominant color from an image.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!invert [url]</code><span class="badge prefix">prefix</span></div>
+<p>Invert an image's colors.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!rotate &lt;degree&gt; [url]</code><span class="badge prefix">prefix</span></div>
+<p>Rotate an image by a provided degree.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!screenshot &lt;url&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Get an image of a website.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Profiles / Lookups</span><span class="cmd-group-right"><span class="section-count">17 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="profiles-lookups" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!cashapp &lt;username&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Retrieve simple CashApp profile information.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!define &lt;word&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Get definition of a word.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!github &lt;username&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Gets profile information on the given Github user.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!minecraft &lt;username&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Gets minecraft profile information.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!osu &lt;username&gt; [game]</code><span class="badge prefix">prefix</span></div>
+<p>Retrieve simple OSU! profile information.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!roblox &lt;username&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Gets profile information on the given Roblox user.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!roblox fromdiscord &lt;user_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Get Roblox account from Discord account.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!roblox outfits &lt;username&gt;</code><span class="badge prefix">prefix</span></div>
+<p>View all outfits for a user.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!roblox template &lt;asset_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Download asset for an item.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!roblox todiscord &lt;username&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Get Discord account from Roblox account.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!snapchat &lt;username&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Get bitmoji and QR scan code for user.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!snapchatstory &lt;username&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Gets all current stories for the given Snapchat user.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!steam &lt;steam_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Get information about a steam profile.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!telegram &lt;username&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Gets profile information on the given Telegram user or group.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!urbandictionary &lt;word&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Gets the definition of a word/slang from Urban Dictionary.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!valorant &lt;user&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Get valorant player information.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!xbox &lt;gamertag&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Gets profile information on the given Xbox gamertag.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Snipe</span><span class="cmd-group-right"><span class="section-count">19 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="snipe" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bulksnipe [index]</code><span class="badge prefix">prefix</span></div>
+<p>Snipe a bulk delete event in this channel.</p>
+<div class="cmd-aliases">aka bs</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!cleardeletedsnipes</code><span class="badge prefix">prefix</span></div>
+<p>Clear only deleted-message snipes in this channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!cleareditsnipes</code><span class="badge prefix">prefix</span></div>
+<p>Clear only edit snipes in this channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!clearghostsnipes</code><span class="badge prefix">prefix</span></div>
+<p>Clear only ghost ping snipes in this channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!clearsnipe</code><span class="badge prefix">prefix</span></div>
+<p>Clear all snipes in this channel.</p>
+<div class="cmd-aliases">aka cs</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!editsnipe [index]</code><span class="badge prefix">prefix</span></div>
+<p>Snipe an edited message.</p>
+<div class="cmd-aliases">aka es</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!editsnipepanel</code><span class="badge prefix">prefix</span></div>
+<p>Open a paginated edit-snipe panel.</p>
+<div class="cmd-aliases">aka esp</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ghostpanel</code><span class="badge prefix">prefix</span></div>
+<p>Open a paginated ghost ping panel.</p>
+<div class="cmd-aliases">aka gsp</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ghostsnipe [index]</code><span class="badge prefix">prefix</span></div>
+<p>Snipe ghost pings in this channel.</p>
+<div class="cmd-aliases">aka gs</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!guildsnipe [index]</code><span class="badge prefix">prefix</span></div>
+<p>Snipe deleted messages anywhere in the server.</p>
+<div class="cmd-aliases">aka gsn</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!reactionhistory [index]</code><span class="badge prefix">prefix</span></div>
+<p>View reaction history in this channel.</p>
+<div class="cmd-aliases">aka rh</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!reactionhistorypanel</code><span class="badge prefix">prefix</span></div>
+<p>Open a paginated reaction history panel.</p>
+<div class="cmd-aliases">aka rhp</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!reactionsnipe [index]</code><span class="badge prefix">prefix</span></div>
+<p>Snipe a removed reaction.</p>
+<div class="cmd-aliases">aka rs</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!snipe [index]</code><span class="badge prefix">prefix</span></div>
+<p>Snipe deleted messages in the current channel.</p>
+<div class="cmd-aliases">aka s</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!snipelist</code><span class="badge prefix">prefix</span></div>
+<p>List recent deleted messages in this channel.</p>
+<div class="cmd-aliases">aka sl</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!snipepanel</code><span class="badge prefix">prefix</span></div>
+<p>Open a paginated deleted-message snipe panel.</p>
+<div class="cmd-aliases">aka sp</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!snipesearch &lt;query&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Search deleted messages in this channel.</p>
+<div class="cmd-aliases">aka ss</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!snipestats</code><span class="badge prefix">prefix</span></div>
+<p>Show snipe stats for this channel.</p>
+<div class="cmd-aliases">aka sstats</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!usersnipe &lt;member&gt; [index]</code><span class="badge prefix">prefix</span></div>
+<p>Snipe deleted messages from a specific member in this channel.</p>
+<div class="cmd-aliases">aka us</div>
+</div></div>
+</div>
+</details>
+<div class="docs-pager"><a href="voice.html" class="prev">
+<span class="docs-pager-label">&#8249; Previous</span>
+<span class="docs-pager-title">Voice</span>
+</a><a href="fun.html" class="next">
+<span class="docs-pager-label">Next &#8250;</span>
+<span class="docs-pager-title">Fun &amp; Miscellaneous</span>
+</a></div>
+</main>
+
+<aside class="docs-toc">
+<div class="toc-title">On this page</div>
+<ul>
+<li class="lvl2"><a href="#everyday-info-commands">Everyday info commands</a></li><li class="lvl3"><a href="#snipe">Snipe (recover deleted content)</a></li><li class="lvl3"><a href="#highlights">Highlights</a></li><li class="lvl3"><a href="#social-lookups">Social &amp;amp; game lookups</a></li><li class="lvl3"><a href="#image-tools">Image tools</a></li><li class="lvl3"><a href="#emoji-stickers">Emoji &amp;amp; stickers</a></li>
+</ul>
+</aside>
+</div>
+
+<footer>
+<div class="footer-brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="footer-links">
+<a href="../privacy.html">Privacy</a>
+<a href="../terms.html">Terms</a>
+<a href="https://discord.gg/AfCCQt2VHP">Support</a>
+</div>
+<p>© 2026 Pleed Development</p>
+</footer>
+
+<script>
+(function(){
+  var input = document.getElementById('docs-search-input');
+  if(input){
+    input.addEventListener('input', function(){
+      var q = input.value.trim().toLowerCase();
+      document.querySelectorAll('.docs-group .navlink').forEach(function(a){
+        var match = !q || a.dataset.label.indexOf(q) !== -1;
+        a.classList.toggle('hidden', !match);
+      });
+      document.querySelectorAll('.docs-group').forEach(function(g){
+        var anyVisible = g.querySelectorAll('.navlink:not(.hidden)').length > 0;
+        g.style.display = anyVisible ? '' : 'none';
+      });
+    });
+  }
+
+  var sidebar = document.getElementById('docs-sidebar');
+  var overlay = document.getElementById('docs-overlay');
+  var toggle = document.getElementById('docs-menu-toggle');
+  var closeBtn = document.getElementById('docs-drawer-close');
+
+  function openSidebar(){
+    sidebar.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSidebar(){
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if(toggle){
+    toggle.addEventListener('click', function(){
+      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    });
+  }
+  if(overlay){
+    overlay.addEventListener('click', closeSidebar);
+  }
+  if(closeBtn){
+    closeBtn.addEventListener('click', closeSidebar);
+  }
+  document.querySelectorAll('.docs-group .navlink').forEach(function(a){
+    a.addEventListener('click', closeSidebar);
+  });
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 860) closeSidebar();
+  });
+})();
+
+function copyCodeBlock(btn){
+  var block = btn.closest('.code-block');
+  var code = block.querySelector('code');
+  var text = code.textContent;
+  navigator.clipboard.writeText(text).then(function(){
+    var label = btn.querySelector('span');
+    var original = label.textContent;
+    label.textContent = 'Copied!';
+    setTimeout(function(){ label.textContent = original; }, 1500);
+  });
+}
+</script>
+
+</body>
+</html>

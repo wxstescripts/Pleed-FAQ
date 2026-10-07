@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pleed Docs | Moderation</title>
+<meta name="description" content="Kicks, bans, jail, warnings, lockdowns, logging, and role tools.">
+<link rel="icon" href="../assets/favicon.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="docs.css">
+
+</head>
+<body>
+<div class="background-glow"></div>
+<nav>
+<div class="brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="nav-links">
+<a href="../index.html">Home</a>
+<a href="../commands.html">Commands</a>
+<a href="../servers.html">Servers</a>
+<a href="index.html">Docs</a>
+<a href="../status.html">Status</a>
+</div>
+<a class="nav-button" href="https://discord.com/oauth2/authorize?client_id=1484703029243416757">Invite</a>
+</nav>
+
+<div class="docs-shell">
+<div class="docs-menu-bar">
+<button class="docs-menu-btn" id="docs-menu-toggle" aria-label="Open docs menu">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+</button>
+<span class="docs-crumb-group">Moderation &amp; Security</span>
+<span class="docs-crumb-sep">&#8250;</span>
+<span class="docs-crumb-page">Moderation</span>
+</div>
+
+<div class="docs-overlay" id="docs-overlay"></div>
+
+<aside class="docs-sidebar" id="docs-sidebar">
+<div class="docs-drawer-head">
+<span>Documentation</span>
+<button class="docs-drawer-close" id="docs-drawer-close" aria-label="Close menu">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+</button>
+</div>
+<div class="docs-search">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+<input id="docs-search-input" type="text" placeholder="Search docs...">
+<kbd>/</kbd>
+</div>
+<div class="docs-group">
+<h4>Overview</h4>
+<a href="index.html" class="navlink" data-label="overview"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"></circle></svg><span>Overview</span></a><a href="getting-started.html" class="navlink" data-label="getting started"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="7,4 19,12 7,20" fill="currentColor" stroke="none"></polygon></svg><span>Getting Started</span></a>
+</div>
+<div class="docs-group">
+<h4>Moderation &amp; Security</h4>
+<a href="moderation.html" class="navlink active" data-label="moderation"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 5-3.2 8.5-7 10-3.8-1.5-7-5-7-10V6l7-3z"></path></svg><span>Moderation</span></a><a href="security.html" class="navlink" data-label="security &amp; antinuke"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span>Security &amp; AntiNuke</span></a><a href="tickets.html" class="navlink" data-label="tickets"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M3 12h.01M21 12h.01" stroke-linecap="round"></path><line x1="8" y1="6" x2="8" y2="18" stroke-dasharray="2 2.4"></line></svg><span>Tickets</span></a>
+</div>
+<div class="docs-group">
+<h4>Economy</h4>
+<a href="economy.html" class="navlink" data-label="economy &amp; leveling"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"></line><path d="M17 6.2H9.7a3 3 0 0 0 0 6h4.6a3 3 0 0 1 0 6H6"></path></svg><span>Economy &amp; Leveling</span></a>
+</div>
+<div class="docs-group">
+<h4>Automation</h4>
+<a href="automation.html" class="navlink" data-label="automation"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"></path></svg><span>Automation</span></a>
+</div>
+<div class="docs-group">
+<h4>Server</h4>
+<a href="server-setup.html" class="navlink" data-label="server setup"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6.5a3.5 3.5 0 0 0-4.9 4.9L3 18l3 3 6.6-6.6a3.5 3.5 0 0 0 4.9-4.9l-2.3 2.3-2-2z"></path></svg><span>Server Setup</span></a><a href="voice.html" class="navlink" data-label="voice"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"></rect><path d="M5.5 10.5a6.5 6.5 0 0 0 13 0"></path><line x1="12" y1="17" x2="12" y2="21.5"></line></svg><span>Voice</span></a>
+</div>
+<div class="docs-group">
+<h4>Miscellaneous</h4>
+<a href="utility.html" class="navlink" data-label="information &amp; utility"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><line x1="12" y1="10.5" x2="12" y2="16" stroke-linecap="round"></line><circle cx="12" cy="7.6" r="0.9" fill="currentColor" stroke="none"></circle></svg><span>Information &amp; Utility</span></a><a href="fun.html" class="navlink" data-label="fun &amp; miscellaneous"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M8 14.2s1.6 2 4 2 4-2 4-2" stroke-linecap="round"></path><circle cx="9" cy="9.3" r="0.9" fill="currentColor" stroke="none"></circle><circle cx="15" cy="9.3" r="0.9" fill="currentColor" stroke="none"></circle></svg><span>Fun &amp; Miscellaneous</span></a>
+</div>
+</aside>
+
+<main class="docs-main">
+
+<div class="docs-eyebrow">Moderation</div>
+<h1>Moderation</h1>
+<p class="docs-lede">Pleed's moderation suite covers the basics (kick, ban, timeout, warn) plus a
+full jail system, channel access control, alias commands, AutoMod, logging, and role tools —
+134 commands in total.</p>
+
+<h2 id="the-essentials">The essentials</h2>
+<p>Standard actions work the way you'd expect from any moderation bot:</p>
+<div class="cmd-grid"><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!warn &lt;member&gt; [reason]</code></div><p>Warn a member.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!timeout &lt;member&gt; [duration] [reason]</code></div><p>Timeout a member — durations like <code>10m</code>, <code>2h</code>, <code>3d</code>, <code>1w</code>.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!kick &lt;member&gt; [reason]</code></div><p>Kick a member from the server.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!ban &lt;member&gt; [reason]</code></div><p>Ban a member from the server.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!softban &lt;member&gt; [reason]</code></div><p>Ban, delete their last day of messages, then immediately unban.</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!hardban &lt;user_id&gt; [reason]</code></div><p>Ban by ID and store the user in a persistent hardban registry (they stay banned even if unbanned manually).</p></div><div class="cmd-card"><div class="cmd-card-top"><code class="cmd-usage">!purge &lt;amount&gt;</code></div><p>Bulk-delete messages in the current channel.</p></div></div>
+
+<h2 id="server-lockdown">Server lockdown</h2>
+<p>For active raids, <code>!lockdown [reason]</code> locks every channel for @everyone in one shot,
+with an interactive Confirm/Cancel step on the slash version so you don't lock down by accident.
+<code>!unlockdown [reason]</code> reverses it. For a single channel, use <code>!lock [channel] [reason]</code>
+and <code>!unlock [channel] [reason]</code> instead.</p>
+
+<h3 id="jail-system-guide">Jail System</h3>
+<p>Jailing is a softer alternative to banning: the member is stripped of their roles and given a
+restricted "jailed" role instead, so they stay in the server but can't interact until released.</p>
+<ul>
+<li><code>!jail &lt;member&gt; [duration] [reason]</code> &mdash; jail a member, optionally for a set duration (e.g. <code>!jail @Bob 1h spamming</code>). Shows a Confirm/Cancel prompt by default.</li>
+<li><code>!sjail &lt;member&gt; [duration] [reason]</code> &mdash; same as <code>!jail</code> but skips the confirmation step.</li>
+<li><code>!unjail &lt;member&gt; [reason]</code> &mdash; release a member from jail immediately.</li>
+<li><code>!jailtime &lt;member&gt; &lt;adjustment&gt;</code> &mdash; extend or shorten an active jail sentence.</li>
+<li><code>!jailpanel [member]</code> &mdash; open an interactive management panel for jail actions.</li>
+<li><code>!jailconfirm on|off</code> &mdash; toggle whether <code>!jail</code> requires the Confirm/Cancel step.</li>
+<li><code>!jailtemplate add &lt;name&gt; &lt;duration&gt; [reason]</code> &mdash; save a reusable jail template (e.g. a "spam" template with a preset duration and reason) so repeat offenses are one command.</li>
+</ul>
+<div class="toc-inline"><a href="#channel-access-control">Channel Access Control <span class="section-count">(17)</span></a>
+<a href="#command-aliases">Command Aliases <span class="section-count">(15)</span></a>
+<a href="#automod">AutoMod <span class="section-count">(18)</span></a>
+<a href="#bump-reminders">Bump Reminders <span class="section-count">(9)</span></a>
+<a href="#jail-system">Jail System <span class="section-count">(11)</span></a>
+<a href="#server-logging">Server Logging <span class="section-count">(22)</span></a>
+<a href="#core-moderation">Core Moderation <span class="section-count">(25)</span></a>
+<a href="#role-management">Role Management <span class="section-count">(17)</span></a></div><details class="cmd-group" open>
+<summary><span class="cmd-group-title">Channel Access Control</span><span class="cmd-group-right"><span class="section-count">17 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="channel-access-control" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access clearlog</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access commandrules</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access panel</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access reset &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access rules [channel]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access setlog &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access setup</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!access sync [channel]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!accessclearlog</code><span class="badge prefix">prefix</span></div>
+<p>Disable access logs.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!accesspanel</code><span class="badge prefix">prefix</span></div>
+<p>Open a private channel access manager panel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!accessreset &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Reset all saved access rules for a channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!accessrules [channel]</code><span class="badge prefix">prefix</span></div>
+<p>Show saved visibility rules for a channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!accesssetlog &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the logs channel for access changes.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!accesssetup</code><span class="badge prefix">prefix</span></div>
+<p>Send the cleaner setup panel for access controls.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!accesssync [channel]</code><span class="badge prefix">prefix</span></div>
+<p>Re-apply all stored visibility rules.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!commandrules</code><span class="badge prefix">prefix</span></div>
+<p>Show bot command whitelist/blacklist channel rules.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Command Aliases</span><span class="cmd-group-right"><span class="section-count">15 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="command-aliases" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!add &lt;name&gt; &lt;command&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Create a command alias.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!adminonly &lt;name&gt; &lt;enabled&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Require Manage Server to use an alias.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!alias</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!alias add &lt;name&gt; &lt;command&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!alias adminonly &lt;name&gt; &lt;value&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!alias cooldown &lt;name&gt; &lt;seconds&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!alias list</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!alias remove &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka delete</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!alias response &lt;name&gt; &lt;response&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!alias view &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!cooldown &lt;name&gt; &lt;seconds&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set a per-user cooldown on an alias.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!list</code><span class="badge prefix">prefix</span></div>
+<p>List all aliases.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!remove &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove an alias.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!response &lt;name&gt; &lt;response&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Create a text or embed response alias.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!view &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>View an alias.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">AutoMod</span><span class="cmd-group-right"><span class="section-count">18 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="automod" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod</code><span class="badge prefix">prefix</span></div>
+<p>Configure automod settings.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod ignore</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod logs &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set automod log channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod punishment &lt;first&gt; [second]</code><span class="badge prefix">prefix</span></div>
+<p>Set the default punishment, or `automod punishment &lt;category&gt; &lt;mode&gt;` to override just one category (links, invites, spam, caps, mentions, repeats, badwords). Use `default` as the mode to clear a category override.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod stats</code><span class="badge prefix">prefix</span></div>
+<p>Show how often each automod category has triggered.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod strikes [member]</code><span class="badge prefix">prefix</span></div>
+<p>View a member's escalation strikes.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod test &lt;content&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Check what a message would trigger without actually punishing anyone.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod thresholds [setting] [value]</code><span class="badge prefix">prefix</span></div>
+<p>View or set automod trigger thresholds.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod toggle &lt;feature&gt; &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Toggle an automod setting on or off.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!automod words</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ignore channel &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Ignore a channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ignore role &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Ignore a role.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ignore unchannel &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Stop ignoring a channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ignore unrole &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Stop ignoring a role.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!stats reset</code><span class="badge prefix">prefix</span></div>
+<p>Clear recorded automod stats for this server.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!strikes reset &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Clear a member's strikes.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!words add &lt;word&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Add a blocked word.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!words remove &lt;word&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove a blocked word.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Bump Reminders</span><span class="cmd-group-right"><span class="section-count">9 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="bump-reminders" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder</code><span class="badge prefix">prefix</span></div>
+<p>View bump reminder help.</p>
+<div class="cmd-aliases">aka br</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder autoclean &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder autolock &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder channel &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder config</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka settings</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder message &lt;message&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder reset</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder test</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bumpreminder thankyou &lt;message&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka thanks, ty</div>
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Jail System</span><span class="cmd-group-right"><span class="section-count">11 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="jail-system" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jail &lt;member&gt; [duration_or_reason] [reason]</code><span class="badge prefix">prefix</span></div>
+<p>,jail @user [duration] [reason] — e.g. ",jail @Bob 1h spamming" Checks permissions and hierarchy first. If jail-confirm is off for this server, jails immediately via `apply_jail`. If it's on, shows a `JailConfirmView` and waits for a qualified staff member to press Confirm before actually jailing anyone.</p>
+<div class="cmd-aliases">aka prison</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jailconfirm</code><span class="badge prefix">prefix</span></div>
+<p>View or toggle whether `,jail` requires Confirm/Cancel buttons.</p>
+<div class="cmd-aliases">aka confirmjail</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jailconfirm off</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka disable, disabled, false</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jailconfirm on</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+<div class="cmd-aliases">aka enable, enabled, true</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jailpanel [member]</code><span class="badge prefix">prefix</span></div>
+<p>,jailpanel [@user] — opens an interactive jail management panel. Shows server-wide jail/mute counts and config, plus `member`'s status if given. From there you can pick any member from the dropdown, browse the full jailed-members list, pull up a member's history, jail or unjail them — all with buttons, no more typing commands. See `JailPanelView` above for the UI itself.</p>
+<div class="cmd-aliases">aka jinfo, jailinfo</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jailtemplate</code><span class="badge prefix">prefix</span></div>
+<p>,jailtemplate — list saved quick-jail templates (or use ,jailtemplate add/remove). Templates are duration+reason presets (e.g. "spam" -&gt; 1h, "Spamming in channels") that show up as one-click options in the ,jailpanel "Quick Jail" dropdown, so common jail reasons don't need to be typed out every time.</p>
+<div class="cmd-aliases">aka jtemplate, jailtemplates</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jailtemplate add &lt;name&gt; &lt;duration&gt; [reason]</code><span class="badge prefix">prefix</span></div>
+<p>,jailtemplate add &lt;name&gt; &lt;duration&gt; &lt;reason&gt; — duration accepts `1h`/`3d`/etc, or `perm` for none.</p>
+<div class="cmd-aliases">aka set</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jailtemplate remove &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>,jailtemplate remove &lt;name&gt;</p>
+<div class="cmd-aliases">aka delete</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!jailtime &lt;member&gt; &lt;adjustment&gt;</code><span class="badge prefix">prefix</span></div>
+<p>,jailtime @user &lt;adjustment&gt; — change an active jail's expiry. `adjustment` can be `+1h` / `-30m` (relative to current expiry, or to now if currently permanent), `2h` / `3d` (reset to that duration from now), or `perm` / `permanent` / `none` (remove the expiry). See `apply_jail_time_adjust` for the exact rules.</p>
+<div class="cmd-aliases">aka adjustjail</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!sjail &lt;member&gt; [duration_or_reason] [reason]</code><span class="badge prefix">prefix</span></div>
+<p>,sjail @user [duration] [reason] — same as ,jail but skips the confirm buttons and the "you were jailed" DM. Permission and hierarchy checks still happen inside `apply_jail` itself.</p>
+<div class="cmd-aliases">aka silentjail</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!unjail &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span></div>
+<p>,unjail @user [reason] — releases `member` immediately via `apply_unjail`.</p>
+<div class="cmd-aliases">aka release</div>
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Server Logging</span><span class="cmd-group-right"><span class="section-count">22 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="server-logging" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!channel add &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!channel remove &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ignore channel</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ignore list</code><span class="badge prefix">prefix</span></div>
+<p>List all ignored channels, roles, and users.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ignore role</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ignore user</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs</code><span class="badge prefix">prefix</span></div>
+<p>Manage advanced logging settings.</p>
+<div class="cmd-aliases">aka log</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs all &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Turn every log type on or off.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs ignore</code><span class="badge prefix">prefix</span></div>
+<p>Manage logging ignores.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs modules</code><span class="badge prefix">prefix</span></div>
+<p>Show module states.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs note [text]</code><span class="badge prefix">prefix</span></div>
+<p>Set the textbox note shown on the control panel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs panel</code><span class="badge prefix">prefix</span></div>
+<p>Open the interactive logging panel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs route &lt;log_type&gt; &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Route one log type to a different channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs style &lt;setting_name&gt; &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Toggle panel style options: compact_mode, include_thumbnails, show_footer</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs test</code><span class="badge prefix">prefix</span></div>
+<p>Send a test log embed.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs toggle &lt;log_type&gt; &lt;state&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Toggle a specific log type.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!logs unroute &lt;log_type&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Clear a custom route for one log type.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!role add &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!role remove &lt;role&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!setlogs &lt;channel&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Set the main logging channel.</p>
+<div class="cmd-aliases">aka setlog, setlogchannel</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!user add &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!user remove &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Core Moderation</span><span class="cmd-group-right"><span class="section-count">25 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="core-moderation" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!ban &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Ban a member from the server.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bind</code><span class="badge prefix">prefix</span></div>
+<p>Bind moderation security settings.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!bind staff [role]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!clearwarns &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Clear all warnings for a member.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!hardban &lt;user_id&gt; [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Hardban a user by ID and store them in the registry.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!invoke</code><span class="badge prefix">prefix</span></div>
+<p>Customize moderation invoke responses and DMs.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!invoke ban &lt;message_type&gt; &lt;message&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!invoke jail &lt;message_type&gt; &lt;message&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!invoke kick &lt;message_type&gt; &lt;message&gt;</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!kick &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Kick a member from the server.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!lock [channel] [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Lock a channel for @everyone.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!lockdown [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Lock down the entire server immediately. Prefix version is not private.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!mute &lt;member&gt; [duration_or_reason] [reason]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!purge &lt;amount&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Delete messages in the current channel.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!removewarn &lt;warn_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove a specific warning by ID.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!softban &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Softban a member (ban, delete 1 day messages, then unban).</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!staff list</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!timeout &lt;member&gt; [duration] [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Timeout a member. Examples: 10m, 2h, 3d, 1w, or 60</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!unban &lt;user_id&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Unban a user by ID.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!unlock [channel] [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Unlock a channel for @everyone.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!unlockdown [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Remove a server lockdown immediately. Prefix version is not private.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!unmute &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span></div>
+<p>No description available.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!untimeout &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove timeout from a member.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!warn &lt;member&gt; [reason]</code><span class="badge prefix">prefix</span></div>
+<p>Warn a member.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!warnings &lt;member&gt;</code><span class="badge prefix">prefix</span></div>
+<p>View a member's warnings.</p>
+
+</div></div>
+</div>
+</details>
+<details class="cmd-group">
+<summary><span class="cmd-group-title">Role Management</span><span class="cmd-group-right"><span class="section-count">17 commands</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span></summary>
+<div id="role-management" class="cmd-grid-wrap">
+<div class="cmd-grid"><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!color edit &lt;args&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Edit a role color. Use default, one hex, or two hex values separated by a comma.</p>
+<div class="cmd-aliases">aka set</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!dragrole &lt;args&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Create a role and place it directly below another role.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!fetch</code><span class="badge prefix">prefix</span></div>
+<p>Fetch things from the server.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!fetch icon &lt;role_query&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Send a role's icon as a PNG file.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!giverole &lt;member&gt; &lt;role_query&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Add a role to a member.</p>
+<div class="cmd-aliases">aka addrole</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!icon set [args]</code><span class="badge prefix">prefix</span></div>
+<p>Set a role's icon from an attached image, replied image, or emoji.</p>
+<div class="cmd-aliases">aka update</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!newrole &lt;name&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Create a new role.</p>
+<div class="cmd-aliases">aka createrole</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!r [role_query]</code><span class="badge prefix">prefix</span></div>
+<p>Open the premium roles panel, view role info, or toggle a role on a member.</p>
+<div class="cmd-aliases">aka role, roles</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!r color [role_query]</code><span class="badge prefix">prefix</span></div>
+<p>View or edit a role's color.</p>
+<div class="cmd-aliases">aka colour</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!r icon [role_query]</code><span class="badge prefix">prefix</span></div>
+<p>View a role's icon, or use subcommands to manage it.</p>
+<div class="cmd-aliases">aka displayicon</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!r list</code><span class="badge prefix">prefix</span></div>
+<p>Show every role in the server in a premium paged embed.</p>
+<div class="cmd-aliases">aka all, directory</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!r members &lt;role_query&gt;</code><span class="badge prefix">prefix</span></div>
+<p>View members in a role.</p>
+<div class="cmd-aliases">aka in, memberlist</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!r perms &lt;role_query&gt;</code><span class="badge prefix">prefix</span></div>
+<p>View a role's enabled permissions.</p>
+<div class="cmd-aliases">aka permissions</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!roledel &lt;role_query&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Delete a role.</p>
+<div class="cmd-aliases">aka deleterole</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!roleeditname &lt;args&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Rename a role.</p>
+<div class="cmd-aliases">aka renamerole</div>
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!roleposition &lt;args&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Move a role to a specific position.</p>
+
+</div><div class="cmd-card">
+<div class="cmd-card-top"><code class="cmd-usage">!roleremove &lt;member&gt; &lt;role_query&gt;</code><span class="badge prefix">prefix</span></div>
+<p>Remove a role from a member.</p>
+<div class="cmd-aliases">aka removerole, takerole</div>
+</div></div>
+</div>
+</details>
+<div class="docs-pager"><a href="getting-started.html" class="prev">
+<span class="docs-pager-label">&#8249; Previous</span>
+<span class="docs-pager-title">Getting Started</span>
+</a><a href="security.html" class="next">
+<span class="docs-pager-label">Next &#8250;</span>
+<span class="docs-pager-title">Security &amp; AntiNuke</span>
+</a></div>
+</main>
+
+<aside class="docs-toc">
+<div class="toc-title">On this page</div>
+<ul>
+<li class="lvl2"><a href="#the-essentials">The essentials</a></li><li class="lvl2"><a href="#server-lockdown">Server lockdown</a></li><li class="lvl3"><a href="#jail-system-guide">Jail System</a></li>
+</ul>
+</aside>
+</div>
+
+<footer>
+<div class="footer-brand">
+<img src="../assets/logo.png" alt="Pleed Logo">
+<span>Pleed</span>
+</div>
+<div class="footer-links">
+<a href="../privacy.html">Privacy</a>
+<a href="../terms.html">Terms</a>
+<a href="https://discord.gg/AfCCQt2VHP">Support</a>
+</div>
+<p>© 2026 Pleed Development</p>
+</footer>
+
+<script>
+(function(){
+  var input = document.getElementById('docs-search-input');
+  if(input){
+    input.addEventListener('input', function(){
+      var q = input.value.trim().toLowerCase();
+      document.querySelectorAll('.docs-group .navlink').forEach(function(a){
+        var match = !q || a.dataset.label.indexOf(q) !== -1;
+        a.classList.toggle('hidden', !match);
+      });
+      document.querySelectorAll('.docs-group').forEach(function(g){
+        var anyVisible = g.querySelectorAll('.navlink:not(.hidden)').length > 0;
+        g.style.display = anyVisible ? '' : 'none';
+      });
+    });
+  }
+
+  var sidebar = document.getElementById('docs-sidebar');
+  var overlay = document.getElementById('docs-overlay');
+  var toggle = document.getElementById('docs-menu-toggle');
+  var closeBtn = document.getElementById('docs-drawer-close');
+
+  function openSidebar(){
+    sidebar.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSidebar(){
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if(toggle){
+    toggle.addEventListener('click', function(){
+      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    });
+  }
+  if(overlay){
+    overlay.addEventListener('click', closeSidebar);
+  }
+  if(closeBtn){
+    closeBtn.addEventListener('click', closeSidebar);
+  }
+  document.querySelectorAll('.docs-group .navlink').forEach(function(a){
+    a.addEventListener('click', closeSidebar);
+  });
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 860) closeSidebar();
+  });
+})();
+
+function copyCodeBlock(btn){
+  var block = btn.closest('.code-block');
+  var code = block.querySelector('code');
+  var text = code.textContent;
+  navigator.clipboard.writeText(text).then(function(){
+    var label = btn.querySelector('span');
+    var original = label.textContent;
+    label.textContent = 'Copied!';
+    setTimeout(function(){ label.textContent = original; }, 1500);
+  });
+}
+</script>
+
+</body>
+</html>
