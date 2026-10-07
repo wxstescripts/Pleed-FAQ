@@ -27,7 +27,7 @@ import { IconTile } from "@/components/ui/icon-tile";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
 import { Logo, LogoMark } from "@/components/ui/logo";
 import { PageHeader } from "@/components/ui/page-header";
-import { Prose } from "@/components/ui/prose";
+import { Prose, ProseTable } from "@/components/ui/prose";
 import { Section } from "@/components/ui/section";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton, SkeletonText, LoadingRegion } from "@/components/ui/skeleton";
@@ -36,7 +36,7 @@ import { StatCard } from "@/components/ui/stat-card";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { TextLink } from "@/components/ui/text-link";
 import { Reveal, Stagger } from "@/components/motion/reveal";
-import { getCommandFacts, INVITE_URL, SITE_STATS, SUPPORT_URL } from "@/lib/site";
+import { DISCORD_GUIDELINES_URL, getCommandFacts, INVITE_URL, SITE_STATS, SUPPORT_URL } from "@/lib/site";
 
 import { DsBlock, DsNav, DsSection, Swatch } from "./_components/ds-layout";
 import {
@@ -68,10 +68,10 @@ const SECTIONS = [
   { id: "overlays", label: "Overlays & toasts" },
   { id: "feedback", label: "Feedback states" },
   { id: "data", label: "Data display" },
-  { id: "settings", label: "Settings & save bar" },
   { id: "code", label: "Code & commands" },
   { id: "prose", label: "Prose" },
   { id: "motion", label: "Motion" },
+  { id: "settings", label: "Settings & save bar" },
 ];
 
 const surfaces = [
@@ -121,10 +121,12 @@ const typeStyles = [
   ["type-lead", "Lead paragraph for intros and hero copy.", "17 → 20 px · Geist 400 · 1.6"],
   ["type-body", "Body text is set in Geist at 16 px with a 1.65 line-height for comfortable reading.", "16 px · 1.65"],
   ["type-small", "Small text for secondary UI copy and dense lists.", "14 px · 1.55"],
-  ["type-caption", "Caption — helper text, timestamps, metadata.", "13 px · 1.45"],
+  ["type-caption", "Caption — helper text, timestamps, tooltips.", "13 px · 1.45 · the smallest size for any sentence"],
   ["type-label", "Control label — DM members on join", "14 px · Geist 500 · 1.375 (FieldLabel, SettingRow, nav)"],
+  ["type-micro", "Badge · 3 new", "12 px · Geist 500 · badges, counters, small segments — never sentences"],
   ["type-eyebrow", "Eyebrow label", "12 px mono · uppercase · 0.08em"],
   ["type-code-sm", "!antinuke ban on --threshold 3", "13 px mono · code blocks, chips, mono cells"],
+  ["type-code-xs", "Ctrl  !help", "12 px mono · Kbd keys, small command chips"],
   ["type-metric", "403", "28 → 32 px · Mona Sans 620 · tabular (StatCard)"],
   ["type-metric-lg", "11 modules", "36 → 48 px · Mona Sans 640 · tabular (hero stats)"],
 ] as const;
@@ -220,7 +222,7 @@ export default async function DesignSystemPage() {
                   ["line-control-hover", "border-line-control-hover", "55% · control hover"],
                 ].map(([name, cls, note]) => (
                   <div key={name} className={`rounded-lg border bg-surface-1 p-4 ${cls}`}>
-                    <p className="font-mono text-xs text-fg">{name}</p>
+                    <p className="type-code-xs text-fg">{name}</p>
                     <p className="type-caption text-fg-tertiary">{note}</p>
                   </div>
                 ))}
@@ -236,7 +238,7 @@ export default async function DesignSystemPage() {
                   ] as const
                 ).map(([surface, name]) => (
                   <div key={surface} className={`flex flex-col gap-1 rounded-xl border border-line p-2 ${surface}`}>
-                    <p className="px-2 pt-1 font-mono text-xs text-fg-tertiary">{name}</p>
+                    <p className="px-2 pt-1 type-code-xs text-fg-tertiary">{name}</p>
                     {(
                       [
                         ["", "rest"],
@@ -254,12 +256,14 @@ export default async function DesignSystemPage() {
               </div>
               <div className="flex flex-wrap items-center gap-6 rounded-xl border border-line bg-surface-1 p-4">
                 <div className="flex items-center gap-3">
-                  <div className="h-1.5 w-32 rounded-full bg-track" />
-                  <p className="font-mono text-xs text-fg-tertiary">bg-track · slider rail 3.3:1</p>
+                  <div className="relative h-1.5 w-32 rounded-full bg-track">
+                    <div className="h-full w-1/2 rounded-full bg-brand-400" />
+                  </div>
+                  <p className="type-code-xs text-fg-tertiary">bg-track rail · brand-400 fill 3.3:1 vs rail</p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="size-5 rounded-full border-2 border-brand bg-thumb shadow-thumb" />
-                  <p className="font-mono text-xs text-fg-tertiary">bg-thumb · shadow-thumb</p>
+                  <div className="size-5 rounded-full border-2 border-brand-400 bg-thumb shadow-thumb" />
+                  <p className="type-code-xs text-fg-tertiary">bg-thumb · shadow-thumb (18.7:1)</p>
                 </div>
               </div>
             </DsBlock>
@@ -268,7 +272,7 @@ export default async function DesignSystemPage() {
                 {textTiers.map(([name, cls, ratio, use]) => (
                   <div key={name} className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 px-5 py-3.5">
                     <p className={`${cls} type-body font-medium`}>The quick brown fox — {use}</p>
-                    <p className="font-mono text-xs text-fg-tertiary">
+                    <p className="type-code-xs text-fg-tertiary">
                       {name} · {ratio}
                     </p>
                   </div>
@@ -280,7 +284,7 @@ export default async function DesignSystemPage() {
                 {brandScale.map((step) => (
                   <div key={step} className="flex flex-col gap-1.5">
                     <div className={`h-14 rounded-lg ${brandBg[step]} ${step === "600" ? "ring-2 ring-fg/60 ring-offset-2 ring-offset-canvas" : ""}`} />
-                    <p className="font-mono text-xs text-fg-tertiary">
+                    <p className="type-code-xs text-fg-tertiary">
                       {step}
                       {step === "600" ? " ★" : ""}
                     </p>
@@ -315,7 +319,7 @@ export default async function DesignSystemPage() {
             <div className="flex flex-col divide-y divide-line-subtle rounded-xl border border-line bg-surface-1">
               {typeStyles.map(([cls, sample, spec]) => (
                 <div key={cls} className="flex flex-col gap-2 px-5 py-5 md:px-6">
-                  <p className="font-mono text-xs text-brand-fg">
+                  <p className="type-code-xs text-brand-fg">
                     .{cls} <span className="text-fg-tertiary">— {spec}</span>
                   </p>
                   <p className={`${cls} ${cls === "type-eyebrow" ? "text-brand-fg" : "text-fg"}`}>{sample}</p>
@@ -362,10 +366,11 @@ export default async function DesignSystemPage() {
                   ["py-page", "24 → 40 px", "Dashboard page top/bottom"],
                   ["w-sidebar", "240 px", "Dashboard sidebar"],
                   ["w-sidebar-rail", "64 px", "Collapsed icon rail"],
+                  ["w-setting-control", "256 px", "Inline SettingRow text/ID/select (set by SettingRow)"],
                   ["gap-4 lg:gap-6", "16 → 24 px", "Card grids"],
                 ].map(([token, value, use]) => (
                   <div key={token} className="rounded-lg border border-line bg-surface-1 p-4">
-                    <p className="font-mono text-xs text-brand-fg">{token}</p>
+                    <p className="type-code-xs text-brand-fg">{token}</p>
                     <p className="mt-1 text-sm font-medium text-fg">{value}</p>
                     <p className="type-caption text-fg-tertiary">{use}</p>
                   </div>
@@ -377,7 +382,7 @@ export default async function DesignSystemPage() {
                 {radii.map(([name, cls, px]) => (
                   <div key={name} className="flex flex-col gap-2">
                     <div className={`h-16 border border-line-strong bg-surface-2 ${cls}`} />
-                    <p className="font-mono text-xs text-fg-tertiary">
+                    <p className="type-code-xs text-fg-tertiary">
                       {name} · {px}
                     </p>
                   </div>
@@ -388,7 +393,7 @@ export default async function DesignSystemPage() {
               <div className="grid grid-cols-2 gap-5 rounded-xl bg-canvas p-2 sm:grid-cols-3 xl:grid-cols-6">
                 {shadows.map(([cls, name]) => (
                   <div key={cls} className={`flex h-24 items-end rounded-xl border border-line bg-surface-2 p-3 ${cls}`}>
-                    <p className="font-mono text-xs text-fg-tertiary">{name}</p>
+                    <p className="type-code-xs text-fg-tertiary">{name}</p>
                   </div>
                 ))}
               </div>
@@ -430,7 +435,7 @@ export default async function DesignSystemPage() {
             <DsBlock title="Z-index & motion">
               <div className="grid gap-3 md:grid-cols-2">
                 <Card padding="sm">
-                  <ul className="grid grid-cols-2 gap-x-6 gap-y-1.5 font-mono text-xs">
+                  <ul className="grid grid-cols-2 gap-x-6 gap-y-1.5 type-code-xs">
                     {zScale.map(([cls, z]) => (
                       <li key={cls} className="flex justify-between text-fg-secondary">
                         <span>{cls}</span>
@@ -440,7 +445,7 @@ export default async function DesignSystemPage() {
                   </ul>
                 </Card>
                 <Card padding="sm">
-                  <ul className="flex flex-col gap-1.5 font-mono text-xs text-fg-secondary">
+                  <ul className="flex flex-col gap-1.5 type-code-xs text-fg-secondary">
                     <li>duration-150 · fast — hovers, toggles</li>
                     <li>duration-200 · base — controls, popovers</li>
                     <li>duration-300 · slow — sheets, accordions</li>
@@ -735,10 +740,6 @@ export default async function DesignSystemPage() {
             <ListDemos />
           </DsSection>
 
-          <DsSection id="settings" title="Settings & save bar" description="Change anything — the sticky save bar appears (Ctrl/⌘+S saves). The module switch disables its fieldset.">
-            <SettingsDemo />
-          </DsSection>
-
           <DsSection id="code" title="Code & commands">
             <CodeDemos />
           </DsSection>
@@ -751,6 +752,12 @@ export default async function DesignSystemPage() {
                   Pleed stores only what it needs to work: <strong>user IDs</strong> for settings, permissions and economy
                   balances, and <strong>server IDs</strong> for configuration such as anti-nuke rules and prefixes. See the{" "}
                   <a href="/terms">Terms of Service</a>.
+                </p>
+                <p>
+                  Using Pleed never replaces your obligations under Discord&apos;s own{" "}
+                  <TextLink href={DISCORD_GUIDELINES_URL}>Discord Community Guidelines and Terms of Service</TextLink>, which
+                  apply in every server it moderates. Questions? Ask in the{" "}
+                  <TextLink href={SUPPORT_URL}>support server</TextLink>.
                 </p>
                 <h3>Command input</h3>
                 <p>
@@ -775,6 +782,7 @@ export default async function DesignSystemPage() {
                 <blockquote>Role hierarchy matters: Pleed can only act on roles below its own.</blockquote>
                 <CodeBlock code="!antinuke ban on --threshold 3 --do ban" prompt="›" />
                 <hr />
+                {/* Bare <table>: words stay whole ("identify"), links may break. */}
                 <table>
                   <thead>
                     <tr>
@@ -793,6 +801,44 @@ export default async function DesignSystemPage() {
                     </tr>
                   </tbody>
                 </table>
+                <h3>Permissions by command</h3>
+                <ProseTable label="Permissions by command">
+                  <thead>
+                    <tr>
+                      <th>Command</th>
+                      <th>Needs</th>
+                      <th>What it does</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <code>!antinuke enable</code>
+                      </td>
+                      <td>Administrator</td>
+                      <td>Turns on anti-nuke with the default thresholds.</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code>!joingate age 7</code>
+                      </td>
+                      <td>Manage Server</td>
+                      <td>Holds accounts younger than seven days at the gate.</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code>!log set 1201234567890123456</code>
+                      </td>
+                      <td>Manage Channels</td>
+                      <td>
+                        Sends logs to a channel ID. Full reference:{" "}
+                        <TextLink href="https://discord.com/developers/docs/topics/permissions">
+                          https://discord.com/developers/docs/topics/permissions
+                        </TextLink>
+                      </td>
+                    </tr>
+                  </tbody>
+                </ProseTable>
               </Prose>
             </Card>
             <p className="type-small text-fg-secondary">
@@ -824,6 +870,16 @@ export default async function DesignSystemPage() {
                 Revealed with <GradientText>&lt;Reveal&gt;</GradientText>
               </p>
             </Reveal>
+          </DsSection>
+
+          {/* Last on the page, exactly like a dashboard settings page: nothing follows the SaveBar, so when it
+              hides after a save its reserved space closes without moving any content. */}
+          <DsSection
+            id="settings"
+            title="Settings & save bar"
+            description="Change anything — the sticky save bar appears (Ctrl/⌘+S saves), keyboard focus never hides under it, and following a link to another page asks first. The module switch disables its fieldset."
+          >
+            <SettingsDemo />
           </DsSection>
         </main>
       </Container>

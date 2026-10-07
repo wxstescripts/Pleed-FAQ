@@ -24,7 +24,7 @@ import { FaqList } from "@/components/ui/accordion";
 import { Avatar } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button, IconButton } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Checkbox, CheckboxGroup, CheckboxOption } from "@/components/ui/checkbox";
 import { CodeBlock, CommandChip, CopyButton } from "@/components/ui/code-block";
 import {
   AlertDialog,
@@ -43,6 +43,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuLinkItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -143,20 +144,15 @@ export function FormDemos() {
             </NativeSelect>
           </Field>
           <div className="flex flex-col gap-3">
-            <p id="ds-notify-label" className="text-sm font-medium text-fg">
+            <p id="ds-notify-label" className="type-label text-fg">
               Notifications
             </p>
-            <div className="flex flex-col gap-3" role="group" aria-labelledby="ds-notify-label">
-              <label className="flex items-center gap-3 text-sm text-fg-secondary">
-                <Checkbox defaultChecked /> DM members when they join
-              </label>
-              <label className="flex items-center gap-3 text-sm text-fg-secondary">
-                <Checkbox indeterminate /> Some channels selected (indeterminate)
-              </label>
-              <label className="flex items-center gap-3 text-sm text-fg-disabled">
-                <Checkbox disabled /> Disabled option
-              </label>
-            </div>
+            <CheckboxGroup aria-labelledby="ds-notify-label" defaultValue={["join"]}>
+              <CheckboxOption value="join" label="DM members when they join" />
+              <CheckboxOption value="channels" indeterminate label="Some channels selected (indeterminate)" />
+              <CheckboxOption value="digest" label="Weekly digest" description="A summary of held members and blocked raids." />
+              <CheckboxOption value="disabled" disabled label="Disabled option" />
+            </CheckboxGroup>
           </div>
         </div>
       </DsBlock>
@@ -213,7 +209,7 @@ export function FormDemos() {
         <div className="flex flex-col gap-4 rounded-xl border border-line bg-surface-1 p-5 md:p-6">
           {(["sm", "md"] as const).map((size) => (
             <div key={size} className="flex flex-wrap items-center gap-3">
-              <span className="w-8 font-mono text-xs text-fg-tertiary">{size}</span>
+              <span className="w-8 type-code-xs text-fg-tertiary">{size}</span>
               <Input inputSize={size} aria-label={`Filter (${size})`} placeholder="Filter…" className="w-40" />
               <Field className="w-36">
                 <FieldLabel className="sr-only">Limit ({size})</FieldLabel>
@@ -308,12 +304,15 @@ export function NavigationDemos() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
               <DropdownMenuLabel>Signed in as Nova</DropdownMenuLabel>
-              <DropdownMenuItem>
-                <LayoutDashboard /> Dashboard
-              </DropdownMenuItem>
+              <DropdownMenuLinkItem href="/design-system#overlays">
+                <LayoutDashboard /> Dashboard (link)
+              </DropdownMenuLinkItem>
               <DropdownMenuItem>
                 <Settings2 /> Settings
               </DropdownMenuItem>
+              <DropdownMenuLinkItem href={SUPPORT_URL}>
+                <LifeBuoy /> Support server
+              </DropdownMenuLinkItem>
               <DropdownMenuCheckboxItem checked={compact} onCheckedChange={setCompact}>
                 Compact mode
               </DropdownMenuCheckboxItem>
@@ -605,6 +604,7 @@ type SecurityConfig = {
   age: number;
   logChannel: string;
   pingStaff: boolean;
+  notify: string[];
 };
 const INITIAL: SecurityConfig = {
   enabled: true,
@@ -615,6 +615,7 @@ const INITIAL: SecurityConfig = {
   age: 7,
   logChannel: "1201234567890123456",
   pingStaff: false,
+  notify: ["held"],
 };
 
 export function SettingsDemo() {
@@ -655,8 +656,7 @@ export function SettingsDemo() {
           <SettingRow
             label="Punishment"
             description="What happens to someone who crosses a threshold."
-            hideLabel
-            control={<Select label="Punishment" items={PUNISHMENTS} value={draft.punishment} onValueChange={(v) => set("punishment", v)} className="w-full sm:max-w-xs" />}
+            control={<Select items={PUNISHMENTS} value={draft.punishment} onValueChange={(v) => set("punishment", v)} />}
           />
           <SettingRow
             label="Ban threshold"
@@ -685,18 +685,24 @@ export function SettingsDemo() {
             label="Log channel"
             description="Where held and verified members are logged. Stacks under the label on phones."
             control={
-              <IdInput
-                kind="channel"
-                value={draft.logChannel}
-                onValueChange={(v) => set("logChannel", v)}
-                wrapperClassName="sm:w-64"
-              />
+              <IdInput kind="channel" value={draft.logChannel} onValueChange={(v) => set("logChannel", v)} />
+            }
+          />
+          <SettingRow
+            label="Notify staff about"
+            description="Stacked control: a CheckboxGroup labelled by the row."
+            layout="stacked"
+            control={
+              <CheckboxGroup value={draft.notify} onValueChange={(v) => set("notify", v)}>
+                <CheckboxOption value="held" label="Held members" />
+                <CheckboxOption value="raids" label="Blocked raids" description="Five or more joins within ten seconds." />
+              </CheckboxGroup>
             }
           />
           <SettingRow
             label="Minimum account age"
             description="Accounts younger than this many days are held. 0 = off."
-            control={<NumberField value={draft.age} onValueChange={(v) => set("age", v ?? 0)} min={0} max={365} unit="days" className="w-44" />}
+            control={<NumberField value={draft.age} onValueChange={(v) => set("age", v ?? 0)} min={0} max={365} unit="days" />}
           />
         </SettingsSection>
 

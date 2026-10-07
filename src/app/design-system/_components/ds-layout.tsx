@@ -70,7 +70,7 @@ export function Swatch({
     <div className="flex flex-col gap-2">
       <div className={cn("h-20 rounded-xl", bordered && "border border-line-strong", className)} />
       <div>
-        <p className="font-mono text-xs text-fg">{name}</p>
+        <p className="type-code-xs text-fg">{name}</p>
         {note ? <p className="type-caption text-fg-tertiary">{note}</p> : null}
       </div>
     </div>
