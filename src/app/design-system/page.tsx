@@ -191,7 +191,7 @@ export default async function DesignSystemPage() {
         </Container>
       </header>
 
-      <Container size="wide" className="grid grid-cols-[minmax(0,1fr)] gap-10 py-10 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-14">
+      <Container size="wide" className="grid grid-cols-[minmax(0,1fr)] gap-10 py-page lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-14">
         <DsNav sections={SECTIONS} />
 
         <main id="main" className="flex min-w-0 flex-col gap-20">
@@ -802,43 +802,25 @@ export default async function DesignSystemPage() {
                   </tbody>
                 </table>
                 <h3>Permissions by command</h3>
-                <ProseTable label="Permissions by command">
-                  <thead>
-                    <tr>
-                      <th>Command</th>
-                      <th>Needs</th>
-                      <th>What it does</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <code>!antinuke enable</code>
-                      </td>
-                      <td>Administrator</td>
-                      <td>Turns on anti-nuke with the default thresholds.</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <code>!joingate age 7</code>
-                      </td>
-                      <td>Manage Server</td>
-                      <td>Holds accounts younger than seven days at the gate.</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <code>!log set 1201234567890123456</code>
-                      </td>
-                      <td>Manage Channels</td>
-                      <td>
+                {/* ≥ 36rem of its own width: a table. Narrower: labelled rows (resize the window). */}
+                <ProseTable
+                  label="Permissions by command"
+                  columns={["Command", "Needs", "What it does"]}
+                  rows={[
+                    [<code key="cmd">!antinuke enable</code>, "Administrator", "Turns on anti-nuke with the default thresholds."],
+                    [<code key="cmd">!joingate age 7</code>, "Manage Server", "Holds accounts younger than seven days at the gate."],
+                    [
+                      <code key="cmd">!log set 1201234567890123456</code>,
+                      "Manage Channels",
+                      <>
                         Sends logs to a channel ID. Full reference:{" "}
                         <TextLink href="https://discord.com/developers/docs/topics/permissions">
                           https://discord.com/developers/docs/topics/permissions
                         </TextLink>
-                      </td>
-                    </tr>
-                  </tbody>
-                </ProseTable>
+                      </>,
+                    ],
+                  ]}
+                />
               </Prose>
             </Card>
             <p className="type-small text-fg-secondary">

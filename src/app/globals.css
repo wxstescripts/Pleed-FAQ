@@ -973,18 +973,20 @@
   .prose :where(td a):not(:where(.not-prose, .not-prose *)) {
     overflow-wrap: anywhere;
   }
-  /* <ProseTable>: keyboard-scrollable region around a prose table — the
-     safety net for wide command/permission tables on phones. */
+  /* <ProseTable> (src/components/ui/prose.tsx): a labelled region around a
+     prose table. It is a size container: ≥ 36rem wide it shows a normal
+     table, narrower its rows stack (below). */
   .prose :where(.prose-table):not(:where(.not-prose, .not-prose *)) {
     margin-block: 1.1em;
     max-width: 100%;
     overflow-x: auto;
-    /* The table's width must never become the region's min-content width —
-       otherwise a grid/flex ancestor grows and the PAGE scrolls instead. */
-    contain: inline-size;
+    /* Inline-size containment: the table's width never becomes the region's
+       min-content width (a grid/flex ancestor would grow and the PAGE would
+       scroll), and the stacked layout queries the region's own width. */
+    container-type: inline-size;
     /* Containing block for absolutely positioned descendants (sr-only
-       "(opens in a new tab)" hints), so they are clipped by this scroller
-       instead of widening the page. */
+       "(opens in a new tab)" hints, the hidden header row), so they are
+       clipped by this scroller instead of widening the page. */
     position: relative;
     border-radius: var(--radius-xs);
     scrollbar-width: thin;
@@ -992,14 +994,77 @@
   .prose :where(.prose-table > table):not(:where(.not-prose, .not-prose *)) {
     margin-block: 0;
   }
-  /* The last column is the description ("What it does"). It never gets
-     squeezed below a readable 12rem — if the row can't fit, the region
-     scrolls instead of stacking one word per line. */
-  .prose :where(.prose-table :is(th, td):last-child):not(:where(.not-prose, .not-prose *)) {
-    min-width: 12rem;
-  }
   .prose :where(.prose-table):not(:where(.not-prose, .not-prose *)):focus-visible {
     outline: 2px solid var(--color-focus);
     outline-offset: 2px;
+  }
+  /* Table layout: the last column is the description ("What it does"). It
+     never gets squeezed below a readable 12rem — if a row still can't fit,
+     the region scrolls instead of stacking one word per line. */
+  @container (width >= 36rem) {
+    .prose-table :is(th, td):last-child {
+      min-width: 12rem;
+    }
+  }
+  /* Stacked layout (< 36rem: phones, narrow cards). Every row is a block:
+     the first cell is its title, every other cell gets its column header as
+     a label (td[data-label]). The header row is visually hidden; explicit
+     ARIA table roles keep the table semantics for screen readers, which is
+     why the generated labels are hidden from them (`/ ""`). */
+  @container (width < 36rem) {
+    .prose-table :is(table, thead, tbody, tr, th, td) {
+      display: block;
+    }
+    .prose-table table {
+      width: 100%;
+    }
+    .prose-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    .prose-table tbody {
+      border-top: 1px solid var(--color-line-strong);
+    }
+    .prose-table tr {
+      display: grid;
+      gap: 0.4em;
+      border-bottom: 1px solid var(--color-line);
+      padding-block: 0.85em;
+    }
+    .prose-table td {
+      border: 0;
+      padding: 0;
+      min-width: 0;
+    }
+    .prose-table td:first-child {
+      color: var(--color-fg);
+      font-weight: 500;
+    }
+    .prose-table td:not(:first-child) {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.1em 0.75rem;
+    }
+    .prose-table td:not(:first-child)::before {
+      content: attr(data-label);
+      content: attr(data-label) / "";
+      color: var(--color-fg-tertiary);
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      line-height: 1.45;
+      letter-spacing: 0.003em;
+      /* Optically aligns the 13 px label with the first line of the value. */
+      padding-top: 0.1em;
+    }
+  }
+  /* Room for a label column beside the value (like ResponsiveList cards). */
+  @container (22rem <= width < 36rem) {
+    .prose-table td:not(:first-child) {
+      grid-template-columns: minmax(0, 7rem) minmax(0, 1fr);
+    }
   }
 }

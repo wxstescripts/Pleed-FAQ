@@ -18,32 +18,64 @@ export function Prose<T extends ElementType = "div">({
 }
 
 export type ProseTableProps = {
-  /** Names the scroll region for screen readers ("Bot permissions"). */
+  /** Names the table region for screen readers ("Bot permissions"). */
   label: string;
   /** Optional visible caption above the table. */
   caption?: ReactNode;
-  /** `<thead>` / `<tbody>` rows. */
-  children: ReactNode;
+  /**
+   * Column headers, plain text. They also label each cell when the rows
+   * stack on a narrow screen, so keep them short ("Needs", "What it does").
+   */
+  columns: string[];
+  /**
+   * One array of cells per row, in column order. The first cell titles the
+   * row when it stacks (a command, a scope name).
+   */
+  rows: ReactNode[][];
   className?: string;
 };
 
 /**
- * A prose table inside a labelled, keyboard-scrollable region. Use it for
- * every table in docs/legal content: cells keep words whole and, if a row
- * still can't fit a phone (long command syntax, IDs), the table scrolls
- * sideways inside its region instead of widening the page.
+ * Every table in docs/legal content. Wide enough (≥ 36rem of its own
+ * width): a normal table — words stay whole, the last (description) column
+ * keeps ≥ 12rem, anything still too wide scrolls inside the labelled,
+ * keyboard-scrollable region. Narrower (phones, a card on a tablet): each
+ * row becomes a block — the first cell as its title, every other cell
+ * labelled with its column header — so no column is ever off-screen.
+ * Explicit table roles keep the table semantics while the rows are blocks.
  *
- *   <ProseTable label="OAuth scopes">
- *     <thead><tr><th>Scope</th><th>Why</th></tr></thead>
- *     <tbody>…</tbody>
- *   </ProseTable>
+ *   <ProseTable
+ *     label="Permissions by command"
+ *     columns={["Command", "Needs", "What it does"]}
+ *     rows={[[<code key="c">!antinuke enable</code>, "Administrator", "Turns on anti-nuke."]]}
+ *   />
  */
-export function ProseTable({ label, caption, children, className }: ProseTableProps) {
+export function ProseTable({ label, caption, columns, rows, className }: ProseTableProps) {
   return (
     <div role="region" aria-label={label} tabIndex={0} className={cn("prose-table", className)}>
-      <table>
+      <table role="table">
         {caption ? <caption className="pb-2 text-left type-caption text-fg-tertiary">{caption}</caption> : null}
-        {children}
+        <thead role="rowgroup">
+          <tr role="row">
+            {columns.map((column) => (
+              <th key={column} role="columnheader" scope="col">
+                {column}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          {rows.map((cells, rowIndex) => (
+            <tr key={rowIndex} role="row">
+              {cells.map((cell, cellIndex) => (
+                <td key={cellIndex} role="cell" data-label={columns[cellIndex]}>
+                  {/* One box per cell, so the stacked layout's label/value grid never splits mixed text + links. */}
+                  <div className="prose-table-value">{cell}</div>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
