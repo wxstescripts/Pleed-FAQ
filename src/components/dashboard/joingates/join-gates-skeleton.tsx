@@ -1,94 +1,92 @@
-import { cn } from "@/lib/utils";
+import { SettingRow, SettingsSection } from "@/components/ui/settings-section";
 import { LoadingRegion, Skeleton } from "@/components/ui/skeleton";
 
-type RowKind = "id" | "number" | "switch";
+import { JoinGatesCommands } from "./join-gates-commands";
+import { GATE_SECTION, MESSAGES_SECTION, ROWS, SCREENING_SECTION, SECTION_BODY } from "./join-gates-copy";
+import { Optional, WithUnit } from "./join-gates-labels";
 
 /**
- * Loading state for the join gate page: the same three cards, header grids,
- * row paddings and control widths as the loaded page (SettingsSection +
- * SettingRow), so nothing jumps when the settings arrive. A Server Component
- * — the page renders it and hands it to the editor.
+ * Loading state: the loaded page's own section frames, titles and row labels
+ * with skeletons where the values go, so nothing moves when the config
+ * arrives. Rendered by the (server) page and handed to the editor.
  */
 export function JoinGatesSkeleton() {
   return (
-    <LoadingRegion label="Loading join gate settings" className="flex flex-col gap-6">
-      <SectionSkeleton action titleWidth="w-40" rows={["id", "id", "id", "id"]} note />
-      <SectionSkeleton titleWidth="w-28" rows={["number", "number"]} />
-      <SectionSkeleton titleWidth="w-36" rows={["switch", "id"]} />
-    </LoadingRegion>
-  );
-}
+    <div className="flex flex-col gap-6">
+      <LoadingRegion label="Loading join gate settings">
+        <div aria-hidden="true" className="flex flex-col gap-6">
+          <SettingsSection
+            icon={GATE_SECTION.icon}
+            title={GATE_SECTION.title}
+            description={GATE_SECTION.description}
+            action={
+              <div className="flex items-center gap-3">
+                <Skeleton className="h-6 w-11 rounded-md" />
+                <SwitchSkeleton />
+              </div>
+            }
+          >
+            <div className={SECTION_BODY}>
+              <Skeleton className="h-28 w-full rounded-lg sm:h-20" />
+            </div>
+            <SettingRow label={ROWS.verify_channel_id.label} description={ROWS.verify_channel_id.description} control={<InputSkeleton />} />
+            <SettingRow label={ROWS.unverified_role_id.label} description={ROWS.unverified_role_id.description} control={<InputSkeleton />} />
+            <SettingRow label={ROWS.verified_role_id.label} description={ROWS.verified_role_id.description} control={<InputSkeleton />} />
+            <SettingRow
+              label={<Optional>{ROWS.bypass_role_id.label}</Optional>}
+              description={ROWS.bypass_role_id.description}
+              control={<InputSkeleton />}
+            />
+          </SettingsSection>
 
-function SectionSkeleton({
-  action = false,
-  note = false,
-  titleWidth,
-  rows,
-}: {
-  action?: boolean;
-  note?: boolean;
-  titleWidth: string;
-  rows: RowKind[];
-}) {
-  return (
-    <div className="overflow-hidden rounded-xl border border-line bg-surface-1 inset-shadow-highlight">
-      <div
-        className={cn(
-          "grid items-start gap-x-4 gap-y-1 p-5 md:p-6",
-          action
-            ? "grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[auto_minmax(0,1fr)_auto]"
-            : "grid-cols-[minmax(0,1fr)] sm:grid-cols-[auto_minmax(0,1fr)]",
-        )}
-      >
-        <Skeleton className="size-10 rounded-lg max-sm:hidden sm:col-start-1 sm:row-span-2 sm:row-start-1" />
-        <div className="col-start-1 row-start-1 flex h-6 items-center sm:col-start-2 md:h-7">
-          <Skeleton className={cn("h-4 rounded-sm", titleWidth)} />
+          <SettingsSection icon={SCREENING_SECTION.icon} title={SCREENING_SECTION.title} description={SCREENING_SECTION.description}>
+            <SettingRow
+              label={<WithUnit unit={ROWS.min_account_age_days.unit}>{ROWS.min_account_age_days.label}</WithUnit>}
+              description={ROWS.min_account_age_days.description}
+              control={<NumberSkeleton />}
+            />
+            <SettingRow
+              label={<WithUnit unit={ROWS.auto_kick_minutes.unit}>{ROWS.auto_kick_minutes.label}</WithUnit>}
+              description={ROWS.auto_kick_minutes.description}
+              control={<NumberSkeleton />}
+            />
+          </SettingsSection>
+
+          <SettingsSection icon={MESSAGES_SECTION.icon} title={MESSAGES_SECTION.title} description={MESSAGES_SECTION.description}>
+            <SettingRow label={ROWS.dm_on_join.label} description={ROWS.dm_on_join.description} control={<SwitchSkeleton />} />
+            <SettingRow
+              label={<Optional>{ROWS.log_channel_id.label}</Optional>}
+              description={ROWS.log_channel_id.description}
+              control={<InputSkeleton />}
+            />
+          </SettingsSection>
         </div>
-        <div className="col-span-full row-start-2 flex max-w-2xl flex-col gap-2 py-1 sm:col-span-1 sm:col-start-2">
-          <Skeleton className="h-3 w-full max-w-md rounded-sm" />
-          <Skeleton className="h-3 w-2/3 rounded-sm sm:hidden" />
-        </div>
-        {action ? <Skeleton className="col-start-2 row-start-1 h-6 w-10 rounded-full sm:col-start-3" /> : null}
-      </div>
-      <div className="divide-y divide-line-subtle border-t border-line">
-        {note ? (
-          <div className="px-5 py-4 md:px-6">
-            <Skeleton className="h-24 w-full rounded-lg sm:h-20" />
-          </div>
-        ) : null}
-        {rows.map((kind, index) => (
-          <RowSkeleton key={index} kind={kind} />
-        ))}
-      </div>
+      </LoadingRegion>
+      {/* Static (no config needed) and interactive, so it stays outside the aria-hidden skeleton. */}
+      <JoinGatesCommands />
     </div>
   );
 }
 
-function RowSkeleton({ kind }: { kind: RowKind }) {
-  const compact = kind === "switch";
+/** Stand-in for an IdInput: 40 px (44 on touch), the row gives it the 256 px control column. */
+function InputSkeleton() {
+  return <Skeleton className="h-10 w-full rounded-lg pointer-coarse:h-11" />;
+}
+
+/** Stand-in for a NumberField: `data-number-field` gives it the NumberField column (160 px / max 240 px stacked). */
+function NumberSkeleton() {
   return (
-    <div
-      className={cn(
-        "flex gap-x-4 gap-y-3 px-5 py-4 sm:items-center sm:justify-between sm:gap-x-6 md:px-6 md:py-5",
-        compact ? "flex-row items-start justify-between" : "flex-col sm:flex-row",
-      )}
-    >
-      <div className="flex min-w-0 flex-1 flex-col gap-1">
-        <div className="flex h-5 items-center">
-          <Skeleton className="h-3.5 w-36 rounded-sm" />
-        </div>
-        <div className="flex flex-col gap-1.5 py-0.5">
-          <Skeleton className="h-3 w-full max-w-sm rounded-sm" />
-          <Skeleton className="h-3 w-1/2 rounded-sm" />
-        </div>
-      </div>
-      {kind === "id" ? (
-        <Skeleton className="h-10 w-full max-w-md shrink-0 rounded-lg pointer-coarse:h-11 sm:w-setting-control" />
-      ) : kind === "number" ? (
-        <Skeleton className="h-10 w-full max-w-60 shrink-0 rounded-lg pointer-coarse:h-11 sm:w-40" />
-      ) : (
-        <Skeleton className="h-6 w-10 shrink-0 rounded-full" />
-      )}
+    <div data-number-field="" className="w-full max-w-60">
+      <Skeleton className="h-10 w-full rounded-lg pointer-coarse:h-11" />
     </div>
+  );
+}
+
+/** Stand-in for a Switch: compact, so the row keeps it beside the label on phones too. */
+function SwitchSkeleton() {
+  return (
+    <span data-compact-control="" className="inline-flex shrink-0">
+      <Skeleton className="h-6 w-10 rounded-full" />
+    </span>
   );
 }

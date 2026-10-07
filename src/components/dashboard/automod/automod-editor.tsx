@@ -286,7 +286,7 @@ function DefaultActionFrame({
       </p>
       <p
         id={ids?.description}
-        className={cn("max-w-xl type-caption", disabled ? "text-fg-disabled" : "text-fg-tertiary")}
+        className={cn("max-w-xl type-caption", disabled ? "text-fg-disabled [&_code]:text-fg-disabled" : "text-fg-tertiary")}
       >
         {DEFAULT_ACTION_DESCRIPTION}
       </p>

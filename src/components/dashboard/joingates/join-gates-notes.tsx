@@ -1,43 +1,40 @@
 import { ListChecks, MousePointerClick } from "lucide-react";
-import type { ReactNode } from "react";
 
 import { Callout } from "@/components/ui/callout";
 import { DEFAULT_PREFIX } from "@/lib/site";
 
 import { listFields, type IdField } from "./join-gates-model";
 
-/** The bot command that posts (or refreshes) the Verify button — from docs/security.html. */
+/** The bot command that sends (or refreshes) the Verify button — from docs/security.html. */
 export const PANEL_COMMAND = `${DEFAULT_PREFIX}joingate panel`;
 
-const ID_STEPS =
+const ID_HELP =
   "Turn on Developer Mode in Discord (User Settings → Advanced), then right-click a channel or role and choose Copy ID. A pasted mention works too.";
 
-/** Inline command / code inside a setting description; dims with its row when the section is off. */
-export function InlineCode({ children }: { children: ReactNode }) {
+/** How to copy a channel or role ID. Top of the Verification card while the gate is on and set up. */
+export function IdHelp() {
   return (
-    <code className="rounded-xs border border-line bg-inset px-1 type-code whitespace-nowrap text-fg-secondary group-data-disabled/row:text-fg-disabled">
-      {children}
-    </code>
+    <Callout tone="neutral" icon={MousePointerClick} title="Finding an ID">
+      <p>{ID_HELP}</p>
+    </Callout>
   );
 }
 
-/**
- * Top of the Verification card while the gate is on: how to copy an ID, or —
- * when a required ID is still empty — what's missing plus the same help.
- */
-export function VerificationNote({ missing }: { missing: readonly IdField[] }) {
-  if (missing.length > 0) {
-    return (
-      <Callout tone="warning" title="Finish setup so members can verify">
-        <p>
-          Still missing: the {listFields(missing)}. {ID_STEPS}
-        </p>
-      </Callout>
-    );
-  }
+/** The gate is on (in the draft) but can't work yet: say what's missing, plus how to copy IDs. */
+export function MissingSetup({ missing }: { missing: readonly IdField[] }) {
   return (
-    <Callout tone="neutral" icon={MousePointerClick} title="Finding an ID">
-      <p>{ID_STEPS}</p>
+    <Callout tone="warning" title="Finish setup so members can verify">
+      <p>Still missing: the {listFields(missing)}.</p>
+      <p>{ID_HELP}</p>
+    </Callout>
+  );
+}
+
+/** The gate is on for the server, and the draft turns it off. */
+export function TurningOff() {
+  return (
+    <Callout tone="warning" title="The join gate turns off when you save">
+      New members will get in without verifying. Your channel, roles and rules are kept for when you turn it back on.
     </Callout>
   );
 }

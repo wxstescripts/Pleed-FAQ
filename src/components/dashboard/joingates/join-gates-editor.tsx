@@ -1,153 +1,148 @@
 "use client";
 
-import { Hourglass, MessagesSquare, ShieldCheck } from "lucide-react";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { m } from "framer-motion";
+import { LifeBuoy } from "lucide-react";
+import { useEffect, useId, useRef, useState } from "react";
 
 import { flagOn, getJoinGatesConfig, saveJoinGatesConfig, toFlag, type ApiError, type JoinGatesConfig } from "@/lib/api";
 import { usePleedMutation, usePleedQuery } from "@/lib/api/hooks";
+import { SUPPORT_URL } from "@/lib/site";
+import { fade } from "@/components/motion/tokens";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { FieldDescription } from "@/components/ui/field";
 import { NumberField } from "@/components/ui/input";
-import { PageHeader } from "@/components/ui/page-header";
 import { SaveBar } from "@/components/ui/save-bar";
 import { SettingRow, SettingsSection } from "@/components/ui/settings-section";
-import { Skeleton } from "@/components/ui/skeleton";
 import { IdInput } from "@/components/ui/snowflake-input";
 import { ErrorState } from "@/components/ui/states";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "@/components/ui/toast";
 
+import { JoinGatesCommands } from "./join-gates-commands";
+import { GATE_SECTION, MESSAGES_SECTION, ROWS, SCREENING_SECTION, SECTION_BODY } from "./join-gates-copy";
+import { Optional, WithUnit } from "./join-gates-labels";
 import {
   describeMinutes,
-  gateStatus,
   invalidIdFields,
   isUnconfigured,
   missingRequired,
   sameConfig,
   toSaveBody,
   wholeNumber,
-  type GateStatus,
   type IdField,
   type JoinGatesDraft,
 } from "./join-gates-model";
-import { GettingStarted, InlineCode, PANEL_COMMAND, VerificationNote } from "./join-gates-notes";
+import { GettingStarted, IdHelp, MissingSetup, TurningOff } from "./join-gates-notes";
+import { JoinGatesSkeleton } from "./join-gates-skeleton";
 
-const DESCRIPTION =
-  "New members wait in a verification channel until they press Verify. Screen out brand-new accounts and kick anyone who never verifies.";
-
-/** The one save-failure message every settings page uses (DESIGN.md → Save feedback). */
-const SAVE_FAILED = "Couldn't reach Pleed. Your changes are still here.";
+/** DESIGN.md §3 "Save feedback": the same words on every page. */
+const SAVE_ERROR = "Couldn't reach Pleed. Your changes are still here.";
 
 /**
- * Join gate settings: loads the config, then shows the editor. While loading
- * it renders `loading` (the server-rendered skeleton); if the load fails it
- * shows an ErrorState with a retry — never default values that could be
- * saved over the real config.
+ * Loads the join gate config, then hands it to the form. Until a real config
+ * has arrived there is nothing to edit: a skeleton of the same sections while
+ * it loads, an ErrorState with retry if it failed — never
+ * default values, which would overwrite the server's real setup if saved.
  */
-export function JoinGatesEditor({ loading }: { loading: ReactNode }) {
+export function JoinGatesEditor() {
   const query = usePleedQuery(getJoinGatesConfig);
-  const [retryRequested, setRetryRequested] = useState(false);
+  const [retrying, setRetrying] = useState(false);
+  const [lastError, setLastError] = useState<ApiError | null>(null);
+  // "Try again" had keyboard focus when the retry succeeded: hand focus to the master switch.
+  const [refocus, setRefocus] = useState(false);
+
+  // Derived state, adjusted during render (reload() clears query.error while it runs).
+  if (query.error && query.error !== lastError) setLastError(query.error);
+  if (retrying && query.status !== "loading") setRetrying(false);
 
   if (query.data) {
-    return <JoinGatesForm saved={query.data} onSaved={query.setData} />;
+    return <JoinGatesForm saved={query.data} onSaved={(config) => query.setData(config)} focusSwitchOnMount={refocus} />;
   }
 
-  const retrying = retryRequested && query.status === "loading";
-  if (query.status === "error" || retrying) {
+  if ((query.status === "error" || retrying) && lastError) {
     return (
-      <>
-        <Header />
-        <ErrorState
-          headingAs="h2"
-          title="Couldn't load join gate settings"
-          description={`${query.error?.message ?? "Pleed's API didn't respond."} Nothing on your server has changed.`}
-          detail={query.error ? describeLoadError(query.error) : undefined}
-          retrying={retrying}
-          onRetry={() => {
-            setRetryRequested(true);
-            query.reload();
-          }}
-        />
-      </>
+      <LoadError
+        error={lastError}
+        retrying={retrying}
+        onRetry={(fromKeyboardFocus) => {
+          setRefocus(fromKeyboardFocus);
+          setRetrying(true);
+          query.reload();
+        }}
+      />
     );
   }
 
-  return (
-    <>
-      <Header meta={<Skeleton className="h-6 w-12 rounded-md" />} />
-      {loading}
-    </>
-  );
+  return <JoinGatesSkeleton />;
 }
 
-function Header({ meta }: { meta?: ReactNode }) {
-  return <PageHeader title="Join gates" description={DESCRIPTION} meta={meta} />;
-}
+/* ------------------------------------------------------------------ */
 
-function GateBadge({ status }: { status: GateStatus }) {
-  if (status === "on") {
-    return (
-      <Badge tone="success" dot>
-        On
-      </Badge>
-    );
-  }
-  if (status === "incomplete") {
-    return (
-      <Badge tone="warning" dot>
-        Needs setup
-      </Badge>
-    );
-  }
-  return (
-    <Badge tone="neutral" dot>
-      Off
-    </Badge>
-  );
-}
-
-/** "GET /api/joingates · HTTP 503" — the technical line under the error. */
-function describeLoadError(error: ApiError): string {
-  const outcome = error.status ? `HTTP ${error.status}` : error.kind === "network" ? "no response" : error.kind;
-  return `${error.method ?? "GET"} /api/joingates · ${outcome}`;
-}
-
-function JoinGatesForm({ saved, onSaved }: { saved: JoinGatesConfig; onSaved: (config: JoinGatesConfig) => void }) {
+function JoinGatesForm({
+  saved,
+  onSaved,
+  focusSwitchOnMount,
+}: {
+  saved: JoinGatesConfig;
+  onSaved: (config: JoinGatesConfig) => void;
+  focusSwitchOnMount: boolean;
+}) {
   const save = usePleedMutation(saveJoinGatesConfig);
   const [draft, setDraft] = useState<JoinGatesDraft | null>(null);
-  // A save was refused because an ID is malformed; the bar says so until it's fixed.
+  // A save was refused because an ID is malformed; the bar says so until every ID is valid.
   const [blocked, setBlocked] = useState(false);
   const formRef = useRef<HTMLDivElement>(null);
+  const switchSlot = useRef<HTMLDivElement>(null);
+  const gateDescriptionId = useId();
 
   const form: JoinGatesDraft = draft ?? saved;
   const on = flagOn(form.enabled);
-  const dirty = draft !== null && !sameConfig(draft, saved);
-  const invalid = invalidIdFields(form);
+  const savedOn = flagOn(saved.enabled);
+  const unconfigured = isUnconfigured(saved);
   const missing = missingRequired(form);
-  const saving = save.status === "pending";
+  const invalid = invalidIdFields(form);
   const kickMinutes = wholeNumber(form.auto_kick_minutes);
+  const dirty = draft !== null && !sameConfig(draft, saved);
+  const saving = save.status === "pending";
 
-  // An ID the API sent that isn't a valid snowflake gets its inline error straight away.
   useEffect(() => {
-    revealErrors(formRef.current, invalidIdFields(saved), { focus: false });
+    if (!focusSwitchOnMount) return;
+    const active = document.activeElement;
+    if (!active || active === document.body) switchSlot.current?.querySelector<HTMLElement>('[role="switch"]')?.focus();
+  }, [focusSwitchOnMount]);
+
+  // An ID that arrived from the API but isn't a valid snowflake shows its inline error straight away.
+  useEffect(() => {
+    revealIdErrors(formRef.current, invalidIdFields(saved), { focus: false });
   }, [saved]);
 
+  /** Edit the draft. Every save sends the whole loaded object with these fields changed (same keys, 0/1 flags). */
   function update(patch: Partial<JoinGatesDraft>) {
-    setDraft((current) => ({ ...(current ?? saved), ...patch }));
-    if (blocked && invalidIdFields({ ...form, ...patch }).length === 0) setBlocked(false);
+    const next: JoinGatesDraft = { ...form, ...patch };
+    const backToSaved =
+      next.min_account_age_days !== null && next.auto_kick_minutes !== null && sameConfig(next, saved);
+    if (backToSaved) {
+      // Nothing to save, and an old save error no longer applies.
+      setDraft(null);
+      save.reset();
+    } else {
+      setDraft(next);
+    }
+    if (blocked && invalidIdFields(next).length === 0) setBlocked(false);
   }
 
-  async function handleSave() {
+  async function onSave() {
     if (saving) return;
     if (invalid.length > 0) {
       setBlocked(true);
-      revealErrors(formRef.current, invalid, { focus: true });
+      revealIdErrors(formRef.current, invalid, { focus: true });
       return;
     }
-    // The whole loaded object with the edits: same keys, same order, 0/1 flags.
     const body = toSaveBody(form);
     const result = await save.mutate(body);
-    if (!result.ok) return; // The SaveBar keeps the draft and shows SAVE_FAILED.
+    // Failure: keep the draft — the SaveBar stays up, red, with "Try again".
+    if (!result.ok) return;
     onSaved(body);
     // Keep anything edited while the request was in flight.
     setDraft((current) => (current === null || sameConfig(current, body) ? null : current));
@@ -155,76 +150,75 @@ function JoinGatesForm({ saved, onSaved }: { saved: JoinGatesConfig; onSaved: (c
     toast.success("Changes saved");
   }
 
-  function handleReset() {
+  function onReset() {
     setDraft(null);
     setBlocked(false);
     save.reset();
   }
 
-  const offHint = "Turn on the verification gate above to change these settings.";
-
   return (
     <>
-      <Header meta={<GateBadge status={gateStatus(saved)} />} />
       <div ref={formRef} className="flex flex-col gap-6">
-        {isUnconfigured(saved) ? <GettingStarted /> : null}
+        {unconfigured ? <GettingStarted /> : null}
 
         <SettingsSection
-          icon={ShieldCheck}
-          title="Verification gate"
-          description="New members get the unverified role and can only see the verification channel until they press Verify."
+          icon={GATE_SECTION.icon}
+          title={GATE_SECTION.title}
+          description={<span id={gateDescriptionId}>{GATE_SECTION.description}</span>}
           action={
-            <Switch
-              aria-label="Enable the verification gate"
-              checked={on}
-              onCheckedChange={(checked) => update({ enabled: toFlag(checked) })}
-            />
+            <div ref={switchSlot} className="flex items-center gap-3">
+              {/* Visual status for sighted users; the switch announces on/off and the note below what's missing. */}
+              <GateBadge on={on} complete={missing.length === 0} />
+              <Switch
+                checked={on}
+                onCheckedChange={(checked) => update({ enabled: toFlag(checked) })}
+                aria-label={GATE_SECTION.switchLabel}
+                aria-describedby={gateDescriptionId}
+              />
+            </div>
           }
           disabled={!on}
-          disabledHint="The gate is off, so new members get in straight away. Turn it on to edit these settings."
+          disabledHint={savedOn ? GATE_SECTION.disabledHintTurningOff : GATE_SECTION.disabledHintOff}
         >
-          {on ? (
-            <div className="px-5 py-4 md:px-6">
-              <VerificationNote missing={missing} />
+          {on || savedOn ? (
+            <div className={SECTION_BODY}>
+              <m.div key={noteKey(on, missing.length, unconfigured)} initial="hidden" animate="visible" variants={fade}>
+                {!on ? <TurningOff /> : missing.length > 0 && !unconfigured ? <MissingSetup missing={missing} /> : <IdHelp />}
+              </m.div>
             </div>
           ) : null}
           <SettingRow
-            label="Verification channel"
-            description={
-              <>
-                Where new members press Verify. Run <InlineCode>{PANEL_COMMAND}</InlineCode> in Discord to post or
-                refresh the button.
-              </>
-            }
+            label={ROWS.verify_channel_id.label}
+            description={ROWS.verify_channel_id.description}
             control={<IdControl kind="channel" field="verify_channel_id" form={form} update={update} />}
           />
           <SettingRow
-            label="Unverified role"
-            description="Given to every new member until they verify. Let it see the verification channel only."
+            label={ROWS.unverified_role_id.label}
+            description={ROWS.unverified_role_id.description}
             control={<IdControl kind="role" field="unverified_role_id" form={form} update={update} />}
           />
           <SettingRow
-            label="Verified role"
-            description="Given once a member verifies. It should unlock the rest of your server."
+            label={ROWS.verified_role_id.label}
+            description={ROWS.verified_role_id.description}
             control={<IdControl kind="role" field="verified_role_id" form={form} update={update} />}
           />
           <SettingRow
-            label={<Optional>Bypass role</Optional>}
-            description="Members with this role skip the join gate."
+            label={<Optional>{ROWS.bypass_role_id.label}</Optional>}
+            description={ROWS.bypass_role_id.description}
             control={<IdControl kind="role" field="bypass_role_id" form={form} update={update} />}
           />
         </SettingsSection>
 
         <SettingsSection
-          icon={Hourglass}
-          title="Screening"
-          description="Keep brand-new accounts out and clear away members who never verify."
+          icon={SCREENING_SECTION.icon}
+          title={SCREENING_SECTION.title}
+          description={SCREENING_SECTION.description}
           disabled={!on}
-          disabledHint={offHint}
+          disabledHint={SCREENING_SECTION.disabledHint}
         >
           <SettingRow
-            label={<WithUnit unit="in days">Minimum account age</WithUnit>}
-            description="Accounts younger than this can't verify. Raid waves tend to use brand-new accounts. 0&nbsp;turns the check off."
+            label={<WithUnit unit={ROWS.min_account_age_days.unit}>{ROWS.min_account_age_days.label}</WithUnit>}
+            description={ROWS.min_account_age_days.description}
             control={
               <NumberField
                 unit="days"
@@ -235,18 +229,20 @@ function JoinGatesForm({ saved, onSaved }: { saved: JoinGatesConfig; onSaved: (c
                 incrementLabel="More days"
                 value={form.min_account_age_days}
                 onValueChange={(value) => update({ min_account_age_days: value })}
+                // A cleared field means "off": it settles on 0 once you leave it.
                 onValueCommitted={(value) => update({ min_account_age_days: wholeNumber(value) })}
               />
             }
           />
           <SettingRow
-            label={<WithUnit unit="in minutes">Auto-kick unverified members</WithUnit>}
-            description="Kick members who still haven't verified after this long. 0&nbsp;never kicks."
+            label={<WithUnit unit={ROWS.auto_kick_minutes.unit}>{ROWS.auto_kick_minutes.label}</WithUnit>}
+            description={ROWS.auto_kick_minutes.description}
             control={
               <NumberField
                 unit="min"
                 min={0}
                 smallStep={1}
+                largeStep={15}
                 format={{ maximumFractionDigits: 0 }}
                 decrementLabel="Fewer minutes"
                 incrementLabel="More minutes"
@@ -265,41 +261,68 @@ function JoinGatesForm({ saved, onSaved }: { saved: JoinGatesConfig; onSaved: (c
         </SettingsSection>
 
         <SettingsSection
-          icon={MessagesSquare}
-          title="Messages & logs"
-          description="Point new members to verification and keep a record for your staff."
+          icon={MESSAGES_SECTION.icon}
+          title={MESSAGES_SECTION.title}
+          description={MESSAGES_SECTION.description}
           disabled={!on}
-          disabledHint={offHint}
+          disabledHint={MESSAGES_SECTION.disabledHint}
         >
           <SettingRow
-            label="DM new members"
-            description="Pleed sends each new member a direct message telling them how to verify. Members who block DMs from server members won't receive it."
+            label={ROWS.dm_on_join.label}
+            description={ROWS.dm_on_join.description}
             control={
               <Switch checked={flagOn(form.dm_on_join)} onCheckedChange={(checked) => update({ dm_on_join: toFlag(checked) })} />
             }
           />
           <SettingRow
-            label={<Optional>Log channel</Optional>}
-            description="Pleed posts join gate activity here, separate from your other logs."
+            label={<Optional>{ROWS.log_channel_id.label}</Optional>}
+            description={ROWS.log_channel_id.description}
             control={<IdControl kind="channel" field="log_channel_id" form={form} update={update} />}
           />
         </SettingsSection>
+
+        <JoinGatesCommands />
       </div>
+
+      {/* Last child of the page Container, after the stack (DESIGN.md §3). Also guards leaving with unsaved changes. */}
       <SaveBar
         dirty={dirty}
         saving={saving}
-        error={save.status === "error" ? SAVE_FAILED : null}
-        message={
-          blocked && invalid.length > 0
-            ? invalid.length === 1
-              ? "Fix the highlighted ID to save"
-              : `Fix the ${invalid.length} highlighted IDs to save`
-            : undefined
-        }
-        onSave={() => void handleSave()}
-        onReset={handleReset}
+        error={save.error ? SAVE_ERROR : null}
+        message={blocked && invalid.length > 0 ? fixMessage(invalid.length) : undefined}
+        onSave={() => void onSave()}
+        onReset={onReset}
       />
     </>
+  );
+}
+
+/** Re-mounting the note on a change of meaning fades the new one in. */
+function noteKey(on: boolean, missing: number, unconfigured: boolean): string {
+  if (!on) return "turning-off";
+  return missing > 0 && !unconfigured ? "missing" : "help";
+}
+
+function fixMessage(count: number): string {
+  return count === 1 ? "Fix the highlighted ID to save" : `Fix the ${count} highlighted IDs to save`;
+}
+
+function GateBadge({ on, complete }: { on: boolean; complete: boolean }) {
+  if (!on) {
+    return (
+      <Badge aria-hidden="true" tone="neutral" dot>
+        Off
+      </Badge>
+    );
+  }
+  return complete ? (
+    <Badge aria-hidden="true" tone="success" dot>
+      On
+    </Badge>
+  ) : (
+    <Badge aria-hidden="true" tone="warning" dot>
+      Needs setup
+    </Badge>
   );
 }
 
@@ -319,39 +342,19 @@ function IdControl({
       kind={kind}
       data-field={field}
       value={form[field]}
-      onValueChange={(value) => update({ [field]: value })}
+      onValueChange={(value) => update({ [field]: value } as Partial<JoinGatesDraft>)}
     />
-  );
-}
-
-/** "(optional)" after a row label; dims with the row when its section is off. */
-function Optional({ children }: { children: ReactNode }) {
-  return (
-    <>
-      {children}{" "}
-      <span className="font-normal text-fg-tertiary group-data-disabled/row:text-fg-disabled">(optional)</span>
-    </>
-  );
-}
-
-/** The NumberField's unit is visual only, so the label carries it for screen readers. */
-function WithUnit({ unit, children }: { unit: string; children: ReactNode }) {
-  return (
-    <>
-      {children}
-      <span className="sr-only">, {unit}</span>
-    </>
   );
 }
 
 /**
  * Shows IdInput's inline 17–20 digit error on these fields even if they were
- * never blurred (an ID that arrived from the API, or Ctrl+S while typing), and
- * optionally moves focus to the first one. IdInput reveals its error on blur,
- * so this sends the blur React listens for.
- * TODO(design-system): replace with an IdInput prop that forces the error.
+ * never blurred (an ID that came from the API, or Ctrl+S while still typing),
+ * and optionally moves focus to the first one. IdInput reveals its error on
+ * blur, so this sends the blur React listens for.
+ * TODO(design-system): use an IdInput prop that forces the error once it exists.
  */
-function revealErrors(root: HTMLElement | null, fields: readonly IdField[], { focus }: { focus: boolean }) {
+function revealIdErrors(root: HTMLElement | null, fields: readonly IdField[], { focus }: { focus: boolean }) {
   if (!root || fields.length === 0) return;
   const inputs = fields
     .map((field) => root.querySelector<HTMLInputElement>(`input[data-field="${field}"]`))
@@ -362,4 +365,59 @@ function revealErrors(root: HTMLElement | null, fields: readonly IdField[], { fo
   if (!first) return;
   first.focus({ preventScroll: true });
   first.scrollIntoView({ block: "center" });
+}
+
+/* ------------------------------------------------------------------ */
+
+/** "GET /api/joingates/… → HTTP 503": the technical line under the message. */
+function errorDetail(error: ApiError): string {
+  let target: string = error.endpoint ?? "";
+  if (error.url) {
+    try {
+      target = new URL(error.url).pathname;
+    } catch {
+      // Keep the endpoint name.
+    }
+  }
+  const outcome = error.status ? `HTTP ${error.status}` : error.kind;
+  return `${error.method ?? "GET"} ${target} → ${outcome}`.replace(/\s+/g, " ");
+}
+
+function LoadError({
+  error,
+  retrying,
+  onRetry,
+}: {
+  error: ApiError;
+  retrying: boolean;
+  /** `fromKeyboardFocus`: "Try again" had focus, so focus should land somewhere useful afterwards. */
+  onRetry: (fromKeyboardFocus: boolean) => void;
+}) {
+  const region = useRef<HTMLDivElement>(null);
+  return (
+    <div className="flex flex-col gap-6">
+      <div ref={region} className="flex flex-col">
+        <ErrorState
+          headingAs="h2"
+          title="Couldn't load your join gate settings"
+          description={`${error.message} Nothing is shown until they load, so default values can't overwrite your real setup.`}
+          detail={errorDetail(error)}
+          retrying={retrying}
+          onRetry={
+            error.retryable || retrying
+              ? () => onRetry(Boolean(region.current?.contains(document.activeElement)))
+              : undefined
+          }
+          actions={
+            <Button variant="ghost" href={SUPPORT_URL}>
+              <LifeBuoy aria-hidden="true" />
+              Support server
+            </Button>
+          }
+        />
+      </div>
+      {/* The bot keeps working when the dashboard API doesn't: the commands still do the job. */}
+      <JoinGatesCommands />
+    </div>
+  );
 }

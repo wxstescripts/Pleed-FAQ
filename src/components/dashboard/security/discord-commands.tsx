@@ -35,9 +35,10 @@ export function DiscordCommands() {
       title="More in Discord"
       description={
         <>
-          Some anti-nuke settings are managed with commands in Discord. Select one to copy it. They use the default
-          prefix, <code className="rounded-xs border border-line bg-inset px-1 type-code text-fg">{DEFAULT_PREFIX}</code>
-          ; type yours instead if your server changed it.
+          Some anti-nuke settings are managed with commands in Discord. Select one to copy it. They&apos;re shown
+          with the default prefix{" "}
+          <code className="rounded-xs border border-line bg-inset px-1 type-code text-fg">{DEFAULT_PREFIX}</code> — if
+          your server uses another, type that instead.
         </>
       }
     >

@@ -101,6 +101,7 @@ function SecurityForm({
   const masterDescriptionId = useId();
   const punishmentTitleId = useId();
   const punishmentDescriptionId = useId();
+  const punishmentHintId = useId();
   const switchSlot = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -215,7 +216,7 @@ function SecurityForm({
           title={<span id={punishmentTitleId}>{PUNISHMENT_SECTION.title}</span>}
           description={<span id={punishmentDescriptionId}>{PUNISHMENT_SECTION.description}</span>}
           disabled={!enabled}
-          disabledHint={PUNISHMENT_SECTION.disabledHint}
+          disabledHint={<span id={punishmentHintId}>{PUNISHMENT_SECTION.disabledHint}</span>}
         >
           <div className={SECTION_BODY}>
             <PunishmentPicker
@@ -223,7 +224,8 @@ function SecurityForm({
               onValueChange={(punishment) => update({ punishment })}
               disabled={!enabled}
               labelledBy={punishmentTitleId}
-              describedBy={punishmentDescriptionId}
+              // While off, the checked card stays focusable (aria-disabled), so say why it can't change.
+              describedBy={enabled ? punishmentDescriptionId : `${punishmentHintId} ${punishmentDescriptionId}`}
             />
             {enabled && config.punishment === "alert" ? (
               <m.div initial="hidden" animate="visible" variants={fade}>
