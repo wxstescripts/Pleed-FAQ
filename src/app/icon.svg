@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Pleed mark, tuned for 16/32 px: full tile, 2 px strokes on the 16 px grid. Gradient = LOGO_GRADIENT in OKLab. -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9a46f0"/><stop offset="0.25" stop-color="#874aef"/><stop offset="0.5" stop-color="#734ded"/><stop offset="0.75" stop-color="#5e4fec"/><stop offset="1" stop-color="#4550ea"/></linearGradient>
+    <linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="8" fill="url(#g)"/>
+  <rect width="32" height="32" rx="8" fill="url(#s)"/>
+  <path d="M12 24V8h5a5 5 0 0 1 0 10h-5" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

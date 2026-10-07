@@ -1,74 +1,57 @@
-"use client";
+import type { Metadata } from "next";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Save, Loader2, Settings2, Hash, Megaphone } from "lucide-react";
+import { SITE_NAME } from "@/lib/site";
+import { Container } from "@/components/ui/container";
+import { PageHeader } from "@/components/ui/page-header";
+import { GeneralSettingsEditor } from "@/components/dashboard/settings/general-settings-editor";
 
-export default function SettingsPage() {
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
-  const [config, setConfig] = useState({ prefix: "!", welcome_channel: "" });
+const title = "General settings";
+const description =
+  "Set Pleed's command prefix and the channel where it welcomes new members, from the Pleed dashboard.";
 
-  const MOCK_GUILD_ID = "1484703029243416757";
+// Setting openGraph/twitter replaces the root objects — including the share card
+// from src/app/opengraph-image.png / twitter-image.png — so the card is restated
+// (same files, same alt text as src/app/opengraph-image.alt.txt).
+const shareCard = {
+  width: 1200,
+  height: 630,
+  alt: "Pleed logo beside the tagline “Security, moderation and automation for Discord servers”, with the features anti-nuke, join gates, auto-mod and automations",
+};
 
-  useEffect(() => {
-    fetch(`https://1b166fb77d23d0.lhr.life/api/settings/${MOCK_GUILD_ID}`)
-      .then(res => res.json())
-      .then(data => { setConfig(data); setLoading(false); });
-  }, []);
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: { canonical: "/dashboard/settings" },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    locale: "en_US",
+    url: "/dashboard/settings",
+    title: `${title} · ${SITE_NAME}`,
+    description,
+    images: [{ url: "/opengraph-image.png", type: "image/png", ...shareCard }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${title} · ${SITE_NAME}`,
+    description,
+    images: [{ url: "/twitter-image.png", ...shareCard }],
+  },
+};
 
-  const handleSave = async () => {
-    setSaving(true);
-    await fetch(`https://1b166fb77d23d0.lhr.life/api/settings/${MOCK_GUILD_ID}`, {
-      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(config)
-    });
-    setSaving(false);
-  };
-
-  if (loading) return <div className="flex justify-center py-20"><Loader2 className="w-8 h-8 text-indigo-500 animate-spin" /></div>;
-
+/**
+ * General settings (dashboard page contract, DESIGN.md §3): a Server
+ * Component for the header; the settings form is one client island that
+ * loads, edits and saves through the typed API client.
+ */
+export default function GeneralSettingsPage() {
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8 max-w-4xl">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-white mb-2">General Settings</h1>
-          <p className="text-gray-400">Manage basic bot configuration for your server.</p>
-        </div>
-        <button onClick={handleSave} className="flex items-center gap-2 px-5 py-2.5 font-medium rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg">
-          {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />} Save
-        </button>
-      </div>
-
-      <div className="bg-white/5 border border-white/10 rounded-xl p-8 space-y-8">
-        <div>
-          <h2 className="text-lg font-bold text-white flex items-center gap-2 mb-4">
-            <Hash className="w-5 h-5 text-indigo-400" /> Command Prefix
-          </h2>
-          <p className="text-sm text-gray-400 mb-3">The symbol you type before commands (e.g., !help, ?help).</p>
-          <input 
-            type="text" 
-            value={config.prefix} 
-            onChange={(e) => setConfig({...config, prefix: e.target.value.substring(0, 3)})}
-            className="w-24 bg-black border border-white/10 rounded-lg px-4 py-2 text-white text-center text-xl font-mono focus:outline-none focus:border-indigo-500" 
-          />
-        </div>
-
-        <hr className="border-white/10" />
-
-        <div>
-          <h2 className="text-lg font-bold text-white flex items-center gap-2 mb-4">
-            <Megaphone className="w-5 h-5 text-emerald-400" /> Welcome Channel
-          </h2>
-          <p className="text-sm text-gray-400 mb-3">Discord Channel ID where Pleed should post welcome cards when new members join.</p>
-          <input 
-            type="text" 
-            placeholder="e.g., 1234567890"
-            value={config.welcome_channel || ""} 
-            onChange={(e) => setConfig({...config, welcome_channel: e.target.value})}
-            className="w-full max-w-md bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-500" 
-          />
-        </div>
-      </div>
-    </motion.div>
+    <Container size="settings" className="flex flex-1 flex-col py-page">
+      <PageHeader
+        title="General settings"
+        description="The prefix members type to call Pleed, and the channel where Pleed greets people who join."
+      />
+      <GeneralSettingsEditor />
+    </Container>
   );
 }
