@@ -361,4 +361,4 @@ See `src/lib/dev/README.md` (owned by the data agent): mock Discord session and 
 
 - `/design-system` is the visual reference — check your page against it at 390, 820, 1440 and 2560.
 - Run `npx eslint <your files>` — the "Pleed tokens only" rule must pass.
-- `shoot.mjs` lists Base UI's visually hidden native inputs (`aria-hidden`, `tabindex=-1`, 1×1 px — used for form submission by Switch/Checkbox/Radio/Select/NumberField/Slider) as "small touch targets" and sr-only text / `sr-only` labels as "clipped". Those are expected; the visible controls are ≥ 44 px on touch.
+- `shoot.mjs` lists Base UI's visually hidden native inputs (`aria-hidden`, `tabindex=-1`, 1×1 px — used for form submission by Switch/Checkbox/Radio/Select/NumberField/Slider, plus the Slider thumb's clipped 16×16 `input type=range`) as "small touch targets" and sr-only text / `sr-only` labels as "clipped". Those are expected; the visible controls are ≥ 44 px on touch.
