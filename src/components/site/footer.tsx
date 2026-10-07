@@ -1,60 +1,94 @@
-import Link from "next/link";
-import { MessageSquare, Globe, Mail } from "lucide-react";
+import { Button, IconButton } from "@/components/ui/button";
+import { Container } from "@/components/ui/container";
+import { DiscordIcon } from "@/components/ui/discord-icon";
+import { Logo } from "@/components/ui/logo";
+import { TextLink } from "@/components/ui/text-link";
+import { COPYRIGHT_HOLDER, FOOTER_GROUPS, INVITE_URL, SITE_TAGLINE, SOCIAL_LINKS } from "@/lib/site";
+
+/**
+ * Global site footer (Server Component — no client JS).
+ *
+ *  - Phones: brand block, then a two-column link grid; every link is a
+ *    44 px row on touch screens.
+ *  - Tablets (≥ 768): brand row (Logo + tagline | CTA) above three link columns.
+ *  - ≥ 1024: one row — brand block (5/12) beside the three columns (7/12),
+ *    aligned to the content container like every marketing section.
+ *
+ * Links come from `@/lib/site` only. The invite lives in the brand block's
+ * button, so it is not repeated in the "Resources" list.
+ */
+const groups = FOOTER_GROUPS.map((group) => ({
+  ...group,
+  links: group.links.filter((link) => link.href !== INVITE_URL),
+})).filter((group) => group.links.length > 0);
 
 export default function Footer() {
-  return (
-    <footer className="bg-black border-t border-white/10 pt-16 pb-8">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          <div className="md:col-span-2">
-            <Link href="/" className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center font-bold text-white text-lg">
-                P
-              </div>
-              <span className="text-xl font-bold text-white">Pleed</span>
-            </Link>
-            <p className="text-gray-400 text-sm max-w-sm mb-6 leading-relaxed">
-              The ultimate Discord bot designed for communities that need reliable moderation, security, and automation.
-            </p>
-            <div className="flex gap-4">
-              <a href="#" className="text-gray-500 hover:text-white transition-colors">
-                <Globe className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-500 hover:text-white transition-colors">
-                <Mail className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-500 hover:text-white transition-colors">
-                <MessageSquare className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-semibold mb-4">Product</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
-              <li><Link href="#features" className="hover:text-purple-400 transition-colors">Features</Link></li>
-              <li><Link href="/commands" className="hover:text-purple-400 transition-colors">Commands</Link></li>
-              <li><Link href="/status" className="hover:text-purple-400 transition-colors">Status</Link></li>
-            </ul>
-          </div>
+  const year = new Date().getFullYear();
 
-          <div>
-            <h4 className="text-white font-semibold mb-4">Legal</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
-              <li><Link href="/terms" className="hover:text-purple-400 transition-colors">Terms of Service</Link></li>
-              <li><Link href="/privacy" className="hover:text-purple-400 transition-colors">Privacy Policy</Link></li>
-            </ul>
+  return (
+    <footer className="relative border-t border-line-subtle">
+      {/* Top light catch on the hairline (decorative). */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 -top-px mx-auto h-px max-w-3xl bg-linear-to-r from-transparent via-line-hover to-transparent"
+      />
+
+      <Container className="grid gap-12 py-section-sm lg:grid-cols-12 lg:gap-8">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between lg:col-span-5 lg:flex-col lg:items-start lg:justify-start">
+          <div className="flex flex-col items-start gap-4">
+            <Logo href="/" />
+            <p className="max-w-xs type-small text-fg-secondary">{SITE_TAGLINE}.</p>
           </div>
+          <Button variant="discord" href={INVITE_URL}>
+            <DiscordIcon className="size-4" />
+            Add to Discord
+          </Button>
         </div>
-        
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} Pleed. All rights reserved.
+
+        <nav
+          aria-label="Footer"
+          className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:col-span-7 lg:gap-x-8"
+        >
+          {groups.map((group) => (
+            <div key={group.title} className="flex min-w-0 flex-col gap-3 pointer-coarse:gap-1">
+              <h2 className="type-label text-fg">{group.title}</h2>
+              <ul className="flex flex-col gap-1 pointer-coarse:gap-0">
+                {group.links.map((link) => (
+                  <li key={link.href}>
+                    <TextLink
+                      href={link.href}
+                      external={link.external}
+                      tone="subtle"
+                      underline="hover"
+                      className="inline-block py-1 type-small pointer-coarse:min-w-11 pointer-coarse:py-3"
+                    >
+                      {link.label}
+                    </TextLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </nav>
+      </Container>
+
+      <div className="border-t border-line-subtle">
+        <Container className="flex flex-col-reverse gap-4 py-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="type-caption text-fg-tertiary">
+            © {year} {COPYRIGHT_HOLDER}. <span className="whitespace-nowrap">Not affiliated with Discord Inc.</span>
           </p>
-          <p className="text-gray-500 text-sm">
-            Not affiliated with Discord Inc.
-          </p>
-        </div>
+          {SOCIAL_LINKS.length > 0 ? (
+            <ul aria-label="Community" className="-ml-2 flex items-center gap-1 sm:-mr-2 sm:ml-0">
+              {SOCIAL_LINKS.map((link) => (
+                <li key={link.href}>
+                  <IconButton href={link.href} external={link.external} label={`${link.label} (opens in a new tab)`}>
+                    <DiscordIcon className="size-4.5" />
+                  </IconButton>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </Container>
       </div>
     </footer>
   );
