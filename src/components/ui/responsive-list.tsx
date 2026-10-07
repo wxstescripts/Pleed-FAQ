@@ -48,9 +48,12 @@ export type ResponsiveListProps<Row> = {
  * every cell uses `overflow-wrap: anywhere`, which — unlike `break-words` —
  * also lowers the column's min-content width, so the auto table layout
  * shrinks to the container. The actions column is shrink-wrapped
- * (`w-px whitespace-nowrap`). As a last-resort safety net the table sits in
- * a keyboard-scrollable region instead of an `overflow-hidden` box that
- * would clip it. Use from client components when cells contain handlers.
+ * (`w-px whitespace-nowrap`). As a last-resort safety net the table scrolls
+ * instead of being clipped by an `overflow-hidden` box (a labelled,
+ * keyboard-scrollable region only while it does). On the phone cards each
+ * detail's label sits beside its value from 22rem of the card's width and
+ * above it below that (the label/value rule shared with ProseTable).
+ * Use from client components when cells contain handlers.
  */
 export function ResponsiveList<Row>({
   rows,
@@ -144,9 +147,15 @@ export function ResponsiveList<Row>({
               ) : null}
             </div>
             {details.length > 0 ? (
-              <dl className="mt-3 grid gap-2.5">
+              // Label/value pairs (same rule as ProseTable's stacked rows): the label sits in a
+              // 7rem column beside the value from 22rem of the card's own width, ABOVE it below
+              // that — so a URL or a long reply gets the whole card width on a phone.
+              <dl className="@container mt-3 grid gap-2.5">
                 {details.map((col) => (
-                  <div key={col.key} className="grid min-w-0 grid-cols-[minmax(0,7rem)_minmax(0,1fr)] gap-3">
+                  <div
+                    key={col.key}
+                    className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-0.5 @min-[22rem]:grid-cols-[minmax(0,7rem)_minmax(0,1fr)] @min-[22rem]:gap-3"
+                  >
                     <dt className="type-caption text-fg-tertiary">{col.header}</dt>
                     <dd className="min-w-0 type-small wrap-anywhere text-fg-secondary">{col.cell(row)}</dd>
                   </div>
