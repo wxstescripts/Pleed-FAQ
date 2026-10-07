@@ -50,7 +50,7 @@ export function Slider({
       {...props}
     >
       {label ? (
-        <SliderPrimitive.Label className="text-sm leading-snug font-medium text-fg data-disabled:text-fg-disabled">
+        <SliderPrimitive.Label className="type-label text-fg data-disabled:text-fg-disabled">
           {label}
         </SliderPrimitive.Label>
       ) : (
@@ -69,14 +69,15 @@ export function Slider({
         <span />
       )}
       <SliderPrimitive.Control className="group/control relative col-span-2 flex h-11 w-full touch-none items-center select-none data-disabled:cursor-not-allowed pointer-fine:h-8">
-        <SliderPrimitive.Track className="relative h-1.5 w-full rounded-full bg-surface-4 select-none">
+        {/* Rail uses the track token (3.3:1 on every surface) so the full range stays visible (WCAG 1.4.11). */}
+        <SliderPrimitive.Track className="relative h-1.5 w-full rounded-full bg-track select-none">
           <SliderPrimitive.Indicator className="rounded-full bg-brand select-none group-data-disabled/control:bg-fg-disabled" />
           <SliderPrimitive.Thumb
             aria-label={label ? undefined : ariaLabel}
             getAriaValueText={(_formatted, value) => (unit ? `${format(value)} ${unit}` : format(value))}
             className={cn(
-              "relative block size-5 rounded-full border-2 border-brand bg-white shadow-md transition-[box-shadow,scale] duration-150 ease-standard select-none",
-              "hover:shadow-[0_0_0_6px_oklch(0.635_0.205_283/0.18)] data-dragging:scale-110 data-dragging:shadow-[0_0_0_8px_oklch(0.635_0.205_283/0.22)]",
+              "relative block size-5 rounded-full border-2 border-brand bg-thumb shadow-thumb transition-[box-shadow,scale] duration-150 ease-standard select-none",
+              "hover:shadow-thumb-hover data-dragging:scale-110 data-dragging:shadow-thumb-active",
               "has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-focus",
               "data-disabled:border-fg-disabled data-disabled:shadow-none",
             )}

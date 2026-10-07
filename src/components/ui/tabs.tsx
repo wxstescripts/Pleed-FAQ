@@ -39,7 +39,8 @@ export function TabsList({
           "absolute left-0 transition-[translate,width,height] duration-300 ease-out-expo",
           "w-(--active-tab-width) translate-x-(--active-tab-left)",
           variant === "pill" &&
-            "top-0.5 -z-0 h-(--active-tab-height) rounded-md bg-surface-3 shadow-sm inset-shadow-highlight",
+            // Raised pill + ring that is 3.1:1 against the inset track (WCAG 1.4.11).
+            "top-0.5 -z-0 h-(--active-tab-height) rounded-md bg-surface-4 shadow-sm inset-shadow-highlight inset-ring inset-ring-line-hover",
           variant === "line" && "bottom-0 h-0.5 rounded-full bg-brand-400",
         )}
       />

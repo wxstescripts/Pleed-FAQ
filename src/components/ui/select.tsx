@@ -65,7 +65,7 @@ export function Select({
     >
       <div className={cn("flex min-w-0 flex-col gap-2", className)}>
         {label ? (
-          <SelectPrimitive.Label className="w-fit cursor-default text-sm leading-snug font-medium text-fg data-disabled:text-fg-disabled">
+          <SelectPrimitive.Label className="w-fit cursor-default type-label text-fg data-disabled:text-fg-disabled">
             {label}
           </SelectPrimitive.Label>
         ) : null}
@@ -74,7 +74,8 @@ export function Select({
           className={cn(
             controlClasses,
             "flex items-center justify-between gap-2 text-left select-none data-popup-open:border-brand-400",
-            size === "md" ? "h-10 px-3 pointer-coarse:h-11" : "h-8 px-2.5 pointer-coarse:h-10",
+            size === "md" ? "h-10 px-3" : "h-8 px-2.5",
+            "pointer-coarse:h-11",
             triggerClassName,
           )}
         >
@@ -100,7 +101,7 @@ export function Select({
                   key={item.value}
                   value={item.value}
                   disabled={item.disabled}
-                  className="grid min-h-9 cursor-default grid-cols-[1fr_1rem] items-center gap-3 rounded-md px-2.5 py-2 text-sm outline-none select-none data-disabled:opacity-45 data-highlighted:bg-surface-3 pointer-coarse:min-h-11"
+                  className="relative grid min-h-9 cursor-default grid-cols-[1fr_1rem] items-center gap-3 rounded-md px-2.5 py-2 text-sm outline-none select-none data-disabled:opacity-45 data-highlighted:bg-selected pointer-coarse:min-h-11 focus-visible:before:absolute focus-visible:before:inset-y-2 focus-visible:before:left-0 focus-visible:before:w-0.5 focus-visible:before:rounded-full focus-visible:before:bg-focus"
                 >
                   <span className="flex min-w-0 flex-col gap-0.5">
                     <SelectPrimitive.ItemText className="truncate text-fg">{item.label}</SelectPrimitive.ItemText>
@@ -138,7 +139,8 @@ export function NativeSelect({ size = "md", className, children, ...props }: Nat
         className={cn(
           controlClasses,
           "appearance-none pr-9",
-          size === "md" ? "h-10 pl-3 pointer-coarse:h-11" : "h-8 pl-2.5 pointer-coarse:h-10",
+          size === "md" ? "h-10 pl-3" : "h-8 pl-2.5",
+          "pointer-coarse:h-11",
         )}
         {...(props as FieldPrimitive.Control.Props)}
       >

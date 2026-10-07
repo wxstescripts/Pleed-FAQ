@@ -41,7 +41,7 @@ export function AccordionTrigger({
         className={mergeClassName(
           cn(
             "group/trigger flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-sans text-base font-medium text-fg transition-colors duration-150 ease-standard md:px-6",
-            "min-h-14 hover:bg-surface-2 focus-visible:focus-ring-inset data-panel-open:text-fg",
+            "min-h-14 hover:bg-hover focus-visible:focus-ring-inset data-panel-open:text-fg",
           ),
           className,
         )}
@@ -68,7 +68,7 @@ export function AccordionPanel({ className, children, ...props }: AccordionPrimi
       )}
       {...props}
     >
-      <div className="max-w-measure px-5 pb-5 type-body text-fg-secondary md:px-6 [&_a]:text-brand-fg [&_a]:underline [&_a]:underline-offset-4 [&_code]:rounded-sm [&_code]:bg-surface-3 [&_code]:px-1 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[0.875em] [&_code]:text-fg">
+      <div className="max-w-measure px-5 pb-5 type-body text-fg-secondary md:px-6 [&_a]:text-brand-fg [&_a]:underline [&_a]:decoration-brand-fg/35 [&_a]:underline-offset-4 [&_a:hover]:decoration-current [&_code]:rounded-sm [&_code]:bg-surface-3 [&_code]:px-1 [&_code]:py-0.5 [&_code]:type-code [&_code]:text-fg">
         {children}
       </div>
     </AccordionPrimitive.Panel>

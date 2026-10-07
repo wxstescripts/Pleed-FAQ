@@ -19,18 +19,18 @@ export function Radio({ className, ...props }: RadioPrimitive.Root.Props) {
   return (
     <RadioPrimitive.Root
       className={mergeClassName(
-        "group/radio relative inline-flex size-[1.125rem] shrink-0 items-center justify-center rounded-full outline-none data-disabled:cursor-not-allowed pointer-coarse:-m-[0.8125rem] pointer-coarse:size-11",
+        "group/radio relative inline-flex size-4.5 shrink-0 items-center justify-center rounded-full outline-none data-disabled:cursor-not-allowed pointer-coarse:-m-3.25 pointer-coarse:size-11",
         className,
       )}
       {...props}
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none flex size-[1.125rem] items-center justify-center rounded-full border border-line-control bg-inset transition-[background-color,border-color] duration-150 ease-standard group-hover/radio:border-fg-tertiary group-focus-visible/radio:outline-2 group-focus-visible/radio:outline-offset-2 group-focus-visible/radio:outline-focus group-data-checked/radio:border-brand group-data-checked/radio:bg-brand group-data-disabled/radio:opacity-45"
+        className="pointer-events-none flex size-4.5 items-center justify-center rounded-full border border-line-control bg-inset transition-[background-color,border-color] duration-150 ease-standard group-hover/radio:border-line-control-hover group-focus-visible/radio:outline-2 group-focus-visible/radio:outline-offset-2 group-focus-visible/radio:outline-focus group-data-checked/radio:border-brand group-data-checked/radio:bg-brand group-data-disabled/radio:opacity-45"
       >
         <RadioPrimitive.Indicator
           keepMounted
-          className="size-2 rounded-full bg-white transition-[opacity,scale] duration-150 ease-standard data-unchecked:scale-50 data-unchecked:opacity-0"
+          className="size-2 rounded-full bg-fg-on-brand transition-[opacity,scale] duration-150 ease-standard data-unchecked:scale-50 data-unchecked:opacity-0"
         />
       </span>
     </RadioPrimitive.Root>
@@ -57,7 +57,7 @@ export function RadioOption({ label, description, card = false, className, ...pr
     >
       <Radio className="mt-0.5" {...props} />
       <span className="flex min-w-0 flex-col gap-0.5">
-        <span className="text-sm leading-snug font-medium text-fg group-has-data-disabled/option:text-fg-disabled">
+        <span className="type-label text-fg group-has-data-disabled/option:text-fg-disabled">
           {label}
         </span>
         {description ? <span className="type-caption text-fg-tertiary">{description}</span> : null}
@@ -120,7 +120,9 @@ export function SegmentedControl({
           value={option.value}
           className={cn(
             "relative inline-flex shrink-0 cursor-pointer items-center justify-center gap-1.5 rounded-md px-3 font-medium whitespace-nowrap text-fg-tertiary transition-[background-color,color,box-shadow] duration-150 ease-standard select-none",
-            "hover:text-fg focus-visible:focus-ring-inset data-checked:bg-surface-3 data-checked:text-fg data-checked:shadow-sm data-checked:inset-shadow-highlight",
+            "hover:text-fg focus-visible:focus-ring-inset",
+            // Selected: raised pill + ring that is 3.1:1 against the inset track (WCAG 1.4.11).
+            "data-checked:bg-surface-4 data-checked:text-fg data-checked:shadow-sm data-checked:inset-shadow-highlight data-checked:inset-ring data-checked:inset-ring-line-hover",
             "data-disabled:cursor-not-allowed data-disabled:opacity-45 [&_svg]:size-4",
             size === "md" ? "h-8 text-sm pointer-coarse:h-11" : "h-7 text-xs pointer-coarse:h-11",
             fullWidth && "flex-1",

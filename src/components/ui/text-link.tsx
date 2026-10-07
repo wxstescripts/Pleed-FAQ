@@ -8,21 +8,37 @@ export type TextLinkProps = Omit<ComponentPropsWithoutRef<"a">, "href"> & {
   href: string;
   /** Force external behaviour (auto-detected for http(s) URLs). */
   external?: boolean;
-  /** "brand" (default) for links in body copy, "subtle" for footers/meta text. */
+  /** "brand" (default) for links in body copy, "subtle" for meta text and footers. */
   tone?: "brand" | "subtle";
+  /**
+   * "always" (default): underlined at rest — required for links inside
+   * sentences (WCAG 1.4.1: colour alone can't mark a link, and `subtle` has
+   * the same colour as body text). "hover": only for standalone link lists
+   * whose context already says "these are links" (footer columns, nav).
+   */
+  underline?: "always" | "hover";
 };
 
 /**
  * Inline text link. Internal paths use next/link; external URLs open in a new
  * tab with rel="noopener noreferrer", a ↗ affordance and an sr-only hint.
  */
-export function TextLink({ href, external, tone = "brand", className, children, ...props }: TextLinkProps) {
+export function TextLink({
+  href,
+  external,
+  tone = "brand",
+  underline = "always",
+  className,
+  children,
+  ...props
+}: TextLinkProps) {
   const isExternal = external ?? /^https?:\/\//.test(href);
   const classes = cn(
-    "rounded-xs underline-offset-4 transition-colors duration-150 ease-standard focus-visible:focus-ring",
+    "rounded-xs underline-offset-4 transition-[color,text-decoration-color] duration-150 ease-standard focus-visible:focus-ring",
+    underline === "always" ? "underline hover:decoration-current" : "no-underline hover:underline",
     tone === "brand"
-      ? "text-brand-fg underline decoration-brand-fg/35 hover:text-brand-100 hover:decoration-current"
-      : "text-fg-secondary hover:text-fg hover:underline",
+      ? "text-brand-fg decoration-brand-fg/35 hover:text-brand-100"
+      : "text-fg-secondary decoration-line-control hover:text-fg",
     className,
   );
   if (isExternal) {

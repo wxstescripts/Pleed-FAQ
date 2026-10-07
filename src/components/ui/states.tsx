@@ -2,6 +2,7 @@ import { CircleAlert, Inbox, RotateCcw, type LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import { IconTile } from "@/components/ui/icon-tile";
 
 type HeadingTag = "h2" | "h3" | "h4";
@@ -90,7 +91,7 @@ export function ErrorState({
       >
         <CircleAlert aria-hidden="true" className="size-5 shrink-0 text-danger-fg" />
         <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-          <p className="text-sm font-medium text-fg">{title}</p>
+          <p className="type-label text-fg">{title}</p>
           {description ? <p className="type-small text-fg-secondary">{description}</p> : null}
         </div>
         {onRetry ? <RetryButton onRetry={onRetry} retrying={retrying} /> : null}
@@ -129,15 +130,15 @@ export function ErrorState({
 
 function RetryButton({ onRetry, retrying }: { onRetry: () => void; retrying?: boolean }) {
   return (
-    <button
-      type="button"
+    <Button
+      variant="secondary"
       onClick={onRetry}
       disabled={retrying}
       aria-busy={retrying || undefined}
-      className="inline-flex h-10 shrink-0 items-center justify-center gap-2 rounded-lg border border-line-strong bg-surface-2 px-4 text-sm font-medium text-fg inset-shadow-highlight transition-colors duration-150 hover:border-line-hover hover:bg-surface-3 focus-visible:focus-ring disabled:opacity-60 pointer-coarse:h-11"
+      className={cn(retrying && "disabled:opacity-100")}
     >
       <RotateCcw aria-hidden="true" className={cn("size-4", retrying && "animate-spin motion-reduce:animate-none")} />
       {retrying ? "Retrying…" : "Try again"}
-    </button>
+    </Button>
   );
 }

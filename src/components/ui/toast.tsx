@@ -5,6 +5,7 @@ import { CircleAlert, CircleCheck, Info, TriangleAlert, X } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 
 /**
@@ -71,10 +72,10 @@ export const toast = Object.assign((title: ReactNode, options?: ToastOptions) =>
 });
 
 const icons: Record<ToastType, ReactNode> = {
-  success: <CircleCheck aria-hidden="true" className="size-[1.125rem] text-success-fg" />,
-  error: <CircleAlert aria-hidden="true" className="size-[1.125rem] text-danger-fg" />,
-  warning: <TriangleAlert aria-hidden="true" className="size-[1.125rem] text-warning-fg" />,
-  info: <Info aria-hidden="true" className="size-[1.125rem] text-info-fg" />,
+  success: <CircleCheck aria-hidden="true" className="size-4.5 text-success-fg" />,
+  error: <CircleAlert aria-hidden="true" className="size-4.5 text-danger-fg" />,
+  warning: <TriangleAlert aria-hidden="true" className="size-4.5 text-warning-fg" />,
+  info: <Info aria-hidden="true" className="size-4.5 text-info-fg" />,
   loading: <Spinner size="sm" className="text-brand-fg" />,
 };
 
@@ -85,15 +86,15 @@ function ToastList() {
       <ToastPrimitive.Content className="pl-toast-content flex items-start gap-3 p-4 pr-3">
         {t.type && t.type in icons ? <span className="mt-px flex shrink-0">{icons[t.type as ToastType]}</span> : null}
         <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-          <ToastPrimitive.Title className="text-sm leading-snug font-medium text-fg" />
+          <ToastPrimitive.Title className="type-label text-fg" />
           <ToastPrimitive.Description className="text-sm leading-snug text-fg-secondary" />
           {t.actionProps ? (
-            <ToastPrimitive.Action className="mt-2.5 inline-flex h-8 w-fit items-center rounded-md border border-line-strong bg-surface-3 px-3 text-sm font-medium text-fg transition-colors duration-150 pointer-coarse:h-11 hover:bg-surface-4 focus-visible:focus-ring" />
+            <ToastPrimitive.Action className={cn(buttonVariants({ variant: "secondary", size: "sm" }), "mt-2.5 w-fit")} />
           ) : null}
         </div>
         <ToastPrimitive.Close
           aria-label="Dismiss notification"
-          className="relative -mt-1 inline-flex size-8 shrink-0 items-center justify-center rounded-md text-fg-tertiary transition-colors duration-150 pointer-coarse:size-11 hover:bg-surface-3 hover:text-fg focus-visible:focus-ring"
+          className="relative -mt-1 inline-flex size-8 shrink-0 items-center justify-center rounded-md text-fg-tertiary transition-colors duration-150 pointer-coarse:size-11 hover:bg-hover hover:text-fg active:bg-pressed focus-visible:focus-ring"
         >
           <X aria-hidden="true" className="size-4" />
         </ToastPrimitive.Close>

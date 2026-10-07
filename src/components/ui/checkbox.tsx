@@ -15,17 +15,18 @@ export function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) 
   return (
     <CheckboxPrimitive.Root
       className={mergeClassName(
-        "group/checkbox peer relative inline-flex size-[1.125rem] shrink-0 items-center justify-center rounded-[0.3rem] outline-none data-disabled:cursor-not-allowed pointer-coarse:-m-[0.8125rem] pointer-coarse:size-11",
+        "group/checkbox peer relative inline-flex size-4.5 shrink-0 items-center justify-center rounded-xs outline-none data-disabled:cursor-not-allowed pointer-coarse:-m-3.25 pointer-coarse:size-11",
         className,
       )}
+      data-compact-control=""
       {...props}
     >
       <span
         aria-hidden="true"
         className={cn(
-          "pointer-events-none flex size-[1.125rem] items-center justify-center rounded-[0.3rem] border border-line-control bg-inset text-fg-on-brand",
+          "pointer-events-none flex size-4.5 items-center justify-center rounded-xs border border-line-control bg-inset text-fg-on-brand",
           "transition-[background-color,border-color] duration-150 ease-standard",
-          "group-hover/checkbox:border-fg-tertiary group-data-checked/checkbox:border-brand group-data-checked/checkbox:bg-brand group-data-indeterminate/checkbox:border-brand group-data-indeterminate/checkbox:bg-brand",
+          "group-hover/checkbox:border-line-control-hover group-data-checked/checkbox:border-brand group-data-checked/checkbox:bg-brand group-data-indeterminate/checkbox:border-brand group-data-indeterminate/checkbox:bg-brand",
           "group-focus-visible/checkbox:outline-2 group-focus-visible/checkbox:outline-offset-2 group-focus-visible/checkbox:outline-focus",
           "group-data-invalid/checkbox:border-danger group-data-disabled/checkbox:opacity-45",
         )}

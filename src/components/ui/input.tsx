@@ -9,13 +9,15 @@ import type { ComponentProps, ReactNode } from "react";
 import { cn, mergeClassName } from "@/lib/utils";
 
 /**
- * Shared text-control look: recessed well, hairline border, brand focus.
- * 40 px tall (44 px + 16 px text on touch screens so iOS never zooms).
+ * Shared text-control look: recessed well, ≥3:1 boundary (line-control —
+ * the inset fill alone is only ~1.1:1 against a card, so the border is what
+ * identifies the field), brand focus. md 40 px / sm 32 px on mouse; every
+ * size is 44 px with 16 px text on touch screens so iOS never zooms.
  */
 export const controlClasses = [
-  "w-full min-w-0 rounded-lg border border-line-strong bg-inset text-sm text-fg shadow-xs",
+  "w-full min-w-0 rounded-lg border border-line-control bg-inset text-sm text-fg shadow-xs",
   "transition-[border-color,background-color,box-shadow] duration-150 ease-standard",
-  "placeholder:text-fg-tertiary hover:border-line-hover",
+  "placeholder:text-fg-tertiary hover:border-line-control-hover",
   "focus-visible:border-brand-400 focus-visible:ring-3 focus-visible:ring-brand-500/30 focus-visible:outline-none",
   "data-invalid:border-danger aria-invalid:border-danger focus-visible:data-invalid:ring-danger/25 focus-visible:aria-invalid:ring-danger/25",
   "disabled:cursor-not-allowed disabled:border-line disabled:bg-surface-1 disabled:text-fg-disabled disabled:shadow-none",
@@ -45,8 +47,7 @@ export function Input({
   wrapperClassName,
   ...props
 }: InputProps) {
-  const sizeClasses =
-    inputSize === "sm" ? "h-8 px-2.5 pointer-coarse:h-10" : "h-10 px-3 pointer-coarse:h-11";
+  const sizeClasses = inputSize === "sm" ? "h-8 px-2.5 pointer-coarse:h-11" : "h-10 px-3 pointer-coarse:h-11";
   const input = (
     <InputPrimitive
       className={mergeClassName(
@@ -97,6 +98,8 @@ export function Textarea({ className, autoGrow = true, ...props }: TextareaProps
 export type NumberFieldProps = NumberFieldPrimitive.Root.Props & {
   /** Unit shown after the number, e.g. "days", "min". */
   unit?: string;
+  /** md 40 px (default) · sm 32 px — both 44 px on touch, like Input/Select/Button. */
+  size?: "sm" | "md";
   inputClassName?: string;
   /** Accessible names for the steppers. */
   decrementLabel?: string;
@@ -104,7 +107,7 @@ export type NumberFieldProps = NumberFieldPrimitive.Root.Props & {
 };
 
 const stepperClasses =
-  "relative flex w-10 shrink-0 items-center justify-center text-fg-secondary transition-colors duration-150 pointer-coarse:w-11 hover:bg-surface-3 hover:text-fg active:bg-surface-4 focus-visible:focus-ring-inset disabled:pointer-events-none disabled:text-fg-disabled data-disabled:pointer-events-none data-disabled:text-fg-disabled [&_svg]:size-4";
+  "relative flex h-full shrink-0 items-center justify-center text-fg-secondary transition-colors duration-150 pointer-coarse:w-11 hover:bg-hover hover:text-fg active:bg-pressed focus-visible:focus-ring-inset disabled:pointer-events-none disabled:text-fg-disabled data-disabled:pointer-events-none data-disabled:text-fg-disabled [&_svg]:size-4";
 
 /**
  * Numeric input with − / + steppers, keyboard (↑/↓, PgUp/PgDn), min/max
@@ -116,18 +119,37 @@ export function NumberField({
   inputClassName,
   decrementLabel = "Decrease",
   incrementLabel = "Increase",
+  size = "md",
   ...props
 }: NumberFieldProps) {
+  const sm = size === "sm";
+  const stepper = cn(stepperClasses, sm ? "w-8" : "w-10");
   return (
     <NumberFieldPrimitive.Root className={mergeClassName("w-full max-w-60 min-w-0", className)} {...props}>
-      <NumberFieldPrimitive.Group className="flex h-10 w-full min-w-0 overflow-hidden rounded-lg border border-line-strong bg-inset shadow-xs transition-[border-color,box-shadow] duration-150 hover:border-line-hover has-[input:focus-visible]:border-brand-400 has-[input:focus-visible]:ring-3 has-[input:focus-visible]:ring-brand-500/30 has-[[aria-invalid=true]]:border-danger data-disabled:border-line data-disabled:bg-surface-1 pointer-coarse:h-11.5">
-        <NumberFieldPrimitive.Decrement aria-label={decrementLabel} className={cn(stepperClasses, "border-r border-line")}>
+      {/*
+        Same outer size as Input/Select/Button (40/32 px, 44 px on touch). The
+        boundary is an overlay (::after) instead of a real border, so the
+        steppers and input get the FULL height — 44×44 touch targets.
+      */}
+      <NumberFieldPrimitive.Group
+        className={cn(
+          "relative flex w-full min-w-0 items-stretch overflow-hidden rounded-lg bg-inset shadow-xs transition-shadow duration-150 pointer-coarse:h-11",
+          sm ? "h-8" : "h-10",
+          "after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:border after:border-line-control after:transition-colors after:duration-150",
+          "hover:after:border-line-control-hover",
+          "has-[input:focus-visible]:ring-3 has-[input:focus-visible]:ring-brand-500/30 has-[input:focus-visible]:after:border-brand-400",
+          "has-[[aria-invalid=true]]:after:border-danger",
+          "data-disabled:bg-surface-1 data-disabled:after:border-line",
+        )}
+      >
+        <NumberFieldPrimitive.Decrement aria-label={decrementLabel} className={cn(stepper, "border-r border-line")}>
           <Minus aria-hidden="true" />
         </NumberFieldPrimitive.Decrement>
         <div className="relative flex min-w-0 flex-1 items-center">
           <NumberFieldPrimitive.Input
             className={cn(
-              "h-full w-full min-w-0 bg-transparent px-3 text-center text-sm text-fg tabular-nums outline-none data-disabled:text-fg-disabled pointer-coarse:text-base",
+              "h-full w-full min-w-0 bg-transparent text-center text-sm text-fg tabular-nums outline-none data-disabled:text-fg-disabled pointer-coarse:text-base",
+              sm ? "px-2" : "px-3",
               unit && "pr-1 text-right",
               inputClassName,
             )}
@@ -138,7 +160,7 @@ export function NumberField({
             </span>
           ) : null}
         </div>
-        <NumberFieldPrimitive.Increment aria-label={incrementLabel} className={cn(stepperClasses, "border-l border-line")}>
+        <NumberFieldPrimitive.Increment aria-label={incrementLabel} className={cn(stepper, "border-l border-line")}>
           <Plus aria-hidden="true" />
         </NumberFieldPrimitive.Increment>
       </NumberFieldPrimitive.Group>

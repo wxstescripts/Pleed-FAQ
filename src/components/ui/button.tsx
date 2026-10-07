@@ -28,15 +28,16 @@ export const buttonVariants = cva(
           "bg-brand text-fg-on-brand inset-shadow-highlight-strong hover:bg-brand-hover hover:shadow-glow active:bg-brand-active",
         secondary:
           "border-line-strong bg-surface-2 text-fg inset-shadow-highlight hover:border-line-hover hover:bg-surface-3 active:bg-surface-4",
+        // Transparent variants use white-alpha overlays so hover/press read on every surface.
         outline:
-          "border-line-strong bg-transparent text-fg hover:border-line-hover hover:bg-surface-2 active:bg-surface-3",
-        ghost: "bg-transparent text-fg-secondary hover:bg-surface-3 hover:text-fg active:bg-surface-4",
+          "border-line-strong bg-transparent text-fg hover:border-line-hover hover:bg-hover active:bg-pressed",
+        ghost: "bg-transparent text-fg-secondary hover:bg-hover hover:text-fg active:bg-pressed",
         destructive:
           "bg-danger-strong text-danger-strong-fg inset-shadow-highlight-strong hover:bg-danger-strong-hover active:brightness-95",
         "destructive-ghost":
-          "bg-transparent text-fg-tertiary hover:bg-danger-subtle hover:text-danger active:bg-danger-subtle",
+          "bg-transparent text-fg-tertiary hover:bg-danger-subtle hover:text-danger-fg active:bg-danger-border",
         discord:
-          "bg-discord text-white inset-shadow-highlight-strong hover:bg-discord-hover active:bg-discord-active",
+          "bg-discord text-discord-fg inset-shadow-highlight-strong hover:bg-discord-hover active:bg-discord-active",
         link: "h-auto! px-0! pointer-coarse:min-h-11 text-brand-fg underline-offset-4 decoration-brand-fg/40 hover:underline hover:text-brand-100 active:translate-y-0",
       },
       size: {
@@ -44,7 +45,7 @@ export const buttonVariants = cva(
         md: "h-10 rounded-lg px-4 text-sm pointer-coarse:h-11 [&_svg:not([class*='size-'])]:size-4",
         lg: "h-12 rounded-xl px-6 text-base [&_svg:not([class*='size-'])]:size-5",
         "icon-sm": "size-8 rounded-md pointer-coarse:size-11 [&_svg:not([class*='size-'])]:size-4",
-        icon: "size-10 rounded-lg pointer-coarse:size-11 [&_svg:not([class*='size-'])]:size-[1.125rem]",
+        icon: "size-10 rounded-lg pointer-coarse:size-11 [&_svg:not([class*='size-'])]:size-4.5",
         "icon-lg": "size-12 rounded-xl [&_svg:not([class*='size-'])]:size-5",
       },
       fullWidth: {

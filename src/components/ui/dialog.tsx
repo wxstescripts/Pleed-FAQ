@@ -22,11 +22,11 @@ export const DialogTrigger = DialogPrimitive.Trigger;
 export const DialogClose = DialogPrimitive.Close;
 
 export const backdropClasses =
-  "fixed inset-0 z-overlay bg-scrim backdrop-blur-[2px] transition-opacity duration-200 ease-standard data-ending-style:opacity-0 data-starting-style:opacity-0";
+  "fixed inset-0 z-overlay bg-scrim backdrop-blur-xs transition-opacity duration-200 ease-standard data-ending-style:opacity-0 data-starting-style:opacity-0";
 
 const popupClasses = cn(
   "fixed z-modal flex max-h-[calc(100dvh-2rem)] w-full flex-col overflow-hidden border border-line-strong bg-surface-2 text-fg shadow-xl inset-shadow-highlight outline-none",
-  "transition-[translate,scale,opacity] duration-250 ease-out-expo data-ending-style:duration-150 data-ending-style:ease-exit",
+  "transition-[translate,scale,opacity] duration-300 ease-out-expo data-ending-style:duration-150 data-ending-style:ease-exit",
   // phones: bottom sheet
   "inset-x-0 bottom-0 rounded-t-2xl pb-[env(safe-area-inset-bottom)] data-ending-style:translate-y-8 data-ending-style:opacity-0 data-starting-style:translate-y-8 data-starting-style:opacity-0",
   // ≥sm: centred card
@@ -85,11 +85,11 @@ export function DialogCloseButton({ label = "Close", className }: { label?: stri
     <DialogPrimitive.Close
       aria-label={label}
       className={cn(
-        "relative -mt-1 -mr-1.5 inline-flex size-9 shrink-0 items-center justify-center rounded-lg text-fg-tertiary transition-colors duration-150 pointer-coarse:size-11 hover:bg-surface-3 hover:text-fg focus-visible:focus-ring",
+        "relative -mt-1 -mr-1.5 inline-flex size-9 shrink-0 items-center justify-center rounded-lg text-fg-tertiary transition-colors duration-150 pointer-coarse:size-11 hover:bg-hover hover:text-fg active:bg-pressed focus-visible:focus-ring",
         className,
       )}
     >
-      <X aria-hidden="true" className="size-[1.125rem]" />
+      <X aria-hidden="true" className="size-4.5" />
     </DialogPrimitive.Close>
   );
 }

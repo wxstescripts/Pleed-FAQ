@@ -26,6 +26,7 @@ export function Switch({ className, size = "md", ...props }: SwitchProps) {
       nativeButton
       render={<button type="button" />}
       data-size={size}
+      data-compact-control=""
       className={mergeClassName(
         cn(
           "group/switch relative inline-flex shrink-0 items-center justify-center rounded-full outline-none",
@@ -41,9 +42,9 @@ export function Switch({ className, size = "md", ...props }: SwitchProps) {
       <span
         aria-hidden="true"
         className={cn(
-          "pointer-events-none flex shrink-0 items-center rounded-full border border-line-hover bg-surface-4 p-0.5",
+          "pointer-events-none flex shrink-0 items-center rounded-full border border-line-control bg-surface-4 p-0.5",
           "transition-[background-color,border-color,opacity] duration-200 ease-standard",
-          "group-hover/switch:border-fg-disabled group-data-checked/switch:border-transparent group-data-checked/switch:bg-brand group-data-checked/switch:group-hover/switch:bg-brand-hover",
+          "group-hover/switch:border-line-control-hover group-data-checked/switch:border-transparent group-data-checked/switch:bg-brand group-data-checked/switch:group-hover/switch:bg-brand-hover",
           "group-focus-visible/switch:outline-2 group-focus-visible/switch:outline-offset-2 group-focus-visible/switch:outline-focus",
           "group-data-disabled/switch:opacity-45",
           md ? "h-6 w-10" : "h-5 w-8",
@@ -52,8 +53,8 @@ export function Switch({ className, size = "md", ...props }: SwitchProps) {
         <SwitchPrimitive.Thumb
           className={cn(
             "pointer-events-none block rounded-full bg-fg-secondary shadow-sm transition-[translate,background-color] duration-200 ease-standard",
-            "data-checked:bg-white",
-            md ? "size-[1.125rem] data-checked:translate-x-4" : "size-3.5 data-checked:translate-x-3",
+            "data-checked:bg-thumb",
+            md ? "size-4.5 data-checked:translate-x-4" : "size-3.5 data-checked:translate-x-3",
           )}
         />
       </span>

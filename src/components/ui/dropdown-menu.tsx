@@ -46,8 +46,10 @@ export function DropdownMenuContent({
   );
 }
 
-const itemClasses =
-  "relative flex min-h-9 cursor-default items-center gap-2.5 rounded-md px-2.5 text-sm text-fg-secondary outline-none select-none data-highlighted:bg-surface-3 data-highlighted:text-fg data-disabled:pointer-events-none data-disabled:opacity-45 pointer-coarse:min-h-11 [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-fg-tertiary data-highlighted:[&_svg]:text-fg";
+// Highlight = bg-selected (1.29:1 on the surface-2 popup). Keyboard focus adds a 2 px
+// brand bar (7.6:1) so the focused item never relies on the subtle fill alone.
+export const menuItemClasses =
+  "relative flex min-h-9 cursor-default items-center gap-2.5 rounded-md px-2.5 text-sm text-fg-secondary outline-none select-none data-highlighted:bg-selected data-highlighted:text-fg focus-visible:before:absolute focus-visible:before:inset-y-2 focus-visible:before:left-0 focus-visible:before:w-0.5 focus-visible:before:rounded-full focus-visible:before:bg-focus data-disabled:pointer-events-none data-disabled:opacity-45 pointer-coarse:min-h-11 [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-fg-tertiary data-highlighted:[&_svg]:text-fg";
 
 export function DropdownMenuItem({
   className,
@@ -58,7 +60,7 @@ export function DropdownMenuItem({
     <MenuPrimitive.Item
       className={mergeClassName(
         cn(
-          itemClasses,
+          menuItemClasses,
           destructive &&
             "text-danger-fg data-highlighted:bg-danger-subtle data-highlighted:text-danger-fg [&_svg]:text-danger-fg data-highlighted:[&_svg]:text-danger-fg",
         ),
@@ -83,7 +85,7 @@ export function DropdownMenuLinkItem({
 }) {
   return (
     <MenuPrimitive.Item
-      className={cn(itemClasses, className)}
+      className={cn(menuItemClasses, className)}
       render={
         <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})} />
       }
@@ -95,7 +97,7 @@ export function DropdownMenuLinkItem({
 
 export function DropdownMenuCheckboxItem({ className, children, ...props }: MenuPrimitive.CheckboxItem.Props) {
   return (
-    <MenuPrimitive.CheckboxItem className={mergeClassName(cn(itemClasses, "pr-8"), className)} {...props}>
+    <MenuPrimitive.CheckboxItem className={mergeClassName(cn(menuItemClasses, "pr-8"), className)} {...props}>
       {children}
       <MenuPrimitive.CheckboxItemIndicator className="absolute right-2.5 text-brand-fg">
         <Check aria-hidden="true" className="size-4 text-brand-fg!" />

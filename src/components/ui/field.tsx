@@ -28,7 +28,7 @@ export function FieldLabel({
   return (
     <FieldPrimitive.Label
       className={mergeClassName(
-        "flex w-fit items-center gap-2 text-sm leading-snug font-medium text-fg select-none data-disabled:text-fg-disabled",
+        "flex w-fit items-center gap-2 type-label text-fg select-none data-disabled:text-fg-disabled",
         className,
       )}
       {...props}
