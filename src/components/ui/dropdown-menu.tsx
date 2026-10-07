@@ -1,10 +1,11 @@
 "use client";
 
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
-import { Check } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
+import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { cn, mergeClassName } from "@/lib/utils";
+import { cn, isExternalHref, mergeClassName } from "@/lib/utils";
 
 /**
  * Dropdown menu (arrow keys, type-ahead, Escape, focus return).
@@ -71,26 +72,42 @@ export function DropdownMenuItem({
   );
 }
 
-/** Menu item that navigates (renders an <a>). */
+/**
+ * Menu item that navigates. Internal paths render next/link (client-side
+ * navigation + prefetch, app state kept); http(s) URLs open in a new tab
+ * with rel="noopener noreferrer", the ↗ affordance and an sr-only hint.
+ *
+ *   <DropdownMenuLinkItem href="/dashboard"><LayoutDashboard /> Dashboard</DropdownMenuLinkItem>
+ *   <DropdownMenuLinkItem href={SUPPORT_URL}><LifeBuoy /> Support server</DropdownMenuLinkItem>
+ */
 export function DropdownMenuLinkItem({
   href,
   className,
   children,
   external,
+  disabled,
 }: {
   href: string;
   className?: string;
   children: ReactNode;
+  /** Force external behaviour (auto-detected for http(s) URLs). */
   external?: boolean;
+  disabled?: boolean;
 }) {
+  const isExternal = external ?? isExternalHref(href);
   return (
     <MenuPrimitive.Item
       className={cn(menuItemClasses, className)}
-      render={
-        <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})} />
-      }
+      disabled={disabled}
+      render={isExternal ? <a href={href} target="_blank" rel="noopener noreferrer" /> : <Link href={href} />}
     >
       {children}
+      {isExternal ? (
+        <>
+          <ArrowUpRight aria-hidden="true" className="ml-auto size-3.5! opacity-70" />
+          <span className="sr-only"> (opens in a new tab)</span>
+        </>
+      ) : null}
     </MenuPrimitive.Item>
   );
 }
