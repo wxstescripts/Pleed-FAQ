@@ -8,11 +8,13 @@ import { DesktopNav } from "./desktop-nav";
 import { HeaderSurface } from "./header-surface";
 import { MobileMenu } from "./mobile-menu";
 import { DASHBOARD_LINK } from "./nav-config";
+import { SameHashScroll } from "./same-hash-scroll";
 
 /**
  * Global site header (DESIGN.md §2 header model): sticky, in flow, h-header,
- * z-header. A Server Component shell with three small client islands —
- * HeaderSurface (scroll state), DesktopNav (active link) and MobileMenu (Sheet).
+ * z-header. A Server Component shell with small client islands: HeaderSurface
+ * (scroll state), DesktopNav (active link), MobileMenu (Sheet) and
+ * SameHashScroll (re-clicking "/#features" while already on it scrolls again).
  *
  *  - Phones (< 640):        Logo ·························· Menu
  *  - Large phones / small tablets (640–767): Logo ······ Add to Discord · Menu
@@ -41,6 +43,7 @@ export default function Navbar() {
           <MobileMenu className="lg:hidden" />
         </div>
       </Container>
+      <SameHashScroll />
     </HeaderSurface>
   );
 }

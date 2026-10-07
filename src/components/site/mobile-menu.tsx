@@ -13,6 +13,7 @@ import { INVITE_URL, NAV_LINKS } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 import { isActiveLink, LINK_ICONS, SECONDARY_LINKS, splitHash } from "./nav-config";
+import { scrollToFragment } from "./same-hash-scroll";
 
 /** Same breakpoint as Tailwind's `lg`, where the desktop nav takes over. */
 const DESKTOP_QUERY = "(min-width: 64rem)";
@@ -73,6 +74,9 @@ export function MobileMenu({ className }: { className?: string }) {
     if (isOpen || !pendingHref.current) return;
     const href = pendingHref.current;
     pendingHref.current = null;
+    const hash = splitHash(href);
+    // Already on that fragment: Next would treat the push as a no-op, so scroll ourselves.
+    if (hash && window.location.hash === `#${hash.id}` && scrollToFragment(hash.id)) return;
     router.push(href);
   };
 

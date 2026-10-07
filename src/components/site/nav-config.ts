@@ -1,9 +1,9 @@
 import {
   Activity,
+  Blocks,
   BookOpen,
   FileText,
   LayoutDashboard,
-  LayoutGrid,
   LifeBuoy,
   Lock,
   Rocket,
@@ -32,7 +32,7 @@ export const DASHBOARD_LINK: NavLink =
 
 /** Icons for the mobile menu rows, keyed by href. Rows without an entry simply render without one. */
 export const LINK_ICONS: Readonly<Record<string, LucideIcon>> = {
-  "/#features": LayoutGrid,
+  "/#features": Blocks,
   "/commands": SquareTerminal,
   "/docs": BookOpen,
   "/status": Activity,
