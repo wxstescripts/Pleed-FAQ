@@ -1,8 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Terminal, Filter } from "lucide-react";
 import commandsData from "@/data/commands.json";
@@ -28,10 +26,8 @@ export default function CommandsPage() {
   }, [searchQuery, selectedCategory]);
 
   return (
-    <div className="min-h-screen bg-black flex flex-col selection:bg-indigo-500/30">
-      <Navbar />
-      
-      <main className="flex-grow pt-32 pb-20">
+    <div className="flex flex-col selection:bg-indigo-500/30">
+      <div className="flex-grow pt-32 pb-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Header */}
@@ -138,9 +134,7 @@ export default function CommandsPage() {
           </div>
 
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
   );
 }
