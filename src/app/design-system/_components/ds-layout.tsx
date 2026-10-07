@@ -11,7 +11,7 @@ export function DsNav({ sections }: { sections: { id: string; label: string }[] 
           <li key={s.id} className="shrink-0">
             <a
               href={`#${s.id}`}
-              className="flex h-9 items-center rounded-md px-3 text-sm whitespace-nowrap text-fg-tertiary transition-colors duration-150 hover:bg-surface-2 hover:text-fg focus-visible:focus-ring max-lg:border max-lg:border-line pointer-coarse:h-11 lg:h-8 lg:px-2.5"
+              className="flex h-9 items-center rounded-md px-3 text-sm whitespace-nowrap text-fg-tertiary transition-colors duration-150 hover:bg-hover hover:text-fg active:bg-pressed focus-visible:focus-ring max-lg:border max-lg:border-line pointer-coarse:h-11 lg:h-8 lg:px-2.5"
             >
               {s.label}
             </a>
@@ -34,7 +34,7 @@ export function DsSection({
   children: ReactNode;
 }) {
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="flex scroll-mt-24 flex-col gap-6">
+    <section id={id} aria-labelledby={`${id}-title`} className="flex flex-col gap-6">
       <div className="flex flex-col gap-2 border-b border-line-subtle pb-4">
         <h2 id={`${id}-title`} className="type-h3 text-fg">
           {title}

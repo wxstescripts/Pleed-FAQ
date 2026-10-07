@@ -5,6 +5,7 @@ import {
   Bot,
   ExternalLink,
   LayoutDashboard,
+  MessageSquareReply,
   Plus,
   Settings2,
   ShieldCheck,
@@ -17,7 +18,8 @@ import {
 import { Badge, Pill, PlaceholderBadge, StatusDot } from "@/components/ui/badge";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Button, IconButton } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, FeatureCard } from "@/components/ui/card";
+import { CodeBlock } from "@/components/ui/code-block";
 import { Container } from "@/components/ui/container";
 import { DiscordIcon } from "@/components/ui/discord-icon";
 import { GradientText } from "@/components/ui/gradient-text";
@@ -77,8 +79,8 @@ const surfaces = [
   ["canvas", "bg-canvas", "App background"],
   ["surface-1", "bg-surface-1", "Cards, sections"],
   ["surface-2", "bg-surface-2", "Raised, popovers"],
-  ["surface-3", "bg-surface-3", "Hover, selected"],
-  ["surface-4", "bg-surface-4", "Pressed, tracks"],
+  ["surface-3", "bg-surface-3", "Badges, tooltips, save bar"],
+  ["surface-4", "bg-surface-4", "Selected pill, switch track"],
 ] as const;
 
 const textTiers = [
@@ -120,7 +122,11 @@ const typeStyles = [
   ["type-body", "Body text is set in Geist at 16 px with a 1.65 line-height for comfortable reading.", "16 px · 1.65"],
   ["type-small", "Small text for secondary UI copy and dense lists.", "14 px · 1.55"],
   ["type-caption", "Caption — helper text, timestamps, metadata.", "13 px · 1.45"],
+  ["type-label", "Control label — DM members on join", "14 px · Geist 500 · 1.375 (FieldLabel, SettingRow, nav)"],
   ["type-eyebrow", "Eyebrow label", "12 px mono · uppercase · 0.08em"],
+  ["type-code-sm", "!antinuke ban on --threshold 3", "13 px mono · code blocks, chips, mono cells"],
+  ["type-metric", "403", "28 → 32 px · Mona Sans 620 · tabular (StatCard)"],
+  ["type-metric-lg", "11 modules", "36 → 48 px · Mona Sans 640 · tabular (hero stats)"],
 ] as const;
 
 const radii = [
@@ -204,18 +210,57 @@ export default async function DesignSystemPage() {
               </div>
             </DsBlock>
             <DsBlock title="Hairlines">
-              <div className="grid gap-3 sm:grid-cols-4">
+              <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-6">
                 {[
                   ["line-subtle", "border-line-subtle", "6% · dividers in lists"],
                   ["line", "border-line", "9% · default borders"],
-                  ["line-strong", "border-line-strong", "15% · controls, raised"],
-                  ["line-hover", "border-line-hover", "24% · hover"],
+                  ["line-strong", "border-line-strong", "15% · buttons, raised"],
+                  ["line-hover", "border-line-hover", "24% · hover, selected pill ring"],
+                  ["line-control", "border-line-control", "40% · every form control ≥3:1"],
+                  ["line-control-hover", "border-line-control-hover", "55% · control hover"],
                 ].map(([name, cls, note]) => (
                   <div key={name} className={`rounded-lg border bg-surface-1 p-4 ${cls}`}>
                     <p className="font-mono text-xs text-fg">{name}</p>
                     <p className="type-caption text-fg-tertiary">{note}</p>
                   </div>
                 ))}
+              </div>
+            </DsBlock>
+            <DsBlock title="Interaction overlays (white alpha — read on every surface)">
+              <div className="grid gap-3 md:grid-cols-3">
+                {(
+                  [
+                    ["bg-surface-1", "surface-1"],
+                    ["bg-surface-2", "surface-2 (menus)"],
+                    ["bg-surface-3", "surface-3 (save bar)"],
+                  ] as const
+                ).map(([surface, name]) => (
+                  <div key={surface} className={`flex flex-col gap-1 rounded-xl border border-line p-2 ${surface}`}>
+                    <p className="px-2 pt-1 font-mono text-xs text-fg-tertiary">{name}</p>
+                    {(
+                      [
+                        ["", "rest"],
+                        ["bg-hover", "bg-hover · 6%"],
+                        ["bg-selected", "bg-selected · 9% (active nav, highlighted item)"],
+                        ["bg-pressed", "bg-pressed · 10%"],
+                      ] as const
+                    ).map(([cls, label]) => (
+                      <div key={label} className={`rounded-md px-2.5 py-2 text-sm text-fg-secondary ${cls}`}>
+                        {label}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-wrap items-center gap-6 rounded-xl border border-line bg-surface-1 p-4">
+                <div className="flex items-center gap-3">
+                  <div className="h-1.5 w-32 rounded-full bg-track" />
+                  <p className="font-mono text-xs text-fg-tertiary">bg-track · slider rail 3.3:1</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="size-5 rounded-full border-2 border-brand bg-thumb shadow-thumb" />
+                  <p className="font-mono text-xs text-fg-tertiary">bg-thumb · shadow-thumb</p>
+                </div>
               </div>
             </DsBlock>
             <DsBlock title="Text (contrast measured on every surface)">
@@ -257,7 +302,7 @@ export default async function DesignSystemPage() {
                 ))}
               </div>
               <div className="flex flex-wrap items-center gap-3">
-                <div className="flex items-center gap-2 rounded-lg bg-discord px-3 py-2 text-sm font-medium text-white">
+                <div className="flex items-center gap-2 rounded-lg bg-discord px-3 py-2 text-sm font-medium text-discord-fg">
                   <DiscordIcon className="size-4" /> discord #5865F2
                 </div>
                 <p className="type-caption text-fg-tertiary">Blurple is reserved for Discord-specific actions (invite, log in).</p>
@@ -280,21 +325,23 @@ export default async function DesignSystemPage() {
             <DsBlock title="Families & numerals">
               <div className="grid gap-3 md:grid-cols-3">
                 <Card padding="sm">
-                  <p className="type-eyebrow text-fg-tertiary">font-display</p>
-                  <p className="mt-2 font-display text-3xl font-semibold tracking-tight [font-stretch:110%]">Aa Pleed 403</p>
+                  <p className="type-eyebrow text-fg-tertiary">font-display · Mona Sans</p>
+                  <p className="mt-2 type-h2 text-fg">Aa Pleed 403</p>
                 </Card>
                 <Card padding="sm">
-                  <p className="type-eyebrow text-fg-tertiary">font-sans</p>
-                  <p className="mt-2 font-sans text-3xl font-medium tracking-tight">Aa Pleed 403</p>
+                  <p className="type-eyebrow text-fg-tertiary">font-sans · Geist</p>
+                  <p className="mt-2 type-h4 text-fg">Aa Pleed 403</p>
                 </Card>
                 <Card padding="sm">
-                  <p className="type-eyebrow text-fg-tertiary">font-mono</p>
-                  <p className="mt-2 font-mono text-3xl">!antinuke 403</p>
+                  <p className="type-eyebrow text-fg-tertiary">font-mono · Geist Mono</p>
+                  <p className="mt-2 type-lead text-fg">
+                    <code className="type-code">!antinuke 403</code>
+                  </p>
                 </Card>
               </div>
               <p className="type-small text-fg-secondary">
                 Highlight one phrase at most: <GradientText>restrained gradient text</GradientText>. Use{" "}
-                <code className="rounded-sm bg-surface-3 px-1 font-mono text-[0.875em]">tabular-nums</code> for changing numbers.
+                <code className="rounded-sm bg-surface-3 px-1 type-code">tabular-nums</code> for changing numbers.
               </p>
             </DsBlock>
           </DsSection>
@@ -311,7 +358,11 @@ export default async function DesignSystemPage() {
                   ["px-gutter", "16 → 40 px", "Page gutters (fluid)"],
                   ["py-section", "64 → 128 px", "Section rhythm"],
                   ["py-section-sm", "48 → 80 px", "Compact sections"],
-                  ["h-header", "64 px", "Sticky header"],
+                  ["h-header", "64 px", "Sticky header (in flow)"],
+                  ["py-page", "24 → 40 px", "Dashboard page top/bottom"],
+                  ["w-sidebar", "240 px", "Dashboard sidebar"],
+                  ["w-sidebar-rail", "64 px", "Collapsed icon rail"],
+                  ["gap-4 lg:gap-6", "16 → 24 px", "Card grids"],
                 ].map(([token, value, use]) => (
                   <div key={token} className="rounded-lg border border-line bg-surface-1 p-4">
                     <p className="font-mono text-xs text-brand-fg">{token}</p>
@@ -362,6 +413,20 @@ export default async function DesignSystemPage() {
                 />
               </div>
             </DsBlock>
+            <DsBlock title="Adjacent sections share one gap (not two paddings)">
+              <div className="overflow-hidden rounded-xl border border-line bg-canvas">
+                <Section spacing="compact" container={false} className="px-6" eyebrow="Section A" title="First section" titleAs="h3">
+                  <div className="h-12 rounded-lg border border-dashed border-line-strong" />
+                </Section>
+                <Section spacing="compact" container={false} className="px-6" eyebrow="Section B" title="Second section" titleAs="h3">
+                  <div className="h-12 rounded-lg border border-dashed border-line-strong" />
+                </Section>
+              </div>
+              <p className="type-caption text-fg-tertiary">
+                A&apos;s bottom padding collapses, so the space between A&apos;s content and B&apos;s eyebrow is one
+                py-section-sm. Raised sections keep both paddings.
+              </p>
+            </DsBlock>
             <DsBlock title="Z-index & motion">
               <div className="grid gap-3 md:grid-cols-2">
                 <Card padding="sm">
@@ -379,7 +444,8 @@ export default async function DesignSystemPage() {
                     <li>duration-150 · fast — hovers, toggles</li>
                     <li>duration-200 · base — controls, popovers</li>
                     <li>duration-300 · slow — sheets, accordions</li>
-                    <li>duration-500 · slower — reveals</li>
+                    <li>duration-500 · slower — large surfaces</li>
+                    <li>600 ms · reveals (Reveal/Stagger, fadeRise only)</li>
                     <li>ease-standard · cubic-bezier(.2,0,0,1)</li>
                     <li>ease-out-expo · cubic-bezier(.16,1,.3,1)</li>
                   </ul>
@@ -539,7 +605,6 @@ export default async function DesignSystemPage() {
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               <Card>
                 <CardHeader>
-                  <IconTile icon={ShieldCheck} className="mb-2" />
                   <CardTitle>Default card</CardTitle>
                   <CardDescription>surface-1, hairline border, top light catch.</CardDescription>
                 </CardHeader>
@@ -577,6 +642,27 @@ export default async function DesignSystemPage() {
                 <CardDescription>One highlighted item per group.</CardDescription>
               </Card>
             </div>
+            <DsBlock title="FeatureCard — the one feature-card pattern (grid gap-4 lg:gap-6)">
+              <div className="grid gap-4 md:grid-cols-2 lg:gap-6 xl:grid-cols-3">
+                <FeatureCard
+                  icon={ShieldCheck}
+                  title="Anti-nuke"
+                  description="Stops mass bans, kicks and channel deletes the moment a threshold is crossed."
+                />
+                <FeatureCard
+                  icon={UserCheck}
+                  title="Join gates"
+                  description="Hold new accounts until they verify, by account age or a button."
+                  href="/design-system#cards"
+                />
+                <FeatureCard
+                  icon={MessageSquareReply}
+                  title="Auto-responders"
+                  description="Answer common questions automatically with a trigger and a reply."
+                  variant="raised"
+                />
+              </div>
+            </DsBlock>
           </DsSection>
 
           <DsSection id="forms" title="Form controls" description="All labelled through Field; 16 px text + 44 px height on touch screens.">
@@ -687,9 +773,7 @@ export default async function DesignSystemPage() {
                   </li>
                 </ol>
                 <blockquote>Role hierarchy matters: Pleed can only act on roles below its own.</blockquote>
-                <pre>
-                  <code>!antinuke ban on --threshold 3 --do ban</code>
-                </pre>
+                <CodeBlock code="!antinuke ban on --threshold 3 --do ban" prompt="›" />
                 <hr />
                 <table>
                   <thead>
@@ -712,11 +796,16 @@ export default async function DesignSystemPage() {
               </Prose>
             </Card>
             <p className="type-small text-fg-secondary">
-              Inline links: <TextLink href="/privacy">internal link</TextLink> ·{" "}
+              Inline links are always underlined: <TextLink href="/privacy">internal link</TextLink> ·{" "}
               <TextLink href={SUPPORT_URL}>support server</TextLink> ·{" "}
               <TextLink href="/terms" tone="subtle">
                 subtle link
               </TextLink>
+              . Standalone link lists (footer columns) may use{" "}
+              <TextLink href="/terms" tone="subtle" underline="hover">
+                underline=&quot;hover&quot;
+              </TextLink>
+              .
             </p>
           </DsSection>
 
