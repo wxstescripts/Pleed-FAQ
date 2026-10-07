@@ -1,91 +1,198 @@
-"use client";
+import {
+  AudioLines,
+  Coins,
+  DoorOpen,
+  Funnel,
+  Gamepad2,
+  Gavel,
+  History,
+  MessageSquareReply,
+  ScrollText,
+  Search,
+  ShieldAlert,
+  Ticket,
+  WandSparkles,
+  type LucideIcon,
+} from "lucide-react";
+import type { ReactNode } from "react";
 
-import { motion } from "framer-motion";
-import { ShieldAlert, Terminal, Workflow, Users, BarChart3, Settings } from "lucide-react";
+import { Reveal, Stagger } from "@/components/motion/reveal";
+import { Card } from "@/components/ui/card";
+import { IconTile } from "@/components/ui/icon-tile";
+import { Section } from "@/components/ui/section";
+import { TextLink } from "@/components/ui/text-link";
+import { cn } from "@/lib/utils";
 
-export default function Features() {
-  const features = [
-    {
-      title: "Anti-Nuke & Security",
-      description: "Instantly detect and block mass-banning, channel deletions, and unauthorized role changes.",
-      icon: <ShieldAlert className="w-8 h-8 text-red-400" />,
-      color: "from-red-500/20 to-orange-500/5",
-      border: "border-red-500/20"
-    },
-    {
-      title: "Join Gates",
-      description: "Force new members to verify through CAPTCHA or read rules before getting access to the server.",
-      icon: <Users className="w-8 h-8 text-blue-400" />,
-      color: "from-blue-500/20 to-cyan-500/5",
-      border: "border-blue-500/20"
-    },
-    {
-      title: "Advanced Logging",
-      description: "Keep a permanent, tamper-proof record of every deleted message, kick, ban, and voice channel join.",
-      icon: <Terminal className="w-8 h-8 text-emerald-400" />,
-      color: "from-emerald-500/20 to-green-500/5",
-      border: "border-emerald-500/20"
-    },
-    {
-      title: "Custom Commands",
-      description: "Build your own commands, auto-responders, and welcome messages directly from the dashboard.",
-      icon: <Settings className="w-8 h-8 text-purple-400" />,
-      color: "from-purple-500/20 to-fuchsia-500/5",
-      border: "border-purple-500/20"
-    },
-    {
-      title: "Automated Moderation",
-      description: "Automatically mute, kick, or ban users who spam, post bad links, or trigger forbidden keywords.",
-      icon: <Workflow className="w-8 h-8 text-yellow-400" />,
-      color: "from-yellow-500/20 to-amber-500/5",
-      border: "border-yellow-500/20"
-    },
-    {
-      title: "Server Analytics",
-      description: "Track your server's growth, message activity, and voice hours with beautiful charts and stats.",
-      icon: <BarChart3 className="w-8 h-8 text-indigo-400" />,
-      color: "from-indigo-500/20 to-blue-500/5",
-      border: "border-indigo-500/20"
-    }
-  ];
+import {
+  ANTI_NUKE_MODULES,
+  AntiNukeVignette,
+  AutoModVignette,
+  AutoResponderVignette,
+  JoinGateVignette,
+  ModerationVignette,
+} from "./feature-vignettes";
 
+/*
+ * Every sentence here is backed by the bot's docs (docs/*.html) or the
+ * dashboard API (src/lib/api/types.ts). Things the old landing claimed that
+ * don't exist (CAPTCHA, tamper-proof logs, analytics charts, dashboard
+ * custom commands) stay out.
+ */
+
+function BentoCard({
+  icon,
+  title,
+  children,
+  visual,
+  className,
+  wide = false,
+}: {
+  icon: LucideIcon;
+  title: string;
+  children: ReactNode;
+  visual: ReactNode;
+  className?: string;
+  /** Text beside the visual from md (the anti-nuke card). */
+  wide?: boolean;
+}) {
   return (
-    <section id="features" className="py-24 bg-black relative">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            Everything you need. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
-              Nothing you don't.
-            </span>
-          </h2>
-          <p className="text-gray-400 text-lg">
-            Pleed was built from the ground up to handle massive servers without lagging, crashing, or charging you premium fees for basic features.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`bg-gradient-to-br ${feature.color} border ${feature.border} rounded-2xl p-8 hover:scale-[1.02] transition-transform duration-300 relative overflow-hidden group`}
-            >
-              <div className="absolute top-0 right-0 p-8 opacity-10 transform translate-x-4 -translate-y-4 group-hover:scale-110 transition-transform duration-500">
-                {feature.icon}
-              </div>
-              <div className="mb-6 relative z-10">{feature.icon}</div>
-              <h3 className="text-xl font-bold text-white mb-3 relative z-10">{feature.title}</h3>
-              <p className="text-gray-400 leading-relaxed relative z-10">
-                {feature.description}
-              </p>
-            </motion.div>
-          ))}
+    <Card
+      as="article"
+      padding="lg"
+      className={cn("gap-6 md:gap-8", wide && "md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:items-center", className)}
+    >
+      <div className="flex flex-col gap-4">
+        <IconTile icon={icon} />
+        <div className="flex flex-col gap-1.5">
+          <h3 className={cn("text-fg", wide ? "type-h3" : "type-h4")}>{title}</h3>
+          {children}
         </div>
       </div>
-    </section>
+      <div className={cn("min-w-0", !wide && "mt-auto")}>{visual}</div>
+    </Card>
+  );
+}
+
+const MODULES: { icon: LucideIcon; title: string; description: string }[] = [
+  {
+    icon: Ticket,
+    title: "Tickets",
+    description: "Panels members click to open a ticket, with claiming, participants and blacklists.",
+  },
+  {
+    icon: ScrollText,
+    title: "Logging",
+    description: "One log channel, or route each event type to its own — managed from an interactive panel.",
+  },
+  {
+    icon: Coins,
+    title: "Economy & leveling",
+    description: "Wallets, a bank, businesses, stocks and casino games, plus XP levels with role rewards.",
+  },
+  {
+    icon: AudioLines,
+    title: "VoiceMaster",
+    description: "Join-to-create voice channels that members rename, limit, lock and hide themselves.",
+  },
+  {
+    icon: History,
+    title: "Snipe",
+    description: "Bring back deleted and edited messages and ghost pings — per channel, member or server.",
+  },
+  {
+    icon: WandSparkles,
+    title: "Welcome & setup",
+    description: "A setup center, welcome and goodbye messages, and a templated update logger.",
+  },
+  {
+    icon: Search,
+    title: "Info & utility",
+    description: "User and server info, keyword highlights, profile lookups, image and emoji tools.",
+  },
+  {
+    icon: Gamepad2,
+    title: "Fun & music",
+    description: "Slash-command games, music and Spotify playback, server counters and webhooks.",
+  },
+];
+
+export function Features({ categories }: { categories: number }) {
+  return (
+    <Section
+      id="features"
+      eyebrow="Features"
+      title="Security first. Everything else built in."
+      description="Anti-nuke and the join gate stop damage before it spreads. Auto-moderation, auto-responders and a full moderation kit handle the everyday."
+    >
+      <Stagger className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+        <BentoCard
+          wide
+          icon={ShieldAlert}
+          title="Anti-nuke"
+          className="md:col-span-2"
+          visual={<AntiNukeVignette />}
+        >
+          <p className="type-body text-fg-secondary">
+            When one account bans, kicks or deletes faster than your limits, Pleed stops it — by banning, kicking or
+            quarantining that account, or just reporting it. Trusted admins and whitelisted bots are exempt.
+          </p>
+          <p className="mt-3 type-small text-fg-secondary">
+            It watches {ANTI_NUKE_MODULES.length} kinds of action, each with its own limit: bans, kicks, channel and role
+            deletions, emoji deletions, webhook creation, bot adds and vanity URL changes.
+          </p>
+          <p className="mt-6 border-t border-line-subtle pt-4 type-caption text-fg-tertiary">
+            Also in the security module: kick-trap channels, fake permissions and command rate limits.
+          </p>
+        </BentoCard>
+
+        <BentoCard icon={DoorOpen} title="Join gate" visual={<JoinGateVignette />}>
+          <p className="type-small text-fg-secondary">
+            New members wait in an unverified role until they press Verify. Set a minimum account age, auto-kick anyone
+            who doesn&apos;t verify in time, and let a bypass role skip the gate.
+          </p>
+        </BentoCard>
+
+        <BentoCard icon={Funnel} title="Auto-moderation" visual={<AutoModVignette />}>
+          <p className="type-small text-fg-secondary">
+            Filters links, invites, spam, repeated messages, caps, mass mentions and blocked words. Pick a punishment per
+            category; strikes escalate for repeat offenders.
+          </p>
+        </BentoCard>
+
+        <BentoCard icon={MessageSquareReply} title="Auto-responders" visual={<AutoResponderVignette />}>
+          <p className="type-small text-fg-secondary">
+            Reply or react when a message matches a trigger — with cooldowns, a chance to fire, and channel or role
+            filters. Or build your own custom commands.
+          </p>
+        </BentoCard>
+
+        <BentoCard icon={Gavel} title="Moderation" visual={<ModerationVignette />}>
+          <p className="type-small text-fg-secondary">
+            Warn, time out, kick, ban, purge, jail with timed sentences, and lock the whole server down in one command —
+            logged wherever you want.
+          </p>
+        </BentoCard>
+      </Stagger>
+
+      <Reveal className="mt-16 md:mt-20">
+        <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+          <h3 className="type-h3 text-fg">And the rest of your server</h3>
+          <p className="type-small text-fg-secondary">
+            <TextLink href="/commands">Browse all {categories} modules</TextLink>
+          </p>
+        </div>
+        <ul className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          {MODULES.map(({ icon, title, description }) => (
+            <li key={title} className="flex gap-4 bg-surface-1 p-5 lg:flex-col lg:gap-3 lg:p-6">
+              <IconTile icon={icon} tone="neutral" size="sm" />
+              <div className="flex min-w-0 flex-col gap-1">
+                <h4 className="type-label text-fg">{title}</h4>
+                <p className="type-small text-fg-secondary">{description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
+    </Section>
   );
 }
