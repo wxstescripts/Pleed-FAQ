@@ -71,7 +71,7 @@ export const docsPages: { slug: string; title: string; description: string; sect
   {
     slug: "tickets",
     title: "Tickets",
-    description: "Support ticket panels, claiming, transcripts and blacklists.",
+    description: "Support ticket panels members open with a click, staff claiming, participants and blacklists.",
     section: "Community",
   },
   {
