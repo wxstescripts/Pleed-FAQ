@@ -786,7 +786,10 @@
     font-size: 0.85em;
   }
   .prose :where(pre) {
-    overflow-x: auto;
+    /* Wrap instead of scrolling: no hidden overflow on phones and no
+       unfocusable scroll regions (axe scrollable-region-focusable). */
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
     border: 1px solid var(--color-line);
     border-radius: var(--radius-lg);
     background: var(--color-inset);

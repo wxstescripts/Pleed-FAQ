@@ -78,7 +78,7 @@ export type CodeBlockProps = {
   className?: string;
 };
 
-/** Monospace block with optional title and copy button. Scrolls horizontally inside itself only. */
+/** Monospace block with optional title and copy button. Long lines wrap (no horizontal scroll on phones). */
 export function CodeBlock({ code, title, prompt, copyable = true, copyLabel = "Copy code", className }: CodeBlockProps) {
   return (
     <div className={cn("group/code relative min-w-0 overflow-hidden rounded-lg border border-line bg-inset", className)}>
@@ -88,7 +88,7 @@ export function CodeBlock({ code, title, prompt, copyable = true, copyLabel = "C
           {copyable ? <CopyButton value={code} label={copyLabel} /> : null}
         </div>
       ) : null}
-      <pre className="overflow-x-auto px-4 py-3.5 font-mono text-[0.8125rem] leading-relaxed text-fg">
+      <pre className="px-4 py-3.5 font-mono text-[0.8125rem] leading-relaxed whitespace-pre-wrap text-fg [overflow-wrap:anywhere]">
         <code>
           {code.split("\n").map((line, i) => (
             <span key={i} className="block">

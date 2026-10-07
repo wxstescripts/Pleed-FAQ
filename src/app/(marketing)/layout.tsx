@@ -20,7 +20,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
     <div className="relative flex min-h-dvh flex-col bg-canvas">
       <a
         href="#main"
-        className="fixed top-3 left-3 z-skip -translate-y-[calc(100%+1rem)] rounded-lg border border-line-strong bg-surface-2 px-4 py-2.5 text-sm font-medium text-fg shadow-lg transition-transform duration-200 ease-standard focus-visible:translate-y-0 focus-visible:focus-ring"
+        className="fixed top-3 left-3 z-skip inline-flex min-h-11 -translate-y-[calc(100%+1rem)] items-center rounded-lg border border-line-strong bg-surface-2 px-4 py-2.5 text-sm font-medium text-fg shadow-lg transition-transform duration-200 ease-standard focus-visible:translate-y-0 focus-visible:focus-ring"
       >
         Skip to content
       </a>
