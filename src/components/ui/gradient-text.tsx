@@ -11,7 +11,8 @@ export function GradientText({ className, ...props }: ComponentPropsWithoutRef<"
   return (
     <span
       className={cn(
-        "bg-linear-120 from-brand-200 via-brand-400 to-brand-violet bg-clip-text text-brand-fg [-webkit-text-fill-color:transparent] supports-[not(background-clip:text)]:[-webkit-text-fill-color:currentColor]",
+        // Every stop is AA text on every surface: brand-200 ≥ 10.9:1, brand-400 ≥ 6.1:1, violet-fg ≥ 5.4:1.
+        "bg-linear-120 from-brand-200 via-brand-400 to-brand-violet-fg bg-clip-text text-brand-fg [-webkit-text-fill-color:transparent] supports-[not(background-clip:text)]:[-webkit-text-fill-color:currentColor]",
         "box-decoration-clone pb-[0.06em]",
         className,
       )}
