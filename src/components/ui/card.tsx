@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { cva, type VariantProps } from "class-variance-authority";
+import type { LucideIcon } from "lucide-react";
 import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
+import { IconTile } from "@/components/ui/icon-tile";
 
 export const cardVariants = cva("relative flex flex-col rounded-xl border text-fg", {
   variants: {
@@ -103,5 +105,47 @@ export function CardContent({ className, ...props }: ComponentPropsWithoutRef<"d
 export function CardFooter({ className, ...props }: ComponentPropsWithoutRef<"div">) {
   return (
     <div className={cn("mt-5 flex items-center gap-3 border-t border-line-subtle pt-4", className)} {...props} />
+  );
+}
+
+export type FeatureCardProps = {
+  /** lucide icon, shown in a brand IconTile (20 px, stroke 1.75). */
+  icon?: LucideIcon;
+  title: ReactNode;
+  description?: ReactNode;
+  /** Heading level — keep the page outline valid (h3 under a section h2). */
+  titleAs?: CardTitleTag;
+  /** Whole card becomes a link (hover + focus states). */
+  href?: string;
+  variant?: "default" | "raised" | "outline";
+  /** Extra content under the text (a command chip, a list, a tiny preview). */
+  children?: ReactNode;
+  className?: string;
+};
+
+/**
+ * The one feature-card pattern (landing features, docs overviews, dashboard
+ * module tiles): IconTile → 16 px → title + description (6 px apart) →
+ * 16 px → optional extra content. Put them in a grid with `gap-4 lg:gap-6`.
+ */
+export function FeatureCard({
+  icon,
+  title,
+  description,
+  titleAs = "h3",
+  href,
+  variant = "default",
+  children,
+  className,
+}: FeatureCardProps) {
+  return (
+    <Card variant={variant} href={href} className={cn("gap-4", className)}>
+      {icon ? <IconTile icon={icon} /> : null}
+      <div className="flex flex-col gap-1.5">
+        <CardTitle as={titleAs}>{title}</CardTitle>
+        {description ? <CardDescription>{description}</CardDescription> : null}
+      </div>
+      {children}
+    </Card>
   );
 }

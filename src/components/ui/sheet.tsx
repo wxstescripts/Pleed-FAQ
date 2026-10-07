@@ -1,11 +1,11 @@
 "use client";
 
 import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
-import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { cn, mergeClassName } from "@/lib/utils";
 import { backdropClasses, DialogCloseButton } from "@/components/ui/dialog";
+import { NavItem, type NavItemProps } from "@/components/ui/nav-item";
 
 /**
  * Sheet / Drawer — a Dialog that slides in from an edge. Focus-trapped,
@@ -100,33 +100,11 @@ export function SheetContent({
 }
 
 /**
- * Large touch-friendly link row for sheet navigation (48 px). Internal hrefs
- * use next/link. Close the sheet on navigation via `onClick` (or wrap in
- * <SheetClose render={<SheetNavItem … />} />).
+ * Large touch-friendly link row for sheet navigation (48 px) — a
+ * <NavItem variant="sheet">: same hover/active/focus states as the desktop
+ * header and sidebar. Pass icons via `icon`. Close the sheet on navigation
+ * via `onClick` (or wrap in <SheetClose render={<SheetNavItem … />} />).
  */
-export function SheetNavItem({
-  href,
-  active,
-  external,
-  className,
-  children,
-  ...props
-}: Omit<React.ComponentProps<"a">, "href"> & { href: string; active?: boolean; external?: boolean }) {
-  const classes = cn(
-    "flex min-h-12 items-center gap-3 rounded-lg px-3 text-base font-medium text-fg-secondary transition-colors duration-150 hover:bg-surface-3 hover:text-fg focus-visible:focus-ring-inset aria-[current=page]:bg-surface-3 aria-[current=page]:text-fg [&_svg]:size-5 [&_svg]:shrink-0 [&_svg]:text-fg-tertiary",
-    className,
-  );
-  if (external || /^https?:\/\//.test(href)) {
-    return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={classes} {...props}>
-        {children}
-        <span className="sr-only"> (opens in a new tab)</span>
-      </a>
-    );
-  }
-  return (
-    <Link href={href} aria-current={active ? "page" : undefined} className={classes} {...props}>
-      {children}
-    </Link>
-  );
+export function SheetNavItem(props: Omit<NavItemProps, "variant">) {
+  return <NavItem variant="sheet" {...props} />;
 }
