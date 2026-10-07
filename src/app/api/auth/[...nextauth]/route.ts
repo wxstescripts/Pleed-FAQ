@@ -5,6 +5,7 @@ const handler = NextAuth({
   debug: true, providers: [
     DiscordProvider({
       clientId: process.env.DISCORD_CLIENT_ID || "",
+      issuer: "https://discord.com",
       clientSecret: process.env.DISCORD_CLIENT_SECRET || "",
       authorization: { params: { scope: "identify guilds" } },
     }),
@@ -25,5 +26,6 @@ const handler = NextAuth({
 });
 
 export { handler as GET, handler as POST };
+
 
 
