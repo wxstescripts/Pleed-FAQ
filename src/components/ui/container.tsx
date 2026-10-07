@@ -5,8 +5,14 @@ import { cn } from "@/lib/utils";
 const widths = {
   /** 1216 px — marketing pages (default). */
   content: "container-content",
-  /** 1440 px — dashboard, wide grids. */
+  /** 1440 px — dashboard overview and list pages, wide grids. */
   wide: "container-wide",
+  /**
+   * 768 px — dashboard settings pages (security, join gates, automod,
+   * settings): rows of label … control stay readable as rows, and the SaveBar
+   * shares the cards' edges.
+   */
+  settings: "container-settings",
   /** 768 px — legal pages, forms, centred copy. */
   narrow: "container-narrow",
 } as const;

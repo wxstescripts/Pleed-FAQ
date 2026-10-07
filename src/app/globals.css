@@ -203,7 +203,11 @@
   --container-measure: 68ch; /* prose line length */
   --container-narrow: 48rem; /* 768  — legal, forms, centred copy */
   --container-content: 76rem; /* 1216 — marketing content */
-  --container-wide: 90rem; /* 1440 — dashboard content, wide grids */
+  --container-wide: 90rem; /* 1440 — dashboard overview + list pages, wide grids */
+  /* Settings pages (security, join gates, automod, settings): a measure for
+     rows of label … control, so each control stays within reach of its label
+     (≤ ~600 px apart) and the SaveBar shares the cards' edges. */
+  --container-settings: 48rem; /* 768 — same as narrow today; its own token so it can be tuned */
   --spacing-gutter: clamp(1rem, 0.4rem + 2.6vw, 2.5rem); /* 16 → 40 px */
   --spacing-section: clamp(4rem, 2.8rem + 5.2vw, 8rem); /* 64 → 128 px */
   --spacing-section-sm: clamp(3rem, 2.4rem + 2.6vw, 5rem); /* 48 → 80 px */
@@ -492,6 +496,12 @@
 @utility container-narrow {
   width: 100%;
   max-width: calc(var(--container-narrow) + 2 * var(--spacing-gutter));
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+@utility container-settings {
+  width: 100%;
+  max-width: calc(var(--container-settings) + 2 * var(--spacing-gutter));
   margin-inline: auto;
   padding-inline: var(--spacing-gutter);
 }

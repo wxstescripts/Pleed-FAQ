@@ -204,7 +204,8 @@ export function SaveBar({
         aria-label="Unsaved changes"
         inert={!visible}
         className={cn(
-          "pointer-events-auto mx-auto flex w-full max-w-3xl flex-col gap-3 rounded-xl border bg-surface-3/95 p-3 shadow-xl inset-shadow-highlight backdrop-blur-md sm:flex-row sm:items-center sm:gap-4 sm:pl-5",
+          // Fills the page column, so in a `settings` Container it shares the cards' edges.
+          "pointer-events-auto flex w-full flex-col gap-3 rounded-xl border bg-surface-3/95 p-3 shadow-xl inset-shadow-highlight backdrop-blur-md sm:flex-row sm:items-center sm:gap-4 sm:pl-5",
           "transition-[translate,opacity] duration-300 ease-out-expo",
           error ? "border-danger-border" : "border-line-hover",
           visible

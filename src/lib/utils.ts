@@ -9,7 +9,7 @@ export const cn = createCn({
   extend: {
     theme: {
       spacing: ["gutter", "section", "section-sm", "header", "page", "sidebar", "sidebar-rail", "setting-control"],
-      container: ["measure", "narrow", "content", "wide"],
+      container: ["measure", "narrow", "content", "wide", "settings"],
       shadow: ["glow", "glow-lg", "thumb", "thumb-hover", "thumb-active"],
       "inset-shadow": ["highlight", "highlight-strong", "mark"],
       radius: ["4xl"],
@@ -57,7 +57,7 @@ export const cn = createCn({
           ],
         },
       ],
-      "page-container": ["container-content", "container-wide", "container-narrow"],
+      "page-container": ["container-content", "container-wide", "container-settings", "container-narrow"],
     },
   },
 });

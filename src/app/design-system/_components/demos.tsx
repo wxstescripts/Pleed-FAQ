@@ -665,7 +665,8 @@ export function SettingsDemo() {
   };
 
   return (
-    <div>
+    // The `settings` measure, exactly as on a dashboard settings page (<Container size="settings">).
+    <div className="w-full max-w-settings">
       {/* Sections stack with gap-6; the SaveBar sits AFTER the stack (0 px when hidden). */}
       <div className="flex flex-col gap-6">
         <SettingsSection

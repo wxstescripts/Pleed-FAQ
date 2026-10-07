@@ -17,8 +17,9 @@ export const metadata: Metadata = {
 /**
  * Dev-only reference for the dashboard page contract (DESIGN.md §3 SaveBar):
  * the page column fills the viewport under the header and the page Container
- * is `flex flex-1 flex-col py-page`, so a SaveBar on a short page rests at the
- * bottom of the screen instead of floating under the content.
+ * is `<Container size="settings" className="flex flex-1 flex-col py-page">`,
+ * so a SaveBar on a short page rests at the bottom of the screen instead of
+ * floating under the content, and spans exactly the cards' width.
  */
 export default function ShortPagePage() {
   if (process.env.NODE_ENV === "production") notFound();
@@ -41,7 +42,8 @@ export default function ShortPagePage() {
       {/* The page column: fills the viewport below the header (flex-1 in a min-h-dvh column), a flex column. */}
       <div className="flex flex-1 flex-col">
         <main id="main" tabIndex={-1} className="flex flex-1 flex-col outline-none">
-          <Container size="wide" className="flex flex-1 flex-col py-page">
+          {/* A settings page: the `settings` measure keeps every control within reach of its label. */}
+          <Container size="settings" className="flex flex-1 flex-col py-page">
             <ShortPageDemo />
           </Container>
         </main>
