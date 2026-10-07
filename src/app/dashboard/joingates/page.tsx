@@ -3,13 +3,14 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Users, Save, Loader2, Check, ShieldCheck, Mail, Clock } from "lucide-react";
+import { getJoinGatesConfig, saveJoinGatesConfig, type JoinGatesConfig } from "@/lib/api";
 
 export default function JoinGatesPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
-  
-  const [config, setConfig] = useState({
+
+  const [config, setConfig] = useState<JoinGatesConfig>({
     enabled: 0,
     verify_channel_id: "",
     verified_role_id: "",
@@ -21,18 +22,11 @@ export default function JoinGatesPage() {
     bypass_role_id: ""
   });
 
-  const MOCK_GUILD_ID = "1484703029243416757";
-
   useEffect(() => {
     async function fetchJoinGates() {
       try {
-        const res = await fetch(`https://purple-windows-report.loca.lt/api/joingates/${MOCK_GUILD_ID}`, {
-          headers: { "Bypass-Tunnel-Reminder": "true" }
-        });
-        if (res.ok) {
-          const data = await res.json();
-          setConfig(data);
-        }
+        const data = await getJoinGatesConfig();
+        setConfig(data);
       } catch (err) {
         console.error(err);
       } finally {
@@ -46,18 +40,9 @@ export default function JoinGatesPage() {
     setSaving(true);
     setSaved(false);
     try {
-      const res = await fetch(`https://purple-windows-report.loca.lt/api/joingates/${MOCK_GUILD_ID}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Bypass-Tunnel-Reminder": "true"
-        },
-        body: JSON.stringify(config)
-      });
-      if (res.ok) {
-        setSaved(true);
-        setTimeout(() => setSaved(false), 3000);
-      }
+      await saveJoinGatesConfig(config);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
     } catch (err) {
       console.error(err);
     } finally {

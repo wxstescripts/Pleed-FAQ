@@ -3,36 +3,44 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Save, Loader2, Bot, Plus, Trash2 } from "lucide-react";
+import { createAutomation, deleteAutomation, getAutomations, type Automation } from "@/lib/api";
 
 export default function AutomationsPage() {
   const [loading, setLoading] = useState(true);
-  const [automations, setAutomations] = useState<any[]>([]);
+  const [automations, setAutomations] = useState<Automation[]>([]);
   const [newAuto, setNewAuto] = useState({ name: "", trigger: "", payload: "", match_type: "contains" });
 
-  const MOCK_GUILD_ID = "1484703029243416757";
-
   const fetchAutomations = async () => {
-    const res = await fetch(`https://1b166fb77d23d0.lhr.life/api/automations/${MOCK_GUILD_ID}`);
-    const data = await res.json();
-    setAutomations(data);
-    setLoading(false);
+    try {
+      const data = await getAutomations();
+      setAutomations(data);
+      setLoading(false);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   useEffect(() => { fetchAutomations(); }, []);
 
   const handleAdd = async () => {
     if (!newAuto.trigger || !newAuto.payload) return;
-    await fetch(`https://1b166fb77d23d0.lhr.life/api/automations/${MOCK_GUILD_ID}`, {
-      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(newAuto)
-    });
+    try {
+      await createAutomation(newAuto);
+    } catch (err) {
+      console.error(err);
+      return;
+    }
     setNewAuto({ name: "", trigger: "", payload: "", match_type: "contains" });
     fetchAutomations();
   };
 
   const handleDelete = async (id: number) => {
-    await fetch(`https://1b166fb77d23d0.lhr.life/api/automations/${MOCK_GUILD_ID}`, {
-      method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id })
-    });
+    try {
+      await deleteAutomation(id);
+    } catch (err) {
+      console.error(err);
+      return;
+    }
     fetchAutomations();
   };
 

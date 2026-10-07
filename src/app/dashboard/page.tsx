@@ -3,25 +3,18 @@
 import { useState, useEffect } from "react";
 import { Server, Users, Activity, ShieldAlert, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { getServers, getStats, type PleedServer, type PleedStats } from "@/lib/api";
 
 export default function DashboardOverview() {
-  const [stats, setStats] = useState<any>(null);
-  const [servers, setServers] = useState<any[]>([]);
+  const [stats, setStats] = useState<PleedStats | null>(null);
+  const [servers, setServers] = useState<PleedServer[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        // Fetching from the temporary localtunnel API backend
-        const statsRes = await fetch("https://purple-windows-report.loca.lt/api/stats", {
-          headers: { "Bypass-Tunnel-Reminder": "true" }
-        });
-        const statsData = await statsRes.json();
-        
-        const serversRes = await fetch("https://purple-windows-report.loca.lt/api/servers", {
-          headers: { "Bypass-Tunnel-Reminder": "true" }
-        });
-        const serversData = await serversRes.json();
+        const statsData = await getStats();
+        const serversData = await getServers();
 
         setStats(statsData);
         setServers(serversData);

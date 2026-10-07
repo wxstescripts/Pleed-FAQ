@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
+import { usePleedSession } from "@/lib/dev/session";
 import { LayoutDashboard, Shield, Users, Terminal, Settings, LogOut, Search, Bell, Menu, X } from "lucide-react";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { data: session, status } = useSession();
+  const { data: session, status } = usePleedSession();
 
   if (status === "loading") {
     return <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center text-white">Loading session...</div>;

@@ -3,26 +3,28 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Save, Loader2, Settings2, Hash, Megaphone } from "lucide-react";
+import { getSettings, saveSettings, type GuildSettings } from "@/lib/api";
 
 export default function SettingsPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [config, setConfig] = useState({ prefix: "!", welcome_channel: "" });
-
-  const MOCK_GUILD_ID = "1484703029243416757";
+  const [config, setConfig] = useState<GuildSettings>({ prefix: "!", welcome_channel: "" });
 
   useEffect(() => {
-    fetch(`https://1b166fb77d23d0.lhr.life/api/settings/${MOCK_GUILD_ID}`)
-      .then(res => res.json())
-      .then(data => { setConfig(data); setLoading(false); });
+    getSettings()
+      .then(data => { setConfig(data); setLoading(false); })
+      .catch(err => console.error(err));
   }, []);
 
   const handleSave = async () => {
     setSaving(true);
-    await fetch(`https://1b166fb77d23d0.lhr.life/api/settings/${MOCK_GUILD_ID}`, {
-      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(config)
-    });
-    setSaving(false);
+    try {
+      await saveSettings(config);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSaving(false);
+    }
   };
 
   if (loading) return <div className="flex justify-center py-20"><Loader2 className="w-8 h-8 text-indigo-500 animate-spin" /></div>;

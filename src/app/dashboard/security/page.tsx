@@ -3,13 +3,14 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Shield, AlertTriangle, Save, Power, Loader2, Check } from "lucide-react";
+import { getSecurityConfig, saveSecurityConfig, type SecurityConfig, type SecurityPunishment } from "@/lib/api";
 
 export default function SecurityPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
-  
-  const [config, setConfig] = useState({
+
+  const [config, setConfig] = useState<SecurityConfig>({
     enabled: 0,
     punishment: "ban",
     ban_threshold: 3,
@@ -18,19 +19,11 @@ export default function SecurityPage() {
     role_delete_threshold: 2
   });
 
-  // For testing/mocking since there's no auth yet
-  const MOCK_GUILD_ID = "1484703029243416757"; 
-
   useEffect(() => {
     async function fetchSecurity() {
       try {
-        const res = await fetch(`https://purple-windows-report.loca.lt/api/security/${MOCK_GUILD_ID}`, {
-          headers: { "Bypass-Tunnel-Reminder": "true" }
-        });
-        if (res.ok) {
-          const data = await res.json();
-          setConfig(data);
-        }
+        const data = await getSecurityConfig();
+        setConfig(data);
       } catch (err) {
         console.error(err);
       } finally {
@@ -44,18 +37,9 @@ export default function SecurityPage() {
     setSaving(true);
     setSaved(false);
     try {
-      const res = await fetch(`https://purple-windows-report.loca.lt/api/security/${MOCK_GUILD_ID}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Bypass-Tunnel-Reminder": "true"
-        },
-        body: JSON.stringify(config)
-      });
-      if (res.ok) {
-        setSaved(true);
-        setTimeout(() => setSaved(false), 3000);
-      }
+      await saveSecurityConfig(config);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
     } catch (err) {
       console.error(err);
     } finally {
@@ -180,7 +164,7 @@ export default function SecurityPage() {
             <label className="block text-sm font-medium text-gray-300 mb-2">If threshold is triggered, Pleed will:</label>
             <select 
               value={config.punishment}
-              onChange={(e) => setConfig({...config, punishment: e.target.value})}
+              onChange={(e) => setConfig({...config, punishment: e.target.value as SecurityPunishment})}
               className="w-full bg-[#0a0a0a] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none"
             >
               <option value="ban">Ban the rogue admin</option>

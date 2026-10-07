@@ -3,29 +3,31 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Save, Loader2, ShieldAlert, Link as LinkIcon, MessageSquareWarning, ArrowUpAZ } from "lucide-react";
+import { getAutomodConfig, saveAutomodConfig, type AutomodConfig, type AutomodPunishment } from "@/lib/api";
 
 export default function AutoModPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [config, setConfig] = useState({
+  const [config, setConfig] = useState<AutomodConfig>({
     anti_links: 0, anti_spam: 0, anti_caps: 0, anti_invites: 0,
     anti_mentions: 0, bad_words_enabled: 0, punishment: "delete", timeout_minutes: 10
   });
 
-  const MOCK_GUILD_ID = "1484703029243416757";
-
   useEffect(() => {
-    fetch(`https://1b166fb77d23d0.lhr.life/api/automod/${MOCK_GUILD_ID}`)
-      .then(res => res.json())
-      .then(data => { setConfig(data); setLoading(false); });
+    getAutomodConfig()
+      .then(data => { setConfig(data); setLoading(false); })
+      .catch(err => console.error(err));
   }, []);
 
   const handleSave = async () => {
     setSaving(true);
-    await fetch(`https://1b166fb77d23d0.lhr.life/api/automod/${MOCK_GUILD_ID}`, {
-      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(config)
-    });
-    setSaving(false);
+    try {
+      await saveAutomodConfig(config);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSaving(false);
+    }
   };
 
   if (loading) return <div className="flex justify-center py-20"><Loader2 className="w-8 h-8 text-indigo-500 animate-spin" /></div>;
@@ -76,7 +78,7 @@ export default function AutoModPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">Default Action</label>
-            <select value={config.punishment} onChange={(e) => setConfig({...config, punishment: e.target.value})} className="w-full bg-black border border-white/10 rounded-lg px-4 py-2.5 text-white">
+            <select value={config.punishment} onChange={(e) => setConfig({...config, punishment: e.target.value as AutomodPunishment})} className="w-full bg-black border border-white/10 rounded-lg px-4 py-2.5 text-white">
               <option value="delete">Delete Message Only</option>
               <option value="timeout">Timeout User</option>
               <option value="kick">Kick User</option>
