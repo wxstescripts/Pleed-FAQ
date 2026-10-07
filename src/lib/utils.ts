@@ -21,6 +21,7 @@ export const cn = createCn({
             "display",
             "h1",
             "h2",
+            "page",
             "h3",
             "h4",
             "lead",

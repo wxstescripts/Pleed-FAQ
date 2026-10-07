@@ -114,8 +114,9 @@ const semantic = [
 
 const typeStyles = [
   ["type-display", "Display", "40 → 88 px · Mona Sans 640 · 112% width · -0.035em"],
-  ["type-h1", "Heading 1", "34 → 60 px · Mona Sans 640 · 110% width"],
-  ["type-h2", "Heading 2", "28 → 44 px · Mona Sans 620 · 108% width"],
+  ["type-h1", "Heading 1", "34 → 60 px · Mona Sans 640 · 110% width · marketing page h1 (Section titleAs=h1)"],
+  ["type-h2", "Heading 2", "28 → 44 px · Mona Sans 620 · 108% width · section titles"],
+  ["type-page", "Page title", "24 → 32 px · Mona Sans 620 · 106% width · dashboard page h1 (PageHeader)"],
   ["type-h3", "Heading 3", "21 → 28 px · Mona Sans 600 · 104% width"],
   ["type-h4", "Heading 4", "17 → 19 px · Geist 600"],
   ["type-lead", "Lead paragraph for intros and hero copy.", "17 → 20 px · Geist 400 · 1.6"],
@@ -196,7 +197,6 @@ export default async function DesignSystemPage() {
 
         <main id="main" className="flex min-w-0 flex-col gap-20">
           <PageHeader
-            eyebrow="Foundation"
             title="Pleed design system"
             description="Every token and component, in every state. Dark-first, AA contrast, keyboard and touch ready. Import paths and rules live in DESIGN.md."
             meta={<Badge tone="neutral">v1</Badge>}
@@ -416,6 +416,41 @@ export default async function DesignSystemPage() {
                     </Button>
                   }
                 />
+              </div>
+            </DsBlock>
+            <DsBlock title="Page titles — one pattern per kind of page">
+              {/* Specimens (a page has one real h1 — this page's title above is a live PageHeader). */}
+              <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                <div className="flex min-w-0 flex-col gap-4 rounded-xl border border-line bg-canvas p-5 md:p-6">
+                  <p className="type-code-xs text-fg-tertiary">
+                    Marketing page · <span className="text-brand-fg">&lt;Section titleAs=&quot;h1&quot;&gt;</span> · type-h1 34 → 60
+                  </p>
+                  <div className="flex flex-col gap-3">
+                    <p className="type-eyebrow text-brand-fg">Commands</p>
+                    <p className="type-h1 text-fg">Every command, one search</p>
+                    <p className="type-lead text-fg-secondary">Moderation, security and automation commands with usage and permissions.</p>
+                  </div>
+                </div>
+                <div className="flex min-w-0 flex-col gap-4 rounded-xl border border-line bg-canvas p-5 md:p-6">
+                  <p className="type-code-xs text-fg-tertiary">
+                    Dashboard page · <span className="text-brand-fg">&lt;PageHeader&gt;</span> · type-page 24 → 32
+                  </p>
+                  <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-6">
+                    <div className="flex min-w-0 flex-col gap-2">
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                        <p className="type-page text-fg">Anti-nuke</p>
+                        <Badge tone="success" dot>
+                          On
+                        </Badge>
+                      </div>
+                      <p className="type-body text-fg-secondary">Thresholds and punishments for mass actions.</p>
+                    </div>
+                    <Button variant="secondary" size="sm" className="self-start md:self-auto">
+                      View logs
+                    </Button>
+                  </div>
+                  <div className="h-16 rounded-lg border border-dashed border-line-strong" aria-hidden="true" />
+                </div>
               </div>
             </DsBlock>
             <DsBlock title="Adjacent sections share one gap (not two paddings)">
