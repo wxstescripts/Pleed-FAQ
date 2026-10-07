@@ -6,20 +6,26 @@ import Footer from "@/components/site/footer";
  * /status, /privacy, /terms). Rendering the header and footer here means they
  * mount once and persist across client-side navigations.
  *
- * Pages inside this group must NOT render their own <main>, <Navbar/> or
- * <Footer/> — start with a <section>/<div> and exactly one <h1>.
+ * Contract for pages inside this group:
+ * - Do NOT render <main>, <Navbar/> or <Footer/> — start with <section>/<div>.
+ * - Render exactly one <h1>.
+ * - The header is sticky/fixed and `--spacing-header` (4rem) tall; offset
+ *   the first section accordingly (e.g. `pt-header` + your own spacing).
+ *
+ * Contract for src/components/site/** (site-chrome agent): keep default
+ * exports `Navbar` (site/navbar.tsx) and `Footer` (site/footer.tsx).
  */
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-dvh flex-col bg-black">
+    <div className="relative flex min-h-dvh flex-col bg-canvas">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-black"
+        className="fixed top-3 left-3 z-skip -translate-y-[calc(100%+1rem)] rounded-lg border border-line-strong bg-surface-2 px-4 py-2.5 text-sm font-medium text-fg shadow-lg transition-transform duration-200 ease-standard focus-visible:translate-y-0 focus-visible:focus-ring"
       >
         Skip to content
       </a>
       <Navbar />
-      <main id="main" tabIndex={-1} className="flex-1 outline-none">
+      <main id="main" tabIndex={-1} className="flex flex-1 flex-col outline-none">
         {children}
       </main>
       <Footer />

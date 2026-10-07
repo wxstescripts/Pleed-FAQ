@@ -2,129 +2,801 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/*
+ * Pleed design tokens — dark-first.
+ * Documented in DESIGN.md. Never hard-code hex values or arbitrary sizes in
+ * pages: use these tokens through Tailwind utilities (bg-surface-1,
+ * text-fg-secondary, border-line, type-h2, rounded-xl, shadow-md, z-header…)
+ * or as CSS variables (var(--color-surface-1)) in rare custom CSS.
+ *
+ * Contrast (WCAG 2.2, measured on every surface from inset to surface-3):
+ *   fg 14.7–18.4:1 · fg-secondary 9.5–11.8:1 · fg-tertiary 6.3–7.9:1
+ *   brand-300 text 8.3–9.7:1 · ring 7.4:1 · white on primary 5.3:1
+ */
+
 @custom-variant dark (&:is(.dark *));
 
+/* ------------------------------------------------------------------ */
+/* 1. Theme tokens (emitted as CSS variables + Tailwind utilities)     */
+/* ------------------------------------------------------------------ */
+@theme static {
+  /* Surfaces — faint cool (hue 280) tint, ascending elevation. */
+  --color-inset: oklch(0.135 0.006 280); /* wells, code, inputs   #08080b */
+  --color-canvas: oklch(0.155 0.008 280); /* app background        #0b0c10 */
+  --color-surface-1: oklch(0.183 0.009 280); /* cards, sections      #111216 */
+  --color-surface-2: oklch(0.212 0.01 280); /* raised, popovers      #18181d */
+  --color-surface-3: oklch(0.25 0.011 280); /* hover, selected       #202127 */
+  --color-surface-4: oklch(0.29 0.012 280); /* pressed, scrollbar    #2a2b31 */
+  --color-scrim: oklch(0.1 0.01 280 / 0.72); /* modal backdrop */
+
+  /* Hairlines (white alpha so they read on every surface). */
+  --color-line-subtle: oklch(1 0 0 / 0.06);
+  --color-line: oklch(1 0 0 / 0.09);
+  --color-line-strong: oklch(1 0 0 / 0.15);
+  --color-line-hover: oklch(1 0 0 / 0.24);
+  --color-line-control: oklch(1 0 0 / 0.4); /* ≥3:1 boundary: checkbox, radio */
+
+  /* Text. */
+  --color-fg: oklch(0.97 0.004 280);
+  --color-fg-secondary: oklch(0.83 0.01 280);
+  --color-fg-tertiary: oklch(0.715 0.013 280);
+  --color-fg-disabled: oklch(0.53 0.01 280);
+  --color-fg-on-brand: oklch(1 0 0);
+
+  /* Brand — violet → indigo (hue 283). 600 is the solid primary. */
+  --color-brand-50: oklch(0.97 0.02 283);
+  --color-brand-100: oklch(0.94 0.04 283);
+  --color-brand-200: oklch(0.88 0.075 283);
+  --color-brand-300: oklch(0.8 0.12 283);
+  --color-brand-400: oklch(0.72 0.165 283);
+  --color-brand-500: oklch(0.635 0.205 283);
+  --color-brand-600: oklch(0.55 0.225 283);
+  --color-brand-700: oklch(0.49 0.21 283);
+  --color-brand-800: oklch(0.4 0.17 283);
+  --color-brand-900: oklch(0.32 0.13 283);
+  --color-brand-950: oklch(0.24 0.09 283);
+  --color-brand: oklch(0.55 0.225 283);
+  --color-brand-hover: oklch(0.585 0.225 283);
+  --color-brand-active: oklch(0.52 0.22 283);
+  --color-brand-fg: oklch(0.8 0.12 283); /* brand text/icons on dark */
+  --color-brand-subtle: oklch(0.635 0.205 283 / 0.14);
+  --color-brand-border: oklch(0.72 0.165 283 / 0.35);
+  /* Mark gradient stops (logo + GradientText only). */
+  --color-brand-violet: oklch(0.6 0.24 302);
+  --color-brand-indigo: oklch(0.52 0.23 272);
+
+  /* Semantic — fg = text/icon on dark, subtle = tinted bg, border,
+     strong = solid fill (with -strong-fg text). */
+  --color-success: oklch(0.78 0.15 155);
+  --color-success-fg: oklch(0.78 0.15 155);
+  --color-success-subtle: oklch(0.78 0.15 155 / 0.12);
+  --color-success-border: oklch(0.78 0.15 155 / 0.3);
+  --color-success-strong: oklch(0.5 0.14 155);
+  --color-success-strong-fg: oklch(1 0 0);
+
+  --color-warning: oklch(0.83 0.15 80);
+  --color-warning-fg: oklch(0.83 0.15 80);
+  --color-warning-subtle: oklch(0.83 0.15 80 / 0.12);
+  --color-warning-border: oklch(0.83 0.15 80 / 0.3);
+  --color-warning-strong: oklch(0.8 0.16 75);
+  --color-warning-strong-fg: oklch(0.2 0.03 75);
+
+  --color-danger: oklch(0.73 0.17 22);
+  --color-danger-fg: oklch(0.73 0.17 22);
+  --color-danger-subtle: oklch(0.73 0.17 22 / 0.12);
+  --color-danger-border: oklch(0.73 0.17 22 / 0.32);
+  --color-danger-strong: oklch(0.54 0.2 25);
+  --color-danger-strong-hover: oklch(0.57 0.205 25);
+  --color-danger-strong-fg: oklch(1 0 0);
+
+  --color-info: oklch(0.77 0.12 240);
+  --color-info-fg: oklch(0.77 0.12 240);
+  --color-info-subtle: oklch(0.77 0.12 240 / 0.12);
+  --color-info-border: oklch(0.77 0.12 240 / 0.3);
+  --color-info-strong: oklch(0.53 0.15 245);
+  --color-info-strong-fg: oklch(1 0 0);
+
+  /* Discord blurple — only for Discord-specific CTAs (white text 4.6:1). */
+  --color-discord: #5865f2;
+  --color-discord-hover: #4752c4;
+  --color-discord-active: #3c45a5;
+
+  /* Focus ring. */
+  --color-focus: oklch(0.72 0.165 283);
+
+  /* Radii — controls lg, cards xl, panels 2xl, hero frames 3xl. */
+  --radius-xs: 0.25rem; /* 4  */
+  --radius-sm: 0.375rem; /* 6  */
+  --radius-md: 0.5rem; /* 8  */
+  --radius-lg: 0.625rem; /* 10 */
+  --radius-xl: 0.875rem; /* 14 */
+  --radius-2xl: 1.125rem; /* 18 */
+  --radius-3xl: 1.5rem; /* 24 */
+  --radius-4xl: 2rem; /* 32 */
+
+  /* Elevation — dark UIs lean on borders; shadows only separate layers. */
+  --shadow-xs: 0 1px 2px 0 oklch(0 0 0 / 0.35);
+  --shadow-sm: 0 1px 2px 0 oklch(0 0 0 / 0.4), 0 1px 1px -0.5px oklch(0 0 0 / 0.3);
+  --shadow-md: 0 4px 12px -2px oklch(0 0 0 / 0.45), 0 2px 4px -2px oklch(0 0 0 / 0.35);
+  --shadow-lg: 0 12px 32px -8px oklch(0 0 0 / 0.6), 0 4px 10px -4px oklch(0 0 0 / 0.4);
+  --shadow-xl: 0 24px 64px -16px oklch(0 0 0 / 0.7), 0 8px 20px -8px oklch(0 0 0 / 0.45);
+  /* Restrained brand glow — primary CTA hover and the hero frame only. */
+  --shadow-glow: 0 0 0 1px oklch(0.635 0.205 283 / 0.45), 0 8px 28px -8px oklch(0.55 0.225 283 / 0.6);
+  --shadow-glow-lg: 0 0 0 1px oklch(0.635 0.205 283 / 0.3), 0 30px 80px -24px oklch(0.55 0.225 283 / 0.45);
+  /* Top-edge light catch for raised surfaces and solid buttons. */
+  --inset-shadow-highlight: inset 0 1px 0 0 oklch(1 0 0 / 0.06);
+  --inset-shadow-highlight-strong: inset 0 1px 0 0 oklch(1 0 0 / 0.18);
+
+  /* Z-index scale → z-base, z-raised, z-sticky, z-header, z-overlay … */
+  --z-index-base: 0;
+  --z-index-raised: 10;
+  --z-index-sticky: 20;
+  --z-index-header: 40;
+  --z-index-savebar: 45;
+  --z-index-overlay: 50;
+  --z-index-modal: 60;
+  --z-index-popover: 70;
+  --z-index-toast: 80;
+  --z-index-tooltip: 90;
+  --z-index-skip: 100;
+
+  /* Motion. Durations: fast 150 · base 200 · slow 300 · slower 500 ms. */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quad: cubic-bezier(0.45, 0, 0.55, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  /* Layout. */
+  --container-measure: 68ch; /* prose line length */
+  --container-narrow: 48rem; /* 768  — legal, forms, centred copy */
+  --container-content: 76rem; /* 1216 — marketing content */
+  --container-wide: 90rem; /* 1440 — dashboard content, wide grids */
+  --spacing-gutter: clamp(1rem, 0.4rem + 2.6vw, 2.5rem); /* 16 → 40 px */
+  --spacing-section: clamp(4rem, 2.8rem + 5.2vw, 8rem); /* 64 → 128 px */
+  --spacing-section-sm: clamp(3rem, 2.4rem + 2.6vw, 5rem); /* 48 → 80 px */
+  --spacing-header: 4rem; /* sticky header height */
+
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-spin-slow: spin 1.4s linear infinite;
+}
+
 @theme inline {
+  /* next/font variables are set on <html> by src/lib/fonts.ts.
+     NEVER self-reference here (that was the Times New Roman bug). */
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-mona-sans), var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-mona-sans), var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, Consolas, monospace;
+
+  /* shadcn/ui contract — components from the CLI inherit Pleed tokens. */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-:root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
+/* shadcn variable names mapped onto the Pleed system (dark only). */
+:root,
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  color-scheme: dark;
+  --radius: 0.625rem;
+  --background: var(--color-canvas);
+  --foreground: var(--color-fg);
+  --card: var(--color-surface-1);
+  --card-foreground: var(--color-fg);
+  --popover: var(--color-surface-2);
+  --popover-foreground: var(--color-fg);
+  --primary: var(--color-brand);
+  --primary-foreground: var(--color-fg-on-brand);
+  --secondary: var(--color-surface-2);
+  --secondary-foreground: var(--color-fg);
+  --muted: var(--color-surface-2);
+  --muted-foreground: var(--color-fg-tertiary);
+  --accent: var(--color-surface-3);
+  --accent-foreground: var(--color-fg);
+  --destructive: var(--color-danger);
+  --border: var(--color-line);
+  --input: var(--color-line-strong);
+  --ring: var(--color-focus);
+  --chart-1: var(--color-brand-400);
+  --chart-2: var(--color-info);
+  --chart-3: var(--color-success);
+  --chart-4: var(--color-warning);
+  --chart-5: var(--color-danger);
+  --sidebar: var(--color-surface-1);
+  --sidebar-foreground: var(--color-fg-secondary);
+  --sidebar-primary: var(--color-brand);
+  --sidebar-primary-foreground: var(--color-fg-on-brand);
+  --sidebar-accent: var(--color-surface-3);
+  --sidebar-accent-foreground: var(--color-fg);
+  --sidebar-border: var(--color-line);
+  --sidebar-ring: var(--color-focus);
+
+  /* Motion durations for custom CSS (Tailwind: duration-150/200/300/500). */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 500ms;
 }
 
+/* ------------------------------------------------------------------ */
+/* 2. Type styles — use these instead of text-4xl md:text-6xl chains.  */
+/*    Each sets family, fluid size, line-height, tracking and weight.  */
+/*    Sizes: 360px → 1440px viewport (root font grows at ≥1920/2400). */
+/* ------------------------------------------------------------------ */
+@utility type-display {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 1.75rem + 3.334vw, 5.5rem); /* 40 → 76 → 88 */
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 640;
+  font-stretch: 112%;
+  text-wrap: balance;
+}
+@utility type-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.125rem, 1.6rem + 2.2vw, 3.75rem); /* 34 → 57 → 60 */
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  font-weight: 640;
+  font-stretch: 110%;
+  text-wrap: balance;
+}
+@utility type-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem); /* 28 → 44 */
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-weight: 620;
+  font-stretch: 108%;
+  text-wrap: balance;
+}
+@utility type-h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.3125rem, 1.15rem + 0.7vw, 1.75rem); /* 21 → 28 */
+  line-height: 1.22;
+  letter-spacing: -0.018em;
+  font-weight: 600;
+  font-stretch: 104%;
+  text-wrap: balance;
+}
+@utility type-h4 {
+  font-family: var(--font-sans);
+  font-size: clamp(1.0625rem, 1.02rem + 0.2vw, 1.1875rem); /* 17 → 19 */
+  line-height: 1.4;
+  letter-spacing: -0.012em;
+  font-weight: 600;
+  text-wrap: balance;
+}
+@utility type-lead {
+  font-family: var(--font-sans);
+  font-size: clamp(1.0625rem, 0.99rem + 0.32vw, 1.25rem); /* 17 → 20 */
+  line-height: 1.6;
+  letter-spacing: -0.006em;
+  font-weight: 400;
+  text-wrap: pretty;
+}
+@utility type-body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  letter-spacing: -0.003em;
+  font-weight: 400;
+}
+@utility type-small {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+@utility type-caption {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  letter-spacing: 0.003em;
+  font-weight: 400;
+}
+@utility type-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+@utility type-code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  letter-spacing: -0.01em;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. Layout + interaction utilities                                   */
+/* ------------------------------------------------------------------ */
+
+/* Fluid page container: content max + gutters that never jump. */
+@utility container-content {
+  width: 100%;
+  max-width: calc(var(--container-content) + 2 * var(--spacing-gutter));
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+@utility container-wide {
+  width: 100%;
+  max-width: calc(var(--container-wide) + 2 * var(--spacing-gutter));
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+@utility container-narrow {
+  width: 100%;
+  max-width: calc(var(--container-narrow) + 2 * var(--spacing-gutter));
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+/* The one focus ring. Use as `focus-visible:focus-ring`. */
+@utility focus-ring {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+@utility focus-ring-inset {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -2px;
+}
+
+/* Expands the hit area of a small control to 44×44 on touch screens
+   without changing its visual size. The element must be `relative`. */
+@utility touch-target {
+  @media (pointer: coarse) {
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 50% auto auto 50%;
+      width: max(100%, 44px);
+      height: max(100%, 44px);
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+/* Decorative backgrounds — use sparingly (hero, CTA band). */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, var(--color-line-subtle) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line-subtle) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+@utility bg-spotlight {
+  background-image: radial-gradient(
+    60% 50% at 50% 0%,
+    oklch(0.55 0.225 283 / 0.18) 0%,
+    oklch(0.55 0.225 283 / 0.06) 45%,
+    transparent 100%
+  );
+}
+@utility mask-fade-b {
+  mask-image: linear-gradient(to bottom, black 55%, transparent);
+}
+@utility mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 150% 0;
+  }
+  to {
+    background-position: -50% 0;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* 4. Base                                                             */
+/* ------------------------------------------------------------------ */
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-line);
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+
   html {
-    @apply font-sans;
+    color-scheme: dark;
+    background-color: var(--color-canvas);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    scroll-padding-top: calc(var(--spacing-header) + 1rem);
+    scrollbar-color: var(--color-surface-4) transparent;
+    hanging-punctuation: first last;
+  }
+
+  /* Ultra-wide: scale the rem so 1920/2560 read as designed, not miniature. */
+  @media (min-width: 1920px) {
+    html {
+      font-size: 106.25%; /* 17px */
+    }
+  }
+  @media (min-width: 2400px) {
+    html {
+      font-size: 118.75%; /* 19px */
+    }
+  }
+
+  body {
+    min-height: 100dvh;
+    background-color: var(--color-canvas);
+    color: var(--color-fg);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(--font-mono);
+  }
+
+  ::selection {
+    background-color: oklch(0.635 0.205 283 / 0.4);
+    color: var(--color-fg);
+  }
+
+  /* One designed focus ring everywhere (components may refine it). */
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  [hidden]:where(:not([hidden="until-found"])) {
+    display: none !important;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-fg-tertiary);
+    opacity: 1;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+}
+
+/* Toasts (src/components/ui/toast.tsx) — stacked, swipeable, bottom-right
+   (bottom-centre on phones); lifted above the SaveBar when it is visible. */
+.pl-toast-viewport {
+  position: fixed;
+  z-index: var(--z-index-toast);
+  right: var(--spacing-gutter);
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  left: var(--spacing-gutter);
+  margin-inline: auto;
+  width: auto;
+  max-width: 24rem;
+  transition: bottom 300ms var(--ease-out-expo);
+}
+@media (min-width: 640px) {
+  .pl-toast-viewport {
+    left: auto;
+    bottom: 1.5rem;
+    width: 24rem;
+  }
+}
+:root:has([data-savebar="visible"]) .pl-toast-viewport {
+  bottom: calc(6.5rem + env(safe-area-inset-bottom));
+}
+.pl-toast {
+  --gap: 0.75rem;
+  --peek: 0.625rem;
+  --scale: calc(max(0, 1 - (var(--toast-index) * 0.06)));
+  --shrink: calc(1 - var(--scale));
+  --height: var(--toast-frontmost-height, var(--toast-height));
+  --offset-y: calc(var(--toast-offset-y) * -1 + (var(--toast-index) * var(--gap) * -1) + var(--toast-swipe-movement-y));
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  height: var(--height);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-surface-2);
+  box-shadow: var(--shadow-lg), var(--inset-shadow-highlight);
+  color: var(--color-fg);
+  transform-origin: bottom center;
+  z-index: calc(1000 - var(--toast-index));
+  user-select: none;
+  cursor: default;
+  transform: translateX(var(--toast-swipe-movement-x))
+    translateY(calc(var(--toast-swipe-movement-y) - (var(--toast-index) * var(--peek)) - (var(--shrink) * var(--height))))
+    scale(var(--scale));
+  transition:
+    transform 500ms var(--ease-out-expo),
+    opacity 400ms var(--ease-out-expo),
+    height 150ms var(--ease-standard);
+}
+.pl-toast::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: calc(var(--gap) + 1px);
+}
+.pl-toast[data-expanded] {
+  transform: translateX(var(--toast-swipe-movement-x)) translateY(var(--offset-y));
+  height: var(--toast-height);
+}
+.pl-toast[data-starting-style],
+.pl-toast[data-ending-style] {
+  transform: translateY(150%);
+}
+.pl-toast[data-limited] {
+  opacity: 0;
+}
+.pl-toast[data-ending-style] {
+  opacity: 0;
+}
+.pl-toast[data-ending-style][data-swipe-direction="right"] {
+  transform: translateX(calc(var(--toast-swipe-movement-x) + 150%)) translateY(var(--offset-y));
+}
+.pl-toast[data-ending-style][data-swipe-direction="down"] {
+  transform: translateY(calc(var(--toast-swipe-movement-y) + 150%));
+}
+.pl-toast[data-type="error"] {
+  border-color: var(--color-danger-border);
+}
+.pl-toast:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+.pl-toast-content {
+  overflow: hidden;
+  transition: opacity 250ms var(--ease-out-expo);
+}
+.pl-toast-content[data-behind] {
+  opacity: 0;
+}
+.pl-toast-content[data-expanded] {
+  opacity: 1;
+}
+
+/* <Reveal>/<Stagger> states (set by JS only for below-the-fold content). */
+[data-reveal="hidden"] {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-y, 12px), 0);
+}
+[data-reveal="shown"] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 700ms var(--ease-out-expo) var(--reveal-delay, 0ms),
+    transform 700ms var(--ease-out-expo) var(--reveal-delay, 0ms);
+}
+@media print {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Respect reduced motion globally (framer-motion uses MotionConfig). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* 5. Prose — long-form legal/docs content (`<Prose>` or .prose)       */
+/* ------------------------------------------------------------------ */
+@layer components {
+  .prose {
+    max-width: var(--container-measure);
+    color: var(--color-fg-secondary);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+  .prose > :first-child {
+    margin-top: 0;
+  }
+  .prose > :last-child {
+    margin-bottom: 0;
+  }
+  .prose :where(p, ul, ol, blockquote, pre, table, figure) {
+    margin-block: 1.1em;
+  }
+  .prose :where(h2) {
+    margin-top: 2.4em;
+    margin-bottom: 0.7em;
+    color: var(--color-fg);
+    font-family: var(--font-display);
+    font-size: clamp(1.375rem, 1.2rem + 0.75vw, 1.75rem);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    font-weight: 620;
+    font-stretch: 106%;
+    scroll-margin-top: calc(var(--spacing-header) + 1.5rem);
+  }
+  .prose :where(h3) {
+    margin-top: 1.9em;
+    margin-bottom: 0.5em;
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.4;
+    letter-spacing: -0.012em;
+    font-weight: 600;
+    scroll-margin-top: calc(var(--spacing-header) + 1.5rem);
+  }
+  .prose :where(h4) {
+    margin-top: 1.6em;
+    margin-bottom: 0.4em;
+    color: var(--color-fg);
+    font-weight: 600;
+  }
+  .prose :where(h2 + *, h3 + *, h4 + *) {
+    margin-top: 0;
+  }
+  .prose :where(strong, b) {
+    color: var(--color-fg);
+    font-weight: 600;
+  }
+  .prose :where(a) {
+    color: var(--color-brand-fg);
+    text-decoration: underline;
+    text-decoration-color: oklch(0.8 0.12 283 / 0.4);
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-color 150ms var(--ease-standard), color 150ms var(--ease-standard);
+  }
+  .prose :where(a):hover {
+    color: var(--color-brand-100);
+    text-decoration-color: currentColor;
+  }
+  .prose :where(ul, ol) {
+    padding-left: 1.4em;
+  }
+  .prose :where(ul) {
+    list-style: none;
+  }
+  .prose :where(ul > li) {
+    position: relative;
+  }
+  .prose :where(ul > li)::before {
+    content: "";
+    position: absolute;
+    left: -1em;
+    top: 0.72em;
+    width: 0.35em;
+    height: 0.35em;
+    border-radius: 999px;
+    background: var(--color-brand-400);
+  }
+  .prose :where(ol) {
+    list-style: decimal;
+  }
+  .prose :where(ol > li)::marker {
+    color: var(--color-fg-tertiary);
+    font-variant-numeric: tabular-nums;
+  }
+  .prose :where(li) {
+    margin-block: 0.4em;
+    padding-left: 0.2em;
+  }
+  .prose :where(li > ul, li > ol) {
+    margin-block: 0.4em;
+  }
+  .prose :where(blockquote) {
+    border-left: 2px solid var(--color-brand-border);
+    padding-left: 1em;
+    color: var(--color-fg-secondary);
+    font-style: normal;
+  }
+  .prose :where(hr) {
+    margin-block: 2.5em;
+    border: 0;
+    border-top: 1px solid var(--color-line);
+  }
+  .prose :where(code):not(:where(pre code)) {
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-2);
+    padding: 0.12em 0.38em;
+    color: var(--color-fg);
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+  }
+  .prose :where(pre) {
+    overflow-x: auto;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    background: var(--color-inset);
+    padding: 1em 1.2em;
+    color: var(--color-fg);
+    font-size: 0.875em;
+    line-height: 1.7;
+  }
+  .prose :where(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375em;
+  }
+  .prose :where(th) {
+    border-bottom: 1px solid var(--color-line-strong);
+    padding: 0.6em 0.75em;
+    color: var(--color-fg);
+    font-weight: 600;
+    text-align: left;
+  }
+  .prose :where(td) {
+    border-bottom: 1px solid var(--color-line);
+    padding: 0.6em 0.75em;
+    vertical-align: top;
   }
 }

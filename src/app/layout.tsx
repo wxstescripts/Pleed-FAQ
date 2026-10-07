@@ -1,31 +1,60 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 import { NextAuthProvider } from "@/components/NextAuthProvider";
+import { fontVariables } from "@/lib/fonts";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
+import { cn } from "@/lib/utils";
+
+const defaultTitle = `${SITE_NAME} — ${SITE_TAGLINE}`;
 
 export const metadata: Metadata = {
-  title: "Pleed Dashboard",
-  description: "The ultimate Discord bot.",
+  // PLACEHOLDER: SITE_URL comes from NEXT_PUBLIC_SITE_URL (no production domain in the repo yet).
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: defaultTitle,
+    template: `%s · ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  category: "technology",
+  keywords: [
+    "Discord bot",
+    "anti-nuke",
+    "Discord moderation",
+    "auto moderation",
+    "join gate",
+    "Discord security",
+    "auto responder",
+  ],
+  formatDetection: { telephone: false, email: false, address: false },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    locale: "en_US",
+    title: defaultTitle,
+    description: SITE_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: defaultTitle,
+    description: SITE_DESCRIPTION,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0b0c10", // = --color-canvas
+  colorScheme: "dark",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
+    <html lang="en" dir="ltr" className={cn("dark", fontVariables)}>
+      <body className="min-h-dvh bg-canvas font-sans text-fg antialiased">
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>
