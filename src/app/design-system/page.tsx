@@ -18,10 +18,12 @@ import {
 import { Badge, Pill, PlaceholderBadge, StatusDot } from "@/components/ui/badge";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Button, IconButton } from "@/components/ui/button";
+import { Callout } from "@/components/ui/callout";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, FeatureCard } from "@/components/ui/card";
 import { CodeBlock } from "@/components/ui/code-block";
 import { Container } from "@/components/ui/container";
 import { DiscordIcon } from "@/components/ui/discord-icon";
+import { DiscordButton, DiscordMention, DiscordMessage, DiscordPreview, PLEED_AUTHOR } from "@/components/ui/discord-message";
 import { GradientText } from "@/components/ui/gradient-text";
 import { IconTile } from "@/components/ui/icon-tile";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
@@ -70,6 +72,7 @@ const SECTIONS = [
   { id: "feedback", label: "Feedback states" },
   { id: "data", label: "Data display" },
   { id: "code", label: "Code & commands" },
+  { id: "discord", label: "Discord previews" },
   { id: "prose", label: "Prose" },
   { id: "motion", label: "Motion" },
   { id: "settings", label: "Settings & save bar" },
@@ -357,7 +360,8 @@ export default async function DesignSystemPage() {
               <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                 {[
                   ["container-content", "1216 px", "Marketing pages"],
-                  ["container-wide", "1440 px", "Dashboard, wide grids"],
+                  ["container-wide", "1440 px", "Dashboard overview + lists, wide grids"],
+                  ["container-settings", "768 px", "Dashboard settings pages"],
                   ["container-narrow", "768 px", "Legal, forms"],
                   ["max-w-measure", "68ch", "Prose line length"],
                   ["px-gutter", "16 → 40 px", "Page gutters (fluid)"],
@@ -587,6 +591,13 @@ export default async function DesignSystemPage() {
                 <Button variant="discord" disabled>
                   <DiscordIcon /> Disabled
                 </Button>
+                {/* aria-disabled = focusable but inert: Tab to it, Enter/Space/click do nothing. */}
+                <Button variant="secondary" aria-disabled>
+                  Inert (aria-disabled)
+                </Button>
+                <Button variant="outline" href="/commands" aria-disabled>
+                  Inert link
+                </Button>
                 <div className="w-full max-w-xs">
                   <Button fullWidth>Full width</Button>
                 </div>
@@ -764,6 +775,38 @@ export default async function DesignSystemPage() {
               <StateDemos />
             </div>
             <InlineErrorDemo />
+            <DsBlock title="Callout — every note, tip, warning and permission banner">
+              <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
+                <Callout tone="info" title="Slash commands sync in about a minute">
+                  New commands can take up to a minute to appear in Discord&apos;s command picker.
+                </Callout>
+                <Callout tone="success" title="Pleed has every permission it needs">
+                  Anti-nuke, join gates and auto-mod can act on members below its role.
+                </Callout>
+                <Callout
+                  tone="warning"
+                  title="Pleed is missing Manage Roles"
+                  actions={
+                    <Button size="sm" variant="secondary" href={INVITE_URL}>
+                      Fix permissions
+                    </Button>
+                  }
+                >
+                  Join gates can&apos;t give the verified role until Pleed has this permission.
+                </Callout>
+                <Callout tone="danger" title="Anti-nuke is off">
+                  Mass bans, kicks and channel deletes are not being watched in this server.
+                </Callout>
+                <Callout tone="brand" title="Tip">
+                  Run <code>!setup</code> in any channel to configure the basics in one go.
+                </Callout>
+                <Callout tone="neutral">Last updated 2 October 2026.</Callout>
+              </div>
+              <Callout tone="warning" variant="outline" title="Outline variant — for pages with several notes">
+                Same tones and layout, border only. Actions sit beside the text when the callout is at least 30rem
+                wide and wrap under it, indented, when it is narrower.
+              </Callout>
+            </DsBlock>
           </DsSection>
 
           <DsSection id="data" title="Data display" description="Stat cards (with honest placeholders), responsive table → cards, page header.">
@@ -779,6 +822,72 @@ export default async function DesignSystemPage() {
 
           <DsSection id="code" title="Code & commands">
             <CodeDemos />
+          </DsSection>
+
+          {/* ------------------------------------------------------------ */}
+          <DsSection
+            id="discord"
+            title="Discord previews"
+            description="DiscordPreview + DiscordMessage: every Discord mock (landing hero, docs examples, auto-responder replies, welcome and verification DMs). Pleed tokens in a Discord-native layout, never Discord's own palette."
+          >
+            <div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-2">
+              <DiscordPreview channel="support">
+                <DiscordMessage author={{ name: "Nova", accent: "info" }} timestamp="Today at 12:03">
+                  how do I verify?
+                </DiscordMessage>
+                <DiscordMessage author={PLEED_AUTHOR} timestamp="Today at 12:03">
+                  Head to <DiscordMention kind="channel">verify</DiscordMention> and press the button. Then{" "}
+                  <DiscordMention kind="role">Members</DiscordMention> unlocks the rest of the server.
+                </DiscordMessage>
+              </DiscordPreview>
+              <DiscordPreview channel="Pleed" kind="dm">
+                <DiscordMessage
+                  author={PLEED_AUTHOR}
+                  timestamp="Today at 09:41"
+                  embed={{
+                    accent: "brand",
+                    title: "Verify to join My Server",
+                    description: "Press Verify to prove you're human. New accounts are held for review.",
+                    fields: [
+                      { name: "Account age", value: "3 days", inline: true },
+                      { name: "Minimum", value: "7 days", inline: true },
+                      { name: "Status", value: "Held for review", inline: true },
+                    ],
+                    footer: "Pleed join gate · My Server",
+                  }}
+                  actions={
+                    <>
+                      <DiscordButton tone="brand" icon={<ShieldCheck />}>
+                        Verify
+                      </DiscordButton>
+                      <DiscordButton tone="link">Server rules</DiscordButton>
+                    </>
+                  }
+                />
+              </DiscordPreview>
+            </div>
+            <DiscordPreview channel="mod-log" className="max-w-2xl">
+              <DiscordMessage
+                author={PLEED_AUTHOR}
+                timestamp="Yesterday at 22:17"
+                embed={{
+                  accent: "danger",
+                  title: "Anti-nuke: member banned",
+                  description: (
+                    <>
+                      <DiscordMention kind="user">rogue-admin</DiscordMention> banned 4 members in 30 seconds (threshold:
+                      3 per minute).
+                    </>
+                  ),
+                  fields: [
+                    { name: "Punishment", value: "Ban", inline: true },
+                    { name: "Roles removed", value: "Admin, Moderator", inline: true },
+                    { name: "Reason", value: "Mass ban, threshold crossed. Long values wrap inside the embed instead of widening it." },
+                  ],
+                  footer: "Embeds are max-w-md; inline fields stack below 22rem",
+                }}
+              />
+            </DiscordPreview>
           </DsSection>
 
           <DsSection id="prose" title="Prose" description="Legal and docs typography (68ch measure).">
@@ -817,6 +926,10 @@ export default async function DesignSystemPage() {
                   </li>
                 </ol>
                 <blockquote>Role hierarchy matters: Pleed can only act on roles below its own.</blockquote>
+                <Callout tone="warning" title={"Move Pleed's role up"}>
+                  Pleed can only ban, kick or give roles to members whose highest role is below its own. In{" "}
+                  <strong>Server Settings → Roles</strong>, drag <code>Pleed</code> above your moderator roles.
+                </Callout>
                 <CodeBlock code="!antinuke ban on --threshold 3 --do ban" prompt="›" />
                 <hr />
                 {/* Bare <table>: words stay whole ("identify"), links may break. */}
