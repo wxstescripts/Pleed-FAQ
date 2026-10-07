@@ -67,7 +67,7 @@ export function ResponsiveList<Row>({
         role="region"
         aria-label={caption}
         tabIndex={0}
-        className="hidden overflow-x-auto rounded-xl border border-line bg-surface-1 focus-visible:focus-ring md:block"
+        className="relative hidden overflow-x-auto rounded-xl border border-line bg-surface-1 focus-visible:focus-ring md:block"
       >
         <table className="w-full border-collapse text-left text-sm">
           <caption className={cn(showCaption ? "px-5 pt-4 pb-2 text-left type-small text-fg-secondary" : "sr-only")}>

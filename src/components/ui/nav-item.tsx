@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, type LucideIcon } from "lucide-react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn, isExternalHref } from "@/lib/utils";
 
 export type NavItemVariant = "header" | "sidebar" | "sheet";
 
@@ -65,7 +65,7 @@ export function NavItem({
   children,
   ...props
 }: NavItemProps) {
-  const isExternal = external ?? /^https?:\/\//.test(href);
+  const isExternal = external ?? isExternalHref(href);
   const classes = cn(
     "group/nav relative flex items-center font-medium whitespace-nowrap text-fg-secondary select-none",
     "transition-[background-color,color] duration-150 ease-standard",

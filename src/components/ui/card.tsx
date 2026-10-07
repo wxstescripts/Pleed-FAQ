@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import type { LucideIcon } from "lucide-react";
 import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn, isExternalHref } from "@/lib/utils";
 import { IconTile } from "@/components/ui/icon-tile";
 
 export const cardVariants = cva("relative flex flex-col rounded-xl border text-fg", {
@@ -59,11 +59,12 @@ export function Card<T extends ElementType = "div">({
   ...props
 }: CardProps<T>) {
   if (href) {
-    const external = /^https?:\/\//.test(href);
+    const external = isExternalHref(href);
     const classes = cn(cardVariants({ variant, padding, interactive: true }), className);
     return external ? (
       <a href={href} target="_blank" rel="noopener noreferrer" className={classes} {...props}>
         {children}
+        <span className="sr-only"> (opens in a new tab)</span>
       </a>
     ) : (
       <Link href={href} className={classes} {...props}>

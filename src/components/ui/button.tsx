@@ -2,7 +2,7 @@ import Link from "next/link";
 import { cva, type VariantProps } from "class-variance-authority";
 import type { ComponentProps, ReactNode } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn, isExternalHref } from "@/lib/utils";
 import { Spinner } from "@/components/ui/spinner";
 
 /**
@@ -87,8 +87,6 @@ export type ButtonAsLink = SharedProps &
   };
 
 export type ButtonProps = ButtonAsButton | ButtonAsLink;
-
-const isExternalHref = (href: string) => /^(https?:)?\/\//.test(href) || href.startsWith("mailto:");
 
 function ButtonInner({ loading, children }: { loading?: boolean; children?: ReactNode }) {
   if (!loading) return <>{children}</>;
