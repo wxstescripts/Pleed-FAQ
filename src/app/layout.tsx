@@ -2,8 +2,9 @@ import type { Metadata, Viewport } from "next";
 
 import "./globals.css";
 
-import { NextAuthProvider } from "@/components/NextAuthProvider";
 import { MotionProvider } from "@/components/motion/motion-provider";
+import { FragmentHistory } from "@/components/ui/fragment-history";
+import { SessionScope } from "@/components/ui/session-scope";
 import { Toaster } from "@/components/ui/toast";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { fontVariables } from "@/lib/fonts";
@@ -58,14 +59,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" dir="ltr" className={cn("dark", fontVariables)}>
       <body className="min-h-dvh bg-canvas font-sans text-fg antialiased">
-        <NextAuthProvider>
-          <MotionProvider>
-            <TooltipProvider>
-              {children}
-              <Toaster />
-            </TooltipProvider>
-          </MotionProvider>
-        </NextAuthProvider>
+        <MotionProvider>
+          <TooltipProvider>
+            {/* NextAuth's SessionProvider only under /dashboard — marketing pages fetch no session. */}
+            <SessionScope>{children}</SessionScope>
+            <Toaster />
+            <FragmentHistory />
+          </TooltipProvider>
+        </MotionProvider>
       </body>
     </html>
   );
