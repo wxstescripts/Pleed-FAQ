@@ -135,17 +135,21 @@ export function ErrorState({
   );
 }
 
-/** "Try again". While retrying it ignores clicks but keeps keyboard focus (aria-disabled, not `disabled`). */
+/**
+ * "Try again". While retrying it is inert but keeps keyboard focus (Button's
+ * aria-disabled, not `disabled`); the icon turns like a Spinner (slower, never
+ * frozen, under reduced motion).
+ */
 function RetryButton({ onRetry, retrying, className }: { onRetry: () => void; retrying?: boolean; className?: string }) {
   return (
     <Button
       variant="secondary"
-      onClick={retrying ? undefined : onRetry}
+      onClick={onRetry}
       aria-disabled={retrying || undefined}
       aria-busy={retrying || undefined}
       className={cn(retrying && "aria-disabled:opacity-100", className)}
     >
-      <RotateCcw aria-hidden="true" className={cn("size-4", retrying && "animate-spin motion-reduce:animate-none")} />
+      <RotateCcw aria-hidden="true" className={cn("size-4", retrying && "animate-spin-slow")} />
       {retrying ? "Retrying…" : "Try again"}
     </Button>
   );

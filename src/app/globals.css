@@ -845,6 +845,14 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  /* …except activity indicators (Spinner, the "Retrying…" icon): they keep
+     turning, slower. A frozen arc reads as a broken icon and hides that work
+     is in progress; a small rotation is not a vestibular trigger. Unlayered
+     and more specific than the rule above, so it wins over its !important. */
+  .animate-spin-slow {
+    animation-duration: 2.4s !important;
+    animation-iteration-count: infinite !important;
+  }
 }
 
 /* ------------------------------------------------------------------ */
