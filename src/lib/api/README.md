@@ -36,7 +36,7 @@ URL changes — set the override env var (or edit `config.ts`) rather than touch
 
 | # | Client function | Method | URL | Headers sent | Body | Response the UI reads |
 |---|---|---|---|---|---|---|
-| 1 | `getStats()` | GET | `LT/api/stats` | `Bypass-Tunnel-Reminder: true` | — | `{ servers, messages_today, actions_taken }` (numbers) |
+| 1 | `getStats()` | GET | `LT/api/stats` | `Bypass-Tunnel-Reminder: true` | — | `{ servers, messages_today, actions_taken }` (numbers) — no member total (see below) |
 | 2 | `getServers()` | GET | `LT/api/servers` | `Bypass-Tunnel-Reminder: true` | — | array of `{ id, name, role, members }` |
 | 3 | `getSecurityConfig()` | GET | `LT/api/security/{G}` | `Bypass-Tunnel-Reminder: true` | — | `{ enabled, punishment, ban_threshold, kick_threshold, channel_delete_threshold, role_delete_threshold }` |
 | 4 | `saveSecurityConfig(config)` | POST | `LT/api/security/{G}` | `Content-Type: application/json`, `Bypass-Tunnel-Reminder: true` | `JSON.stringify(config)` — the whole object | status only |
@@ -52,6 +52,7 @@ URL changes — set the override env var (or edit `config.ts`) rather than touch
 
 Field semantics (from the current UI; the backend for these routes is not in this repo):
 
+- `stats` has **no member total**, and no endpoint returns one. The old overview card "Total Members" showed a hard-coded "Loading..." that never resolved (also on `main`). Either derive it as the sum of `servers[].members`, labelled "across listed servers", or show a clearly marked Placeholder — never a perpetual loading state or an invented number.
 - On/off fields are SQLite-style `0 | 1` (`Flag`), not booleans: `enabled`, `dm_on_join`, every `anti_*`, `bad_words_enabled`. Use `flagOn(v)` / `toFlag(bool)`.
 - `security.punishment`: `"ban" | "kick" | "quarantine" | "alert"`. Thresholds are "per minute"; the UI ranges are 1–20 (ban, kick) and 1–10 (channel/role deletions).
 - `automod.punishment`: `"delete" | "timeout" | "kick" | "ban"`; `timeout_minutes` only matters for `"timeout"`.

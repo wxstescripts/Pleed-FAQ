@@ -10,6 +10,9 @@
  *   ?mock=loading          API calls never resolve (loading skeletons)
  *   ?mock=signedout        mock session is signed out (login gate)
  *   ?mock=sessionloading   mock session never resolves ("checking session" state)
+ *   ?mock=noavatar         mock user has no image (initials fallback); by default the
+ *                          mock user has Discord's default avatar on cdn.discordapp.com,
+ *                          like every real Discord user, so next/image is exercised
  *   ?mock=off              no mocks: real Pleed API and real NextAuth session
  *   ?mock=reset            back to the defaults (also ?mock=on or ?mock=)
  *
@@ -19,6 +22,8 @@
 export type MockDataMode = "default" | "empty" | "error" | "savefail";
 export type MockLatency = "normal" | "slow" | "loading";
 export type MockSessionMode = "authenticated" | "signedout" | "loading";
+/** "image" = Discord CDN avatar URL (what real users always have); "none" = `image: null`. */
+export type MockAvatarMode = "image" | "none";
 
 export interface MockSettings {
   /** false = `?mock=off`: real API and real session. */
@@ -26,6 +31,7 @@ export interface MockSettings {
   readonly data: MockDataMode;
   readonly latency: MockLatency;
   readonly session: MockSessionMode;
+  readonly avatar: MockAvatarMode;
   /** Normalised switch string, e.g. "empty,slow" ("" = defaults, "off" = disabled). */
   readonly key: string;
 }
@@ -47,6 +53,7 @@ export function parseMockSwitches(raw: string): MockSettings {
   let data: MockDataMode = "default";
   let latency: MockLatency = "normal";
   let session: MockSessionMode = "authenticated";
+  let avatar: MockAvatarMode = "image";
 
   for (const token of raw.toLowerCase().split(/[\s,+|]+/).filter(Boolean)) {
     switch (token) {
@@ -75,6 +82,14 @@ export function parseMockSwitches(raw: string): MockSettings {
       case "sessionloading":
         session = "loading";
         break;
+      case "noavatar":
+      case "no-avatar":
+      case "initials":
+        avatar = "none";
+        break;
+      case "avatar":
+        avatar = "image";
+        break;
       default:
         if (!warned.has(token)) {
           warned.add(token);
@@ -83,14 +98,17 @@ export function parseMockSwitches(raw: string): MockSettings {
     }
   }
 
-  if (!enabled) return { enabled, data: "default", latency: "normal", session: "authenticated", key: "off" };
+  if (!enabled) {
+    return { enabled, data: "default", latency: "normal", session: "authenticated", avatar: "image", key: "off" };
+  }
 
   const parts: string[] = [];
   if (data !== "default") parts.push(data);
   if (latency !== "normal") parts.push(latency);
   if (session === "signedout") parts.push("signedout");
   if (session === "loading") parts.push("sessionloading");
-  return { enabled, data, latency, session, key: parts.join(",") };
+  if (avatar === "none") parts.push("noavatar");
+  return { enabled, data, latency, session, avatar, key: parts.join(",") };
 }
 
 const cache = new Map<string, MockSettings>();
@@ -150,6 +168,6 @@ export function announceMockSettings(settings: MockSettings): void {
   }
   console.info(
     `[pleed mock] Dev mock API + session active (mode: ${settings.key || "default"}). ` +
-      "Switch with ?mock=empty|error|savefail|slow|loading|signedout|sessionloading|off|reset — see src/lib/dev/README.md.",
+      "Switch with ?mock=empty|error|savefail|slow|loading|signedout|sessionloading|noavatar|off|reset — see src/lib/dev/README.md.",
   );
 }

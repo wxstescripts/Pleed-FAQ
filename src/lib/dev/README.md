@@ -35,6 +35,7 @@ so clicking around the sidebar keeps it. Switches combine with `,` or `+`.
 | `loading` | API calls never resolve — screenshot-stable loading state |
 | `signedout` | mock session is signed out — the login gate |
 | `sessionloading` | mock session never resolves — the "checking your session" state |
+| `noavatar` | mock user has `image: null` — the avatar's initials fallback |
 | `off` | real API (tunnels) and real NextAuth session |
 | `reset` (or `on`, or `?mock=`) | back to defaults, clears the remembered value |
 
@@ -45,7 +46,7 @@ because `--paths` is comma-separated):
 
 ```bash
 node shoot.mjs --paths "dashboard/security,dashboard/security?mock=loading,dashboard/security?mock=error,dashboard/security?mock=empty" --vp 390x844,1440x900 --mode fold --out ../shots/dash-security/r1
-node shoot.mjs --paths "dashboard?mock=signedout,dashboard?mock=sessionloading" --vp phones --out ../shots/dash-shell/gate
+node shoot.mjs --paths "dashboard?mock=signedout,dashboard?mock=sessionloading,dashboard?mock=noavatar" --vp phones --out ../shots/dash-shell/gate
 ```
 
 `slow` is timing-dependent; for screenshots of loading UI prefer `loading` / `sessionloading`.
@@ -55,6 +56,11 @@ node shoot.mjs --paths "dashboard?mock=signedout,dashboard?mock=sessionloading" 
 Obviously fake on purpose — never present them as real usage figures.
 
 - Stats `{ servers: 3, messages_today: 1234, actions_taken: 56 }`.
+- **There is no member total.** `/api/stats` returns only `servers`, `messages_today` and
+  `actions_taken`, and no endpoint returns a total member count. Honest options for a "members"
+  figure: the sum of `servers[].members` labelled "across listed servers" (100% derived from
+  `getServers()`), or a clearly marked Placeholder (`// PLACEHOLDER: replace with real data`).
+  Never a perpetual "Loading…" and never an invented number.
 - Servers: "Pleed Test Server" (Owner, 128), "Pleed Sandbox" (Administrator, 42), and "Pleed Staging Server With A Deliberately Long Name For Layout Testing" (Manage Server, 1024) — test truncation with it. IDs look like `100000000000000001`.
 - Security: enabled, ban, thresholds 3/5/2/2. Join gates: enabled, all IDs filled (`2000…`/`3000…`), 7 days, 30 min, DM on. Automod: links/spam/invites on, punishment `timeout` (so the duration field shows), 10 min. Settings: prefix `!`, welcome channel set.
 - Auto-responders: `hello`, `rules`, and one with a 58-character trigger without spaces plus a long reply — your list must wrap/ellipsize it without overflowing at 360 px.
@@ -82,7 +88,11 @@ export function DashboardGate({ children }: { children: React.ReactNode }) {
 
 - Same arguments and return type as `useSession` (`{ data, status, update }`).
 - The first render (server and hydration) is always `status: "loading"`, exactly like the real hook — design that state; it is also what `?mock=sessionloading` freezes.
-- Mock user: `{ name: "Dev Admin", email: null, image: null }`, no tokens. Test the avatar fallback (initial) with it; real Discord users have an `image` URL on `cdn.discordapp.com`.
+- Mock user: `{ name: "Dev Admin", email: null, image: "https://cdn.discordapp.com/embed/avatars/0.png" }`,
+  no tokens. Real users always have an `image` on `cdn.discordapp.com` (NextAuth's Discord provider
+  falls back to these `embed/avatars/N.png` defaults), so render it with the shared `Avatar`
+  (`next/image`, allowed by the `cdn.discordapp.com` remotePattern). Use `?mock=noavatar` to test
+  the initials fallback (`image: null`) — keep handling it, `image` is optional in the type.
 - `signIn`/`signOut` are the real next-auth functions — clicking Logout with mocks on runs the real sign-out request and reloads; you will still be the mock user afterwards. Use `?mock=signedout` to see the gate.
 - `useSession({ required: true })` redirect behaviour is not simulated by the mock; the current layout doesn't use it.
 
