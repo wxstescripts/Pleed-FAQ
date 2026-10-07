@@ -86,6 +86,7 @@ export function DashboardGate({ children }: { children: React.ReactNode }) {
 }
 ```
 
+- `SessionSkeleton`, `LoginGate` and `Shell` above stand for your own components (illustrative only).
 - Same arguments and return type as `useSession` (`{ data, status, update }`).
 - The first render (server and hydration) is always `status: "loading"`, exactly like the real hook — design that state; it is also what `?mock=sessionloading` freezes.
 - Mock user: `{ name: "Dev Admin", email: null, image: "https://cdn.discordapp.com/embed/avatars/0.png" }`,
@@ -117,11 +118,21 @@ your local copy.
 
 ### Hooks (`@/lib/api/hooks`, client components only)
 
+This snippet type-checks as written against the shared UI kit (`DESIGN.md` → components) and
+follows its save pattern: `toast.success("Changes saved")`; on failure the draft is kept, so the
+`SaveBar` stays up showing `error`, plus an error toast with a Retry action.
+
 ```tsx
 "use client";
 import { useState } from "react";
 import { getSecurityConfig, saveSecurityConfig, flagOn, toFlag, type SecurityConfig } from "@/lib/api";
 import { usePleedMutation, usePleedQuery } from "@/lib/api/hooks";
+import { SaveBar } from "@/components/ui/save-bar";
+import { SettingRow } from "@/components/ui/settings-section";
+import { LoadingRegion, SkeletonText } from "@/components/ui/skeleton";
+import { ErrorState } from "@/components/ui/states";
+import { Switch } from "@/components/ui/switch";
+import { toast } from "@/components/ui/toast";
 
 export function SecurityEditor() {
   const query = usePleedQuery(getSecurityConfig);          // loads on mount, aborts on unmount
@@ -129,33 +140,64 @@ export function SecurityEditor() {
   const [draft, setDraft] = useState<SecurityConfig | null>(null);
   const config = draft ?? query.data;
 
-  if (query.status === "loading" && !query.data) return <SecuritySkeleton />;
+  if (query.status === "loading" && !query.data) {
+    return (
+      <LoadingRegion label="Loading anti-nuke settings">
+        <SkeletonText lines={4} />
+      </LoadingRegion>
+    );
+  }
   if (query.status === "error" && !query.data) {
     // Never fall back to default values here: saving defaults would overwrite the real config.
-    return <ErrorState message={query.error?.message} onRetry={query.reload} />;
+    return (
+      <ErrorState title="Couldn't load anti-nuke settings" detail={query.error?.message} onRetry={query.reload} />
+    );
   }
   if (!config) return null;
 
-  const dirty = draft !== null;
   async function onSave() {
     if (!draft) return;
     const result = await save.mutate(draft);                // never throws
-    if (result.ok) { query.setData(draft); setDraft(null); toast.success("Saved"); }
-    else toast.error(result.error.message);
+    if (result.ok) {
+      query.setData(draft);
+      setDraft(null);
+      toast.success("Changes saved");
+    } else {
+      // Keep the draft: the SaveBar stays visible and shows save.error.
+      toast.error(result.error.message, { action: { label: "Retry", onClick: () => void onSave() } });
+    }
+  }
+
+  function onReset() {
+    setDraft(null);
+    save.reset();                                           // clears the SaveBar error
   }
 
   return (
     <>
-      <Switch
-        checked={flagOn(config.enabled)}
-        onCheckedChange={(on) => setDraft({ ...config, enabled: toFlag(on) })}
-        aria-label="Anti-nuke protection"
+      <SettingRow
+        label="Anti-nuke protection"
+        control={
+          <Switch
+            checked={flagOn(config.enabled)}
+            onCheckedChange={(on) => setDraft({ ...config, enabled: toFlag(on) })}
+          />
+        }
       />
-      <SaveBar visible={dirty} saving={save.status === "pending"} onSave={onSave} onDiscard={() => setDraft(null)} />
+      {/* Last child of the page content (it is sticky). */}
+      <SaveBar
+        dirty={draft !== null}
+        saving={save.status === "pending"}
+        error={save.error?.message}
+        onSave={() => void onSave()}
+        onReset={onReset}
+      />
     </>
   );
 }
 ```
+
+Review it with `?mock=savefail` (save error path), `?mock=error` (load error), `?mock=loading`.
 
 - `usePleedQuery(fetcher)` → `{ status: "loading" | "success" | "error", data, error, reload, setData }`. `data` keeps the last good value during `reload()` and after a failed reload. Pass a client function directly; inline lambdas are fine too (no refetch loop).
 - `usePleedMutation(fn)` → `{ mutate, status: "idle" | "pending" | "success" | "error", error, reset }`; `mutate(...args)` resolves to `{ ok: true, data } | { ok: false, error }`.
