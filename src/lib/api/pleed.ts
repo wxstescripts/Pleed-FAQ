@@ -144,12 +144,12 @@ export const pleedRequests = {
     body: JSON.stringify(config),
   }),
 
-  automodGet: (): PleedRequest => ({ endpoint: "automod.get", method: "GET", url: `${LHR}/api/automod/${MOCK_GUILD_ID}` }),
+  automodGet: (): PleedRequest => ({ endpoint: "automod.get", method: "GET", url: `${LHR}/api/automod/${MOCK_GUILD_ID}`, headers: ltGetHeaders() }),
   automodSave: (config: AutomodConfig): PleedRequest => ({
     endpoint: "automod.save",
     method: "POST",
     url: `${LHR}/api/automod/${MOCK_GUILD_ID}`,
-    headers: lhrJsonHeaders(),
+    headers: ltJsonHeaders(),
     body: JSON.stringify(config),
   }),
 
@@ -157,28 +157,29 @@ export const pleedRequests = {
     endpoint: "automations.list",
     method: "GET",
     url: `${LHR}/api/automations/${MOCK_GUILD_ID}`,
+    headers: ltGetHeaders(),
   }),
   automationsCreate: (automation: NewAutomation): PleedRequest => ({
     endpoint: "automations.create",
     method: "POST",
     url: `${LHR}/api/automations/${MOCK_GUILD_ID}`,
-    headers: lhrJsonHeaders(),
+    headers: ltJsonHeaders(),
     body: JSON.stringify(automation),
   }),
   automationsDelete: (id: Automation["id"]): PleedRequest => ({
     endpoint: "automations.delete",
     method: "DELETE",
     url: `${LHR}/api/automations/${MOCK_GUILD_ID}`,
-    headers: lhrJsonHeaders(),
+    headers: ltJsonHeaders(),
     body: JSON.stringify({ id }),
   }),
 
-  settingsGet: (): PleedRequest => ({ endpoint: "settings.get", method: "GET", url: `${LHR}/api/settings/${MOCK_GUILD_ID}` }),
+  settingsGet: (): PleedRequest => ({ endpoint: "settings.get", method: "GET", url: `${LHR}/api/settings/${MOCK_GUILD_ID}`, headers: ltGetHeaders() }),
   settingsSave: (settings: GuildSettings): PleedRequest => ({
     endpoint: "settings.save",
     method: "POST",
     url: `${LHR}/api/settings/${MOCK_GUILD_ID}`,
-    headers: lhrJsonHeaders(),
+    headers: ltJsonHeaders(),
     body: JSON.stringify(settings),
   }),
 };
